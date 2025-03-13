@@ -1,0 +1,21 @@
+
+    .sin_in_info hr{
+        width:300px;
+        border: 0.2px solid rgba(128, 128, 128, 0.248)
+        
+        }
+        .sin_in_info {
+            display: flex
+            ;
+                flex-direction: column;
+                text-align: center;
+                font-size: 12px;
+                font-family: var(--Typography-English-H-1-Font-Family, Poppins);
+        }
+        
+        .sin_in_info div{
+            width: 99%;
+            display: flex;
+            margin-top: -10px;
+            /* margin-left: 60px; */
+        }

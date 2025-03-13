@@ -1,0 +1,7 @@
+.titleCss{
+    display: flex;
+    color: var(--Text-Secondary, #D99E20);
+    margin-right: 90px;
+    font-family: var(--Typography-English-H-1-Font-Family, Poppins);
+
+}

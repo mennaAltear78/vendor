@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+ 
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+
+
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+:root {
+  --Typography-English-H-1-Font-Family: "Poppins", sans-serif;
+  
+    --Typography-English-H-1-Font-Family: 'Arial', sans-serif; /* Example */
+  
+  
+}
+.error{
+  color: red;
+  font-family: var(--Typography-English-H-1-Font-Family, Poppins);
+  margin-left: 50px;
+}
+

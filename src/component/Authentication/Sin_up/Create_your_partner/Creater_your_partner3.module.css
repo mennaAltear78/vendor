@@ -1,0 +1,19 @@
+.information{
+    display: flex;
+
+   
+}
+.information div{
+
+margin-right: 10px;
+}
+.btnsInfo{ margin-top: 10px;
+    display:flex ;
+    margin-left: 10px;
+}
+.mainInfo{
+    font-family: var(--Typography-English-H-1-Font-Family, Poppins);
+   font-size: 20px;
+    width: 600px;
+    margin-top: 120px;
+}

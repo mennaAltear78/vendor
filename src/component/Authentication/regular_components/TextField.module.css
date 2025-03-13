@@ -1,0 +1,130 @@
+.textBox {
+    border-radius: 5px;
+    border: var(--Outlines-xFine, 0.5px) solid var(--Border-br-Thirty, #B3B3B3);
+    height: 25px;
+    width: 300px;
+    margin-bottom: 20px;
+    font-family: var(--Typography-English-H-1-Font-Family, Poppins);
+
+}
+.textBox1 {
+    border-radius: 5px;
+    border: var(--Outlines-xFine, 0.5px) solid var(--Border-br-Thirty, #B3B3B3);
+    height: 100px;
+    width: 300px;
+    font-family: var(--Typography-English-H-1-Font-Family, Poppins);
+
+}
+.bigTextBox{
+  border-radius: 5px;
+  border: var(--Outlines-xFine, 0.5px) solid var(--Border-br-Thirty, #B3B3B3);
+  height: 25px;
+  width: 440px;
+  margin-bottom: 20px;
+  font-family: var(--Typography-English-H-1-Font-Family, Poppins);
+  border-color: rgba(128, 128, 128, 0.329);
+}
+  
+  .textBox2:focus {
+    border: 2px solid #007BFF; /* Change border color to blue when focused */
+    outline: none; /* Remove the default outline */
+  }
+  .textBox3:focus {
+    border: 2px solid #007BFF; /* Change border color to blue when focused */
+    outline: none; /* Remove the default outline */
+  }
+  .textBox:focus {
+    border: 2px solid #007BFF; /* Change border color to blue when focused */
+    outline: none; /* Remove the default outline */
+  }
+  .textBoxSmall:focus {
+    border: 2px solid #007BFF; /* Change border color to blue when focused */
+    outline: none; /* Remove the default outline */
+  }
+.textBox3 {
+    border-radius: 5px;
+    border: var(--Outlines-xFine, 0.5px) solid var(--Border-br-Thirty, #B3B3B3);
+    height: 25px;
+    width: 425px;
+    margin-bottom: 10px;
+    font-family: var(--Typography-English-H-1-Font-Family, Poppins);
+
+}
+.textBox2 {
+   
+    position: relative;
+    border-radius: 5px;
+    border: var(--Outlines-xFine, 0.5px) solid var(--Border-br-Thirty, #B3B3B3);
+    height: 100px;
+    width: 425px;
+    margin-bottom: 20px;
+    font-family: var(--Typography-English-H-1-Font-Family, Poppins);
+
+}
+.textBoxSmall{
+    border-radius: 5px;
+    border: var(--Outlines-xFine, 0.5px) solid var(--Border-br-Thirty, #B3B3B3);
+    height: 25px;
+    width: 200px;
+    margin-bottom: 20px;
+    font-family: var(--Typography-English-H-1-Font-Family, Poppins);
+
+}
+.textBoxSmal{
+  border-radius: 5px;
+  border: var(--Outlines-xFine, 0.5px) solid var(--Border-br-Thirty, #B3B3B3);
+  height: 30px;
+  width: 130px;
+  margin-bottom: 20px;
+  font-family: var(--Typography-English-H-1-Font-Family, Poppins);
+
+}
+input::placeholder {
+    color: var(--Text-Paragraph, #B3B3B3);
+    font-size: var(--Typography-English-P-3-Font-size, 14px);
+    font-style: normal;
+    font-weight: 500;
+    line-height: var(--Typography-English-P-3-Line-heights, 22px);
+    padding-top: 1000px;
+    font-family: var(--Typography-English-H-1-Font-Family, Poppins);
+    font-size: 12px;
+    /* 157.143% */
+}
+
+
+.label {
+    color: var(--Text-Headline, #292D32);
+    font-size: var(--Typography-English-P-3-Font-size, 14px);
+    font-style: normal;
+    font-weight: 500;
+    line-height: var(--Typography-English-P-3-Line-heights, 22px);
+    display: flex
+;
+
+font-family: var(--Typography-English-H-1-Font-Family, Poppins);
+
+    /* 157.143% */
+}
+input:focus {
+    border-color: blue; /* تغيير لون الحدود عند الكتابة */
+   
+    border-radius: 5px;
+  }
+.focusError{
+    /* background-color: rgba(255, 0, 0, 0.315); */
+    border: 2px solid rgb(255, 9, 9);
+    transition: border 0.3s ease-in-out;
+}
+.focusError:focus{
+  /* background-color: rgba(255, 0, 0, 0.315); */
+  border: 2px solid gray;
+  transition: border 0.3s ease-in-out;
+}
+textarea {
+  width: 95%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  resize:none
+}

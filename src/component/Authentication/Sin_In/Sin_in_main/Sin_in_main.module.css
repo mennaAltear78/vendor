@@ -1,0 +1,38 @@
+.sin_in_text {
+  width: 400px;
+  color: var(--Text-Headline, #292d32);
+  text-align: center;
+
+  /* English-Typography/Headline-1 */
+  font-family: var(--Typography-English-H-1-Font-Family, Poppins);
+  font-size: var(--Typography-English-H-1-Font-size, 32px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: var(--Typography-English-H-1-Line-heights, 40px); /* 125% */
+  letter-spacing: 0.16px;
+  margin-left: 30px;
+}
+.Sin_in_main_img {
+  width: 100px;
+}
+.Sin_in_main_img img {
+  background-blend-mode: luminosity;
+  border-radius: 20px;
+  background-color: blue;
+  /* width: 600px;
+   height: 600px; */
+}
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+}
+.Mainlogin {
+  text-align: center;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 00px;
+}

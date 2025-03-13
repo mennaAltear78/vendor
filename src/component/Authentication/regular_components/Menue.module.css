@@ -1,0 +1,126 @@
+/* الحاوية الأساسية */
+.dropdownContainer {
+  position: relative;
+  width: 450px;
+  margin-bottom: 10px;
+}
+
+.label {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 5px;
+  font-family: var(--Typography-English-H-1-Font-Family, Poppins);
+
+}
+/* الزر الرئيسي */
+.dropdown {
+  background: white;
+  height: 20px;
+  border: 2px solid #56595c44;
+  border-radius: 8px;
+  padding: 6px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  color: gray;
+  transition: 0.3s ease;
+}
+
+.dropdown:hover {
+  background: #f8f9fa;
+}
+
+/* قائمة الخيارات */
+.options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: white;
+  border: 2px solid #fcfdff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  display: none;
+  z-index: 10;
+  padding: 2px;
+}
+
+.options.show {
+  display: block;
+}
+
+/* خيار فردي */
+.option {
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.option:hover {
+  color: white;
+}
+
+.optionsStyle {
+  background-color: rgba(128, 128, 128, 0.116);
+  border-radius: 6px;
+  color: black;
+  text-align: center;
+  height: 40px;
+  margin-bottom: 6px;
+  margin-top: 6px;
+  place-content: center;
+}
+.optionsStyle:hover {
+  background-color: blue;
+  color: white;
+}
+.btn1 {
+  border-radius: 8px 0px 0px 8px;
+  width: 110px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: #3333339a;
+}
+.btn2 {
+  border-radius: 0px 10px 10px 0px;
+  width: 110px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.checked {
+  background-color: blue;
+  color: white;
+}
+.checked:hover {
+  background-color: rgba(64, 64, 68, 0.705);
+  color: white;
+}
+.line div {
+  width: 2px;
+  height: 14px;
+  background-color: rgba(143, 133, 133, 0.705);
+}
+.line {
+  background-color: blue;
+  place-content: center;
+  padding: 4px;
+}
+.selectedOption{
+ display: flex;
+ gap: 110px;
+  justify-content: space-between;
+
+}
+

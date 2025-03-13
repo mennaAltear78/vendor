@@ -1,0 +1,18 @@
+.information{
+    display: flex;
+    
+   
+}
+.information div{
+margin-right: 10px;
+}
+.btnsInfo{
+    display:flex ;
+    
+}
+.mainInfo{
+    width: 600px;
+   
+    margin-top: 120px;
+}
+

@@ -1,0 +1,12 @@
+.header{
+    font-family: var(--Typography-English-H-1-Font-Family, Poppins);
+    display: flex
+    ;
+        justify-content: space-between;
+        padding-left: 10px;
+        padding-right: 10px;
+        width: 95%;
+        align-items: center;
+        margin-top: 10px;
+        margin-bottom: -60px;
+}

@@ -1,0 +1,28 @@
+.sin_in_card{
+    width: 400px;
+    border: 1px solid rgba(128, 128, 128, 0.248);
+    border-radius: 10px;
+    /* margin: 100px 100px 100px 100px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+   
+    padding-top: 10px;
+    
+}
+.sin_in_Bigcard{
+    width: 500px;
+    border: 1px solid rgba(128, 128, 128, 0.248);
+    border-radius: 10px;
+    /* margin: 100px 100px 100px 100px; */
+    display: flex
+;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    /* margin-right: 00PX; */
+    padding-top: 10px;
+    padding-left: 40px;
+
+}

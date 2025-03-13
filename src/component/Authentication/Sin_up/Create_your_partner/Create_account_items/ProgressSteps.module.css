@@ -1,0 +1,91 @@
+.progressSteps{
+    display: flex;
+    margin-bottom: 30px;
+    margin-left: 10px;
+    
+  }
+  .progressStepsNoCircle{
+    display: flex;
+    margin-top: -20px;
+    margin-bottom: 20px;
+    margin-left: -5px;
+    
+  }
+  .circle1{
+    width: 35px;
+    height: 35px;
+    background-color: rgba(51, 48, 48, 0.664);
+    border-radius:20px;
+    margin-top: 10px;
+    color:white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+  .circle{
+      width: 35px;
+      background-color: #F2F2F2;
+      border-radius:20px;
+      margin-top: 10px;
+      color:rgb(0, 0, 0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 35px;
+  }
+  .line{
+      width: 210px;
+      height: 5px;
+      background-color: rgba(128, 128, 128, 0.151);
+      margin-top: 25px;
+      
+  } 
+  .line{
+    width: 210px;
+    height: 6px;
+    background-color: rgba(128, 128, 128, 0.151);
+    margin-top: 25px;
+    /* margin-left: 25px; */
+} 
+  .circlegreen{
+    width: 35px;
+    background-color: #28A746;
+    border-radius:20px;
+    margin-top: 10px;
+    color:white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
+}
+.linegreen{
+   
+    width: 210px;
+    height: 5px;
+    background-color: #28A746; /* Initial color */
+    margin-top: 25px;
+   
+} 
+.linebrown{
+   
+    width: 210px;
+    height: 6px;
+    background-color: #D99E20; /* Initial color */
+    margin-top: 25px;
+    margin-left: 10px;
+   
+} 
+.linegreenDash{
+    width: 130px;
+    height: 5px;
+    background-color: #28A746; /* Initial color */
+    margin-top: 25px;
+}
+.lineDash{
+    width: 130px;
+      height: 5px;
+      background-color: rgba(128, 128, 128, 0.151);
+      margin-top: 25px;
+    
+}

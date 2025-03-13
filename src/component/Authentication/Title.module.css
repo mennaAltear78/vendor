@@ -1,0 +1,5 @@
+.titlee{
+   text-align: center;
+   font-family: var(--Typography-English-H-1-Font-Family, Poppins);
+    width: 400px;
+}

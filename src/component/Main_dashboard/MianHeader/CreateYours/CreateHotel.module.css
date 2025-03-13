@@ -1,0 +1,133 @@
+.mainBody {
+  font-family: var(--Typography-English-H-1-Font-Family, Poppins);
+  margin-left: 20px;
+  /* margin-bottom: 100px; */
+}
+.description {
+  font-weight: 600;
+  color: rgba(128, 128, 128, 0.404);
+  font-size: 15px;
+}
+.btnFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  height: 70px;
+  align-items: center;
+  width: 87%;
+}
+.lineFooter {
+  width: 100%;
+  height: 3px;
+  background-color: rgba(170, 161, 161, 0.308);
+  box-shadow: -1.073px 0px 8px 0px rgba(170, 161, 161, 0.308);
+}
+footer {
+  position: fixed;
+  bottom: 0;
+  width:100%;
+  color: white;
+  text-align: center;
+ background-color: white;
+
+}
+.mainContaint {
+  margin-left: 20px;
+}
+.rating {
+  font-family: var(--Typography-English-H-1-Font-Family, Poppins);
+  padding: 20px;
+  margin-left: 40px;
+  width: 450px;
+  /* height: 500px; */
+  border: 2px solid rgba(128, 128, 128, 0.404);
+  border-radius: 15px;
+  /* font-size: small; */
+  margin-top: 50px;
+}
+.rating hr {
+  border: 1px solid rgba(128, 128, 128, 0.404);
+}
+.rating p {
+  font-weight: 500;
+  
+}
+.languages{
+  display: flex
+;
+    gap: 15px;
+    align-items: flex-start;
+    flex-direction: column;
+}
+.CompleteProfie{
+  font-family: var(--Typography-English-H-1-Font-Family, Poppins);
+  padding: 10px;
+  margin-left: 10px;
+  width: 900px;
+  border: 2px solid rgba(128, 128, 128, 0.199);
+  border-radius: 25px;
+  font-size: 17px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  align-items: center;
+
+
+
+}
+
+.StepContent b{
+   font-weight: 900;
+   font-size: 15px;
+  
+}
+.StepContent {
+  margin-left: 20px;
+  margin-top: -10px;
+}
+.CompleteProfleAll{
+  height: 100%;
+  margin-top: 110px;
+  /* display: flex
+; */
+  margin-left: 150px;
+  
+}
+
+.ImageType{
+ 
+  width: 58px;
+  height: 21px;
+  background-color: #5e5e647a;
+  border-radius: 4px;
+
+  place-content: center;
+  font-size: 9px;
+  margin-bottom: -20px;
+  margin-left: 11.5px;
+}
+.ImageTypeBlue{
+ 
+  width: 58px;
+  height: 20px;
+  background-color: #0606ebab;
+  border-radius:4px;
+
+  place-content: center;
+  font-size: 9px;
+  margin-bottom: -21px;
+  margin-left: 11.5px;
+}
+.uploadImage{
+  width: 450px;
+  height: 120px;
+  border: 2px dashed gray;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  display: flex
+;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+}
