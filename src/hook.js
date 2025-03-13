@@ -5,9 +5,9 @@ function hook(handelvalueValidation) {
   const [formValueTouched, setFormIsValueTouched] = useState(false);
 
   const inputValueNotEmpty = handelvalueValidation(enteredValue); //condition of the textFiled
-  const errorValidation = !inputValueNotEmpty && formValueTouched;
+  // const errorValidation = !inputValueNotEmpty && formValueTouched;
 
-  const classFormate = !errorValidation ? "" : "formwithoutErr";
+  // const classFormate = !errorValidation ? "" : "formwithoutErr";
 
   const inputHnadeler = (e) => {
     setenteredValue(e.target.value);
