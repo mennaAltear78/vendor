@@ -1,7 +1,7 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import Style from "./TextField.module.css";
 
-function TextField(props) {
+const TextField = forwardRef((props, ref) => {
   return (
     <div>
       <div className={Style["label"]}>
@@ -11,12 +11,11 @@ function TextField(props) {
         <textarea placeholder="" rows="5" cols="40"></textarea>
       ) : (
         <input
-          ref={props.ref}
+          ref={ref} // ✅ استخدم ref هنا بشكل صحيح
           className={`${Style[props.textfild]} ${
             props.IsError && Style.focusError
           }`}
           type={props.type || "text"} // Default to "text" if no type is provided
-          id="name"
           name={props.name}
           placeholder={props.Intext}
           onBlur={props.onblurHandeler}
@@ -26,6 +25,6 @@ function TextField(props) {
       )}
     </div>
   );
-}
+});
 
 export default TextField;

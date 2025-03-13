@@ -6,10 +6,13 @@ function AuthenFooter(props) {
    
         <div className={style['sin_in_info']}>
                 <p>
-                    {props.title}<a  ><Link style={{ color: 'blue', cursor: 'pointer',textDecoration: 'none'  }} to='/FacingProblem'>{props.link}</Link></a>
+                    {props.title}<span ><Link style={{ color: 'blue', cursor: 'pointer',textDecoration: 'none'  }} to='/FacingProblem'>{props.link}</Link></span>
                 </p >
                 <hr />
-                <div> <p>{props.title2} <a style={{ color: 'blue' }}>{props.title1}</a> {props.title3} <a style={{ color: 'orange' }}>{props.title4}</a></p>  </div>
+                <div> <p>{props.title2} <span 
+                
+                
+                style={{ color: 'blue' }}>{props.title1}</span> {props.title3} <span style={{ color: 'orange' }}>{props.title4}</span></p>  </div>
             </div>
     
   )
