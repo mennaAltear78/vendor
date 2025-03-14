@@ -9,13 +9,13 @@ import AuthenticationFooter from "../../AuthenticationFooter/AuthenFooter";
 import style from "./Creater_your_partner2.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import map from "../../../../Assets/Rectangle 24048 (1).svg";
-import Location from "./Create_account_items/Location";
+// import Location from "./Create_account_items/Location";
 import AuthenticationWrapper from "../../regular_components/AuthenticationWrapper";
 import AuthContext1 from "../../Context/Mian-Page-Context";
 import PopupMessage from "./Create_account_items/PopupMessage";
 import PopMap from "./Create_account_items/PopMap";
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
-import LocationGoogltMap from "./Create_account_items/LocationGoogltMap";
+// import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+// import LocationGoogltMap from "./Create_account_items/LocationGoogltMap";
 
 // import Context from "../../Context/Context";
 function Creater_your_partner2() {

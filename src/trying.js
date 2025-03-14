@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "./component/Authentication/regular_components/Button";
 import "./App.css";
-import hook from "./hook";
+import usehook from "./usehook";
 
 function trying() {
   const {
@@ -11,7 +11,7 @@ function trying() {
     valueChangeHandeler: inputNameHnadeler,
     inputBlurHander: onBlurNameHandeler,
     resetValue:resetName
-  } = hook((value)=> value.trim() !== "");
+  } = usehook((value)=> value.trim() !== "");
  
   const {
     value: enteredEmail,
