@@ -77,7 +77,7 @@ function Creater_your_partner2() {
           </div>
           <ProgressSteps pageNumber={2} count={3} circle={true}/>
           <Card cssCard="sin_in_Bigcard">
-            <TitleCars name="Location Details" icon={location} />
+            <TitleCars name="Location Details" icon={""} />
             <div className={style["information"]}>
               <div>
                 <TextField
