@@ -117,7 +117,7 @@ function Creater_your_partner2() {
               containerSize="SmallContainerSize"
             /> */}
 
-            <LocationGoogltMap/>
+            {/* <LocationGoogltMap/> */}
             <img style={{ width: "100px" }} src={map} />
             <hr />
             <div className={style["btnsInfo"]}>
