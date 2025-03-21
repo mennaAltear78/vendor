@@ -1,25 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Title from "../common/Title"
 import gif from '../../../../Assets/413dc7adf0ec89fd9448f62d17a3b029.gif'
 import PopupMessage from "../../../Authentication/Sin_up/Create_your_partner/Create_account_items/PopupMessage";
 import MainDashBoardWrapper from "../../../Authentication/regular_components/MainDashBoardWrapper";
 import { useNavigate } from "react-router-dom";
+import AuthContext1 from "../../../Authentication/Context/Mian-Page-Context";
 
 function WelcomePage() {
 const [isPop_up,SetPop_up]=useState(true)
 const navigate = useNavigate()
-
+const ctx=useContext(AuthContext1)
 
 const CancelHandeler=()=>{
     navigate('/CompleteProfie')
+    ctx.refreshToken()
 }
 const GoToHandeler=()=>{ 
     SetPop_up(false)
     navigate('/MianDahboard/CreateHotel')
+   
 }
   return (
    
     <MainDashBoardWrapper>
+      <div className="w-[100vw] h-screen ml-[150px]">
+        
       <Title
         Title="Start by List Your🏨 Property and Create Hotels👋"
         description="To Start Choose type of Property You need to do"
@@ -40,7 +45,7 @@ const GoToHandeler=()=>{
                 handlebackNavigation={GoToHandeler}
                 handleTogglePopup={CancelHandeler}
                 
-              />}
+              />}</div>
     </MainDashBoardWrapper>
   );
 }

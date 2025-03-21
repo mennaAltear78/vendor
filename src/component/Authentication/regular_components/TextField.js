@@ -8,10 +8,12 @@ const TextField = forwardRef((props, ref) => {
         <label>{props.label}</label>
       </div>
       {props.textarea ? (
-        <textarea placeholder="" rows="5" cols="40"></textarea>
+        <textarea    className={`${Style[props.textfild]} ${
+          props.IsError && Style.focusError
+        }`} placeholder={props.Intext} name={props.name} value={props.value}  onChange={props.OnchangeHnadeler} rows="5" cols="2040"  ></textarea>
       ) : (
         <input
-          ref={ref} // ✅ استخدم ref هنا بشكل صحيح
+          ref={ref} 
           className={`${Style[props.textfild]} ${
             props.IsError && Style.focusError
           }`}
@@ -20,6 +22,7 @@ const TextField = forwardRef((props, ref) => {
           placeholder={props.Intext}
           onBlur={props.onblurHandeler}
           value={props.value}
+          disabled={props.disabled}
           onChange={props.OnchangeHnadeler}
         />
       )}

@@ -32,7 +32,7 @@ function RoomFacilities() {
   };
   return (
     <MainDashBoardWrapper>
-      <form onSubmit={onClickHandler}>
+      <form onSubmit={onClickHandler} className="w-[100vw] h-screen ml-[100px] sm:ml-[150px] mb-[400px]">
         <CreateHotelWrapper clickHandeler={clickPrivHandeler}>
           <ProgressSteps pageNumber={4} count={5} />
          

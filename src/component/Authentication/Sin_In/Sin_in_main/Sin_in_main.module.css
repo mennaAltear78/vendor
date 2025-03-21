@@ -28,11 +28,4 @@
   justify-content: center;
   width: 80%;
 }
-.Mainlogin {
-  text-align: center;
-  width: 500px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-left: 00px;
-}
+

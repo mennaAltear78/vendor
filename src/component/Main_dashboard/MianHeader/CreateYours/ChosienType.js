@@ -26,8 +26,8 @@ function ChoiseHotel() {
   }
   return (
     <MainDashBoardWrapper>
-      <form onSubmit={onClickHandler}>
-        <div style={{ width: "100vw" }}>
+      <form onSubmit={onClickHandler} className="w-[100vw] h-screen ml-[100px] sm:ml-[150px] ">
+        <div className="w-[90vw] ">
           <CreateHotelWrapper clickHandeler={clickPrivHandeler}>
             <div className={classes.mainContaint}>
               <ProgressSteps pageNumber={1} count={6} circle={true} />
@@ -36,7 +36,8 @@ function ChoiseHotel() {
                 description="To start choose the type of property you need."
               />
 
-              <div style={{ display: 'flex', gap: '20px',marginLeft:'20px' }}>
+              <div className="flex flex-wrap gap-[10px]  mb-[160px] justify-center sm:justify-start sm:ml-[20px] ">
+              
                 {appData.ChoiseHotel.map((hotel) => (
                   <ChoisenHotel
                     key={hotel.title}
@@ -49,7 +50,7 @@ function ChoiseHotel() {
                 ))}
               </div>
             </div>
-            {error&&   <p className="error">{error}</p>}
+            {error&&   <p className="text-red-600 ml-[40px] mt-[-90px] mb-[100px]">{error}</p>}
           </CreateHotelWrapper>
         </div>
       </form>

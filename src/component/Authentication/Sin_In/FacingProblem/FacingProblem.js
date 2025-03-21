@@ -56,7 +56,7 @@ function FacingProblem() {
       setError(null);
     } catch (error) {
       //falied
-      setError("wrong email try again");
+      setError(error.response.data.message || "wrong email try again");
       EmailRef.current.value=''
       console.log(error.message);
     }
@@ -74,7 +74,7 @@ function FacingProblem() {
 
   return (
     <AuthenticationWrapper>
-      <div className={style["Forgetpassword"]}>
+      <div className="text-center w-[500px] flex flex-col justify-center ml-[10px]  ms:ml-0">
         <form onSubmit={Forgetpasswordsumbithandeler  }>
           <Tiltle
             title={ "Forgot Your Password?"}
@@ -105,7 +105,7 @@ function FacingProblem() {
               popMessageCss="ErrorPopupMessage"
               btnCss="whiteCssS"
               handleTogglePopup={handleTogglePopup}
-              details={Error}
+              title={Error}
             />
           )}
  
@@ -116,11 +116,4 @@ function FacingProblem() {
 }
 
 export default FacingProblem;
-             {/* {Error && (
-            <PopupMessage
-            popMessageCss="ErrorPopupMessage"
-            btnCss="whiteCssS"
-            handleTogglePopup={handleTogglePopup}
-            details={Error}
-          />
-        )} */}
+  

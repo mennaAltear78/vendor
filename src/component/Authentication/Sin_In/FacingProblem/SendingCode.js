@@ -133,7 +133,7 @@ function SendingCode() {
       setTimeLeft(storedData);
     } catch (error) {
       //falied
-      setError("reset otp is wrong");
+      setError(error.response.data.message || "reset otp is wrong");
     }
     setIsloading(false);
   };
@@ -145,7 +145,7 @@ function SendingCode() {
 
   return (
     <AuthenticationWrapper>
-      <div className={style["Forgetpassword"]}>
+      <div className="text-center w-[500px] flex flex-col justify-center ml-[20px]  ms:ml-0">
         <form
           onSubmit={
             !isRestPass

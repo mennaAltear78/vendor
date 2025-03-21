@@ -13,9 +13,9 @@ const Sin_in_main = () => {
   const [Error, setError] = useState(null);
 
   const ErrorPopMessageHandeler = (error,forbedend) => {
-    console.log(forbedend);
-   const forbedanerror=(forbedend ? error:"password or email is wrong")
-   setError(forbedanerror);
+  //   console.log(forbedend);
+  //  const forbedanerror=(forbedend ? error:"password or email is wrong")
+   setError(error);
     
   };
   const handleTogglePopup = () => {
@@ -23,7 +23,8 @@ const Sin_in_main = () => {
   };
   return (
     <AuthenticationWrapper>
-      <div className={Style.Mainlogin}>
+      <div className="text-center w-[500px] flex flex-col justify-center"
+      >
         <div className={Style["Sin_in"]}>
           <div className={Style["icon"]}>
             <img src={icon} />

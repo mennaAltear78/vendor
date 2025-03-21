@@ -1,21 +1,14 @@
 .mainBody {
   font-family: var(--Typography-English-H-1-Font-Family, Poppins);
   margin-left: 20px;
-  /* margin-bottom: 100px; */
+
 }
 .description {
   font-weight: 600;
   color: rgba(128, 128, 128, 0.404);
   font-size: 15px;
 }
-.btnFooter {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  height: 70px;
-  align-items: center;
-  width: 87%;
-}
+
 .lineFooter {
   width: 100%;
   height: 3px;
@@ -28,21 +21,18 @@ footer {
   width:100%;
   color: white;
   text-align: center;
- background-color: white;
+  background-color: white;
 
 }
-.mainContaint {
-  margin-left: 20px;
-}
+
 .rating {
   font-family: var(--Typography-English-H-1-Font-Family, Poppins);
   padding: 20px;
-  margin-left: 40px;
+
   width: 450px;
-  /* height: 500px; */
+
   border: 2px solid rgba(128, 128, 128, 0.404);
   border-radius: 15px;
-  /* font-size: small; */
   margin-top: 50px;
 }
 .rating hr {
@@ -59,7 +49,7 @@ footer {
     align-items: flex-start;
     flex-direction: column;
 }
-.CompleteProfie{
+/* .CompleteProfie{
   font-family: var(--Typography-English-H-1-Font-Family, Poppins);
   padding: 10px;
   margin-left: 10px;
@@ -71,10 +61,10 @@ footer {
   justify-content: space-between;
   margin-bottom: 20px;
   align-items: center;
+  margin-left: 20px;
 
 
-
-}
+} */
 
 .StepContent b{
    font-weight: 900;

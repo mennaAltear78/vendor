@@ -45,7 +45,7 @@ function Payment() {
   return (
     <div>
       <MainDashBoardWrapper>
-        <form onSubmit={onClickHandler}>
+        <form onSubmit={onClickHandler} className="w-[100vw] h-screen ml-[100px] sm:ml-[150px] ">
         
             <CreateHotelWrapper clickHandeler={clickPrivHandeler}>
               <div className={classes.mainContaint}>

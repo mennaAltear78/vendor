@@ -4,7 +4,7 @@ import TextField from "../../regular_components/TextField";
 import AuthenFooter from "../../AuthenticationFooter/AuthenFooter";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../../Context/auth-context";
-import style from "./Sin_inCard.module.css";
+
 import SpinnerLoading from "../../regular_components/SpinnerLoading";
 import AuthContext1 from "../../Context/Mian-Page-Context";
 import axiosInstance from "../../../../axiosInstance";
@@ -18,7 +18,7 @@ function Sin_in_Card(props) {
   const [Error, setError] = useState(null);
   const [errorEmail, setErrorEmail] = useState(null);
   const [passwordErr, setPasswordErr] = useState(null);
-  const instance = axiosInstance(ctx.token, ctx.refreshToken);
+  const instance = axiosInstance(ctx.token, ctx.refreshToken,ctx.setToken);
 
   const EmailRef = useRef();
   const PassowrdRef = useRef();
@@ -87,16 +87,18 @@ let forbedend
         });
         SetIsloading(false);
         setError(null);
-
+     
+       
         ctx.login(response.data.access_token, enteredEmail);
 
         navigate("/MianDahboard");
       } catch (error) {
         //falied
-        console.log(error.message);
+       
+        console.log("error",error.response.data.message || "An unknown error occurred!");
         const retryAt = localStorage.getItem("retryAt");
-        errorMessage=error.message
-        
+        errorMessage=error.response.data.message || "An unknown error occurred!"
+        setError(errorMessage);
         if (retryAt) {
           const retryTime = new Date(retryAt);
           const now = new Date();
@@ -113,11 +115,14 @@ let forbedend
           }
         }
       }
+    
       setError(errorMessage);
       console.log('error',errorMessage);
       console.log(forbedend);
       
       SetIsloading(false);
+      console.log(errorMessage);
+      
       props.ErrorPopMessageHandeler(errorMessage,forbedend);
     }
   };
@@ -127,8 +132,9 @@ let forbedend
   }, [EmailRef]);
 
   return (
-    <div>
-      <form onSubmit={Sin_inSumbitHandeler} className={style.sin_in_card}>
+    <div >
+      <form onSubmit={Sin_inSumbitHandeler} className="w-[75%] border border-solid border-gray-400/25 rounded-[10px] p-[20px] pt-[30px] flex flex-col justify-center  items-center mt-[20px] font-[Poppins] ml-[10px]  ms:ml-0"
+      >
         <TextField
           ref={EmailRef}
           textfild="textBox"
@@ -136,7 +142,7 @@ let forbedend
           Intext="Your User Name or ID "
         />
         {errorEmail && (
-          <p style={{ color: "red", fontSize: "15px", marginTop: "-10px" }}>
+          <p className="text-red-500 text-[15px] mt-[-10px]">
             {errorEmail}
           </p>
         )}
@@ -148,7 +154,7 @@ let forbedend
           type="password"
         />
         {passwordErr && (
-          <p style={{ color: "red", fontSize: "15px", marginTop: "-10px" }}>
+          <p className="text-red-500 text-[15px] mt-[-10px]">
             {passwordErr}
           </p>
         )}

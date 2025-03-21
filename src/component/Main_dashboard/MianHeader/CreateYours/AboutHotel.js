@@ -35,8 +35,10 @@ function AboutHotel() {
   }
   return (
     <MainDashBoardWrapper>
-      <form onSubmit={onClickHandler}>
-        <div style={{ width: "100vw" }}>
+         
+      <form onSubmit={onClickHandler} className="w-[100vw] h-screen ml-[60px] sm:ml-[150px]
+">
+        <div>
           <CreateHotelWrapper clickHandeler={clickPrivHandeler}>
             <div className={classes.mainContaint}>
               <ProgressSteps pageNumber={2} count={6} circle={true}/>
@@ -48,7 +50,7 @@ function AboutHotel() {
             <div className={classes.rating}>
               <div style={{display:'flex' ,justifyContent:'space-between'}}>
                 <p>What's the name of your hotel?</p>
-                <img style={{width:'20px'}} src={icon}/>
+                <img className="w-[30px] h-[30px] mt-[10px]" src={icon}/>
               </div>
               
               <TextField
@@ -72,7 +74,7 @@ function AboutHotel() {
                     <div style={{ display: "flex" }}>
                       <label
                         key={star}
-                        style={{ display: "block", cursor: "pointer" }}
+                       className="block cursor-pointer"
                       >
                         <input
                           type="radio"
@@ -80,12 +82,12 @@ function AboutHotel() {
                           value={star}
                           checked={selectedStar === star}
                           onChange={() => setSelectedStar(star)}
-                          style={{ marginRight: "8px" }}
+                         className="mr-2"
                         />
                         {star} Star{star > 1 ? "s" : " "}
                       </label>
 
-                      <div style={{ marginLeft: "10px" }}>
+                      <div className="pl-4">
                    
                         {[...Array(star)].map((_, i) => (
                           <img

@@ -10,7 +10,8 @@ function SquareRadio({
   radio,
   description,
   AllowanceHandling,
-  onevalue
+  onevalue,
+  round
 }) {
   const [selected, setSelected] = useState([]);
   const [activeStates, setActiveStates] = useState(
@@ -64,7 +65,7 @@ function SquareRadio({
         {options.map((option) => (
           <>
           <div className={style["radio-container"]}>
-          <label key={option.value} className={style["radio-label"]}>
+          <label key={option.value} className={"flex items-center cursor-pointer gap-1.5 justify-between w-full mt-5"}>
             {radio && (
               <div className={style.input}>
                 <input
@@ -75,7 +76,7 @@ function SquareRadio({
                   onChange={() => handleSelection(option.value)}
                   className={style["hidden-radio"]}
                 />
-              <div className={style["square-radio"]}>
+              <div className={`border-solid border-2 border-blue-600 ${round} ${style["square-radio"]}`}>
                   {selected.includes(option.value) && "✔"}
                 </div>
                 <div>{option.label}</div>

@@ -37,7 +37,7 @@ function Polices() {
   };
   return (
     <MainDashBoardWrapper>
-      <form onSubmit={onSumbitHandeler}>
+      <form onSubmit={onSumbitHandeler} className="w-[100vw] h-screen ml-[100px] sm:ml-[150px] mb-[400px]">
         <div>
           <CreateHotelWrapper clickHandeler={clickPrivHandeler}>
             <div className={classes.mainContaint}>
@@ -48,12 +48,12 @@ function Polices() {
               />
             </div>
             <div className={classes.rating}>
-              <b style={{ fontSize: "20px" }}>
+              <b className="font-bold font-usedFont">
                 What are your check-in and check-out times?
               </b>
               <hr />
               <p>Check In</p>
-              <div style={{ display: "flex", gap: "10px" }}>
+              <div className="flex gap-10">
                 <Menue
                   textfild="textBoxSmall"
                   label="from"
@@ -71,8 +71,8 @@ function Polices() {
                 name="Description"
               />
 
-              <p style={{ marginTop: "-10px" }}>Check out</p>
-              <div style={{ display: "flex", gap: "10px" }}>
+              <p className="mt-[-10px] font-usedFont">Check out</p>
+              <div className="flex gap-10">
                 <Menue
                   textfild="textBoxSmall"
                   label="from"
@@ -87,10 +87,10 @@ function Polices() {
               <TextField
                 label="Description(Optional)"
                 textfild="bigTextBox"
+                Intext="Description"
                 name="Description"
               />
-
-              <SquareRadio
+              <div className="mb-[20px]"> <SquareRadio
                 name="customRadio"
                 options={[
                   {
@@ -101,10 +101,11 @@ function Polices() {
                 cost={true}
                 description="Cancelation Allowed "
                 AllowanceHandling={AllowanceHandling}
-              />
+              /></div>
+             
 
               <TextField
-              
+              Intext="Description"
                 textfild="textBox2"
                 name="Description"
                 textarea={true}
@@ -112,6 +113,7 @@ function Polices() {
               {!CancelActive && <FeeCalculation />}
               <TextField
                 label="Children and Familes "
+                Intext="Description"
                 textfild="textBox2"
                 name="Description"
                 textarea={true}
@@ -120,6 +122,7 @@ function Polices() {
               <div>
                 <p style={{ marginBottom: "-10px" }}>Pets Policy</p>
                 <SquareRadio
+                round="rounded-[50%]"
                   name="customRadio"
                   options={appData.petsPolicy.map((policy) => ({
                     value: policy.value,
@@ -134,6 +137,7 @@ function Polices() {
                   Smoking Policy
                 </p>
                 <SquareRadio
+                round="rounded-[50%]"
                   name="customRadio"
                   options={appData.smokingPolicy.map((policy) => ({
                     value: policy.value,
@@ -148,8 +152,10 @@ function Polices() {
             </div>
             {error && <p className="error">{error}</p>}
           </CreateHotelWrapper>
+
         </div>
       </form>
+     
     </MainDashBoardWrapper>
   );
 }

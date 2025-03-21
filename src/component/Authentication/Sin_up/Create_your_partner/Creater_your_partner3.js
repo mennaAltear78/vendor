@@ -2,13 +2,10 @@ import React, { useState, useRef, useContext } from "react";
 import Tiltle from "../../Tiltle";
 import ProgressSteps from "./Create_account_items/ProgressSteps";
 import Card from "../../regular_components/Card";
-import TitleCars from "./Create_account_items/TitleCars";
 import Button from "../../regular_components/Button";
 import AuthenticationFooter from "../../AuthenticationFooter/AuthenFooter";
 import style from "./Creater_your_partner3.module.css";
 import { Link, useNavigate } from "react-router-dom";
-import addBtn from "../../../../Assets/add.svg";
-import folder from "../../../../Assets/folder.svg";
 import AddNewFile from "./Create_account_items/AddNewFile";
 import PopupMessage from "./Create_account_items/PopupMessage";
 import { Transition } from "react-transition-group";
@@ -34,13 +31,7 @@ function Creater_your_partner3() {
 
   const navigate = useNavigate();
 
-  // const handleClick = () => {
-  //   setAddNewFile([...AddNewFilee, <AddNewFile  onFileSelect={handleFileSelect}/>]);
-  // };
 
-  // const handleOPenPopup = () => {
-
-  // };
   const handleClosePopup = () => {
     setShowPopup(false);
     // navigate('/')
@@ -143,8 +134,9 @@ function Creater_your_partner3() {
         }
       }
     }
-    console.log(fileObject, ctx.formData);
-    console.log(JSON.stringify(ctx.formData, null, 2));
+    // console.log(fileObject, ctx.formData);
+    // console.log(JSON.stringify(ctx.formData, null, 2));
+    console.log("formmmmm",ctx.formData,fileObject);
   };
 
   const handleFileSelect = (fileName, file) => {
@@ -156,16 +148,19 @@ function Creater_your_partner3() {
     } else if (fileName === "Tax Registration Certificate (TIN)") {
       name = "tax_registration_certificate_TIN";
     }
-
+    ctx.sinUpFormData(fileObject);
+   
+    
     setFileObject((prevFiles) => ({
       ...prevFiles,
       [name]: file,
-    }));
+    })); 
+    console.log("formmmmm",ctx.formData,fileObject);
   };
 
   return (
     <AuthenticationWrapper>
-      <form onSubmit={onsumbitHandeler}>
+      <form onSubmit={onsumbitHandeler} >
         <div className={style["mainInfo"]}>
           <div style={{ marginLeft: "60px" }}>
             <Tiltle

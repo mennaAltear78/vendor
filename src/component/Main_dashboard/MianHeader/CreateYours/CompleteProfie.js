@@ -7,10 +7,12 @@ import { useNavigate } from "react-router-dom";
 import AuthContext from "../../../Authentication/Context/auth-context";
 import PopupMessage from "../../../Authentication/Sin_up/Create_your_partner/Create_account_items/PopupMessage";
 import gif from "../../../../Assets/413dc7adf0ec89fd9448f62d17a3b029.gif";
+import AuthContext1 from "../../../Authentication/Context/Mian-Page-Context";
 
 function CompleteProfie() {
   const [isPop_up, SetPop_up] = useState(false);
   const ctx = useContext(AuthContext);
+  const ctx1=useContext(AuthContext1)
   const navigate = useNavigate();
   useEffect(() => {
     if ([2, 3, 4, 5].every((num) => ctx.isHotelImageDone.includes(num))) {
@@ -24,6 +26,7 @@ function CompleteProfie() {
       navigate("");
      
     } else if (step.stepNumber === 2) {
+      ctx1.refreshToken()
        navigate("/MianDahboard/CreateHotel");
     } else if (step.stepNumber === 3) {
       navigate("/HotelImages");
@@ -38,7 +41,7 @@ function CompleteProfie() {
   };
 
   return (
-    <div>
+    <div className="w-[100vw] h-screen ">
       <MainDashBoardWrapper>
         <div className={classes.CompleteProfleAll}>
           {appData.stepsData.map((step, index) => (

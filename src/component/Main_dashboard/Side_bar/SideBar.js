@@ -39,7 +39,7 @@ function SideBar(props) {
   return (
     <div className={style.main}>
       <div
-        className={props.hover ? style["side_bar"] : style.NOHoverSide_bar}
+        className={props.hover ? style.side_bar : style.NOHoverSide_bar}
         onMouseEnter={props.onHoverHandeler}
         onMouseLeave={props.onHoverNoHandeler}
         onTouchStart={props.onHoverHandeler}

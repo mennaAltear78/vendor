@@ -68,13 +68,16 @@ function Creater_your_partner1() {
     //handling the what inside the form and putting it inside object so we can handle it
     const formData = new FormData(formRef.current);
     const dataObject = Object.fromEntries(formData);
-
+    console.log(dataObject);
+   
     //intialize object will contain all valied data
     let newErrors = {};
     let validData = {};
 
     //1) check companyName
     const companyName = dataObject.company_name?.trim();
+    console.log("company",dataObject.company_name,companyName);
+    
     if (
       !companyName ||
       /^\d+$/.test(companyName) ||
@@ -107,7 +110,8 @@ function Creater_your_partner1() {
     //business Brief
     const bussiness_breif_check = dataObject.bussiness_breif?.trim();
     let bussiness_breif = {};
-
+      console.log(bussiness_breif_check );
+      
 
       if(!bussiness_breif_check || bussiness_breif_check.length  < 26 || bussiness_breif_check .length > 500){
           newErrors.businessBrief ="Business brief must be between 26 and 500 characters.";
@@ -153,12 +157,14 @@ function Creater_your_partner1() {
     }
     setErrors(newErrors);
     console.log(newErrors);
+    console.log("data",validData);
     
     if (Object.keys(newErrors).length === 0) {
       ctx.sinUpFormData(validData);
       navigate("/CreateAccount2");
 
     }
+
   };
   const requestHandler = () => {
     console.log("helol");
@@ -170,8 +176,8 @@ function Creater_your_partner1() {
 
   return (
     <AuthenticationWrapper>
-      <form ref={formRef} onSubmit={firstFormSumbitHandeler}>
-        <div className={style["mainInfo"]}>
+      <form ref={formRef} onSubmit={firstFormSumbitHandeler} className=" ml-[10px]  ms:ml-0 ">
+        <div className="sm:mt-[120px] " >
           <div style={{marginLeft:"60px"}}>
             <Tiltle
               title="Request to Join With Us"
@@ -204,6 +210,7 @@ function Creater_your_partner1() {
                   Intext="ex.gmail.com"
                   textfild="textBoxSmall"
                   name="contact_email"
+
                 />
                 {errors.email && (
                   <p className={style.errorMessage}>{errors.email}</p>
@@ -249,16 +256,18 @@ function Creater_your_partner1() {
               </div>
             </div>
             <TextField
-              label="company Brief"
+          
+              label="Bussiness Brief"
               Intext="what your Bussiness Do"
               textfild="textBox2"
               name="bussiness_breif"
+              textarea={true}
             />
             {errors.businessBrief && (
               <p className={style.errorMessage}>{errors.businessBrief}</p>
             )}
             <hr />
-            <div className={style["btnsInfo"]}>
+            <div className={style.btnsInfo}>
               <Link to="/">
                 <Button btnCss="whiteInfoCss" name="previous" onClickAction={requestHandler}/>
               </Link>

@@ -7,7 +7,7 @@ function CreateHotelWrapper(props) {
       {props.children}
       <footer>
         <div className={classes.lineFooter} />
-        <div className={classes.btnFooter}>
+        <div className="flex justify-end h-[70px] ml-[10px] items-center w-[87%] sm:gap-[10px] " >
           <Button
             btnCss="whiteCssS"
             name="previous"

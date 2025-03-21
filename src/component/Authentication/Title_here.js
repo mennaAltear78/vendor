@@ -16,7 +16,7 @@ function Title_here() {
 
   const [scroll, setScroll] = useState(dashboardpic);
   const [i, setI] = useState(0);
-  let img = [dashboardpic, checkCircle, scrollright];
+  let img = [dashboardpic, dashboardpic, dashboardpic];
 
   const HanelPositionScroLeft = () => {
     const nextIndex = (i + 1) % img.length;
@@ -49,7 +49,7 @@ function Title_here() {
           fontSize: "24px",
         }}
       >
-        < img style={{width:'500px'} } src={scroll} />
+        <img className="w-[400px] sm:w-[500px]" src={scroll} />
         {ctx.isRequest ? (
           <div className={style["frame19"]}>
          
@@ -87,12 +87,12 @@ function Title_here() {
             <img  src={checkCircle} />
             <img  src={checkCircle} />
           </div>
-          <div className={style["scroll"]}>
-            <div className={style["scrolleft"]} onClick={HanelPositionScroLeft}>
+          <div className={style.scroll}>
+            <div className={style.scrolleft} onClick={HanelPositionScroLeft}>
               <img src={scrollleft} />
             </div>
             <div
-              className={style["scrolleft"]}
+              className={style.scrolleft}
               onClick={HanelPositionScroRight}
             >
               <img src={scrollright} />

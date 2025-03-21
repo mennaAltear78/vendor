@@ -34,12 +34,12 @@ function PopupMessage(props) {
             <img style={{ width: "300px" }} src={props.messageImg} />
           )}
 
-          <h2>{props.title}</h2>
+          <h3>{props.title}</h3>
           <div className={style.desc} style={{width:'58%'}}>
             {props.highlighted && (
               <span style={{ color: props.color?"green":"red" }}>{props.highlighted}</span>
-            )}
-            {props.details}
+            ) }
+          <p className="font-usedFont text-gray-350 text-[15px]">{props.details}</p>  
           </div>
           <div
             style={{

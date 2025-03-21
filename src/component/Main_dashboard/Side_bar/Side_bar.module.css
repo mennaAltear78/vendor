@@ -1,3 +1,4 @@
+
 .side_bar {
   width: 258px;
   
@@ -15,8 +16,9 @@
   margin-left: -10px;
   font-family: var(--Typography-English-H-1-Font-Family, Poppins);
   font-size: 15px;
-
+  position: fixed;
   min-height: 120vh;
+  z-index: 1000;
 }
 
 .iconsDivs {
@@ -25,6 +27,8 @@
 }
 
 .NOHoverSide_bar {
+  z-index: 1000;
+  position: fixed;
   font-size: 15px;
   font-family: var(--Typography-English-H-1-Font-Family, Poppins);
   display: flex;

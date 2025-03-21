@@ -28,7 +28,7 @@ function Speak() {
   };
   return (
     <MainDashBoardWrapper>
-      <form onSubmit={onClickHandler}>
+      <form onSubmit={onClickHandler}className="w-[100vw] h-screen ml-[100px] sm:ml-[150px]">
         <div style={{ width: "100vw" }}>
           <CreateHotelWrapper clickHandeler={clickPrivHandeler}>
             <div className={classes.mainContaint}>
@@ -43,6 +43,7 @@ function Speak() {
               <hr />
               <div>
                 <SquareRadio
+                round="rounded-[20%]"
                   name="customRadio"
                   options={appData.languages.map((lang) => ({
                     value: lang.value,

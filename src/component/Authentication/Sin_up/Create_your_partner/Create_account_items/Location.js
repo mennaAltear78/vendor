@@ -6,7 +6,7 @@ import {
   Popup,
   useMapEvents,
 } from "react-leaflet"; // Ensure useMapEvents is imported
-import L from "leaflet";
+
 import "leaflet/dist/leaflet.css";
 import style from "./Location.module.css";
 
@@ -42,7 +42,7 @@ function Location(props) {
     <div >
       {/* <button onClick={() => setPosition(null)}>Open Map</button>  */}
 
-      <MapContainer center={[51.505, -0.09]} zoom={13} className={style[props.containerSize]}>
+      <MapContainer center={[51.505, -0.09]} zoom={13} className='w-[700px] h-[400px]'>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"  // Loads map tiles from OpenStreetMap
         />

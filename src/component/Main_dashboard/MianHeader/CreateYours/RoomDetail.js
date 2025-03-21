@@ -25,7 +25,7 @@ function RoomDetail() {
   };
   return (
     <MainDashBoardWrapper>
-      <form onSubmit={onClickHandler}>
+      <form onSubmit={onClickHandler} className="w-[100vw] h-screen ml-[100px] sm:ml-[150px] mb-[400px]">
         <CreateHotelWrapper clickHandeler={clickPrivHandeler}>
           <ProgressSteps pageNumber={2} count={4} />
           <div style={{ marginLeft: "24px", marginBottom: "-40px" }}>
@@ -40,6 +40,7 @@ function RoomDetail() {
             />
 
             <Menue
+            
               textfild="textBoxSmall"
               label="Room Type?"
               options={appData.RoomType}
@@ -82,6 +83,7 @@ function RoomDetail() {
           <div className={classes.rating} style={{marginBottom:'200px'}}>
             <p>Is smoking allowed in this room?</p>
             <SquareRadio
+            round="rounded-[20%]"
               name="customRadio"
               options={appData.smokingPolicy.map((policy) => ({
                 value: policy.value,

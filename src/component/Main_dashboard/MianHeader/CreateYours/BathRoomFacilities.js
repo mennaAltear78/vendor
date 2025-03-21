@@ -51,7 +51,7 @@ function BathRoomFacilities() {
   };
   return (
     <MainDashBoardWrapper>
-      <form onSubmit={onClickHandler}>
+      <form onSubmit={onClickHandler} className="w-[100vw] h-screen ml-[100px] sm:ml-[150px] mb-[400px]">
         <CreateHotelWrapper clickHandeler={clickPrivHandeler}>
           <ProgressSteps pageNumber={5} count={5} />
           
@@ -62,6 +62,7 @@ function BathRoomFacilities() {
        
             <div>
               <SquareRadio
+              round="rounded-[20%]"
                 name="customRadio"
                 options={appData.RoomViews.map((lang) => ({
                   value: lang.value,
@@ -81,6 +82,7 @@ function BathRoomFacilities() {
 
             <div>
               <SquareRadio
+              round="rounded-[20%]"
                 name="customRadio"
                 options={appData.BathroomFacilities.map((lang) => ({
                   value: lang.value,

@@ -1,6 +1,6 @@
 .radio-container {
 display: flex;
-         
+         margin-bottom: -20px;
   }
   
   .radio-label {
@@ -27,7 +27,8 @@ display: flex;
     height: 10px;
     border: 2px solid #44444471;
     display: inline-block;
-    border-radius: 4px;
+    /* border-radius: 4px; */
+    margin-bottom: 5px;
     cursor: pointer;
     font-size: 14px;
     line-height: 20px;

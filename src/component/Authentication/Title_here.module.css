@@ -7,9 +7,10 @@
     justify-content: center;
     color: white;
     flex-direction: column;
-    padding: 30px;
-    padding-left: 50px;
-    height: 800px;
+    padding: 20px;
+    width: 500px;
+    padding-left: 30px;
+    height: 700px;
     position: relative;
     transition: all 0.5s ease-in;
     border-radius: 15px;
@@ -18,7 +19,7 @@
 .frame19{
    position: absolute;
    left: 400px;
-   bottom: 300px;
+   bottom: 200px;
    right: 30px;
    transform: translateX(-20%);
    transform: translateY(180%);
@@ -26,32 +27,25 @@
 }
 .frame20{
     position: absolute;
-    left: 30px;
-   top:  180px;
- 
+    left: 0px;
+   top:  90px;
+
   transform: translateX(-20%);
   transform: translateY(180%);
   animation: scaleUp 0.5s ease-in-out forwards;
  }
 
- @keyframes scaleUp {
-    from {
-      transform: scale(0);
-    }
-    to {
-      transform: scale(1);
-    }
-  }
+
  .stars{
     position: absolute;
     left: 380px;
    bottom: 300px;
  }
-.imgSlider img{
-   width: 400px;
-   /* height: 400px; */
+/* .imgSlider img{
+   width: 500px;
+  
    padding-right: 20px;
-}
+} */
 .Title_here{
     font-size: 10px;
     width: 400px;
@@ -69,35 +63,51 @@
 .Title_here p{
     font-size: 12px;
     width: 400px;
- 
+    font-family: var(--Typography-English-H-1-Font-Family, Poppins);
+   
 }
-.checkCircle img{
-    width: 7px;
-    height: 10px;
-    
-  
-}
+
 .checkCircle{
- margin-left: 49px; 
+    margin-right: 10px;
 }
 .scrolleft img{
-    width: 30px;
+    width: 20px;
     height: 20px;
     cursor: pointer;
 }
-.scrolright img{
-    width: 30px;
-    height: 20px;
-    cursor: pointer;
-}
+
 .scroll{
-    display: flex;
-   
+        display: flex;
         justify-content: center;
         margin-top: 10px;
-        margin-left: 20px;
+        gap: 15px;
 }
 .checkCircle img{
-margin-left: -30px;
-width: 30px;
+    margin-left: 5px;
+    width: 10px;
+    height: 10px;
 }
+
+@media (max-width: 768px) {
+    .imgSlider{ 
+        width: 74%;
+       margin-left: 5px;
+        height: 600px;
+        margin-bottom: 100px;
+    }
+    .checkCircle img{
+        margin-left: 7px;
+        width: 10px;
+        height: 10px;
+    }
+    
+  
+  }
+@keyframes scaleUp {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
+  }

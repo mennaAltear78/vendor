@@ -32,7 +32,7 @@ function Facilities() {
   }
   return (
     <MainDashBoardWrapper>
-      <form onSubmit={onSumbitHandeler}>
+      <form onSubmit={onSumbitHandeler} className="w-[100vw] h-screen ml-[100px] sm:ml-[150px] mb-[400px]">
         <div style={{ width: "100vw" }}>
           <CreateHotelWrapper clickHandeler={clickPrivHandeler}>
             <div className={classes.mainContaint}>
@@ -42,11 +42,13 @@ function Facilities() {
                 description="To Start Choose type of Property You need to do"
               />
            
-            </div>   <div className={classes.rating}>
+            </div>  
+             <div className="font-[Poppins] p-[20px] w-[300px] ml-[20px] border-2 border-solid border-gray-200 rounded-[15px] mt-[50px] sm:w-[450px]">
                 <b style={{fontSize:'20px'}} >Add Facilities </b>
            
                 <div>
                   <SquareRadio
+                  round="rounded-[20%]"
                     name="customRadio"
                     options={appData.facilities.map((lang) => ({
                       value: lang.value,
