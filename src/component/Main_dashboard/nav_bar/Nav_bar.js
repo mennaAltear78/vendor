@@ -7,10 +7,15 @@ import notification from '../../../Assets/notifications_active_24dp_EFEFEF_FILL0
 function Nav_bar(props) {
 
   return (
-    <div className={props.hover?style.headerNoHover:style.headerHover}>
+    <div
+      className={`bg-[#1C1EB0] text-white flex justify-between py-1 transition-all duration-500 ${
+        !props.hover
+          ? "ml-[90px] pr-[20px]" // عندما يكون الـ hover مفعّل
+          : "ml-[34px] pr-[40px] pl-[10px] sm:ml-[200px] transition-all duration-300 ease-in-out" // عندما يكون الـ hover غير مفعّل
+      }`}>
       <div className={style["headerSection1"]}>
         <div style={{marginRight:'20px'}}>
-          {/* <img src={loginIcon} /> */}
+      
         </div>
         <div>
           <img src={icon2} />

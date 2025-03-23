@@ -4,10 +4,9 @@ import TextField from "../../regular_components/TextField";
 import AuthenFooter from "../../AuthenticationFooter/AuthenFooter";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../../Context/auth-context";
-
 import SpinnerLoading from "../../regular_components/SpinnerLoading";
 import AuthContext1 from "../../Context/Mian-Page-Context";
-import axiosInstance from "../../../../axiosInstance";
+import api from "../../../../axiosInstance";
 
 
 function Sin_in_Card(props) {
@@ -18,7 +17,7 @@ function Sin_in_Card(props) {
   const [Error, setError] = useState(null);
   const [errorEmail, setErrorEmail] = useState(null);
   const [passwordErr, setPasswordErr] = useState(null);
-  const instance = axiosInstance(ctx.token, ctx.refreshToken,ctx.setToken);
+  // const instance = axiosInstance(ctx.token, ctx.refreshToken,ctx.setToken);
 
   const EmailRef = useRef();
   const PassowrdRef = useRef();
@@ -81,16 +80,14 @@ let forbedend
     if (!errorMessage && !errorForEmail) {
       try {
         //successful
-        const response = await instance.post("/login", {
+        const response = await api.post("/login", {
           email: email,
           password: enteredPassword,
         });
         SetIsloading(false);
         setError(null);
-     
-       
+        console.log(response.data);
         ctx.login(response.data.access_token, enteredEmail);
-
         navigate("/MianDahboard");
       } catch (error) {
         //falied

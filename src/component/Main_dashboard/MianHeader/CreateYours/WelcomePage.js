@@ -13,7 +13,7 @@ const ctx=useContext(AuthContext1)
 
 const CancelHandeler=()=>{
     navigate('/CompleteProfie')
-    ctx.refreshToken()
+ 
 }
 const GoToHandeler=()=>{ 
     SetPop_up(false)

@@ -44,6 +44,7 @@ function ImageDownload(props) {
           opacity: "0.8", 
           borderRadius: "8px",
           boxShadow: "0px 4px 10px rgba(0,0,0,0.1)",
+          overflowY:'hidden'
         }}
       />
     )}

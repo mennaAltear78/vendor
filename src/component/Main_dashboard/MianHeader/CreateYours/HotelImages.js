@@ -13,6 +13,8 @@ function HotelImages(props) {
   const [Done, SetDone] = useState(false);
   const [error, setError] = useState(null);
   const [isPop_up, SetPop_up] = useState(false);
+  const [images, setImages] = useState([{id:0},{id:1},{id:2},{id:3},{id:4}]);
+  const [imagesHotal, setHotalImages] = useState([{id:0},{id:1},{id:2},{id:3},{id:4}]);
  const ctx =useContext(AuthContext)
   const navigate = useNavigate();
 
@@ -32,7 +34,25 @@ function HotelImages(props) {
   const CancelHandeler = () => {
     navigate("/CompleteProfie");
   };
+  const onAddImageHandeler=()=>{
+    if(images.length<=200 && props.HotelImages ){
+    setImages([...images, { id: images.length }]);
+    console.log(images);
+  }
+  else if(imagesHotal.length<=200 && !props.HotelImages){
+    setHotalImages([...imagesHotal, { id: imagesHotal.length }]);
 
+  }
+  else{
+    setError("you can't upload more than 200 images")
+  }
+}
+const removeImageHandeler=(id)=>{
+  // images.filter((image)=>image.id===id)
+  console.log(id);
+  
+
+}
   return (
     <MainDashBoardWrapper>
       <form onSubmit={onClickHandler} className="w-[100vw] h-screen ml-[100px] sm:ml-[150px] mb-[400px]">
@@ -41,35 +61,37 @@ function HotelImages(props) {
             <b>
               {/* Primary Images */}
               {props.title}
-              <span style={{ color: "red" }}>{props.limits}</span>
+              <span className="text-red-500 ml-2">{props.limits}</span>
             </b>
             <hr />
             <p>Upload it</p>
             <div className={classes.uploadImage}>
-                <img src={download}/>
+           
+                <img src={download} onClick={!props.HotelImages?onAddImageHandeler:null} className={!props.HotelImages?"cursor-pointer":''}/>
                 <p style={{color:'gray' ,fontSize:'10px'}}>Upload From Max 10 MG Per File</p>
             </div>
-            <div style={{ display: "flex", gap: "5px" }}>
-              <ImageDownload name="primary image" />
-              <ImageDownload name="primary image" />
-              <ImageDownload name="primary image" />
+            <div className="cursor-pointer flex gap-1 mt-5 flex-wrap mr-[-100px]">
+              {imagesHotal.map((image) => (
+              <div > 
+             {  image.id<=200  ?<ImageDownload key={image.id} name="primary image" />:null }
+        </div> ))}
+          
             </div>
+           
            {props.HotelImages&&<> <hr />
             <b>
               cover Images
-              <span style={{ color: "red" }}>
+              <span className="text-red-500 ml-2">
                 (must upload at least 5 images up to 200)
               </span>
             </b>
-            <div style={{ display: "flex", gap: "5px", marginTop: "20px" }}>
-              <ImageDownload name="cover image" />
-              <ImageDownload name="cover image" />
-              <ImageDownload name="cover image" />
+            <div className="flex gap-1 mt-5 flex-wrap mr-[-100px]">
+            <img onClick={onAddImageHandeler} className=" cursor-pointer ml-[29px] mr-[20px] mt-[20px]" width='100px' height='100px' src={download}/>
+              {images.map((image) => (
+               image.id<=200?<ImageDownload key={image.id} name="cover image " />:null
+        ))}
             </div></>}
-            <div style={{ display: "flex", gap: "5px" }}>
-              <ImageDownload name="cover image" />
-              <ImageDownload name="cover image" />
-            </div>
+       
           </div>
           {error && <p className="error">{error}</p>}
         </CreateHotelWrapper>

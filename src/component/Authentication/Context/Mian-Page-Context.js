@@ -1,7 +1,7 @@
-import axios from "axios";
+
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import api from "../../../axiosInstance"
 
 const AuthContext1 = React.createContext({
   token: "",
@@ -23,60 +23,32 @@ export const AuthContext1Provider = (props) => {
   const [formData, setFormData] = useState({});
 
   const userIsLoggedIn = !!token;
-  useEffect(() => {
-    console.log("Token updated:", token);
-  }, [token]); // سيتم تشغيل هذا الكود عند تحديث token
-  
+
   const loginHandler = (token, email) => {
-    console.log("loginHandler executed", token, email);
+    // console.log("loginHandler executed", token, email);
     setToken(token);
     setEmail(email);
+    console.log(token);
+    
     localStorage.setItem("token", token);
     localStorage.setItem("email", email);
   };
 
-  const refreshTokenHandeler = async () => {
-    try {
-      const response = await axios.get(
-        "https://sphinx-go.vercel.app/api/v1/vendor/refresh-token",
-        {
-          withCredentials: true,
-        }
-      );
-      setToken(response.data.access_token);
-      console.log(response.data);
-      console.log("Token rfrsesh:", response.data.access_token);
-      localStorage.setItem("token", response.data.access_token);
-      return response.data.access_token;
-    } catch (error) {
-      console.error("Error refreshing token:", error);
-      logoutHandler();
-      return null;
-    }
-   
-  };
-
   const logoutHandler = async () => {
     try {
-      // const response = await axiosInstance(token, refreshTokenHandeler).get(
-      //   "/logout"
-      // );
-      const res = await axios.get("https://sphinx-go.vercel.app/api/v1/vendor/logout", {
-        withCredentials: true,
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
+      const res=await api.get("/logout",{
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
       });
-      // console.log(response.data);
-      setToken(null);
+      console.log(res);
+      
       localStorage.removeItem("token");
-      localStorage.removeItem("email");
-      navigate("/");
+      // navigate("/")
+      window.location.href = "/"; // إعادة التوجيه بعد تسجيل الخروج
     } catch (error) {
-      console.error("Error logging out:", error.message);
-      console.log("Token logout:", token);
+      console.error("Error logging out:", error);
     }
   };
+  
   const sinUpFormDataHandeler = (newData) => {
     setFormData((prev) => {
       if (
@@ -101,7 +73,6 @@ const setHandelerToken=(newtoken)=>{
     formData: formData,
     login: loginHandler,
     logout: logoutHandler,
-    refreshToken: refreshTokenHandeler,
     sinUpFormData: sinUpFormDataHandeler,
     setToken:setHandelerToken
   };
