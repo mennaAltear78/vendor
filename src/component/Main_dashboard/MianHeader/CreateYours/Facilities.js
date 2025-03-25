@@ -43,7 +43,7 @@ function Facilities() {
               />
            
             </div>  
-             <div className="font-[Poppins] p-[20px] w-[300px] ml-[20px] border-2 border-solid border-gray-200 rounded-[15px] mt-[50px] sm:w-[450px]">
+             <div className="font-[Poppins] p-[20px] w-[300px] ml-[10px] border-2 border-solid border-gray-200 rounded-[15px] mt-[14px] sm:w-[450px]">
                 <b style={{fontSize:'20px'}} >Add Facilities </b>
            
                 <div>

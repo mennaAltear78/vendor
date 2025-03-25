@@ -24,8 +24,13 @@ function ChoisenHotel(props) {
         </div>
         <div className={classes.mainDescription}>
           <div className={classes.imgeContainer}>
-            <img src={props.icon} alt="Hotel" />
-          </div>
+    
+         <div 
+  className="w-10 h-10 bg-center bg-no-repeat bg-contain" 
+  style={{ backgroundImage: `url(${props.icon})` }} 
+>      <props.icon className="w-full h-full   text-red-100 fill-current" /></div>
+
+         </div>
           <b>{props.Title}</b>
           <p style={ {color:props.selected &&'orange'}}>{props.desription}</p>
         </div>

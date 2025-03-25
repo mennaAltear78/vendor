@@ -15,11 +15,11 @@ function FeeCalculation() {
   };
 
   return (
-    <div>
-      <div style={{display:'flex' ,justifyContent:'space-between'}}>
+    <div className="flex flex-col  align center mt-[-30px] ">
+      <div className="flex  justify-between mb-[-10px]">
         <p>Cancelation fee</p>
         <div className={styles.imgNote} >
-        <img src={icon} width={'24px'}/>
+        <img className="mr-[-100px]" src={icon} width={'24px'}/>
         <div className={styles.Note}>you should ....</div>
     </div>
       </div>
@@ -28,8 +28,8 @@ function FeeCalculation() {
       <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginTop: "10px" }}>
         {AddFee.map((item, index) => (
           <div key={item.id} style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-            <TextField type="number" label="Number of days" textfild="textBoxSmal" name="Description" />
-            <TextField type="number" label="Fee Percentage" textfild="textBoxSmal" name="Description" />
+            <TextField Intext="Number of days" type="number" label="Number of days" textfild="textBoxSmal" name="Description" />
+            <TextField Intext="Fee Percentage" type="number" label="Fee Percentage" textfild="textBoxSmal" name="Description" />
             
   
             {index === AddFee.length - 1 && (

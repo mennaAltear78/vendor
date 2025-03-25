@@ -28,28 +28,28 @@ function BedDetails() {
         <CreateHotelWrapper clickHandeler={clickPrivHandeler}>
           <ProgressSteps pageNumber={3} count={4} />
           
-          <div style={{ marginLeft: "24px", marginBottom: "-40px" }}>
+          <div >
             <Title Title="Bed details" />
           </div>
-          <div className={classes.rating} >
-            <p>
+          <div className= "font-usedFont p-5 w-[420px]  border-solid  border-2 border-gray-400/40 rounded-[15px]  " >
+            <p className="font-usedFont text-[16px]">
             Which beds are available in this room?
 
             </p>
             {appData.bedsData.map((bedItem, index) => (
               <div
                 key={index}
-                style={{ display: "flex", marginBottom:"20px",justifyContent: "space-between" }}
+               className="flex justify-between gap-7 mb-5"
               >
                 <div style={{ display: "flex" }}>
                   <ImgContainer img={bedItem.img} />
-                  <div style={{ marginLeft: "20px" }}>
+                  <div className="ml-[10px]">
                     <b>{bedItem.title}</b> <br />
-                    <p style={{fontSize:'12px' ,color:"gray"}}>{bedItem.description} <br/>
+                    <p className="text-xs  text-gray-500" >{bedItem.description} <br/>
                   wide</p>
                   </div>
                 </div>
-                <Counter big={true}/>
+               <div  > <Counter big={true}/></div>
               </div>
             ))}
           </div>

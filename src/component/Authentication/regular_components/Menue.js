@@ -21,13 +21,13 @@ function Menue({ options, label ,NObtn}) {
   };
 
   return (
-    <div className={styles.dropdownContainer}>
-      <label className={styles.label}>{label}</label>
+    <div className="relative font-usedFont">
+      <label className= "text-[16px]  text-[#333] mb-1.5 font-[Poppins]">{label}</label>
       <div className={styles.dropdown}>
-        <div className={styles.selectedOption} onClick={toggleDropdown}>
-          {selectedOption && `${selectedOption} `}
-          {!NObtn&&TimeOption}
-          <img src={arrow} />
+        <div className="flex " onClick={toggleDropdown}>
+       <div className="w-[170px]">{selectedOption && `${selectedOption} `} 
+         {!NObtn&&TimeOption}</div>  
+         <div className="flex items-end"><img className="w-[20px] h-[20px]" src={arrow} /></div> 
         </div>
         <div className={`${styles.options} ${isOpen ? styles.show : ""}`}>
           {options.map((option, index) => (
@@ -41,7 +41,7 @@ function Menue({ options, label ,NObtn}) {
               {option.label}
             </div>
           ))}
-         {NObtn?'': <div style={{ display: "flex" }}>
+         {NObtn?'': <div className="flex">
             <button
               className={`${styles.btn1} ${
                 TimeOption === "Am" ? styles.checked : ""

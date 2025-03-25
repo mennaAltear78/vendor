@@ -6,7 +6,9 @@ module.exports = {
       fontFamily: {
         'usedFont': ['var(--Typography-English-H-1-Font-Family)', 'Poppins', 'sans-serif'],
       },
-
+      animation: {
+        bounce: "bounce 2s infinite",
+      },
     },
   },
   corePlugins: {

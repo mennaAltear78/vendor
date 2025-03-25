@@ -31,15 +31,15 @@ function Speak() {
       <form onSubmit={onClickHandler}className="w-[100vw] h-screen ml-[100px] sm:ml-[150px]">
         <div style={{ width: "100vw" }}>
           <CreateHotelWrapper clickHandeler={clickPrivHandeler}>
-            <div className={classes.mainContaint}>
+            <div >
               <ProgressSteps pageNumber={3} count={6} circle={true} />
               <Title
                 Title="What languages do you or your staff speak?"
                 description="Select Language as you need"
               />
             </div>
-            <div className={classes.rating}>
-              <b>Select Language </b>
+            <div className="font-[Poppins] p-5 w-[450px] border-solid  border-2 border-gray-400/40 rounded-[15px] mt-5">
+              <b className="text-[24px]">Select Language </b>
               <hr />
               <div>
                 <SquareRadio
@@ -53,7 +53,7 @@ function Speak() {
                   radio={true}
                 />
               </div>
-              <p>Add additional languages</p>
+              <p className="mt-7">Add additional languages</p>
               <div></div>
             </div>
             {error&&   <p className="error">{error}</p>}

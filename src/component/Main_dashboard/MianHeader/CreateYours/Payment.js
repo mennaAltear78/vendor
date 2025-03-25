@@ -50,13 +50,10 @@ function Payment() {
             <CreateHotelWrapper clickHandeler={clickPrivHandeler}>
               <div className={classes.mainContaint}>
                 <ProgressSteps pageNumber={6} count={6} circle={true}/>
-                {/* <Title
-                  Title="What languages do you or your staff speak?"
-                  description="Select Language as you need"
-                /> */}
+           
               </div>
 
-              <div className={classes.rating} style={{ marginBottom: "-35px" }}>
+              <div className="font-usedFont p-5 w-[420px] pr-[50px] border-solid  border-2 border-gray-400/40 rounded-[15px] mt-5" style={{ marginBottom: "-35px" }}>
                 <b style={{ fontSize: "20px" }}>
                   Payment agreement Options
                   <hr />
@@ -64,16 +61,17 @@ function Payment() {
                 <p>Choose Payment</p>
               </div>
 
-              <div className={classes.rating}>
+              <div className="font-[Poppins] p-5 w-[420px] pr-[50px] border-solid  border-2 border-gray-400/40 rounded-[15px] mt-5">
                 <b style={{ fontSize: "20px" }}>
                   Detailed Terms
                   <hr />
                 </b>
-                <TextField
-                  label="Detailed Terms"
+                <TextField               
                   textfild="textBox2"
                   name="Description"
                   textarea={true}
+                  Intext="Detailed Terms"
+
 
                 />
               </div>

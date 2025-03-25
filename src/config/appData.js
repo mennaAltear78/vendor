@@ -1,8 +1,9 @@
-import Hotel from "../../src/Assets/icons/buildings.svg";
-import Apartement from "../../src/Assets/icons/house.svg";
-import Villa from "../../src/Assets/icons/building-3.svg";
-import Hostel from "../../src/Assets/icons/house-2.svg";
-import Resident from "../../src/Assets/icons/buildings-2.svg";
+import { ReactComponent as Hotel } from "../../src/Assets/icons/buildings.svg";
+import { ReactComponent as Apartement } from "../../src/Assets/icons/house.svg";
+import { ReactComponent as Villa } from "../../src/Assets/icons/building-3.svg";
+import { ReactComponent as Hostel } from "../../src/Assets/icons/house-2.svg";
+import { ReactComponent as Resident } from "../../src/Assets/icons/buildings-2.svg";
+
 import bed from "../Assets/Frame 1707481215.png";
 
 const appData = {
@@ -132,7 +133,7 @@ const appData = {
     { value: "option6", facilitie: "Garden" },
     { value: "option7", facilitie: "Terrace" },
     { value: "option8", facilitie: "Non-smoking rooms" },
-    { value: "option9", facilitie: "Airport shuttSpa and wellness centrele" },
+    { value: "option9", facilitie: "Airport shuttSpa " },
     { value: "option10", facilitie: "Hot tub/Jacuzzi" },
     { value: "option11", facilitie: "Free WiFi" },
     { value: "option12", facilitie: "Air conditioning" },

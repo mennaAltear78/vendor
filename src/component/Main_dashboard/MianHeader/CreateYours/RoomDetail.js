@@ -31,11 +31,11 @@ function RoomDetail() {
       >
         <CreateHotelWrapper clickHandeler={clickPrivHandeler}>
           <ProgressSteps pageNumber={2} count={4} />
-          <div style={{ marginLeft: "24px", marginBottom: "-40px" }}>
+          <div className="mt-[-20px]">
             <Title Title="Room Details" />
           </div>
 
-          <div className={classes.rating} style={{ marginBottom: "-40px" }}>
+          <div className="font-usedFont p-5 w-[420px] pr-[50px] border-solid  border-2 border-gray-400/40 rounded-[15px] mt-5" style={{ marginBottom: "-40px" }}>
             <TextField
               label="Room Name"
               textfild="bigTextBox"

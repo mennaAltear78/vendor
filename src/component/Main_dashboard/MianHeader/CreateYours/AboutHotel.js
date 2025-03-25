@@ -57,6 +57,7 @@ function AboutHotel() {
                 label="Property Name"
                 textfild="bigTextBox"
                 name="Property Name"
+                Intext="Property Name"
                 OnchangeHnadeler={propertyNameHandeler}
               />
 
@@ -64,6 +65,7 @@ function AboutHotel() {
                 label="Description"
                 textfild="bigTextBox"
                 name="Description"
+                Intext="Description"
                 OnchangeHnadeler={propertyDescHandeler}
               />
               <hr />
@@ -79,6 +81,7 @@ function AboutHotel() {
                         <input
                           type="radio"
                           name="starRating"
+                          
                           value={star}
                           checked={selectedStar === star}
                           onChange={() => setSelectedStar(star)}

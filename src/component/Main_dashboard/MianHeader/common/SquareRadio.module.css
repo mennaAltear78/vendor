@@ -43,11 +43,10 @@ display: flex;
 
   }
   .addCost{
-    display: flex
-    ;
-  margin-top: 7px;
-        width: 120px;
-       
+    display: flex;
+     margin-top: 7px;
+     width: 200px;
+       margin-right: -70px;
    
   }
   .scroll{
@@ -56,11 +55,7 @@ display: flex;
         /* justify-content: center; */
         align-items: center;
   }
-  .input{
-     display: flex;
-     gap: 5px;
-     align-items: center;
-  }
+
   .hidden-radio:checked + .square-radio {
     background-color: #006eff;
   }

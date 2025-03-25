@@ -36,7 +36,7 @@ function RoomFacilities() {
         <CreateHotelWrapper clickHandeler={clickPrivHandeler}>
           <ProgressSteps pageNumber={4} count={5} />
          
-          <div style={{ marginLeft: "24px" }}>
+          <div >
              <Title Title="What can guests use in this room?" />
           </div>
           <div className={classes.rating} style={{marginTop:'-5px'}}>
@@ -51,6 +51,7 @@ function RoomFacilities() {
                 }))}
                 onChange={handleRadioChange}
                 radio={true}
+                round="rounded-[20%]"
               />
             </div>
           </div>
@@ -66,6 +67,7 @@ function RoomFacilities() {
                 }))}
                 onChange={handleRadioChange}
                 radio={true}
+                round="rounded-[20%]"
               />
             </div>
           </div>

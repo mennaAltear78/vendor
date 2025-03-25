@@ -67,7 +67,7 @@ function SquareRadio({
           <div className={style["radio-container"]}>
           <label key={option.value} className={"flex items-center cursor-pointer gap-1.5 justify-between w-full mt-5"}>
             {radio && (
-              <div className={style.input}>
+              <div className="flex items-center gap-1.5 mb-2">
                 <input
                   type="checkbox"
                   name={name}
@@ -76,10 +76,10 @@ function SquareRadio({
                   onChange={() => handleSelection(option.value)}
                   className={style["hidden-radio"]}
                 />
-              <div className={`border-solid border-2 border-blue-600 ${round} ${style["square-radio"]}`}>
+              <div className={`border-solid border-2 border-blue-600  ${round} ${style["square-radio"]}`}>
                   {selected.includes(option.value) && "✔"}
                 </div>
-                <div>{option.label}</div>
+                <div className="text-[15px]">{option.label}</div>
               </div>
             )}
             {!radio && <div>{option.label}</div>}
@@ -93,7 +93,7 @@ function SquareRadio({
        
           
               <div className={style.addCost}>
-                <p>{description}</p>
+                <p className="">{description}</p>
                 <div className={style.scroll}>
                   <div
                     className={

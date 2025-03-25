@@ -55,10 +55,10 @@ function BathRoomFacilities() {
         <CreateHotelWrapper clickHandeler={clickPrivHandeler}>
           <ProgressSteps pageNumber={5} count={5} />
           
-          <div style={{ marginLeft: "24px", marginBottom: "-40px" }}>
+          <div >
             <Title Title="Room views"/>
           </div>
-          <div className={classes.rating} >
+          <div className= "font-[Poppins] p-5 w-[450px] border-solid  border-2 border-gray-400/40 rounded-[15px] mt-5 ">
        
             <div>
               <SquareRadio
@@ -73,12 +73,12 @@ function BathRoomFacilities() {
               />
             </div>
           </div>
-          <div style={{ marginLeft: "24px"}}>
+          <div >
             <Title Title="Bathroom Facilities"/>
           </div>
-          <div className={classes.rating}  style={{ marginTop: "10px" }}>
-            <b>Which bathroom items are available in this room?
-            </b>
+          <div className= "font-[Poppins] p-5 w-[450px] border-solid  border-2 border-gray-400/40 rounded-[15px] mt-5 " >
+            <p className="mb-[-8px]">Which bathroom items are available in this room?
+            </p>
 
             <div>
               <SquareRadio
