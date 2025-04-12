@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../../axiosInstance"
+import CookiesServices from "../../../services/CookiesServices";
 
 const AuthContext1 = React.createContext({
   token: "",
@@ -17,7 +18,6 @@ const AuthContext1 = React.createContext({
 
 export const AuthContext1Provider = (props) => {
   const intialToken = localStorage.getItem("token");
-  const navigate = useNavigate();
   const [token, setToken] = useState(intialToken);
   const [email, setEmail] = useState("");
   const [formData, setFormData] = useState({});
@@ -29,7 +29,8 @@ export const AuthContext1Provider = (props) => {
     setToken(token);
     setEmail(email);
     console.log(token);
-    
+    // console.log("jwt",CookiesServices.get("jwt"));
+    // console.log("refresh_token",CookiesServices.get("refresh_token"));
     localStorage.setItem("token", token);
     localStorage.setItem("email", email);
   };

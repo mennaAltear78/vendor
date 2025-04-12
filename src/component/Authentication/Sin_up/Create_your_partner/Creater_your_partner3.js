@@ -29,7 +29,7 @@ function Creater_your_partner3() {
   const [fileObject, setFileObject] = useState({});
   const [error, setError] = useState(null);
 
-  const navigate = useNavigate();
+
 
 
   const handleClosePopup = () => {
@@ -80,9 +80,9 @@ function Creater_your_partner3() {
 
       const numberOfEntries = [...formDataa.entries()].length;
 
-      if (numberOfEntries >= 10) {
-        setShowPopup(true);
-      }
+     if (numberOfEntries >= 10) {
+          setShowPopup(true);
+        }
 
       let count;
       for (let pair of formDataa.entries()) {
@@ -118,8 +118,8 @@ function Creater_your_partner3() {
             "Accept-Language": "en",
           },
         });
-
-        console.log("Response:", response.data);
+    
+        console.log("Response:", response.message);
       } catch (error) {
         if (error.response) {
           // Problem with the response from the server
@@ -132,6 +132,8 @@ function Creater_your_partner3() {
           // Issue with setting up the request
           console.error("Error:", error.message);
         }
+
+        setError(error.response.data.message)
       }
     }
     // console.log(fileObject, ctx.formData);
@@ -182,27 +184,17 @@ function Creater_your_partner3() {
                 onFileSelect={handleFileSelect}
               />
             ))}
-            {/* {error && <p style={{color:'red'}}> you should upload those files</p>}
-          {AddNewFilee.map((Newcomponent) => Newcomponent)} */}
+   
 
-            <div style={{ display: "flex" }}>
-              {/* <img
-              style={{ cursor: "pointer" }}
-              src={addBtn}
-              onClick={handleClick}
-            /> */}
-              {/* <p style={{ color: "blue", fontSize: "15px" }}>
       
-              Add New File
-            </p> */}
-            </div>
 
             <div className={style["btnsInfo"]}>
-              <Link to="/CreateAccount2">
+        <div className="flex"> <Link to="/CreateAccount2">
                 <Button btnCss="whiteCssS" name="previous" />
               </Link>
 
               <Button btnCss="blueCssS" name="continue" />
+          </div>     
             </div>
             <AuthenticationFooter
               title="Have a account"
@@ -214,7 +206,7 @@ function Creater_your_partner3() {
             />
           </Card>
 
-          <Transition
+      { showPopup?   <Transition
             in={showPopup}
             timeout={setTimingOut}
             mountOnEnter
@@ -226,17 +218,15 @@ function Creater_your_partner3() {
                 popMessageCss="popup"
                 ref={popupRef}
                 shown={state}
-                messageImg={messageImg}
+                messageImg={!error?messageImg:''}
                 handleTogglePopup={handleClosePopup}
-                title="Thanks For Fill Our Form"
-                details="  What next, Now our team will
-             review your request and will contact
-            you by email soon"
+                title={!error?"Thanks For Fill Our Form":error}
+                details={!error?" What next, Now our team will review your request and will contact you by email soon":""}
                 
-                btnCss="whiteCssG"
+                btnCss={error?"whiteCssS":"whiteCssG"}
               />
             )}
-          </Transition>
+          </Transition>:null}
           {/* {showPopup &&<PopupMessage  handleTogglePopup={handleTogglePopup}/> } */}
           {/* {showPopup && (
         <PopupMessage shown={showPopup} handleTogglePopup={handleTogglePopup} />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import MainDashBoardWrapper from "../../../Authentication/regular_components/MainDashBoardWrapper";
 import CreateHotelWrapper from "../common/CreateHotelWrapper";
 import ProgressSteps from "../../../Authentication/Sin_up/Create_your_partner/Create_account_items/ProgressSteps";
@@ -7,24 +7,27 @@ import classes from "./CreateHotel.module.css";
 import appData from "../../../../config/appData";
 import SquareRadio from "../common/SquareRadio";
 import { useNavigate } from "react-router-dom";
+import AuthContext from "../../../Authentication/Context/auth-context";
 function Speak() {
-  const [selectedHotel, setSelectedHotel] = useState([]);
+  const [selectedLang, setSelectedLang] = useState([]);
   const [error,setError]=useState(null)
+  const ctx=useContext(AuthContext)
   const navigate = useNavigate();
 
   const onClickHandler = (e) => {
     e.preventDefault();
-  if(selectedHotel.length===0){
+  if(selectedLang.length===0){
     setError("you should select language")
     return
   }
+  ctx.setHotelinfo({...ctx.HotelInfo,language_spoken:{en:selectedLang}})
     navigate("/facilities");
   };
   const handleRadioChange = (value) => {
-    setSelectedHotel(value)
+    setSelectedLang(value)
   };
   const clickPrivHandeler = () => {
-    navigate("/AboutHotel");
+    navigate(-1);
   };
   return (
     <MainDashBoardWrapper>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import CreateHotelWrapper from "../common/CreateHotelWrapper";
 import ProgressSteps from "../../../Authentication/Sin_up/Create_your_partner/Create_account_items/ProgressSteps";
 import Title from "../common/Title";
@@ -9,12 +9,17 @@ import MainDashBoardWrapper from "../../../Authentication/regular_components/Mai
 import icon from "../../../../Assets/Frame 1707481174.svg";
 import { useNavigate } from "react-router-dom";
 import '../../../../index.css'
+import AuthContext from "../../../Authentication/Context/auth-context";
 function AboutHotel() {
   const [error, setError] = useState(null);
   const [property,setProperty] = useState('')
   const [description ,setDescription] =useState('')
   const [selectedStar, setSelectedStar] = useState();
+  const ctx =useContext(AuthContext)
   const navigate=useNavigate()
+ 
+  console.log( ctx.HotelInfo);
+  
   const onClickHandler = (e) => {
     e.preventDefault();
     console.log("Selected Hotel:", selectedStar ,property,description);
@@ -22,6 +27,7 @@ function AboutHotel() {
     setError("you should fill all requirement")
     return
    }
+   ctx.setHotelinfo({...ctx.HotelInfo,name:property,description:{en:description}})
         navigate('/speak')
   };
   const propertyNameHandeler=(e)=>{
@@ -31,7 +37,7 @@ function AboutHotel() {
     setDescription(e.target.value)
   }
   const clickPrivHandeler=()=>{
-    navigate('/MianDahboard/CreateHotel')
+    navigate(-1)
   }
   return (
     <MainDashBoardWrapper>

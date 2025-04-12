@@ -37,7 +37,9 @@ function CompleteProfie() {
   const CancelHandeler = () => {
     SetPop_up(false);
   };
-
+  useEffect(()=>{
+    document.title="complete your profile"
+  },[])
   return (
     <div className="w-[100vw] h-screen ">
       <MainDashBoardWrapper>

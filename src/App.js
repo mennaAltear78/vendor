@@ -51,7 +51,7 @@ function App() {
 
           {/* Protected Routes (Require Authentication) */}
           <Route element={<AuthenRequire />}>
-            <Route path="/MianDahboard" element={<WelcomePage />} />
+           <Route path="/MianDahboard" element={ <WelcomePage />} />
             <Route path="/MianDahboard/CreateHotel" element={<ChoiseHotel />} />
             <Route path="/AboutHotel" element={<AboutHotel />} />
             <Route path="/speak" element={<Speak />} />

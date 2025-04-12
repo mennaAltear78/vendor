@@ -26,7 +26,7 @@ function RoomFacilities() {
     setSelectedHotel(value);
   };
   const clickPrivHandeler = () => {
-    navigate('/BedDetails')
+    navigate(-1)
     SetDone(true)
     
   };

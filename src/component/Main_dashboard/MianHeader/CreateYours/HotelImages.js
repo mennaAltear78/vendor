@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import MainDashBoardWrapper from "../../../Authentication/regular_components/MainDashBoardWrapper";
 import CreateHotelWrapper from "../common/CreateHotelWrapper";
 import classes from "./CreateHotel.module.css";
@@ -27,6 +27,9 @@ function HotelImages(props) {
     { id: 3 },
     { id: 4 },
   ]);
+     useEffect(()=>{
+          document.title="Hotel Images"
+        },[])
   const ctx = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -40,7 +43,7 @@ function HotelImages(props) {
   };
 
   const clickPrivHandeler = () => {
-    navigate("/CompleteProfie");
+    navigate(-1);
     SetDone(true);
   };
   const CancelHandeler = () => {
@@ -75,10 +78,12 @@ function HotelImages(props) {
             <b className="text-[22px]">
               {/* Primary Images */}
               {props.title}
-              <span className="text-red-500 ml-2 text-[13px]">{props.limits}</span>
+              <span className="text-red-500 ml-2 text-[13px]">
+                {props.limits}
+              </span>
             </b>
             <hr />
-            <p >Upload it</p>
+            <p>Upload it</p>
             <div className={classes.uploadImage}>
               <img
                 src={download}
@@ -100,16 +105,15 @@ function HotelImages(props) {
                           onClick={() => removeImageHandeler(image.id, images)}
                           key={image.id}
                         >
-                                 <svg
-                   xmlns="http://www.w3.org/2000/svg"
-                   className="hover:animate-bounce absolute top-[-10px] w-6 h-6 text-red-500 "
-                   viewBox="0 0 24 24"
-                   fill="currentColor"
-                 >
-                   <path d="M3 6h18v2H3V6zm2 4h14v12H5V10zm2 2v8h10v-8H7zM9 2h6v2H9V2z" />
-                 </svg>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="hover:animate-bounce absolute top-[-10px] w-6 h-6 text-red-500 "
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                          >
+                            <path d="M3 6h18v2H3V6zm2 4h14v12H5V10zm2 2v8h10v-8H7zM9 2h6v2H9V2z" />
+                          </svg>
                         </p>
-                        
                       )}
                       <ImageDownload name="primary image" />
                     </div>
@@ -148,14 +152,14 @@ function HotelImages(props) {
                             }
                             key={image.id}
                           >
-                                 <svg
-                   xmlns="http://www.w3.org/2000/svg"
-                   className="absolute top-[-10px] w-6 h-6 text-red-500"
-                   viewBox="0 0 24 24"
-                   fill="currentColor"
-                 >
-                   <path d="M3 6h18v2H3V6zm2 4h14v12H5V10zm2 2v8h10v-8H7zM9 2h6v2H9V2z" />
-                 </svg>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="hover:animate-bounce absolute top-[-10px] w-6 h-6 text-red-500"
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
+                            >
+                              <path d="M3 6h18v2H3V6zm2 4h14v12H5V10zm2 2v8h10v-8H7zM9 2h6v2H9V2z" />
+                            </svg>
                           </p>
                           <ImageDownload name="cover image" />
                         </div>

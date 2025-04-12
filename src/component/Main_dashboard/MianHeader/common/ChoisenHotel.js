@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classes from "./ChoisenHotel.module.css";
 
 function ChoisenHotel(props) {
+     
+
   return (
     <div
       className={classes.container}

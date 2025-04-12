@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import MainDashBoardWrapper from "../../../Authentication/regular_components/MainDashBoardWrapper";
 import CreateHotelWrapper from "../common/CreateHotelWrapper";
 import classes from "./CreateHotel.module.css";
@@ -7,16 +7,22 @@ import Title from "../common/Title";
 import SquareRadio from "../common/SquareRadio";
 import appData from "../../../../config/appData";
 import { useNavigate } from "react-router-dom";
+import AuthContext from "../../../Authentication/Context/auth-context";
 function Facilities() {
     const [selectedFacilities, setSelectedFacilities] = useState([]);
     const [error,setError]=useState(null)
+    const[description,setdescription]=useState([])
+    const ctx=useContext(AuthContext)
     const navigate = useNavigate();
 
-  const handleRadioChange = (value) => {
+  const handleRadioChange = (value,desc) => {
     setSelectedFacilities(value)
+    console.log("hre",desc);
+    
+    setdescription(desc)
   };
   const clickPrivHandeler = () => {
-    navigate("/speak");
+    navigate(-1);
   };
   const onSumbitHandeler=(e)=>{
          e.preventDefault()
@@ -24,7 +30,13 @@ function Facilities() {
           setError("you should select language")
           return
         }
-        console.log(selectedFacilities);
+        ctx.setHotelinfo({
+          ...ctx.HotelInfo,
+          facilities: {
+            facility: { en: selectedFacilities },
+            description: { en: description}
+          }
+        });
         navigate('/polices')
   }
   const AllowanceHandling =()=>{

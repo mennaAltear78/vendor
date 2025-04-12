@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState ,useEffect} from "react";
 import MainDashBoardWrapper from "../../../Authentication/regular_components/MainDashBoardWrapper";
 import CreateHotelWrapper from "../common/CreateHotelWrapper";
 import ProgressSteps from "../../../Authentication/Sin_up/Create_your_partner/Create_account_items/ProgressSteps";
@@ -10,31 +10,85 @@ import SquareRadio from "../common/SquareRadio";
 import appData from "../../../../config/appData";
 import Menue from "../../../Authentication/regular_components/Menue";
 import FeeCalculation from "../common/FeeCalculation";
+import AuthContext from "../../../Authentication/Context/auth-context";
 function Polices() {
-  const [selectedFacilities, setSelectedFacilities] = useState([]);
+  const [SelectedPolices, setSelectedPolices] = useState({});
   const [error, setError] = useState(null);
   const [CancelActive, SetCancelActive] = useState(true);
+  const[timeSelected ,setTimeSelected]=useState({
+    check_in:{from:{time:'' ,date:''},until:{time:'' ,date:''}},
+    check_out:{from:{time:'' ,date:''},until:{time:'' ,date:''}}
+  })
+  const ctx =useContext(AuthContext)
   const navigate = useNavigate();
+  useEffect(() => {
 
-  const handleRadioChange = (value) => {
-    setSelectedFacilities(value);
-  };
+console.log(SelectedPolices);
+if (SelectedPolices?.pet_policy?.length) {
+  console.log(SelectedPolices.pet_policy[0]);
+}
+
+  }, [SelectedPolices]); 
+  console.log(SelectedPolices);
+
   const clickPrivHandeler = () => {
-    navigate("/facilities");
+    navigate(-1);
   };
   const onSumbitHandeler = (e) => {
     e.preventDefault();
-    if (selectedFacilities.length === 0) {
-      setError("you should select language");
+    if (setSelectedPolices.length === 0 || (timeSelected.check_in.from.date==='' ||timeSelected.check_in.until.date===''||timeSelected.check_out.from.date===''||timeSelected.check_out.until.date==='')) {
+      setError("All fields are required");
       return;
     }
+ 
+    ctx.setHotelinfo({...ctx.HotelInfo,policies:{...timeSelected},pet_policy:{en:SelectedPolices.pet_policy[0]},smoking_policy:{en:SelectedPolices.smoking_policy[0]}})
     navigate("/payment");
   };
   const AllowanceHandling = (activeValue) => {
-    console.log(activeValue.police, "???");
-
-    SetCancelActive(activeValue.police);
+    
+   ctx.setHotelinfo({...ctx.HotelInfo,cancelation_allowed:!activeValue["Cancelation Policy "]})
+    SetCancelActive(!activeValue["Cancelation Policy "]);
   };
+  const  timeFromHandelercheckIn=(time,date)=>{
+    console.log(time ,date);
+    setTimeSelected(prevState => ({
+      ...prevState,
+      check_in: {
+        ...prevState.check_in,
+        from: { time, date }
+      }
+    }));
+  }
+  const  timeUntilHandelercheckIn=(time,date)=>{
+    console.log(time ,date);
+    setTimeSelected(prevState => ({
+      ...prevState,
+      check_in: {
+        ...prevState.check_in,
+        until: { time, date }
+      }
+    }));
+  }
+  const  timeFromHandelercheckOut=(time,date)=>{
+    console.log(time ,date);
+    setTimeSelected(prevState => ({
+      ...prevState,
+      check_out: {
+        ...prevState.check_out,
+        from: { time, date }
+      }
+    }));
+  }
+  const  timeUntilHandelercheckOut=(time,date)=>{
+    console.log(time ,date);
+    setTimeSelected(prevState => ({
+      ...prevState,
+      check_out: {
+        ...prevState.check_out,
+        until: { time, date }
+      }
+    }));
+  }
   return (
     <MainDashBoardWrapper>
       <form onSubmit={onSumbitHandeler} className="w-[100vw]  h-screen ml-[100px] sm:ml-[150px] mb-[700px]">
@@ -58,11 +112,13 @@ function Polices() {
                   textfild="textBoxSmall"
                   label="from"
                   options={appData.times}
+                  timeHandeler={timeFromHandelercheckIn}
                 />
                 <Menue
                   textfild="textBoxSmall"
                   label="until"
                   options={appData.times}
+                  timeHandeler={timeUntilHandelercheckIn}
                 />
               </div>
               <TextField
@@ -78,11 +134,13 @@ function Polices() {
                   textfild="textBoxSmall"
                   label="from"
                   options={appData.times}
+                  timeHandeler={timeFromHandelercheckOut}
                 />
                 <Menue
                   textfild="textBoxSmall"
                   label="until"
                   options={appData.times}
+                  timeHandeler={timeUntilHandelercheckOut}
                 />
               </div>
               <TextField
@@ -135,7 +193,7 @@ function Polices() {
                     label: policy.policy,
                   }))}
                   description="Additonal Cost"
-                  onChange={handleRadioChange}
+                  onChange={(value)=>setSelectedPolices({...SelectedPolices,pet_policy:value})}
                   radio={true}
                   onevalue={true}
                 />
@@ -150,7 +208,7 @@ function Polices() {
                     label: policy.policy,
                   }))}
                   description="Additonal Cost"
-                  onChange={handleRadioChange}
+                  onChange={(value)=>setSelectedPolices({...SelectedPolices,smoking_policy:value})}
                   radio={true}
                   onevalue={true}
                 />

@@ -1,32 +1,45 @@
-import React, { useState } from "react";
-import classes from './CreateHotel.module.css';
+import React, { useContext, useEffect, useState } from "react";
+import classes from "./CreateHotel.module.css";
 import appData from "../../../../config/appData";
 import ProgressSteps from "../../../Authentication/Sin_up/Create_your_partner/Create_account_items/ProgressSteps";
 import MainDashBoardWrapper from "../../../Authentication/regular_components/MainDashBoardWrapper";
 import CreateHotelWrapper from "../common/CreateHotelWrapper";
-import Title from '../common/Title';
-import ChoisenHotel from '../common/ChoisenHotel';
+import Title from "../common/Title";
+import ChoisenHotel from "../common/ChoisenHotel";
 import { useNavigate } from "react-router-dom";
+import AuthContext from "../../../Authentication/Context/auth-context";
 
 function ChoiseHotel() {
+  const ctx = useContext(AuthContext);
   const [selectedHotel, setSelectedHotel] = useState(null);
-  const [error ,setError]=useState(null)
- const navigate =useNavigate()
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
   const onClickHandler = (e) => {
     e.preventDefault();
-    if(!selectedHotel){
-      setError("you should choise one")
-      return
+    if (!selectedHotel) {
+      setError("you should choise one");
+      return;
     }
-   
-    navigate('/AboutHotel')
+    ctx.setHotelinfo({
+      ...ctx.HotelInfo,
+      type: {
+        en: "Hotel",
+      },
+    });
+    navigate("/AboutHotel");
   };
-  const clickPrivHandeler=()=>{
-    navigate('/MianDahboard')
-  }
+  const clickPrivHandeler = () => {
+    navigate(-1);
+  };
+  useEffect(() => {
+    document.title = "About your hotel";
+  }, []);
   return (
     <MainDashBoardWrapper>
-      <form onSubmit={onClickHandler} className="w-[100vw] h-screen ml-[100px] sm:ml-[150px] ">
+      <form
+        onSubmit={onClickHandler}
+        className="w-[100vw] h-screen ml-[100px] sm:ml-[150px] "
+      >
         <div className="w-[90vw] ">
           <CreateHotelWrapper clickHandeler={clickPrivHandeler}>
             <div className={classes.mainContaint}>
@@ -37,7 +50,6 @@ function ChoiseHotel() {
               />
 
               <div className="flex flex-wrap gap-[10px]  mb-[160px] justify-center sm:justify-start sm:ml-[20px] ">
-              
                 {appData.ChoiseHotel.map((hotel) => (
                   <ChoisenHotel
                     key={hotel.title}
@@ -50,7 +62,11 @@ function ChoiseHotel() {
                 ))}
               </div>
             </div>
-            {error&&   <p className="text-red-600 ml-[40px] mt-[-90px] mb-[100px]">{error}</p>}
+            {error && (
+              <p className="text-red-600 ml-[40px] mt-[-90px] mb-[100px]">
+                {error}
+              </p>
+            )}
           </CreateHotelWrapper>
         </div>
       </form>

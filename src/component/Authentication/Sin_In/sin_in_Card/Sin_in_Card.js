@@ -7,6 +7,7 @@ import AuthContext from "../../Context/auth-context";
 import SpinnerLoading from "../../regular_components/SpinnerLoading";
 import AuthContext1 from "../../Context/Mian-Page-Context";
 import api from "../../../../axiosInstance";
+import CookiesServices from "../../../../services/CookiesServices";
 
 
 function Sin_in_Card(props) {

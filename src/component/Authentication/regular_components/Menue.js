@@ -1,10 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Menue.module.css";
 import arrow from "../../../Assets/arrow-down.png";
-function Menue({ options, label ,NObtn}) {
+function Menue({ options, label ,NObtn,timeHandeler}) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("options");
-  const [TimeOption, setTimeOption] = useState(null);
+  const [TimeOption, setTimeOption] = useState('');
+  
+  
+  const [date,setDate]=useState({})
+
+  useEffect(()=>{
+console.log(selectedOption,TimeOption);
+  timeHandeler(selectedOption,TimeOption)
+  },[TimeOption,selectedOption])
   const toggleDropdown = () => {
     if (selectedOption === "options") {
       setSelectedOption(null);
@@ -12,9 +20,11 @@ function Menue({ options, label ,NObtn}) {
     }
     setIsOpen(!isOpen);
   };
-  const handleSelect = (option) => {
+  const handleSelect = (option,Time) => {
     setSelectedOption(option);
     if (selectedOption === null) setTimeOption("Am");
+   
+    
   };
   const HandleTimeOption = (option) => {
     setTimeOption(option);
@@ -36,7 +46,7 @@ function Menue({ options, label ,NObtn}) {
               className={`${styles.optionsStyle} ${
                 selectedOption === option.value ? styles.checked : ""
               }`}
-              onClick={() => handleSelect(option.value)}
+              onClick={() => handleSelect(option.value ,TimeOption)}
             >
               {option.label}
             </div>
@@ -54,6 +64,7 @@ function Menue({ options, label ,NObtn}) {
               <div />
             </div>
             <button
+            type="button"
               className={`${styles.btn2} ${
                 TimeOption === "Pm" ? styles.checked : ""
               }`}

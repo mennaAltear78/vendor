@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { act, useState } from "react";
 import style from "./SquareRadio.module.css";
 import TextField from "../../../Authentication/regular_components/TextField";
+import { set } from "react-hook-form";
 
 function SquareRadio({
   options,
@@ -14,6 +15,7 @@ function SquareRadio({
   round
 }) {
   const [selected, setSelected] = useState([]);
+  const [descriptionValue ,setdescription]=useState([])
   const [activeStates, setActiveStates] = useState(
     options.reduce((acc, option) => ({ ...acc, [option.value]: false }), {})
   );
@@ -31,9 +33,9 @@ function SquareRadio({
     }
 
     setSelected(newSelected);
-
+    
     if (onChange) {
-      onChange(newSelected);
+      onChange(newSelected,descriptionValue);
     }
 
     if (activeStates[value]) {
@@ -46,7 +48,7 @@ function SquareRadio({
 
 
   const toggleActiveState = (value) => {
-    console.log(selected);
+    console.log(value,"??ff");
     if (radio) {
       if (!selected.includes(value)) return;
     }
@@ -58,7 +60,12 @@ function SquareRadio({
     console.log(activeStates, "?????????");
     AllowanceHandling(activeStates);
   };
-  
+  const onChangeDescHandeler =(e)=>{
+    const value=e.target.value
+    setdescription(value)
+    console.log(value);
+    
+  }
   return (
     <div >
       <div className={style.square}>
@@ -72,12 +79,12 @@ function SquareRadio({
                   type="checkbox"
                   name={name}
                   value={option.label}
-                  checked={selected.includes(option.value)}
-                  onChange={() => handleSelection(option.value)}
+                  checked={selected.includes(option.label)}
+                  onChange={() => handleSelection(option.label)}
                   className={style["hidden-radio"]}
                 />
               <div className={`border-solid border-2 border-blue-600  ${round} ${style["square-radio"]}`}>
-                  {selected.includes(option.value) && "✔"}
+                  {selected.includes(option.label) && "✔"}
                 </div>
                 <div className="text-[15px]">{option.label}</div>
               </div>
@@ -97,13 +104,13 @@ function SquareRadio({
                 <div className={style.scroll}>
                   <div
                     className={
-                      activeStates[option.value] ? style.sliderL : style.sliderR
+                      activeStates[option.label] ? style.sliderL : style.sliderR
                     }
-                    onClick={() => toggleActiveState(option.value)}
+                    onClick={() => toggleActiveState(option.label)}
                   >
                     <div
                       className={
-                        activeStates[option.value]
+                        activeStates[option.label]
                           ? style.CircleL
                           : style.CircleR
                       }
@@ -116,10 +123,10 @@ function SquareRadio({
           
       
 
-       { radio&&activeStates[option.value] &&   <div >    <p>
+       { radio&&activeStates[option.label] &&   <div >    <p>
          Description<span style={{color:'gray'}}>(Optional)</span>
        </p>
-       <TextField textfild="bigTextBox" name="Description" /></div>}
+       <TextField textfild="bigTextBox" name="descriptionValue" OnchangeHnadeler={onChangeDescHandeler} /></div>}
       
     
       </>

@@ -2,10 +2,13 @@
 import React, { createContext, useState } from 'react';
 
 const AuthContext = createContext({
-  isRequest: false,
-  setRequest: () => {},
+  isRequest: false,  
+  HotelInfo:{},
   isHotelImageDone:[],
+  setRequest: () => {},
   setHotelImageDone: () => {},
+  setHotelinfo:()=>{}
+
 });
 
 export const AuthProvider = ({ children }) => {
@@ -14,9 +17,14 @@ export const AuthProvider = ({ children }) => {
   const [isRequest, setRequest] = useState(initialRequest);
   const initialHotelImageDone = localStorage.getItem('HotelImageDone') || [];
   const [isHotelImageDone, setHotelImageDone] = useState(initialHotelImageDone);
-
+  const initialHotelInfo = JSON.parse(localStorage.getItem('HotelInfo')) || {};
+  const [HotelInfo ,setHotelInfo]=useState(initialHotelInfo)
+  const setHotelinfo = (newHotelInfo) => {
+    setHotelInfo(newHotelInfo);
+    localStorage.setItem('HotelInfo',JSON.stringify(newHotelInfo))
+  };
   return (
-    <AuthContext.Provider value={{ isRequest, setRequest ,isHotelImageDone,setHotelImageDone}}>
+    <AuthContext.Provider value={{ HotelInfo,setHotelinfo,isRequest, setRequest ,isHotelImageDone,setHotelImageDone}}>
       {children}
     </AuthContext.Provider>
   );

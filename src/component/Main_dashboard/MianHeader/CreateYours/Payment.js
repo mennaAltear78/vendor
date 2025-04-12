@@ -16,6 +16,7 @@ function Payment() {
   const [isPop_up, SetPop_up] = useState(false);
   const ctx =useContext(AuthContext)
   const navigate = useNavigate();
+console.log(ctx.HotelInfo);
 
   const onClickHandler = (e) => {
     e.preventDefault();
@@ -28,7 +29,7 @@ function Payment() {
   };
 
   const clickPrivHandeler = () => {
-    navigate("/polices");
+    navigate(-1);
     ctx.setHotelImageDone((prevSteps) => [...prevSteps,1]);
   };
  

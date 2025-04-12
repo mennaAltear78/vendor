@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classes from "./CreateHotel.module.css";
 import MainDashBoardWrapper from "../../../Authentication/regular_components/MainDashBoardWrapper";
 import TextField from "../../../Authentication/regular_components/TextField";
@@ -15,6 +15,9 @@ import Childrens from "../../.././../Assets//fa6-solid_children.png";
 function RoomDetail() {
   const navigate = useNavigate();
   const handleRadioChange = () => {};
+    useEffect(()=>{
+            document.title="Room Details"
+          },[])
   const clickPrivHandeler = () => {
     navigate("/CompleteProfie");
   };
