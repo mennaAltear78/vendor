@@ -11,22 +11,31 @@ import NotFound from "./NotFound";
 import SendingCode from "./component/Authentication/Sin_In/FacingProblem/SendingCode";
 import { AuthContext1Provider } from "./component/Authentication/Context/Mian-Page-Context";
 import AuthenRequire from "./AuthenRequire";
-import Trying from "./trying";
-import CreateHotel from "./component/Main_dashboard/MianHeader/CreateYours/CreateHotel";
-import WelcomePage from "./component/Main_dashboard/MianHeader/CreateYours/WelcomePage";
-import ChoiseHotel from "./component/Main_dashboard/MianHeader/CreateYours/ChosienType";
-import AboutHotel from "./component/Main_dashboard/MianHeader/CreateYours/AboutHotel";
-import Speak from "./component/Main_dashboard/MianHeader/CreateYours/Speak";
-import Facilities from "./component/Main_dashboard/MianHeader/CreateYours/Facilities";
-import Polices from "./component/Main_dashboard/MianHeader/CreateYours/Polices";
-import Payment from "./component/Main_dashboard/MianHeader/CreateYours/Payment";
-import CompleteProfie from "./component/Main_dashboard/MianHeader/CreateYours/CompleteProfie";
-import RoomDetail from "./component/Main_dashboard/MianHeader/CreateYours/RoomDetail";
-import BedDetails from "./component/Main_dashboard/MianHeader/CreateYours/BedDetails";
-import RoomFacilities from "./component/Main_dashboard/MianHeader/CreateYours/RoomFacilities";
-import BathRoomFacilities from "./component/Main_dashboard/MianHeader/CreateYours/BathRoomFacilities";
-import HotelImages from "./component/Main_dashboard/MianHeader/CreateYours/HotelImages";
+
+import WelcomePage from "./component/Main_dashboard/CreateYourVendor/CreateYours/WelcomePage";
+
+//import Speak from "./component/Main_dashboard/CreateYourVendor/CreateYours/Speak";
+import Facilities from "./component/Main_dashboard/CreateYourVendor/CreateYours/Facilities";
+import Polices from "./component/Main_dashboard/CreateYourVendor/CreateYours/Polices";
+import Payment from "./component/Main_dashboard/CreateYourVendor/CreateYours/Payment";
+import CompleteProfie from "./component/Main_dashboard/CreateYourVendor/CreateYours/CompleteProfie";
+import RoomDetail from "./component/Main_dashboard/CreateYourVendor/CreateYours/RoomDetail";
+import BedDetails from "./component/Main_dashboard/CreateYourVendor/CreateYours/BedDetails";
+import RoomFacilities from "./component/Main_dashboard/CreateYourVendor/CreateYours/RoomFacilities";
+import BathRoomFacilities from "./component/Main_dashboard/CreateYourVendor/CreateYours/BathRoomFacilities";
+import HotelImages from "./component/Main_dashboard/CreateYourVendor/CreateYours/HotelImages";
 // import main_dashboard from '../src/component/Authentication/Context/Mian-Page-Context'
+import LocattionDataHotel from "./component/Main_dashboard/CreateYourVendor/CreateYours/LocationDataHotel";
+import Property_List from "./component/Main_dashboard/HomeDashboard/Property_List";
+import ChooseHotel from "./component/Main_dashboard/CreateYourVendor/CreateYours/createHotel/ChosienType";
+import AboutHotel from "./component/Main_dashboard/CreateYourVendor/CreateYours/createHotel/AboutHotel";
+import Speak from "./component/Main_dashboard/CreateYourVendor/CreateYours/createHotel/Speak";
+import Card_View from "./component/Main_dashboard/HomeDashboard/Card_View";
+import Profile_View from "./component/Profile_View/Profile_View";
+import VendorView from "./component/Main_dashboard/HomeDashboard/ViewVendor/VendorView";
+import ReviewView from "./component/Main_dashboard/HomeDashboard/ViewVendor/ViewReview/ReviewView";
+import ScrollToTop from "./helpers/ScrollToTop";
+import Rooms_List from "./component/Main_dashboard/HomeDashboard/ViewRooms/Rooms_List";
 
 const routes = [
   { path: "/", element: <Sin_in_main /> },
@@ -43,6 +52,7 @@ function App() {
   return (
     <AuthContext1Provider>
       <div>
+      <ScrollToTop />
         <Routes>
           {/* Public Routes */}
           {routes.map((route, index) => (
@@ -51,8 +61,8 @@ function App() {
 
           {/* Protected Routes (Require Authentication) */}
           <Route element={<AuthenRequire />}>
-           <Route path="/MianDahboard" element={ <WelcomePage />} />
-            <Route path="/MianDahboard/CreateHotel" element={<ChoiseHotel />} />
+            <Route path="/MianDahboard" element={<WelcomePage />} />
+            <Route path="/MianDahboard/CreateHotel" element={<ChooseHotel />} />
             <Route path="/AboutHotel" element={<AboutHotel />} />
             <Route path="/speak" element={<Speak />} />
             <Route path="/facilities" element={<Facilities />} />
@@ -61,11 +71,41 @@ function App() {
             <Route path="/CompleteProfie" element={<CompleteProfie />} />
             <Route path="/RoomDetail" element={<RoomDetail />} />
             <Route path="/BedDetails" element={<BedDetails />} />
-            <Route path="/RoomFacilities" element={<RoomFacilities/>} />
-            <Route path="/BathRoomFacilities" element={<BathRoomFacilities/>} />
-            <Route path="/HotelImages" element={<HotelImages title='Primary Images' limits='(Must upload 3 images)' HotelImages={true}/>} />
-            <Route path="/RoomImage" element={<HotelImages title='Room Images' limits='(Must upload 5 images atleast)'/>} />
+            <Route path="/RoomFacilities" element={<RoomFacilities />} />
+            <Route
+              path="/BathRoomFacilities"
+              element={<BathRoomFacilities />}
+            />
+            <Route
+              path="/HotelImages"
+              element={
+                <HotelImages
+                  title="Primary Images"
+                  limits="(Must upload 3 images)"
+                  HotelImages={true}
+                />
+              }
+            />
+            <Route
+              path="/RoomImage"
+              element={
+                <HotelImages
+                  title="Room Images"
+                  limits="(Must upload 5 images atleast)"
+                />
+              }
+            />
+            <Route
+              path="/LocattionDataHotel"
+              element={<LocattionDataHotel />}
+            />
           </Route>
+          <Route path="/PropertyList" element={<Property_List />} />
+          <Route path="/PropertyList/:id" element={<VendorView />} />
+          <Route path="/profileView/:id/Reviews" element={<ReviewView />} />
+          <Route path="RoomsList" element={<Rooms_List/>}/>
+
+          <Route path="/profileView" element={<Profile_View />} />
 
           {/* Not Found Route */}
           <Route path="*" element={<NotFound />} />

@@ -10,7 +10,7 @@ const TextField = forwardRef((props, ref) => {
       {props.textarea ? (
         <textarea    className={`${Style[props.textfild]} ${
           props.IsError && Style.focusError
-        }`} placeholder={props.Intext} name={props.name} value={props.value}  onChange={props.OnchangeHnadeler} rows="5" cols="2040"  ></textarea>
+        }`} placeholder={props.Intext} disabled={props.disabled}  name={props.name} value={props.value}  onChange={props.OnchangeHnadeler} rows="5" cols="2040"  ></textarea>
       ) : (
         <input
           ref={ref} 

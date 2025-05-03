@@ -5,13 +5,12 @@ import TextField from "../../regular_components/TextField";
 import { Link, useNavigate } from "react-router-dom";
 import AuthenFooter from "../../AuthenticationFooter/AuthenFooter";
 import AuthenticationWrapper from "../../regular_components/AuthenticationWrapper";
-import style from "./FacingProblem.module.css";
 import Button from "../../regular_components/Button";
-import axios from "axios";
 import AuthContext1 from "../../Context/Mian-Page-Context";
 import SpinnerLoading from "../../regular_components/SpinnerLoading";
 import PopupMessage from "../../Sin_up/Create_your_partner/Create_account_items/PopupMessage";
-import axiosInstance from "../../../../axiosInstance";
+import axiosInstance from "../../../../services/axiosInstance";
+
 const COUNTDOWN_TIME = 30;
 
 function SendingCode() {

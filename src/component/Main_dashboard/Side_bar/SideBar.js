@@ -31,13 +31,14 @@ function SideBar(props) {
     { ActiveLine: false, img: home, label: "Reservations" },
     { ActiveLine: false, img: graph, label: "Finance" },
     { ActiveLine: false, img: home, label: "Guest Reviews" },
-    { ActiveLine: false, img: graph, label: "Property" },
+    { ActiveLine: false, img: graph, label: "Property",path:'/PropertyList' },
     { ActiveLine: false, img: home, label: "Analytics" },
     { ActiveLine: false, img: graph, label: "Inbox" },
     { ActiveLine: false, img: home, label: "Rates & Aviablity" },
+    
   ];
   return (
-    <div className={style.main}>
+    <div >
       <div
         className={props.hover ? style.side_bar : style.NOHoverSide_bar}
         onMouseEnter={props.onHoverHandeler}
@@ -50,20 +51,15 @@ function SideBar(props) {
             {props.hover ? (
               <img src={logo} />
             ) : (
-              <img style={{ marginRight: "22px" }} src={logo2} />
+              <img className="mr-[22px]" src={logo2} />
             )}
           </div>
           <div className={style["iconsDivs"]}>
-            <IconDiv
-              ActiveLine={false}
-              path="/MianDahboard"
-              img={home}
-              label="Home"
-              isHovered={props.hover}
-            />
+         
             {icons.map((icon, index) => (
               <IconDiv
                 key={index}
+                path={icon.path?icon.path:`/MianDahboard`}
                 ActiveLine={icon.ActiveLine}
                 img={icon.img}
                 label={icon.label}

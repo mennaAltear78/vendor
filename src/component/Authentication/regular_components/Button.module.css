@@ -55,6 +55,19 @@
     margin-right: 10px;
     font-family: var(--Typography-English-H-1-Font-Family, Poppins);
 }
+.whiteRCssS {
+    background-color: white;
+    border-radius: 8px;
+    border: var(--Outlines-xFine, 0.5px) solid var(--Border-br-Thirty, #B3B3B3);
+    height: 40px;
+    width: 210px;
+    color: #de2f2f;
+    border-color: #de2f2f;
+    margin-bottom: 15px;
+    cursor: pointer;
+    margin-right: 10px;
+    font-family: var(--Typography-English-H-1-Font-Family, Poppins);
+}
 
 .whiteCssG {
     background-color: white;
@@ -81,7 +94,17 @@
     cursor: pointer;
     font-family: var(--Typography-English-H-1-Font-Family, Poppins);
 }
-
+.RedCssS {
+    background-color: #eb0f0f;
+    border-radius: 8px;
+    border: var(--Outlines-xFine, 0.5px) solid var(--Border-br-Thirty, #B3B3B3);
+    height: 40px;
+    width: 210px;
+    color: white;
+    margin-bottom: 15px;
+    cursor: pointer;
+    font-family: var(--Typography-English-H-1-Font-Family, Poppins);
+}
 .whiteCss {
     background-color: white;
     border-radius: 8px;

@@ -46,7 +46,7 @@ function Creater_your_partner2() {
       console.log("you have to add your location");
       seterror("you have to add your location");
     }
-    console.log("dataaaa",ctx.formData);
+    // console.log("dataaaa",ctx.formData);
     
   };
   const displayNameHandeler = (place, longitude, latitude) => {
@@ -128,12 +128,12 @@ function Creater_your_partner2() {
             {error && (
               <p style={{ color: "red" }}>you should enter your location</p>
             )}
-            {/* <Location
-              displayNameHandeler={displayNameHandeler}
-              containerSize="SmallContainerSize"
-            /> */}
-
-            <LocationGoogltMap setlocation={setlocationHandeler}/>
+     
+            <LocationGoogltMap styling={{
+  width: "85%",
+  height: "70px",
+  borderRadius:'10px'
+}} setlocation={setlocationHandeler}/>
            
             <hr />
             <div className={style["btnsInfo"]}>

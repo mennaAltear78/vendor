@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "../../../axiosInstance"
+import api from "../../../services/axiosInstance"
 import CookiesServices from "../../../services/CookiesServices";
 
 const AuthContext1 = React.createContext({
@@ -37,7 +37,7 @@ export const AuthContext1Provider = (props) => {
 
   const logoutHandler = async () => {
     try {
-      const res=await api.get("/logout",{
+      const res=await api.get("vendor/logout",{
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
       });
       console.log(res);

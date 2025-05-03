@@ -3,6 +3,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "swiper/css";
+@import "swiper/css/navigation";
 body {
   margin: 0;
  

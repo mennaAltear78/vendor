@@ -2,15 +2,14 @@ import React, { useState } from "react";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import axios from "axios";
 import map from "../../../../../Assets/Rectangle 24048 (1).svg";
-const containerStyle = {
-  width: "85%",
-  height: "70px",
-  borderRadius:'10px'
-};
+
 
 
 
 function LocationGoogleMap(props) {
+
+const containerStyle = props.styling;
+
   const [location, setLocation] = useState({lng:172.4736470489644,lat:-42.53569606686742});
   const [address, setAddress] = useState("");
   

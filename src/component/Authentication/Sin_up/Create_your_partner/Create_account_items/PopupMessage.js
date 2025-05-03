@@ -19,7 +19,7 @@ function PopupMessage(props) {
       ? style["popupOpen"]
       : null,
   ];
-
+ 
   return (
     <div>
       <div ref={props.ref} className={classes2.join(" ")}>
@@ -31,23 +31,19 @@ function PopupMessage(props) {
             </div>
           )}
           {props.messageImg && (
-            <img style={{ width: "300px" }} src={props.messageImg} />
+            <img width={props.remove?'100px':'300px' } src={props.messageImg} />
           )}
 
           <h3>{props.title}</h3>
           <div className={style.desc} style={{width:'58%'}}>
             {props.highlighted && (
-              <span style={{ color: props.color?"green":"red" }}>{props.highlighted}</span>
+              <span style={{ color: props.color?"green":"red"}}>{props.highlighted}</span>
             ) }
           <p className="font-usedFont text-gray-350 text-[15px]">{props.details}</p>  
           </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              marginTop: "-20px",
-            }}
-          >
+          <div className="flex justify-center items-center">
+   
+        
             <Button
               btnCss={props.btnCss}
               name={props.btnMessage1 || "okay"}

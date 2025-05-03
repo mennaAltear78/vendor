@@ -19,10 +19,11 @@
   position: fixed;
   min-height: 120vh;
   z-index: 1000;
+  padding-right: 20px;
 }
 
 .iconsDivs {
-  margin-top: 110px;
+  margin-top: 60px;
 
 }
 
@@ -61,7 +62,7 @@
 
 .imgeoverlay {
   overflow: hidden;
-  margin-left: 20px;
+  margin-left: 17px;
 
 }
 

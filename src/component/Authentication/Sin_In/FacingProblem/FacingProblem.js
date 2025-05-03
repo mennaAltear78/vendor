@@ -10,7 +10,7 @@ import AuthenticationWrapper from "../../regular_components/AuthenticationWrappe
 import SpinnerLoading from "../../regular_components/SpinnerLoading";
 import PopupMessage from "../../Sin_up/Create_your_partner/Create_account_items/PopupMessage";
 import AuthContext1 from "../../Context/Mian-Page-Context";
-import axiosInstance from "../../../../axiosInstance";
+import axiosInstance from "../../../../services/axiosInstance";
 
 function FacingProblem() {
   

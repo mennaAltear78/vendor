@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../../Context/auth-context";
 import SpinnerLoading from "../../regular_components/SpinnerLoading";
 import AuthContext1 from "../../Context/Mian-Page-Context";
-import api from "../../../../axiosInstance";
+import api from "../../../../services/axiosInstance";
 import CookiesServices from "../../../../services/CookiesServices";
 
 
@@ -81,7 +81,7 @@ let forbedend
     if (!errorMessage && !errorForEmail) {
       try {
         //successful
-        const response = await api.post("/login", {
+        const response = await api.post("vendor/login", {
           email: email,
           password: enteredPassword,
         });

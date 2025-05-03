@@ -6,7 +6,7 @@ function Button(props) {
       <button
         type={props.type}
         onClick={props.onClickAction}
-        className={style[props.btnCss]}
+        className={style[props.btnCss] ||props.style}
       >
         {props.name}
       </button>
