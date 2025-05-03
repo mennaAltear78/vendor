@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+
 import { useParams } from "react-router-dom";
 import { useGetSpecificHotelQuery } from "../../../../services/PostApi";
 import Header from "./Header";
@@ -9,33 +9,31 @@ import ReviewCards  from './ReviewCards'
 import Booking_Policies from "./Booking_Policies";
 import HotelDetailsSkeleton from "./HotelDetailsSkeleton";
 import AuthContext from "../../../Authentication/Context/auth-context";
-import { skipToken } from '@reduxjs/toolkit/query/react';
+import { useContext, useMemo } from "react";
+
 
 const VendorView = () => {
-  const { id: paramId } = useParams(); // Get id from the URL
-  const ctx = useContext(AuthContext); // Get context
-  const id = React.useMemo(() => ctx?.IdSpesificHotel|| paramId, [ctx, paramId]);
-
-  
+  const { id: paramId } = useParams();
+  const ctx = useContext(AuthContext);
+  const id = useMemo(() => ctx?.IdSpesificHotel || paramId, [ctx, paramId]);
 
   const { data, error, isLoading } = useGetSpecificHotelQuery(
-    id ? { id } : skipToken
+    { id },
+    { skip: !id }
   );
 
-  if (isLoading) return <HotelDetailsSkeleton/>;
+  if (isLoading) return <HotelDetailsSkeleton />;
   if (error) return <p>Error: {error.message}</p>;
 
-  console.log(data);
-
   return (
-    <div className="w-full  font-usedFont px-2 bg-[#80808015] ">
-      <div className=" grid  justify-center ">
+    <div className="w-full font-usedFont px-2 bg-[#80808015]">
+      <div className="grid justify-center">
         <Header data={data} />
         <ImageGallery data={data} />
         <Facilities facilities={data.data.hotel.facilities} />
-        <RoomView data={data} id={id}/>
-        <ReviewCards data={data} id={id}/>
-        <Booking_Policies data={data}/>     
+        <RoomView data={data} id={id} />
+        <ReviewCards data={data} id={id} />
+        <Booking_Policies data={data} />
       </div>
     </div>
   );
