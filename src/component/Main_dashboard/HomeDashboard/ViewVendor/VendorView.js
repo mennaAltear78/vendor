@@ -9,7 +9,7 @@ import ReviewCards  from './ReviewCards'
 import Booking_Policies from "./Booking_Policies";
 import HotelDetailsSkeleton from "./HotelDetailsSkeleton";
 import AuthContext from "../../../Authentication/Context/auth-context";
-
+import { skipToken } from '@reduxjs/toolkit/query/react';
 
 const VendorView = () => {
   const { id: paramId } = useParams(); // Get id from the URL
@@ -17,7 +17,10 @@ const VendorView = () => {
   const id = React.useMemo(() => ctx?.IdSpesificHotel|| paramId, [ctx, paramId]);
 
   
-  const { data, error, isLoading } = useGetSpecificHotelQuery({id });
+
+  const { data, error, isLoading } = useGetSpecificHotelQuery(
+    id ? { id } : skipToken
+  );
 
   if (isLoading) return <HotelDetailsSkeleton/>;
   if (error) return <p>Error: {error.message}</p>;
