@@ -16,10 +16,6 @@ const VendorView = () => {
   const ctx = useContext(AuthContext); // Get context
   const id = React.useMemo(() => ctx?.IdSpesificHotel|| paramId, [ctx, paramId]);
 
-  if (!id) {
-    console.error("Missing id for VendorView");
-    return <p>Error: Missing hotel ID</p>;
-  }
   
   const { data, error, isLoading } = useGetSpecificHotelQuery({id });
 
