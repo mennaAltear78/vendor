@@ -1,14 +1,15 @@
 import React from "react";
 import style from "./Button.module.css";
-function Button(props) {
+function Button({name,type,onClickAction ,btnCss,className}) {
   return (
     <div>
       <button
-        type={props.type}
-        onClick={props.onClickAction}
-        className={style[props.btnCss] ||props.style}
+        type={type}
+        onClick={onClickAction}
+        className={style[btnCss] ||className}
       >
-        {props.name}
+        
+        {name}
       </button>
     </div>
   );

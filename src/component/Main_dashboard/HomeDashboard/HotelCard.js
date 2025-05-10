@@ -6,6 +6,7 @@ import DotMenu from "./DotMenu";
 import PrimaryImage_View from "./comman/PrimaryImage_View";
 import { Link } from "react-router-dom";
 import AuthContext from "../../Authentication/Context/auth-context";
+import RatingStars from "./comman/RatingStars";
 
 function HotelCard({ data, setOpen }) {
   const ctx = useContext(AuthContext);
@@ -14,7 +15,7 @@ function HotelCard({ data, setOpen }) {
     ctx.setIdSpesificHotel(data.id);
   };
 
-  const numberOfStars = Math.floor(data.ratings_average) || 0;
+
 
   return (
     <Link
@@ -34,9 +35,9 @@ function HotelCard({ data, setOpen }) {
         <div>
           <div className="flex gap-1  mb-[-16px] items-center">
             <h1 className="text-[20px]">{data.name}</h1>
-            <div className="bg-[#6666dba1] rounded-[4px] text-[blue] p-[4px] text-[10px]">
+            {/* <div className="bg-[#6666dba1] rounded-[4px] text-[blue] p-[4px] text-[10px]">
               #23212
-            </div>
+            </div> */}
             <div className="bg-[#e4d960a0] rounded-[4px] text-[#ffae00] p-[4px] text-[10px]">
               {data.type}
             </div>
@@ -45,12 +46,10 @@ function HotelCard({ data, setOpen }) {
           <p className="text-[#8080809a]  text-sm">{data.description}</p>
 
           <div className="flex gap-2 items-center mb-[17px] mt-[-20px] ">
-            <div className="bg-[#ffa60020] justify-start flex gap-1  place-content-center w-[60px] rounded-[3px] h-[17px]">
-              {[...Array(numberOfStars)].map((_, i) => (
-                <img key={i} src={star} alt="star" width="10px" />
-              ))}
-            </div>
-            <p className="text-[13px]">{data?.ratings_average} ({data?.ratings_quantity} Review)+</p>
+          <RatingStars rating={data.ratings_average}/>
+            <p className="text-[13px]">
+              {data?.ratings_average} ({data?.ratings_quantity} Review)+
+            </p>
           </div>
 
           <div className="text-sm mt-[-26px] ">

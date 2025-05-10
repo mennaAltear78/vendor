@@ -1,15 +1,15 @@
 import React, { useContext, useState } from "react";
-import classes from "./CreateHotel.module.css";
-import MainDashBoardWrapper from "../../../Authentication/regular_components/MainDashBoardWrapper";
-import appData from "../../../../config/appData";
-import Counter from "../common/Counter";
-import CreateHotelWrapper from "../common/CreateHotelWrapper";
-import ProgressSteps from "../../../Authentication/Sin_up/Create_your_partner/Create_account_items/ProgressSteps";
+
+import MainDashBoardWrapper from "../../../../Authentication/regular_components/MainDashBoardWrapper";
+import appData from "../../../../../config/appData";
+import Counter from "../../common/Counter";
+import CreateHotelWrapper from "../../common/CreateHotelWrapper";
+import ProgressSteps from "../../../../Authentication/Sin_up/Create_your_partner/Create_account_items/ProgressSteps";
 import { useNavigate } from "react-router-dom";
-import ImgContainer from "../common/ImgContainer";
-import Title from "../common/Title";
-import { useConst } from "@chakra-ui/react";
-import AuthContext from "../../../Authentication/Context/auth-context";
+import ImgContainer from "../../common/ImgContainer";
+import Title from "../../common/Title";
+
+import AuthContext from "../../../../Authentication/Context/auth-context";
 
 function BedDetails() {
   const navigate = useNavigate();

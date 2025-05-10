@@ -3,7 +3,7 @@ import ReviewCard from "../ReviewCard";
 import star from '../../../../../Assets/Star 98.svg'
 const ReviewCardDetails = () => {
   return (
-    <div className="sm:w-[700px] w-[360px]  bg-white h-[120px] mt-[10px] rounded-lg p-4 ">
+    <div className="sm:w-[700px] w-[360px]  bg-white h-[120px] mt-[10px] rounded-lg p-4 shadow-lg ">
       <div className="flex justify-between text-sm  ">
         <ReviewCard />
         <div className="flex gap-1 mr-[-40px]">

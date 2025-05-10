@@ -193,7 +193,7 @@ const appData = {
   petsPolicy: [
     { value: "option2", policy: "Pets are not allowed." },
     { value: "option3", policy: "Pets are allowed at no additional cost." },
-    { value: "option4", policy: "Pets allowed at an additional cost.'" },
+    { value: "option4", policy: "Pets allowed at an additional cost." },
   ],
   smokingPolicy: [
     { value: "option2", policy: "No smoking allowed." },

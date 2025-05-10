@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 
 const Facilities = ({ facilities }) => {
   const facilityLabels = {
@@ -11,7 +11,7 @@ const Facilities = ({ facilities }) => {
     bed: "Bedroom",
     local_activity: "Activities",
   };
-console.log(facilities);
+
 
   return (
     <div className="sm:w-[700px] font-usedFont w-[360px] mt-[-13px]">
@@ -34,4 +34,4 @@ console.log(facilities);
   );
 };
 
-export default Facilities;
+export default Facilities ;

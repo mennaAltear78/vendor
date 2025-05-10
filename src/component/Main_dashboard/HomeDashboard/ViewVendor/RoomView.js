@@ -14,7 +14,7 @@ const RoomView = ({ id }) => {
   }
 
   if (error) {
-    return <p>Error: {error.message}</p>;
+    return <p>No Room Found</p>;
   }
   return (
     <div className="mt-3  rounded-lg font-usedFont  sm:w-[730px] w-[360px]  ">
@@ -27,6 +27,7 @@ const RoomView = ({ id }) => {
       </div>
       <Scroller
         items={dataRoom?.data?.room}
+        numberCardShown={2}
         Component={RoomCard}
         hightdiv={"h-[300px]"}
       />

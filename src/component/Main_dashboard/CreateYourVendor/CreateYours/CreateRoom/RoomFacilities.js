@@ -1,13 +1,14 @@
 import React, { useContext, useState } from "react";
-import MainDashBoardWrapper from "../../../Authentication/regular_components/MainDashBoardWrapper";
-import CreateHotelWrapper from "../common/CreateHotelWrapper";
-import ProgressSteps from "../../../Authentication/Sin_up/Create_your_partner/Create_account_items/ProgressSteps";
-import Title from "../common/Title";
-import classes from "./CreateHotel.module.css";
-import appData from "../../../../config/appData";
-import SquareRadio from "../common/SquareRadio";
+import MainDashBoardWrapper from "../../../../Authentication/regular_components/MainDashBoardWrapper";
+import CreateHotelWrapper from "../../common/CreateHotelWrapper";
+import ProgressSteps from "../../../../Authentication/Sin_up/Create_your_partner/Create_account_items/ProgressSteps";
+import Title from "../../common/Title";
+
+import classes from "../../CreateYours/CreateHotel.module.css";
+import appData from "../../../../../config/appData";
+import SquareRadio from "../../common/SquareRadio";
 import { useNavigate } from "react-router-dom";
-import AuthContext from "../../../Authentication/Context/auth-context";
+import AuthContext from "../../../../Authentication/Context/auth-context";
 
 function RoomFacilities() {
  const [selectedRoom, setSelectedRoom] = useState({facilities:{en:[]},main_facilities:[]});

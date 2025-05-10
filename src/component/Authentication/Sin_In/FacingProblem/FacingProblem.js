@@ -1,8 +1,13 @@
-import React, { useContext, useEffect, useReducer, useRef, useState } from "react";
-import style from "./FacingProblem.module.css";
+import React, {
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+
 import Button from "../../regular_components/Button";
 import TextField from "../../regular_components/TextField";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AuthenFooter from "../../AuthenticationFooter/AuthenFooter";
 import Card from "../../regular_components/Card";
 import Tiltle from "../../Tiltle";
@@ -10,74 +15,65 @@ import AuthenticationWrapper from "../../regular_components/AuthenticationWrappe
 import SpinnerLoading from "../../regular_components/SpinnerLoading";
 import PopupMessage from "../../Sin_up/Create_your_partner/Create_account_items/PopupMessage";
 import AuthContext1 from "../../Context/Mian-Page-Context";
-import axiosInstance from "../../../../services/axiosInstance";
+import api from "../../../../services/axiosInstance";
 
 function FacingProblem() {
-  
   //useContext
-  const ctx =useContext(AuthContext1)
+  const ctx = useContext(AuthContext1);
   //useSate
   const [isloading, setIsloading] = useState(false);
   const [Error, setError] = useState(null);
 
-  //
-
-  const api = axiosInstance(ctx.token, ctx.refreshToken);
   //navigate
   const navigate = useNavigate();
   //useRef
   const EmailRef = useRef();
 
   useEffect(() => {
-    EmailRef.current.focus()
+    EmailRef.current.focus();
   }, [EmailRef]);
 
   const Forgetpasswordsumbithandeler = async (e) => {
     setIsloading(true);
     e.preventDefault();
-   
+
     let emailErrorMaessage;
-    const enteredEmail = (EmailRef.current.value).trim();
+    const enteredEmail = EmailRef.current.value.trim();
     console.log(enteredEmail);
     if (enteredEmail === "") {
-     
-      emailErrorMaessage="Email cannot be empty!"
-      setError("Email cannot be empty!")
+      emailErrorMaessage = "Email cannot be empty!";
+      setError("Email cannot be empty!");
       return;
     }
 
     try {
       //successful
-      const response = await api.post("/forgot-password", {
+      const response = await api.post("/auth/forgotPassword", {
         email: enteredEmail,
       });
-      ctx.login(ctx.token,enteredEmail)
+      ctx.login(ctx.token, enteredEmail);
       navigate("/SendingCode");
       setError(null);
     } catch (error) {
       //falied
       setError(error.response.data.message || "wrong email try again");
-      EmailRef.current.value=''
+      EmailRef.current.value = "";
       console.log(error.message);
     }
     setIsloading(false);
   };
 
-
-
   const handleTogglePopup = () => {
     setError(null);
-    setIsloading(false)
+    setIsloading(false);
   };
-
-
 
   return (
     <AuthenticationWrapper>
       <div className="text-center w-[500px] flex flex-col justify-center ml-[10px]  ms:ml-0">
-        <form onSubmit={Forgetpasswordsumbithandeler  }>
+        <form onSubmit={Forgetpasswordsumbithandeler}>
           <Tiltle
-            title={ "Forgot Your Password?"}
+            title={"Forgot Your Password?"}
             title_discription="Were here to help. Below are some options to help you get back on track."
           />
           <Card cssCard={"sin_in_card"}>
@@ -108,7 +104,6 @@ function FacingProblem() {
               title={Error}
             />
           )}
- 
         </form>
       </div>
     </AuthenticationWrapper>
@@ -116,4 +111,3 @@ function FacingProblem() {
 }
 
 export default FacingProblem;
-  

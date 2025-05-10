@@ -12,11 +12,11 @@ import { useGetProfileQuery } from "../../services/PostApi";
 const MenuItem = ({ label, isDanger, isActive, onclick }) => (
   <button
     className={`
-      cursor-pointer border-none text-xl bg-white flex justify-start
+      cursor-pointer text-xl bg-white flex justify-start
       ${
         isActive
-          ? "w-[70%] bg-[#ffa60065] h-[30px] rounded-e-md border border-solid border-[#fa7b31]"
-          : ""
+          ? "w-[80%] bg-[#ffa60094] h-[30px] rounded-e-md border border-solid border-[#f5980dee]"
+          : " border-none "
       }
       ${isDanger ? "text-red-600" : "text-black"}
     `}
@@ -67,27 +67,27 @@ const menuItems = [
 ];
 
 const companyFields = [
-  { label: "Company Name", key: "company_name"  },
-  { label: "service Type", key:"service_type" }, // Duplicate, consider fixing in original data
+  { label: "Company Name", key: "company_name" },
+  { label: "service Type", key: "service_type" }, // Duplicate, consider fixing in original data
   { label: "Company Email", key: "contact_email" },
-  { label: "Contact Phone" ,key: "contact_phone"},
+  { label: "Contact Phone", key: "contact_phone" },
 ];
 
-
 const passwordFields = [
-  { label: "Email", type: "email" },
+
   { label: "Current Password", type: "password" },
   { label: "New Password", type: "password" },
 ];
-
+const BankInfo = ["Bank Name", "Currency", "Account Number", "Swift Code"];
 function ProfileView() {
   const { data, Loading, isError, isSuccess } = useGetProfileQuery();
 
-  const updatedcompanyFields=companyFields.map(field=>({
-    ...field,value:data?.data?.profile?.[field.key]
-  }))
+  const updatedcompanyFields = companyFields.map((field) => ({
+    ...field,
+    value: data?.data?.profile?.[field.key],
+  }));
 
-console.log(updatedcompanyFields);
+
 
   return (
     <MainDashBoardWrapper>
@@ -142,8 +142,7 @@ console.log(updatedcompanyFields);
             <div className="w-full grid justify-center">
               <p>Business Brief</p>
               <textarea
-               placeholder={data?.data?.profile.bussiness_breif
-                } 
+                placeholder={data?.data?.profile.bussiness_breif}
                 disabled
                 name="Business Brief"
                 className="w-[300px] h-[100px] rounded-lg font-usedFont sm:w-[540px] bg-[#4947470c]"
@@ -154,10 +153,18 @@ console.log(updatedcompanyFields);
           {/* Location Details */}
           <Section title="Location Details" icon={icon2}>
             <div className="grid place-content-center sm:flex gap-4 ">
-              <InputField label="Country" placeholder={data?.data?.profile.location.country
-              }  disabled className="w-[260px]" />
-              <InputField label="City" placeholder={data?.data?.profile.location.city
-              }  disabled className="w-[260px]" />
+              <InputField
+                label="Country"
+                placeholder={data?.data?.profile.location.country}
+                disabled
+                className="w-[260px]"
+              />
+              <InputField
+                label="City"
+                placeholder={data?.data?.profile.location.city}
+                disabled
+                className="w-[260px]"
+              />
             </div>
             <InputField
               placeholder={data?.data?.profile.location.address}
@@ -167,11 +174,24 @@ console.log(updatedcompanyFields);
               className="sm:w-[555px] w-[280px] ml-4"
             />
           </Section>
-
-
+          {/* Bank Information */}
+          <Section title="Bank Information" icon={icon2}>
+       
+              {BankInfo.map((item, index) => (
+                <InputField
+                  key={index}
+                  placeholder={data?.data?.profile.location.address}
+                  label={item}
+                  margin="ml-4"
+                  disabled
+                  className="sm:w-[555px] w-[280px] ml-4"
+                />
+              ))}
+        
+          </Section>
 
           {/* Change Password */}
-          <Section title="Change password">
+          <Section title="Change password" icon={icon3} >
             {passwordFields.map((field, index) => (
               <InputField
                 key={index}

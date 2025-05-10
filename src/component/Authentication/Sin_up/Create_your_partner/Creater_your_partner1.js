@@ -33,6 +33,11 @@ function Creater_your_partner1() {
   //navigate for redirecting to other page
   const navigate = useNavigate();
 
+
+  //useRef For Handling  form
+  const formRef = useRef();
+
+
   //UseState SetErrors
   const [errors, setErrors] = useState({
     companyName: null,
@@ -41,9 +46,6 @@ function Creater_your_partner1() {
     phone: null,
     businessBrief: null,
   });
-  //useRef For Handling  form
-  const formRef = useRef();
-
 
   //useState for Phone
   const [phone, setPhone] = useState("");
@@ -99,9 +101,9 @@ function Creater_your_partner1() {
     if (!serviceType) {
       newErrors.serviceType = "Service type is required.";
     } else if (serviceType === "Hotels" || serviceType === "Tours") {
-      validData.service_type = JSON.stringify({ en: serviceType });
+      validData.service_type = { en: serviceType };
     } else if (serviceType === "فندق" || serviceType === "رحلة") {
-      validData.service_type = JSON.stringify({ ar: serviceType });
+      validData.service_type = { ar: serviceType };
     } else {
       newErrors.serviceType =
         "Service type must be 'Hotels', 'Tours', 'فندق', or 'رحلة'.";
@@ -117,11 +119,11 @@ function Creater_your_partner1() {
           newErrors.businessBrief ="Business brief must be between 26 and 500 characters.";
       }else{
        if (arabicPattern.test(bussiness_breif_check)) {
-        bussiness_breif = JSON.stringify({ ar: bussiness_breif_check });
+        bussiness_breif = { ar: bussiness_breif_check };
       } else if (englishPattern.test(bussiness_breif_check)) {
-        bussiness_breif = JSON.stringify({ en: bussiness_breif_check });
+        bussiness_breif = { en: bussiness_breif_check };
       } else {
-        bussiness_breif = JSON.stringify({ lang: "Unknown Language" });
+        bussiness_breif = { lang: "Unknown Language" };
       }
         // newErrors.businessBrief = null;
         validData.bussiness_breif = bussiness_breif;
@@ -256,7 +258,6 @@ function Creater_your_partner1() {
               </div>
             </div>
             <TextField
-          
               label="Bussiness Brief"
               Intext="what your Bussiness Do"
               textfild="textBox2"

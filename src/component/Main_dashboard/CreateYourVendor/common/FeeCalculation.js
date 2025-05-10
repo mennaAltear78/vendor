@@ -3,12 +3,12 @@ import TextField from "../../../Authentication/regular_components/TextField";
 import styles from "./ChoisenHotel.module.css";
 import icon from "../../../../Assets/Frame 1707481174.svg";
 
-function FeeCalculation(props) {
+function FeeCalculation({ props, disabledd, editt }) {
   const [AddFee, SetAddFee] = useState([{ id: 0, key: "", value: "" }]); // Initialize with key and value
   const [fee, setFee] = useState({});
 
   const addingFeeHandle = () => {
-    if (AddFee.length===6) return
+    if (AddFee.length === 6) return;
     SetAddFee((prev) => [
       ...prev,
       { id: prev.length, key: "", value: "" }, // Add new row with empty key and value
@@ -50,26 +50,24 @@ function FeeCalculation(props) {
   return (
     <div className="flex flex-col align center mt-[-30px]">
       <div className="flex justify-between mb-[-10px]">
-        <p>Cancelation fee</p>
-        <div className={styles.imgNote}>
-          <img className="mr-[-100px]" src={icon} width={"24px"} />
+        <p className="w-full">Cancelation fee</p>
+        {editt ?
+           (
+            <div className="w-full flex justify-end ">
+              <span className="material-symbols-outlined text-[15px] w-4 h-4 p-1 rounded-lg bg-[#0000ff2a] mt-[14px] text-[blue] cursor-pointer">
+                edit
+              </span>
+            </div>
+          ) : (
+        <div className={styles.imgNote}>    <img className="mr-[-100px]" src={icon} width={"24px"} />
+          </div>)}
           <div className={styles.Note}>you should ....</div>
-        </div>
+        
       </div>
 
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "10px",
-          marginTop: "10px",
-        }}
-      >
+      <div className="flex flex-col gap-[10px] mt-[10px]">
         {AddFee.map((item, index) => (
-          <div
-            key={item.id}
-            style={{ display: "flex", gap: "10px", alignItems: "center" }}
-          >
+          <div key={item.id} className="flex gap-[10px] items-center">
             <TextField
               value={item.key}
               OnchangeHnadeler={(e) => handleKeyChange(index, e.target.value)}
@@ -78,6 +76,7 @@ function FeeCalculation(props) {
               label="Number of days"
               textfild="textBoxSmal"
               name="Description"
+              disabled={disabledd}
             />
             <TextField
               value={item.value}
@@ -87,6 +86,7 @@ function FeeCalculation(props) {
               label="Fee Percentage"
               textfild="textBoxSmal"
               name="Description"
+              disabled={disabledd}
             />
 
             {index === AddFee.length - 1 && (

@@ -4,6 +4,7 @@ import MainDashBoardWrapper from "../../../Authentication/regular_components/Mai
 import RoomCardInList from "./RoomCard";
 import { RightDrawer } from "../comman/Drawer";
 import PaginationFooter from "../PaginationFooter";
+import RoomView from "./RoomView";
 
 const Rooms_List = () => {
   const [open, setOpen] = useState(false);
@@ -25,7 +26,7 @@ const Rooms_List = () => {
             <div key={index}>
               <RoomCardInList openRoomCard={()=>setOpen(true)} />
               <RightDrawer
-                Component={() => <div>hello</div>}
+                Component={RoomView}
                 open={open}
                 setOpen={setOpen}
               />

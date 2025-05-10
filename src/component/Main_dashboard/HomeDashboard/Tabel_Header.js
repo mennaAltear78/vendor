@@ -3,7 +3,7 @@ import Menue from "../../Authentication/regular_components/Menue";
 import Export from "../../../Assets/Group.png";
 import Card from "../../../Assets/Table.png";
 import Tabel from "../../../Assets/List.png";
-import { useNavigate } from "react-router-dom";
+
 
 function Header({ setViewMode, viewMode, keyword, setKeyword ,totaldata, PageName,Room,addName ,addFunction}) {
 
@@ -13,7 +13,7 @@ function Header({ setViewMode, viewMode, keyword, setKeyword ,totaldata, PageNam
       <div className="display   flex gap-4 items-center sm:mb-0 mb-4 ">
         <b className="text-xl	">{PageName}</b>
         <div className="bg-[#3538e69a] text-[#2F32DE] rounded-[6px] h-[27px] px-2 items-center display flex">
-        {totaldata} properties
+        {totaldata} {Room?"Room":"properties"}
         </div>
         <div className="display flex  gap-2">
           <Menue

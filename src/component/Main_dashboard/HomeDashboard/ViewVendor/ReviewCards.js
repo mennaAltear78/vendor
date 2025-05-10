@@ -34,7 +34,8 @@ const ReviewCards = ({ data, id }) => {
           </span>
         </div>
       </Link>
-      <Scroller items={items} Component={ReviewCard} />
+      
+      <Scroller items={items} Component={ReviewCard} numberCardShown={2}/>
     </div>
   );
 };

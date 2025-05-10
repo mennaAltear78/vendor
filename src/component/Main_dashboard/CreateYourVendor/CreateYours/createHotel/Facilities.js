@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-import MainDashBoardWrapper from "../../../Authentication/regular_components/MainDashBoardWrapper";
-import CreateHotelWrapper from "../common/CreateHotelWrapper";
-import classes from "./CreateHotel.module.css";
-import ProgressSteps from "../../../Authentication/Sin_up/Create_your_partner/Create_account_items/ProgressSteps";
-import Title from "../common/Title";
-import SquareRadio from "../common/SquareRadio";
-import appData from "../../../../config/appData";
+import MainDashBoardWrapper from "../../../../Authentication/regular_components/MainDashBoardWrapper";
+import CreateHotelWrapper from "../../common/CreateHotelWrapper";
+import classes from "../../CreateYours/CreateHotel.module.css";
+import ProgressSteps from "../../../../Authentication/Sin_up/Create_your_partner/Create_account_items/ProgressSteps";
+import Title from "../../common/Title";
+import SquareRadio from "../../common/SquareRadio";
+import appData from "../../../../../config/appData";
 import { useNavigate } from "react-router-dom";
-import AuthContext from "../../../Authentication/Context/auth-context";
+import AuthContext from "../../../../Authentication/Context/auth-context";
 
 function Facilities() {
   const [selectedFacilities, setSelectedFacilities] = useState([]);

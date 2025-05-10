@@ -1,16 +1,16 @@
-import React, { useContext, useState, useEffect } from "react";
-import MainDashBoardWrapper from "../../../Authentication/regular_components/MainDashBoardWrapper";
-import CreateHotelWrapper from "../common/CreateHotelWrapper";
-import ProgressSteps from "../../../Authentication/Sin_up/Create_your_partner/Create_account_items/ProgressSteps";
+import React, { useContext, useState} from "react";
+import MainDashBoardWrapper from "../../../../Authentication/regular_components/MainDashBoardWrapper";
+import CreateHotelWrapper from "../../common/CreateHotelWrapper";
+import ProgressSteps from "../../../../Authentication/Sin_up/Create_your_partner/Create_account_items/ProgressSteps";
 import { useNavigate } from "react-router-dom";
-import classes from "./CreateHotel.module.css";
-import Title from "../common/Title";
-import TextField from "../../../Authentication/regular_components/TextField";
-import SquareRadio from "../common/SquareRadio";
-import appData from "../../../../config/appData";
-import Menue from "../../../Authentication/regular_components/Menue";
-import FeeCalculation from "../common/FeeCalculation";
-import AuthContext from "../../../Authentication/Context/auth-context";
+import classes from "../../CreateYours/CreateHotel.module.css";
+import Title from "../../common/Title";
+import TextField from "../../../../Authentication/regular_components/TextField";
+import SquareRadio from "../../common/SquareRadio";
+import appData from "../../../../../config/appData";
+import Menue from "../../../../Authentication/regular_components/Menue";
+import FeeCalculation from "../../common/FeeCalculation";
+import AuthContext from "../../../../Authentication/Context/auth-context";
 function Polices() {
   const [SelectedPolices, setSelectedPolices] = useState({});
   const [error, setError] = useState(null);
@@ -60,8 +60,8 @@ function Polices() {
       , policies: {
         ...ctx.HotelInfo.policies,
         cancelation_policy: { en: descriptions.cancelation_policy.en },
-        // description: {en:descriptions.description_1.en},
-        // description: {en:descriptions.description_2.en},
+        description: {en:descriptions.description_1.en},
+        description: {en:descriptions.description_2.en},
         children_and_families: { en: descriptions.children_and_families.en },
         ...timeSelected,
         pet_policy: { en: SelectedPolices.pet_policy[0] },

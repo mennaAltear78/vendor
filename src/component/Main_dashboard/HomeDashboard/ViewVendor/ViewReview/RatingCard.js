@@ -62,7 +62,7 @@ const RatingCard = () => {
         </div>
       </div>
 
-      <p className="ml-[12px] font-bold mb-0">Filter</p>
+      <p className="ml-[12px] font-bold mb-0 mt-0">Filter</p>
       <div className="flex gap-4 mt-[-20px] p-3">
         {reviewSections.map((section, index) => (
           <div key={index}>

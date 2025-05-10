@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import AuthContext1 from './component/Authentication/Context/Mian-Page-Context'
+import AuthContext1 from './../component/Authentication/Context/Mian-Page-Context'
 import { Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom'
 
 function AuthenRequire() {

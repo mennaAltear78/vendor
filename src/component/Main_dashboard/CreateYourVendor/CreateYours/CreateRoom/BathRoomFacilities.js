@@ -1,15 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
-import MainDashBoardWrapper from "../../../Authentication/regular_components/MainDashBoardWrapper";
-import CreateHotelWrapper from "../common/CreateHotelWrapper";
-import ProgressSteps from "../../../Authentication/Sin_up/Create_your_partner/Create_account_items/ProgressSteps";
-import Title from "../common/Title";
-import appData from "../../../../config/appData";
-import SquareRadio from "../common/SquareRadio";
+import MainDashBoardWrapper from "../../../../Authentication/regular_components/MainDashBoardWrapper";
+import CreateHotelWrapper from "../../common/CreateHotelWrapper";
+import ProgressSteps from "../../../../Authentication/Sin_up/Create_your_partner/Create_account_items/ProgressSteps";
+import Title from "../../common/Title";
+import appData from "../../../../../config/appData";
+import SquareRadio from "../../common/SquareRadio";
 import { useNavigate } from "react-router-dom";
-import PopupMessage from "../../../Authentication/Sin_up/Create_your_partner/Create_account_items/PopupMessage";
-import gif from "../../../../Assets/413dc7adf0ec89fd9448f62d17a3b029.gif";
-import AuthContext from "../../../Authentication/Context/auth-context";
-import api from'../../../../services/axiosInstance'
+import PopupMessage from "../../../../Authentication/Sin_up/Create_your_partner/Create_account_items/PopupMessage";
+import gif from "../../../../../Assets/413dc7adf0ec89fd9448f62d17a3b029.gif";
+import AuthContext from "../../../../Authentication/Context/auth-context";
+import api from'../../../../../services/axiosInstance'
 function BathRoomFacilities() {
   const [selectedRoom, setSelectedRoom] = useState({view:{en:[]},available_in_your_own_bathroom:{en:[]}});
   const [Loading, setIsLoading] = useState(false);

@@ -1,19 +1,19 @@
 import React, { useContext, useEffect, useState } from "react";
-import classes from "./CreateHotel.module.css";
-import MainDashBoardWrapper from "../../../Authentication/regular_components/MainDashBoardWrapper";
-import TextField from "../../../Authentication/regular_components/TextField";
-import appData from "../../../../config/appData";
-import Menue from "../../../Authentication/regular_components/Menue";
-import Counter from "../common/Counter";
-import SquareRadio from "../common/SquareRadio";
-import CreateHotelWrapper from "../common/CreateHotelWrapper";
-import ProgressSteps from "../../../Authentication/Sin_up/Create_your_partner/Create_account_items/ProgressSteps";
+import classes from "../../CreateYours/CreateHotel.module.css";
+import MainDashBoardWrapper from "../../../../Authentication/regular_components/MainDashBoardWrapper";
+import TextField from "../../../../Authentication/regular_components/TextField";
+import appData from "../../../../../config/appData";
+import Menue from "../../../../Authentication/regular_components/Menue";
+import Counter from "../../common/Counter";
+import SquareRadio from "../../common/SquareRadio";
+import CreateHotelWrapper from "../../common/CreateHotelWrapper";
+import ProgressSteps from "../../../../Authentication/Sin_up/Create_your_partner/Create_account_items/ProgressSteps";
 import { useNavigate } from "react-router-dom";
-import Title from "../common/Title";
-import Adult from "../../.././../Assets/el_adult.png";
-import Childrens from "../../.././../Assets//fa6-solid_children.png";
+import Title from "../../common/Title";
+import Adult from "../../.././../../Assets/el_adult.png";
+import Childrens from "../../.././../../Assets//fa6-solid_children.png";
 
-import AuthContext from "../../../Authentication/Context/auth-context";
+import AuthContext from "../../../../Authentication/Context/auth-context";
 function RoomDetail() {
   const navigate = useNavigate();
   const [error,setError]=useState()

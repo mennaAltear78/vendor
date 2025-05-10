@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from "react";
+import React, { useState, useRef, useContext, useEffect } from "react";
 import Tiltle from "../../Tiltle";
 import ProgressSteps from "./Create_account_items/ProgressSteps";
 import Card from "../../regular_components/Card";
@@ -14,8 +14,8 @@ import AuthContext1 from "../../Context/Mian-Page-Context";
 import axios from "axios";
 import appData from "../../../../config/appData";
 import messageImg from "../../../../Assets/message-sent-P4zHrKyEAE.svg";
+import api from "../../../../services/axiosInstance";
 
-let url = "https://sphinx-go.vercel.app/api/v1/vendor/join-with-us";
 function Creater_your_partner3() {
   const ctx = useContext(AuthContext1);
 
@@ -28,20 +28,10 @@ function Creater_your_partner3() {
   const [showPopup, setShowPopup] = useState(false);
   const [fileObject, setFileObject] = useState({});
   const [error, setError] = useState(null);
+  // const [finalData, setFinalData] = useState();
 
-
-
-
-  const handleClosePopup = () => {
-    setShowPopup(false);
-    // navigate('/')
-    // console.log(showPopup);
-  };
-  const onsumbitHandeler = async (e) => {
-    e.preventDefault();
+  useEffect(() => {
     const formDataa = new FormData();
-    console.log("sumbitted");
-    console.log(fileObject);
     const requiredKeys = [
       "business_registration_certificate",
       "hotel_license",
@@ -57,7 +47,7 @@ function Creater_your_partner3() {
       console.log("succed");
       setError(false);
       ctx.sinUpFormData(fileObject);
-      console.log(ctx.formData);
+      // console.log("final",ctx.formData);
 
       formDataa.append("company_name", ctx.formData.company_name);
       formDataa.append("service_type", ctx.formData.service_type);
@@ -78,47 +68,30 @@ function Creater_your_partner3() {
         fileObject.tax_registration_certificate_TIN
       );
 
-      const numberOfEntries = [...formDataa.entries()].length;
+      //   const numberOfEntries = [...formDataa.entries()].length;
 
-     if (numberOfEntries >= 10) {
-          setShowPopup(true);
-        }
-
-      let count;
-      for (let pair of formDataa.entries()) {
-        if (pair[1] instanceof File) {
-          count++;
-          console.log(
-            pair[0] +
-              ": " +
-              pair[1].name +
-              ", " +
-              pair[1].type +
-              ", " +
-              pair[1].size +
-              " bytes"
-          );
-        } else {
-          count++;
-          console.log(pair[0] + ": " + pair[1]);
-        }
-      }
-      console.log(count);
-
-      if (count > 10) {
-        setShowPopup(true);
-      }
+      //  if (numberOfEntries >= 10) {
+      //       setShowPopup(true);
+      //     }
     }
+    // setFinalData(ctx.formData);
+  }, [fileObject]);
 
+  const handleClosePopup = () => {
+    setShowPopup(false);
+    // navigate('/')
+  };
+  const onsumbitHandeler = async (e) => {
+    e.preventDefault();
     if (!error) {
       try {
-        const response = await axios.post(url, formDataa, {
+        const response = await api.post("auth/signup", ctx.formData, {
           headers: {
             "Content-Type": "multipart/form-data",
             "Accept-Language": "en",
           },
         });
-    
+
         console.log("Response:", response.message);
       } catch (error) {
         if (error.response) {
@@ -133,12 +106,11 @@ function Creater_your_partner3() {
           console.error("Error:", error.message);
         }
 
-        setError(error.response.data.message)
+        setError(error.response.data.message);
       }
     }
-    // console.log(fileObject, ctx.formData);
-    // console.log(JSON.stringify(ctx.formData, null, 2));
-    console.log("formmmmm",ctx.formData,fileObject);
+
+    console.log("formmmmm", ctx.formData);
   };
 
   const handleFileSelect = (fileName, file) => {
@@ -151,18 +123,17 @@ function Creater_your_partner3() {
       name = "tax_registration_certificate_TIN";
     }
     ctx.sinUpFormData(fileObject);
-   
-    
+
     setFileObject((prevFiles) => ({
       ...prevFiles,
       [name]: file,
-    })); 
-    console.log("formmmmm",ctx.formData,fileObject);
+    }));
+    console.log("form", ctx.formData);
   };
 
   return (
     <AuthenticationWrapper>
-      <form onSubmit={onsumbitHandeler} >
+      <form onSubmit={onsumbitHandeler}>
         <div className={style["mainInfo"]}>
           <div style={{ marginLeft: "60px" }}>
             <Tiltle
@@ -170,11 +141,7 @@ function Creater_your_partner3() {
               title_discription="Fill Our Form to let us know more about your business and approve your account"
             />
           </div>
-          <ProgressSteps
-         circle={true}
-            pageNumber={3}
-            count={3}
-          />
+          <ProgressSteps circle={true} pageNumber={3} count={3} />
           <Card cssCard="sin_in_Bigcard">
             {appData.fileList.map((file, index) => (
               <AddNewFile
@@ -184,17 +151,15 @@ function Creater_your_partner3() {
                 onFileSelect={handleFileSelect}
               />
             ))}
-   
-
-      
 
             <div className={style["btnsInfo"]}>
-        <div className="flex"> <Link to="/CreateAccount2">
-                <Button btnCss="whiteCssS" name="previous" />
-              </Link>
-
-              <Button btnCss="blueCssS" name="continue" />
-          </div>     
+              <div className="flex">
+                {" "}
+                <Link to="/CreateAccount2">
+                  <Button btnCss="whiteCssS" name="previous" />
+                </Link>
+                <Button btnCss="blueCssS" name="continue" />
+              </div>
             </div>
             <AuthenticationFooter
               title="Have a account"
@@ -206,27 +171,32 @@ function Creater_your_partner3() {
             />
           </Card>
 
-      { showPopup?   <Transition
-            in={showPopup}
-            timeout={setTimingOut}
-            mountOnEnter
-            unmountOnExit
-            nodeRef={popupRef}
-          >
-            {(state) => (
-              <PopupMessage
-                popMessageCss="popup"
-                ref={popupRef}
-                shown={state}
-                messageImg={!error?messageImg:''}
-                handleTogglePopup={handleClosePopup}
-                title={!error?"Thanks For Fill Our Form":error}
-                details={!error?" What next, Now our team will review your request and will contact you by email soon":""}
-                
-                btnCss={error?"whiteCssS":"whiteCssG"}
-              />
-            )}
-          </Transition>:null}
+          {showPopup ? (
+            <Transition
+              in={showPopup}
+              timeout={setTimingOut}
+              mountOnEnter
+              unmountOnExit
+              nodeRef={popupRef}
+            >
+              {(state) => (
+                <PopupMessage
+                  popMessageCss="popup"
+                  ref={popupRef}
+                  shown={state}
+                  messageImg={!error ? messageImg : ""}
+                  handleTogglePopup={handleClosePopup}
+                  title={!error ? "Thanks For Fill Our Form" : error}
+                  details={
+                    !error
+                      ? " What next, Now our team will review your request and will contact you by email soon"
+                      : ""
+                  }
+                  btnCss={error ? "whiteCssS" : "whiteCssG"}
+                />
+              )}
+            </Transition>
+          ) : null}
           {/* {showPopup &&<PopupMessage  handleTogglePopup={handleTogglePopup}/> } */}
           {/* {showPopup && (
         <PopupMessage shown={showPopup} handleTogglePopup={handleTogglePopup} />

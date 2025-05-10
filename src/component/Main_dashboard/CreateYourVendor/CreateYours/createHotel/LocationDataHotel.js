@@ -1,20 +1,20 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import AuthContext from "../../../Authentication/Context/auth-context";
+import AuthContext from "../../../../Authentication/Context/auth-context";
 
-import LocationGoogltMap from "../../../Authentication/Sin_up/Create_your_partner/Create_account_items/LocationGoogltMap";
-import MainDashBoardWrapper from "../../../Authentication/regular_components/MainDashBoardWrapper";
-import CreateHotelWrapper from "../common/CreateHotelWrapper";
-import ProgressSteps from "../../../Authentication/Sin_up/Create_your_partner/Create_account_items/ProgressSteps";
-import Title from "../common/Title";
-import TextField from "../../../Authentication/regular_components/TextField";
-import PopupMessage from "../../../Authentication/Sin_up/Create_your_partner/Create_account_items/PopupMessage";
+import LocationGoogltMap from "../../../../Authentication/Sin_up/Create_your_partner/Create_account_items/LocationGoogltMap";
+import MainDashBoardWrapper from "../../../../Authentication/regular_components/MainDashBoardWrapper";
+import CreateHotelWrapper from "../../common/CreateHotelWrapper";
+import ProgressSteps from "../../../../Authentication/Sin_up/Create_your_partner/Create_account_items/ProgressSteps";
+import Title from "../../common/Title";
+import TextField from "../../../../Authentication/regular_components/TextField";
+import PopupMessage from "../../../../Authentication/Sin_up/Create_your_partner/Create_account_items/PopupMessage";
 
-import classes from "./CreateHotel.module.css";
-import gif from "../../../../Assets/413dc7adf0ec89fd9448f62d17a3b029.gif";
+import classes from "../../CreateYours/CreateHotel.module.css";
+import gif from "../../../../../Assets/413dc7adf0ec89fd9448f62d17a3b029.gif";
 
-import api from'../../../../services/axiosInstance'
+import api from'../../../../../services/axiosInstance'
 
 const SUCCESS_MESSAGE =
   "Hotel has been created successfully! Now, proceed to the second step to upload images.";

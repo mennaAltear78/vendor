@@ -1,6 +1,6 @@
 import React from 'react'
 import classes from './SpinnerLoading.module.css'
-function SpinnerLoading(props) {
+function SpinnerLoading({dimentians='h-12 w-12 text-blue-600'}) {
   console.log("hello");
   
   return (
@@ -8,7 +8,7 @@ function SpinnerLoading(props) {
     // <div className={props.spinner?classes["spinnerbig"]:classes["spinner"]}></div>
     <div className="flex justify-center items-center w-[150px] mt-[-10px]">
       <svg
-        className="animate-spin h-12 w-12 text-blue-600"
+        className={`animate-spin ${dimentians} `}
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="none"

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../../services/axiosInstance"
 import CookiesServices from "../../../services/CookiesServices";
+import usePersistedState from "../../../Hooks/usePersistedState";
 
 const AuthContext1 = React.createContext({
   token: "",
@@ -20,7 +21,9 @@ export const AuthContext1Provider = (props) => {
   const intialToken = localStorage.getItem("token");
   const [token, setToken] = useState(intialToken);
   const [email, setEmail] = useState("");
-  const [formData, setFormData] = useState({});
+  const [formData,setFormData]=usePersistedState('SinInForm',{})
+  
+  
 
   const userIsLoggedIn = !!token;
 
@@ -62,6 +65,7 @@ export const AuthContext1Provider = (props) => {
       const updatedData = { ...prev, ...newData };
       return updatedData;
     });
+
   };
 const setHandelerToken=(newtoken)=>{
   setToken(newtoken)

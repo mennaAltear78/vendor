@@ -1,21 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
-import MainDashBoardWrapper from "../../../Authentication/regular_components/MainDashBoardWrapper";
-import CreateHotelWrapper from "../common/CreateHotelWrapper";
-import classes from "./CreateHotel.module.css";
+import MainDashBoardWrapper from "../../../../Authentication/regular_components/MainDashBoardWrapper";
+import CreateHotelWrapper from "../../common/CreateHotelWrapper";
+import classes from "../../CreateYours/CreateHotel.module.css";
 import { useNavigate } from "react-router-dom";
-import PopupMessage from "../../../Authentication/Sin_up/Create_your_partner/Create_account_items/PopupMessage";
-import gif from "../../../../Assets/413dc7adf0ec89fd9448f62d17a3b029.gif";
-import ImageDownload from "../common/ImageDownload";
-import download from "../../../../Assets/solar_upload-bold.png";
-import AuthContext from "../../../Authentication/Context/auth-context";
-import api from'../../../../services/axiosInstance'
+import PopupMessage from "../../../../Authentication/Sin_up/Create_your_partner/Create_account_items/PopupMessage";
+import gif from "../../../../../Assets/413dc7adf0ec89fd9448f62d17a3b029.gif";
+import ImageDownload from "../../common/ImageDownload";
+import download from "../../../../../Assets/solar_upload-bold.png";
+import AuthContext from "../../../../Authentication/Context/auth-context";
+import api from'../../../../../services/axiosInstance'
 function HotelImages(props) {  
-  const [images, setImages] = useState([
-    { id: 0, image: "" },
-    { id: 1, image: "" },
-    { id: 2, image: "" },
-
-  ]);
+  const [images, setImages] = useState([{ id: 0, image: "" }, { id: 1, image: "" }, { id: 2, image: "" }]);
   const [imagesHotal, setHotalImages] = useState([
     { id: 0, image: "" },
     { id: 1, image: "" },
@@ -35,7 +30,26 @@ function HotelImages(props) {
     document.title = "Hotel Images";
   }, [images]);
 
-const onClickHandler = async (e) => {
+  const onAddImageHandeler = () => {
+    if (images.length <= 200 && !props.HotelImages) {
+      setImages([...images, { id: images.length, image: "" }]);
+      
+    } else if (imagesHotal.length <= 200 && props.HotelImages) {
+      setHotalImages([...imagesHotal, { id: imagesHotal.length, image: "" }]);
+    } else {
+      setError("you can't upload more than 200 images");
+    }
+  };
+  const removeImageHandeler = (id, img) => {
+    img === images
+      ? setImages((prevImages) => prevImages.filter((image) => image.id !== id))
+      : setHotalImages((prevImages) =>
+          prevImages.filter((image) => image.id !== id)
+        );
+  };
+
+
+const handleImageUpload = async (e) => {
   e.preventDefault();
   setError(null);
 
@@ -103,35 +117,19 @@ const onClickHandler = async (e) => {
  
   };
   const CancelHandeler = () => {
-
     navigate("/CompleteProfie");
   };
-  const onAddImageHandeler = () => {
-    if (images.length <= 200 && !props.HotelImages) {
-      setImages([...images, { id: images.length, image: "" }]);
-      
-    } else if (imagesHotal.length <= 200 && props.HotelImages) {
-      setHotalImages([...imagesHotal, { id: imagesHotal.length, image: "" }]);
-    } else {
-      setError("you can't upload more than 200 images");
-    }
-  };
-  const removeImageHandeler = (id, img) => {
-    img === images
-      ? setImages((prevImages) => prevImages.filter((image) => image.id !== id))
-      : setHotalImages((prevImages) =>
-          prevImages.filter((image) => image.id !== id)
-        );
-  };
+
+
 
   return (
     <MainDashBoardWrapper>
       <form
-        onSubmit={onClickHandler}
+        onSubmit={handleImageUpload}
         className="w-[100vw] h-screen ml-[100px] sm:ml-[150px] mb-[400px]"
       >
         <CreateHotelWrapper clickHandeler={clickPrivHandeler} isLoading={isLoading}>
-          <div className={classes.rating}>
+          <div className="font-[Poppins] p-5 w-[450px] border border-solid border-[rgba(128,128,128,0.404)] rounded-[15px] mt-[50px]">
             <b className="text-[22px]">
               {/* Primary Images */}
               {props.title}
@@ -139,15 +137,16 @@ const onClickHandler = async (e) => {
                 {props.limits}
               </span>
             </b>
-            <hr />
+            <hr className="border border-[rgba(128,128,128,0.404)]" />
             <p>Upload it</p>
-            <div className={classes.uploadImage}>
+            <div className="w-[450px] h-[120px] border-2 border-dashed border-gray-500 rounded-[5px] mb-[10px] flex items-center justify-center flex-col"
+            >
               <img
                 src={download}
                 onClick={!props.HotelImages ? onAddImageHandeler : null}
                 className={!props.HotelImages ? "cursor-pointer" : ""}
               />
-              <p style={{ color: "gray", fontSize: "10px" }}>
+              <p className="font-medium text-gray-500 text-[10px]" >
                 Upload From Max 10 MG Per File
               </p>
             </div>
@@ -176,11 +175,11 @@ const onClickHandler = async (e) => {
                         name={props.HotelImages ? "primary image" : "Image"}
                         id={image.id}
                         ImageHandeler={(img) => {
-                          const file = img.image; // الوصول إلى الـ File داخل كائن img
+                          const file = img.image; 
                           setImages((prev) =>
                             prev.map((item) =>
                               item.id === image.id
-                                ? { ...item, image: file } // تحديث الصورة لتصبح الـ File بدلاً من img.image
+                                ? { ...item, image: file } 
                                 : item
                             )
                           );

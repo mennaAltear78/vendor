@@ -1,7 +1,7 @@
 import React from "react";
 import DotMenu from "../DotMenu";
 
-const RoomCard = ({ images, name, main_facilities}) => {
+const RoomCard = ({ images, name, main_facilities }) => {
   return (
     <div>
       <div className="flex justify-center ">
@@ -19,9 +19,11 @@ const RoomCard = ({ images, name, main_facilities}) => {
           {main_facilities.map((facility, index) => (
             <div
               key={index}
-               className="flex items-center text-[#383737] font-normal leading-tight"
+              className="flex items-center text-[#383737] font-normal leading-tight"
             >
-              <span class="material-symbols-outlined text-[10px]">festival</span>
+              <span class="material-symbols-outlined text-[10px]">
+                festival
+              </span>
               <span className="text-[10px]">{facility?.name}</span>
             </div>
           ))}
@@ -33,14 +35,11 @@ const RoomCard = ({ images, name, main_facilities}) => {
           </div>
         </div>
         <div className="flex justify-between mt-[-9px] font-normal">
-          <p >
-               235/<span className="text-[#808080be]">night</span>
+          <p>
+            235/<span className="text-[#808080be]">night</span>
           </p>
-     
-          <p className="text-[#808080b0]">
-          Availability 2/12 
-          </p>
-       
+
+          <p className="text-[#808080b0]">Availability 2/12</p>
         </div>
       </div>
     </div>

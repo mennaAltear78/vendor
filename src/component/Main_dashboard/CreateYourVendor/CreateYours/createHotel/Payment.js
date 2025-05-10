@@ -1,13 +1,13 @@
 import React, { useContext, useState } from "react";
-import MainDashBoardWrapper from "../../../Authentication/regular_components/MainDashBoardWrapper";
+import MainDashBoardWrapper from "../../../../Authentication/regular_components/MainDashBoardWrapper";
 import { useNavigate } from "react-router-dom";
-import ProgressSteps from "../../../Authentication/Sin_up/Create_your_partner/Create_account_items/ProgressSteps";
-import AuthContext from "../../../Authentication/Context/auth-context";
-import Menue from '../../../Authentication/regular_components/Menue'
-import CreateHotelWrapper from "../common/CreateHotelWrapper";
-import classes from "./CreateHotel.module.css";
-import TextField from "../../../Authentication/regular_components/TextField";
-import appData from "../../../../config/appData";
+import ProgressSteps from "../../../../Authentication/Sin_up/Create_your_partner/Create_account_items/ProgressSteps";
+import AuthContext from "../../../../Authentication/Context/auth-context";
+import Menue from '../../../../Authentication/regular_components/Menue'
+import CreateHotelWrapper from "../../common/CreateHotelWrapper";
+import classes from "../../CreateYours/CreateHotel.module.css";
+import TextField from "../../../../Authentication/regular_components/TextField";
+import appData from "../../../../../config/appData";
 
 function Payment() {
  
@@ -20,12 +20,12 @@ function Payment() {
 
   const onClickHandler = (e) => {
     e.preventDefault();
-   console.log(payment_agreed_options);
+   console.log(payment_agreed_options[0].payment_method.en);
    
     if (
-      !payment_agreed_options.payment_method ||
-      payment_agreed_options.payment_method.length === 0 ||
-      payment_agreed_options.payment_method=== "options"
+      !payment_agreed_options[0].payment_method.en||
+     
+      payment_agreed_options[0].payment_method.en=== "options"
     ) {
       setError("You should choose a payment method");
       return

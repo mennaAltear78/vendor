@@ -35,7 +35,7 @@
       height: 35px;
   }
   .line{
-      width: 150px;
+      width: 215px;
       height: 5px;
       background-color: rgba(128, 128, 128, 0.151);
       margin-top: 25px;
@@ -55,7 +55,7 @@
 }
 .linegreen{
    
-    width: 150px;
+    width: 215px;
     height: 5px;
     background-color: #28A746; /* Initial color */
     margin-top: 25px;

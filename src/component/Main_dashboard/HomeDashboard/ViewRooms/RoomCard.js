@@ -30,9 +30,17 @@ const RoomCardInList = ({ data = {},openRoomCard }) => {
             {data?.description || "No description available."}
           </p>
 
-          <div className="bg-[#e4d960a0] rounded-[4px] text-[#ffae00] p-[4px] text-[10px]">
+          <div className="bg-[#e4d960a0] mt-[-10px] w-14 rounded-[4px] text-[#ffae00] p-[4px] text-[10px]">
             {data?.type || "Room Type"}
           </div>
+          <div className="flex items-end h-[80px]">
+          <div className="mt-[10px] ">
+            <div className="flex justify-end items-center gap-1">
+             <p>Available </p>  <span className="text-[gray] "> 2/12</span>
+            </div>
+    
+          </div>
+        </div>
         </div>
       </div>
       <div>

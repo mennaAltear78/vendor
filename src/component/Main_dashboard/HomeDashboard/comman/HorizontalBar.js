@@ -6,7 +6,7 @@ export default function HorizontalBar({barLabel}) {
   const percentage = (rating / maxRating) * 100;
 
   return (
-    <div className="w-full max-w-sm space-y-2 mb-[10px]">
+    <div className="w-full max-w-sm space-y-2 mb-[20px]">
       <div className="flex justify-between  mb-[-10px] text-sm font-medium text-gray-700">
         <span className="text-[13px]">{barLabel}</span>
         <span className="text-[13px]">{rating}</span>
