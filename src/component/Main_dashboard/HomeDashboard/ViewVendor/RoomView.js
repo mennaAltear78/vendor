@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const RoomView = ({ id }) => {
   const navigate=useNavigate()
   const { data: dataRoom, error, isLoading } = useGetHotelRoomQuery({ id: id });
-  //  console.log("room",dataRoom);
+   console.log("room",dataRoom?.data?.rooms);
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -18,15 +18,23 @@ const RoomView = ({ id }) => {
   }
   return (
     <div className="mt-3  rounded-lg font-usedFont  sm:w-[730px] w-[360px]  ">
-      <div className="flex justify-between hover:text-[blue] cursor-pointer">
+      <div className="flex justify-between items-center  hover:text-[blue] cursor-pointer">
         <h2>Rooms </h2>
 
-        <span class="material-symbols-outlined text-[40px]  flex mr-[10px]" onClick={()=>navigate('/RoomsList')}>
-          read_more
-        </span>
+
+        <div className="flex " onClick={()=>navigate(`/RoomsList/${id}`)}>
+          <b className="hover:text-[blue] mr-[5px]">show All</b>
+          <div className="w-5 h-5 bg-[#8080801e] rounded-full flex items-center">
+            <span class="material-symbols-outlined hover:text-[blue] text-[15px] ml-[3px] ">
+              chevron_right
+            </span>
+          </div>
+        </div>
+       
       </div>
       <Scroller
-        items={dataRoom?.data?.room}
+        key={'rooms'}
+        items={dataRoom?.data?.rooms}
         numberCardShown={2}
         Component={RoomCard}
         hightdiv={"h-[300px]"}

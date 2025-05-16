@@ -14,6 +14,8 @@ module.exports = {
   corePlugins: {
     preflight: false, // تعطيل تأثيرات Tailwind على CSS العادي
   },
-  plugins: [],
+  plugins: [
+   
+  ],
 }
 

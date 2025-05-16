@@ -22,7 +22,6 @@ function HotelCard({ data, setOpen }) {
       style={{ textDecoration: "none" }}
       className="border-solid text-[black] flex cursor-pointer justify-between p-1 mt-[30px] rounded-[10px] hover:border-[#0000ff79]  border-[#8080805a] border-[1px] font-usedFont hover:bg-blue-50 hover:shadow-md
       transition duration-300 w-full"
-      // to={`/PropertyList/${data.id}`}
       onClick={handele}
     >
       <div className="flex  ">
@@ -88,7 +87,8 @@ function HotelCard({ data, setOpen }) {
             {data.is_completed ? "Active" : "not Active"}
           </p>
 
-          <DotMenu id={data.id} />
+         <DotMenu id={data.id} />
+         
         </div>
         <div>
           <div className="  mt-[10px]">

@@ -23,28 +23,24 @@ const RatingCard = () => {
 
       labelMenu: "Sort by",
     },
-    {
-      title: "Review Score",
 
-      labelMenu: "Sort by",
-    },
   ];
 
   return (
     <div className="bg-white rounded-lg shadow-md font-usedFont ">
       <div className="flex    mt-[10px] p-4">
         <div className="mr-[50px] grid">
-          <b className="bg-gradient-to-r mb-[-20px] w-full flex items-center justify-center from-orange-500 to-yellow-500 text-transparent bg-clip-text font-bold text-lg ">
+          <b className="bg-gradient-to-r mb-[-40px] w-full flex items-center justify-center from-orange-500 to-yellow-500 text-transparent bg-clip-text font-bold text-lg ">
             Good
           </b>
 
-          <div className="w-full flex justify-center items-center">
+          <div className="w-full flex justify-center items-center mb-[-15px] ">
             <img src={star} />
-            <b className="bg-gradient-to-r ml-[10px] text-[36px] from-orange-500 to-yellow-500 text-transparent bg-clip-text font-bold text-lg ">
+            <b className="bg-gradient-to-r ml-[9px]   text-[36px] from-orange-500 to-yellow-500 text-transparent bg-clip-text font-bold  ">
               4.5
             </b>
           </div>
-          <b className="bg-gradient-to-r from-orange-500 to-yellow-500 text-transparent bg-clip-text font-bold text-lg ">
+          <b className="ml-[10px] bg-gradient-to-r from-orange-500 to-yellow-500 text-transparent bg-clip-text font-bold text-lg ">
             123+ Reviews
           </b>
         </div>
@@ -63,12 +59,11 @@ const RatingCard = () => {
       </div>
 
       <p className="ml-[12px] font-bold mb-0 mt-0">Filter</p>
-      <div className="flex gap-4 mt-[-20px] p-3">
+      <div className="sm:flex gap-4 mt-[-20px] p-3">
         {reviewSections.map((section, index) => (
           <div key={index}>
             <p className="text-[13px] mb-[0px]">{section.title}</p>
             <Menue
-              table={true}
               options={[]}
               labelMenue={section.labelMenu}
               NObtn={true}

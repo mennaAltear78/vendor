@@ -27,7 +27,6 @@ const ImageViewSection = ({
   // Initialize images when ImagesData changes
   useEffect(() => {
     if (ImagesData) {
-      console.log("Setting initial images from ImagesData");
       const initializedImages = ImagesData.map((image, index) => ({
         id: uuidv4(), // Generate unique ID
         image,
@@ -67,7 +66,7 @@ const ImageViewSection = ({
   const removeImageHandler = (id) => {
     SetImages((prevImages) => {
       const filteredImages = prevImages.filter((img) => img.id !== id);
-      console.log("Updated Images:", filteredImages);
+  
       return filteredImages;
     });
   };
@@ -128,6 +127,11 @@ const ImageViewSection = ({
           />
         </div>
         
+        {error && (
+        <div className="text-red-500 text-sm">
+          {error?.data?.message || "Failed to update property"}
+        </div>
+      )}
       <div className="flex justify-end mb-[10px]  ">
         {isLoading ? (
           <SpinnerLoading dimentians="h-[30px] ml-[100px] text-[blue]"/>

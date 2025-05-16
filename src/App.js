@@ -76,16 +76,9 @@ function App() {
             <Route path="/BedDetails" element={<BedDetails />} />
             <Route path="/RoomFacilities" element={<RoomFacilities />} />
             <Route path="/BathRoomFacilities" element={<BathRoomFacilities />} />
-            <Route
-              path="/HotelImages"
-              element={
-                <HotelImages
-                  title="Primary Images"
-                  limits="(Must upload 3 images)"
-                  HotelImages={true}
-                />
-              }
-            />
+            <Route path="/HotelImages"element={<HotelImages title="Primary Images"  limits="(Must upload 3 images)" HotelImages={true} />}/>
+           
+           
             <Route path="/RoomImage" element={<HotelImages title="Room Images"limits="(Must upload 5 images atleast)"/>}/>
             <Route path="/LocattionDataHotel"element={<LocattionDataHotel />}/>
 
@@ -95,8 +88,8 @@ function App() {
           <Route path="/PropertyList/EditHotel" element={<HotelEdit />} />
           <Route path="/profileView/:id/Reviews" element={<ReviewView />} />
 
-          <Route path="/RoomsList" element={<Rooms_List />} />
-          <Route path="/RoomsList/:id" element={<RoomView />} />
+          <Route path="/RoomsList/:id" element={<Rooms_List />} />
+          <Route path="/RoomsList/RoomView/:id" element={<RoomView />} />
           <Route path="/RoomsList/EditHotel" element={<RoomEdit />} />
 
           <Route path="/profileView" element={<Profile_View />} />

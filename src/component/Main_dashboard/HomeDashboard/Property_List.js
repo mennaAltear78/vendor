@@ -7,26 +7,25 @@ import { useGetHotelsQuery } from "../../../services/PostApi";
 import PaginationFooter from "./PaginationFooter";
 import { useNavigate } from "react-router-dom";
 
-
 function Property_List() {
-    const navigate=useNavigate()
+  const navigate = useNavigate();
 
   const view = localStorage.getItem("veiwMode") || "table";
 
   const [viewMode, setViewMode] = useState(view); // or "card"
   const [searchKeywords, setSearchKeywords] = useState("");
-
-
   const [currentPage, setCurrentPage] = useState(1);
+ 
   const { data, isLoading, error } = useGetHotelsQuery({
     page: currentPage,
     limit: 10,
     keyword: searchKeywords,
   });
 
-    const AddnewVendorHandeler=()=>{
-      navigate("/CompleteProfie")
-    } 
+
+  const AddnewVendorHandeler = () => {
+    navigate("/CompleteProfie");
+  };
   return (
     <MainDashBoardWrapper>
       <div className="w-full pb-[100px]  m-auto bg-gray-200 ">
@@ -37,25 +36,25 @@ function Property_List() {
             keyword={searchKeywords}
             setKeyword={setSearchKeywords}
             totaldata={data?.results}
-            PageName='Property List'
-            addName={'Create new Property'}
+            PageName="Property List"
+            addName={"Create new Property"}
             addFunction={AddnewVendorHandeler}
           />
           <div>
             {viewMode === "table" ? (
-              <Table_View data={data} isLoading={isLoading} error={error}  />
+              <Table_View data={data} isLoading={isLoading} error={error} />
             ) : (
               <Card_View data={data} isLoading={isLoading} error={error} />
             )}
           </div>
         </div>
-
-        <PaginationFooter
-          data={data}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-        />
-            
+        {data?.data.hotels.length < 10 ? null : (
+          <PaginationFooter
+            data={data}
+            currentPage={2}
+            setCurrentPage={setCurrentPage}
+          />
+        )}
       </div>
     </MainDashBoardWrapper>
   );

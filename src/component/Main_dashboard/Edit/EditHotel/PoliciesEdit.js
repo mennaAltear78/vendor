@@ -6,15 +6,16 @@ import Button from "../../../Authentication/regular_components/Button";
 import { useUpdatePoliciesMutation } from "../../../../services/PostApi";
 import SpinnerLoading from "../../../Authentication/regular_components/SpinnerLoading";
 import TimePaker from "./TimePaker";
+import appData from "../../../../config/appData";
+import Menu from "../../CreateYourVendor/common/Menue";
 
 const PoliciesEdit = ({ data }) => {
   const [fee, setFee] = useState(data.policies.cancellation_allowed);
-  const [from, setFrom] = useState("10pm");
-  const [until, setUntil] = useState("10pm");
-
   const [PoliciesToEdit, setPoliciesToEdit] = useState({});
   const [updatePolicies, { isLoading, error }] = useUpdatePoliciesMutation();
 
+  const [selectedPetOption, setSelectedPetOption] = useState("");
+  const [selectedSmokingOption, setSelectedSmokingOption] = useState("");
   // Initialize PoliciesToEdit with data when the component mounts or data changes
   useEffect(() => {
     if (data.policies) {
@@ -28,8 +29,7 @@ const PoliciesEdit = ({ data }) => {
             time: data.policies.check_in.until.time,
             date: data.policies.check_in.until.date,
           },
-          description:
-            data.policies.check_in.description ||"",
+          description: data.policies.check_in.description || "",
         },
         check_out: {
           from: {
@@ -40,8 +40,7 @@ const PoliciesEdit = ({ data }) => {
             time: data.policies.check_out.until.time,
             date: data.policies.check_out.until.date,
           },
-          description:
-            data.policies.check_out.description ||"",
+          description: data.policies.check_out.description || "",
         },
         cancelation_policy: data.policies.cancelation_policy || "",
         cancellation_allowed: data.policies.cancellation_allowed,
@@ -104,23 +103,27 @@ const PoliciesEdit = ({ data }) => {
           en: PoliciesToEdit.cancelation_policy,
         },
         cancelation_allowed: PoliciesToEdit.cancellation_allowed,
-        cancelation_fee_rule: PoliciesToEdit.cancellation_fee_rule,
+        ...(fee && {
+          cancelation_fee_rule: PoliciesToEdit.cancellation_fee_rule,
+        }),
         children_and_families: {
           en: PoliciesToEdit.children_and_families,
         },
         smoking_policy: {
-          en: PoliciesToEdit.smoking_policy,
+          en: selectedSmokingOption.label || PoliciesToEdit.smoking_policy,
         },
         pet_policy: {
-          en: PoliciesToEdit.pet_policy,
+          en: selectedPetOption.label || PoliciesToEdit.pet_policy,
         },
-        payment_agreed_options: PoliciesToEdit.payment_agreed_options.map((option) => ({
-          payment_method: { en: option.payment_method },
-          payment_icon: option.payment_icon,
-        })),
+        payment_agreed_options: PoliciesToEdit.payment_agreed_options.map(
+          (option) => ({
+            payment_method: { en: option.payment_method },
+            payment_icon: option.payment_icon,
+          })
+        ),
       };
-      
-console.log(payload);
+
+      console.log(payload);
 
       await updatePolicies({
         id: id,
@@ -131,8 +134,14 @@ console.log(payload);
       console.error("Failed to update policies:", err);
     }
   };
-  
-
+  const smokingPolicyOptions = appData.smokingPolicy.map((item) => ({
+    value: item.value,
+    label: item.policy,
+  }));
+  const petsPolicyOptions = appData.petsPolicy.map((item) => ({
+    value: item.value,
+    label: item.policy,
+  }));
   return (
     <div className="mb-[30px]">
       <b className="text-[20px]">Property check in/out</b>
@@ -150,21 +159,19 @@ console.log(payload);
             `${PoliciesToEdit.check_in?.from.time} ${PoliciesToEdit.check_in?.from.date}` ||
             ""
           }
-          setValue={setFrom}
         />
         <TimePaker
-        TimePakerObject={(value) => {
-          setPoliciesToEdit({
-            ...PoliciesToEdit,
-            check_in: { ...PoliciesToEdit.check_in, until: value },
-          });
-        }}
+          TimePakerObject={(value) => {
+            setPoliciesToEdit({
+              ...PoliciesToEdit,
+              check_in: { ...PoliciesToEdit.check_in, until: value },
+            });
+          }}
           label="until"
           value={
             `${PoliciesToEdit.check_in?.until.time} ${PoliciesToEdit.check_in?.until.date}` ||
             ""
           }
-          setValue={setUntil}
         />
       </div>
 
@@ -175,20 +182,22 @@ console.log(payload);
         textarea={true}
         name="check_in_description"
         onChange={(e) => {
-          
           setPoliciesToEdit({
             ...PoliciesToEdit,
-            check_in: { ...PoliciesToEdit.check_in, description: e.target.value },
+            check_in: {
+              ...PoliciesToEdit.check_in,
+              description: e.target.value,
+            },
           });
         }}
       />
       <p className="mb-[-3px]">Check Out</p>
       <div className="sm:flex gap-[10px]">
         <TimePaker
-           TimePakerObject={(value) => {
+          TimePakerObject={(value) => {
             setPoliciesToEdit({
               ...PoliciesToEdit,
-              check_out: {...PoliciesToEdit.check_out, from: value},
+              check_out: { ...PoliciesToEdit.check_out, from: value },
             });
           }}
           label="from"
@@ -196,21 +205,19 @@ console.log(payload);
             `${PoliciesToEdit.check_out?.from.time} ${PoliciesToEdit.check_out?.from.date}` ||
             ""
           }
-          setValue={setFrom}
         />
         <TimePaker
-       TimePakerObject={(value) => {
-        setPoliciesToEdit({
-          ...PoliciesToEdit,
-          check_out: { ...PoliciesToEdit.check_out, until: value },
-        });
-      }}
+          TimePakerObject={(value) => {
+            setPoliciesToEdit({
+              ...PoliciesToEdit,
+              check_out: { ...PoliciesToEdit.check_out, until: value },
+            });
+          }}
           label="until"
           value={
             `${PoliciesToEdit.check_out?.until.time} ${PoliciesToEdit.check_out?.until.date}` ||
             ""
           }
-          setValue={setUntil}
         />
       </div>
       <InputField
@@ -222,7 +229,10 @@ console.log(payload);
         onChange={(e) => {
           setPoliciesToEdit({
             ...PoliciesToEdit,
-            check_out: { ...PoliciesToEdit.check_out, description: e.target.value },
+            check_out: {
+              ...PoliciesToEdit.check_out,
+              description: e.target.value,
+            },
           });
         }}
       />
@@ -258,7 +268,17 @@ console.log(payload);
           onChange={onChangeInputHandler}
         />
         <div className="mt-[30px]">
-          {fee ? <FeeCalculation disabledd={"disabled"} editt={true} /> : null}
+          {fee ? (
+            <FeeCalculation
+              disabledd={false}
+
+              feeObjectHandeler={(fee) => {
+                setPoliciesToEdit({...PoliciesToEdit,cancellation_fee_rule:{...fee}})
+              }}
+              editt={true}
+              dataFee={data.policies.cancellation_fee_rule}
+            />
+          ) : null}
 
           <InputField
             label={"Children and Families"}
@@ -272,19 +292,22 @@ console.log(payload);
         <div>
           <b className="mt-[100px]">Policies</b>
           <div className="flex gap-[15px]">
-            <InputField
-              label={"Pets Policy"}
-              value={PoliciesToEdit.pet_policy || ""}
-              className={"w-[96%]"}
-              name="pet_policy"
-              onChange={onChangeInputHandler}
+            <Menu
+              label="Pets Policy"
+              value={selectedPetOption}
+              onChange={setSelectedPetOption}
+              options={petsPolicyOptions}
+              placeholder={PoliciesToEdit.pet_policy || ""}
+              isSearchable={false}
             />
-            <InputField
-              label={"Smoking Policy"}
-              value={PoliciesToEdit.smoking_policy || ""}
-              className={"w-[96%]"}
-              name="smoking_policy"
-              onChange={onChangeInputHandler}
+
+            <Menu
+              label="moking Policy"
+              value={selectedSmokingOption}
+              onChange={setSelectedSmokingOption}
+              options={smokingPolicyOptions}
+              placeholder={PoliciesToEdit.smoking_policy || ""}
+              isSearchable={false}
             />
           </div>
           <InputField
@@ -296,6 +319,7 @@ console.log(payload);
             name="detailed_terms"
           />
         </div>
+        <div></div>
       </div>
       {error && (
         <div className="text-red-500 text-sm">

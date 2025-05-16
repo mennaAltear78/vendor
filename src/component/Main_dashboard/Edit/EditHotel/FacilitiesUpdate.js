@@ -21,7 +21,7 @@ const FacilitiesUpdate = ({
       setSelected(data?.facilities.map((item) => item.facility));
       setoldDataSelected(data?.facilities.map((item) => item.facility))
     }
-  }, []);
+  }, [data]);
 
   const id = data._id;
   const handleSelection = (item) => {
@@ -51,7 +51,7 @@ const FacilitiesUpdate = ({
     });
     // console.log({ ...facilities });
     const newSelectionn = [...new Set(newSelection)]; //remove duplicate values
-    console.log("new selected",newSelectionn);
+    // console.log("new selected",newSelectionn);
     AddFacilitie({
       id: id,
       body: { facility: { en: "24-Hour Front Desk" }, additional_cost: false },

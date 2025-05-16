@@ -4,22 +4,11 @@ import ReviewCard from "./ReviewCard";
 import { Link } from "react-router-dom";
 import AuthContext from "../../../Authentication/Context/auth-context";
 
-const ReviewCards = ({ data, id }) => {
+const ReviewCards = ({ data, id,review }) => {
   const ctx = useContext(AuthContext);
   const d = ctx.IdSpesificHotel;
-  const dataa = {
-    reviews: [
-      { reviewer: "John Doe", comment: "Great service!", rating: 5 },
-      {
-        reviewer: "Jane Smith",
-        comment: "Very clean and comfortable.",
-        rating: 4,
-      },
-      { reviewer: "Alice Johnson", comment: "Would stay again!", rating: 5 },
-    ],
-  };
-  const items = dataa?.reviews || []; // Use reviews from the data prop or fallback to an empty array
-  console.log(d, "idd");
+  const items =review?.data?.reviews || []; // Use reviews from the data prop or fallback to an empty array
+  console.log(items, "idd");
 
   return (
     <div className="sm:w-[730px] w-[360px]">
@@ -27,15 +16,20 @@ const ReviewCards = ({ data, id }) => {
         className="no-underline text-[black]"
         to={`/profileView/${d}/Reviews`}
       >
-        <div className="flex justify-between hover:text-[blue] cursor-pointer">
+        <div className="flex justify-between items-center hover:text-[blue] cursor-pointer">
           <h2>Top Reviews </h2>
-          <span class="material-symbols-outlined text-[40px]  flex mr-[10px]">
-            read_more
-          </span>
+          <div className="flex ">
+          <b className="hover:text-[blue] mr-[3px]">show All</b>
+          <div className="w-5 h-5 bg-[#8080801e] rounded-full flex items-center">
+            <span class="material-symbols-outlined hover:text-[blue] text-[15px] ml-[3px]">
+              chevron_right
+            </span>
+          </div>
+        </div>
         </div>
       </Link>
       
-      <Scroller items={items} Component={ReviewCard} numberCardShown={2}/>
+      <Scroller items={items}  Component={ReviewCard} numberCardShown={2}/>
     </div>
   );
 };

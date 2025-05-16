@@ -89,16 +89,10 @@ const PropertyDetails = ({ data, edit }) => {
             label={"Property Type"}
             value={PropertyToEdit.type} // Use PropertyToEdit state
             name="type" // Add name attribute for identification
-            className={"w-[96%]"}
+            className={"w-[98%]"}
             onChange={onchangeHandeler}
           />
-          <InputField
-            label={"Smoking options"}
-            value={PropertyToEdit.smoking_policy} // Use PropertyToEdit state
-            name="smoking_policy" // Add name attribute for identification
-            className={"w-[96%] "}
-            onChange={onchangeHandeler}
-          />
+
         </div>
       </div>
       <div className="flex justify-end mb-[10px]">

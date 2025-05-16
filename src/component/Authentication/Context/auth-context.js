@@ -8,6 +8,7 @@ const AuthContext = createContext({
   HotelId: {},
   RoomId:{},
   IdSpesificHotel:{},
+  IdSpesificRoom:{},
   isHotelImageDone: [],
   setRequest: () => {},
   setHotelImageDone: () => {},
@@ -15,7 +16,8 @@ const AuthContext = createContext({
   setRoominfo: () => {},
   SetHotelId:()=>{},
   SetRoomId:()=>{},
-  setIdSpesificHotel:()=>{}
+  setIdSpesificHotel:()=>{},
+  setIdSpesificRoom:()=>{}
 });
 
 
@@ -27,10 +29,13 @@ export const AuthProvider = ({ children }) => {
   const [HotelId,SetHotelId]=usePersistedState('HotelId',{})
   const [RoomId,SetRoomId]=usePersistedState('RoomId',{})
   const [IdSpesificHotel,setIdSpesificHotel]=usePersistedState('IdSpesificHotel',{})
+  const [IdSpesificRoom,setIdSpesificRoom]=usePersistedState('IdSpesificRoom',{})
 
   return (
     <AuthContext.Provider
       value={{
+        IdSpesificRoom,
+        setIdSpesificRoom,
         IdSpesificHotel,
         setIdSpesificHotel,
         SetRoomId,

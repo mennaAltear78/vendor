@@ -41,7 +41,10 @@ const DotMenu = ({ id }) => {
   return (
     <div className="relative inline-block text-left" ref={menuRef}>
       <button
-        onClick={() => setOpen((prev) => !prev)}
+        onClick={(e) => {setOpen((prev) => !prev)
+          e.preventDefault()
+          e.stopPropagation();
+        }}
         className="p-2 border-none h-[20px] rounded-sm  flex items-center justify-center bg-white hover:bg-[#6666db06]  transition"
       >
         <p className="text-[20px] mt-[2px] ">...</p>

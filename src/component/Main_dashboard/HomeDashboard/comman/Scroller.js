@@ -4,10 +4,11 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
-const Scroller = ({ items, Component ,hightdiv ,numberCardShown,spaceBetween=10}) => {
+const Scroller = ({ items=[], Component ,hightdiv ,numberCardShown,spaceBetween=10}) => {
   const prevRef = useRef(null); // Reference for the previous button
   const nextRef = useRef(null); // Reference for the next button
-
+  console.log(items,"kk");
+ 
   return (
     <div className="relative w-full ml-[17px] sm:ml-0 ">
       <Swiper
@@ -28,17 +29,22 @@ const Scroller = ({ items, Component ,hightdiv ,numberCardShown,spaceBetween=10}
           640: { slidesPerView: numberCardShown},
           1024: { slidesPerView: numberCardShown },
           1280: { slidesPerView: numberCardShown },
-        }}
-        className="py-4"
-      >
+        }} className="py-4">
+   
         {items.map((item, index) => (
-          <SwiperSlide key={index}>
+          <SwiperSlide key={items.length}>
             <div className={`min-w-[350px] ${hightdiv} bg-gradient-to-tr shadow-md  bg-[white] text-[black] rounded-xl flex text-lg font-semibold transition-transform hover:scale-105`}>
               <Component {...item} />
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
+
+    </div>
+  );
+};
+
+export default Scroller;
 
       {/* Navigation Buttons */}
       {/* <button
@@ -55,8 +61,3 @@ const Scroller = ({ items, Component ,hightdiv ,numberCardShown,spaceBetween=10}
       >
         ›
       </button> */}
-    </div>
-  );
-};
-
-export default Scroller;

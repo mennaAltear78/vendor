@@ -14,9 +14,6 @@ const InputField = ({
 }) => {
   const [edit, setEdit] = useState(false);
 
-  const handleEditClick = () => {
-    setEdit((prev) => !prev);
-  };
 
   return (
     <div className="w-full flex flex-col items-start">
@@ -25,7 +22,9 @@ const InputField = ({
         <div className="w-full flex justify-end ">
           <span
             className="material-symbols-outlined text-[15px] w-4 h-4 p-1 rounded-lg mb-[-10px] bg-[#0000ff2a] mt-[-9px] text-[blue] cursor-pointer"
-            onClick={handleEditClick}
+            onClick={() => {
+    setEdit((prev) => !prev);
+  }}
           >
             edit
           </span>

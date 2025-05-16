@@ -39,9 +39,10 @@ export const postsApi = createApi({
     }),
     //
     getHotelRoom: builder.query({
-      query: ({ id }) => ({
+      query: ({ id,page, limit, keyword,sort  }) => ({
         url: `/rooms/hotel/${id}`, // Corrected template literal
         method: "GET",
+         params: { page, limit, keyword,sort },
       }),
     }),
     getSpecificRoom: builder.query({
@@ -53,23 +54,12 @@ export const postsApi = createApi({
       
       providesTags: (result, error) => [{ type: "SpecificRoom" }],
     }),
-    // Mutation to add a post
-    // addPost: builder.mutation({
-    //   query: (newPost) => ({
-    //     url: "/posts",
-    //     method: "POST",
-    //     data: newPost,
-    //   }),
-    // }),
-
-    // // Mutation to update a post
-    // updatePost: builder.mutation({
-    //   query: ({ id, updatedPost }) => ({
-    //     url: `/posts/${id}`,
-    //     method: "PUT",
-    //     data: updatedPost,
-    //   }),
-    // }),
+    getReviewRoom: builder.query({
+      query: ({ id }) => ({
+        url: `/users/hotels/reviews/${id}`, // Corrected template literal
+        method: "GET",
+      }),
+    }),
 
     // Mutation to delete a hotel
     deleteHotel: builder.mutation({
@@ -228,6 +218,7 @@ export const {
   useGetSpecificHotelQuery,
   useGetHotelRoomQuery,
   useGetSpecificRoomQuery,
+  useGetReviewRoomQuery,
 
   useDeleteHotelMutation,
   useDeleteCoverImageMutation,

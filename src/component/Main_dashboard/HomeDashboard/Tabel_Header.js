@@ -1,6 +1,4 @@
-import React from "react";
 import Menue from "../../Authentication/regular_components/Menue";
-import Export from "../../../Assets/Group.png";
 import Card from "../../../Assets/Table.png";
 import Tabel from "../../../Assets/List.png";
 
@@ -8,7 +6,7 @@ import Tabel from "../../../Assets/List.png";
 function Header({ setViewMode, viewMode, keyword, setKeyword ,totaldata, PageName,Room,addName ,addFunction}) {
 
   return (
-    <div className="w ">
+    <div >
       <div className="w-full m-auto block justify-between items-center sm:flex font-usedFont">
       <div className="display   flex gap-4 items-center sm:mb-0 mb-4 ">
         <b className="text-xl	">{PageName}</b>
@@ -44,14 +42,14 @@ function Header({ setViewMode, viewMode, keyword, setKeyword ,totaldata, PageNam
               setViewMode("table");
               localStorage.setItem("veiwMode","table")
             }}
-            className=""
+         
           />
         </div>
         <div
           className={`w-10 h-10  
       ${
         viewMode != "table" ? "bg-[#ff8c004d] " : "bg-slate-200"
-      } rounded-[10px] items-center display flex justify-center`}
+      } rounded-[10px] items-center display flex justify-center ml-[2px]`}
         >
           <img
             src={Tabel}
@@ -75,7 +73,7 @@ function Header({ setViewMode, viewMode, keyword, setKeyword ,totaldata, PageNam
             className="w-full border-none outline-none text-black text-[17px] bg-transparent placeholder-gray-300 placeholder:text-gray-500 p-0"
           />
         </div>
-        <button onClick={addFunction} className="bg-[#2F32DE] w-[210px] place-content-center pt-[7px] flex h-[37px] text-sm items-center pb-[7px]  text-white font-bold rounded-[10px] gap-3 outline-none border-none">
+        <button onClick={addFunction} className="bg-[#2F32DE] w-[210px] place-content-center pt-[7px] cursor-pointer flex h-[37px] text-sm items-center pb-[7px]  text-white font-bold rounded-[10px] gap-3 outline-none border-none">
         
         <div className="mt-[2px]"><span class="material-symbols-outlined" >add</span></div>  
          { addName}
@@ -83,14 +81,7 @@ function Header({ setViewMode, viewMode, keyword, setKeyword ,totaldata, PageNam
 
       </div>    
       </div>
-      {/* <div className="w-full flex justify-end ">
-           <button className="bg-[#2F32DE] w-[110px]  h-[37px] text-sm items-center pb-[7px] mt-[10px]  text-white font-bold rounded-[10px] gap-4 outline-none border-none">
-          <img src={Export}  /> 
-    
-      <span> Export</span>   
-        </button>
-      </div>
-    */}
+
     </div>
   );
 }
