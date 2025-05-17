@@ -12,13 +12,13 @@ function RatingOverView() {
     "Value for money rating",
   ];
   return (
-    <div className="w-[300px] p-4 pt-[1px] h-[360px] rounded-lg bg-white mb-[10px]">
+    <div className="w-[300px] p-4 pt-[1px] h-[360px] rounded-lg font-usedFont bg-white mb-[10px]">
       <p>Property Rating overview</p>
       <div className="flex justify-between cursor-pointer">
         <div className="flex">
           <div className=" flex justify-center items-center p-1 rounded-lg  bg-[#ffa6003f] mb-[30px] ">
-            <img src={star} className="w-[40px]" />
-            <b className="bg-gradient-to-r ml-[10px] text-[30px]  from-orange-500 to-yellow-500 text-transparent bg-clip-text font-bold  ">
+            <img src={star} className="w-[40px] " />
+            <b className="bg-gradient-to-r ml-[10px] text-[30px] mr-[4px]  from-orange-500 to-yellow-500 text-transparent bg-clip-text font-bold  ">
               3.5
             </b>
           </div>

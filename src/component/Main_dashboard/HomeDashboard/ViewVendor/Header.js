@@ -2,7 +2,7 @@ import React from "react";
 import closeImge from "../../../../Assets/icons/Frame 1707481067.png";
 import Button from "../../../Authentication/regular_components/Button";
 import { Navigate, useNavigate } from "react-router-dom";
-const Header = ({ data, setEdit, Edit, expand, setExpand, id }) => {
+const Header = ({ data, setEdit, Edit, expand, setExpand, id,Room }) => {
   const navigate = useNavigate();
   return (
     <div className="bg-white rounded-b-lg p-4 sm:h-[60px] font-usedFont place-content-center sm:w-[700px] w-[360px]  flex shadow-md ">
@@ -30,7 +30,7 @@ const Header = ({ data, setEdit, Edit, expand, setExpand, id }) => {
         ) : null}
         <span
           onClick={() => {
-            navigate(`/PropertyList/${id}`);
+         { Room?navigate(`/RoomsList/RoomView/${id}`)  :navigate(`/PropertyList/${id}`);}
             setEdit(true);
           }}
           class="material-symbols-outlined   bg-[#8080801e] p-[4px] rounded-[4px] h-4 cursor-pointer text-[18px]"

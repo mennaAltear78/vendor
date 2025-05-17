@@ -1,34 +1,28 @@
-import { createApi } from "@reduxjs/toolkit/query/react";
+import { createApi } from "@reduxjs/toolkit/query/react"; 
 import { axiosBaseQuery } from "./axiosBaseQuery";
 
 export const postsApi = createApi({
   reducerPath: "postsApi",
   baseQuery: axiosBaseQuery({ baseUrl: "https://sphinx-go.vercel.app/api/v1" }),
+  tagTypes: ["Hotel", "SpecificHotel"], // تأكد من تعريف الـ tag هنا
   endpoints: (builder) => ({
-    // Query to get rooms
-    getRooms: builder.query({
-      query: () => ({
-        url: "/rooms",
-        method: "GET",
-      }),
-    }),
-
-    // Query to get hotels with pagination
-    getHotels: builder.query({
-      query: ({ page, limit, keyword,sort }) => ({
-        url: "/hotel",
-        method: "GET",
-        params: { page, limit, keyword,sort },
-      }),
-      providesTags: ["Hotel"], // Important for cache invalidation this
-    }),
+//Get
+   
+  
     getProfile: builder.query({
       query: () => ({
         url: "/vendor/profile",
         method: "GET",
-       
       }),
- 
+    }), 
+    //hotel
+    getHotels: builder.query({
+      query: ({ page, limit, keyword, sort }) => ({
+        url: "/hotel",
+        method: "GET",
+        params: { page, limit, keyword, sort },
+      }),
+      providesTags: ["Hotel"],
     }),
     getSpecificHotel: builder.query({
       query: ({ id }) => ({
@@ -37,31 +31,36 @@ export const postsApi = createApi({
       }),
       providesTags: (result, error, { id }) => [{ type: "SpecificHotel", id }],
     }),
-    //
+    //room
     getHotelRoom: builder.query({
-      query: ({ id,page, limit, keyword,sort  }) => ({
-        url: `/rooms/hotel/${id}`, // Corrected template literal
+      query: ({ id, page, limit, keyword, sort }) => ({
+        url: `/rooms/hotel/${id}`,
         method: "GET",
-         params: { page, limit, keyword,sort },
+        params: { page, limit, keyword, sort },
+      }),
+    }),
+    getRooms: builder.query({
+      query: () => ({
+        url: "/rooms",
+        method: "GET",
       }),
     }),
     getSpecificRoom: builder.query({
-      query: () => ({
-        url: `/rooms/67c25d0df35ea580a63f2d4d`,
+      query: ({id}) => ({
+        url: `/rooms/${id}`,
         method: "GET",
       }),
-
-      
-      providesTags: (result, error) => [{ type: "SpecificRoom" }],
+      providesTags: () => [{ type: "SpecificRoom" }],
     }),
     getReviewRoom: builder.query({
       query: ({ id }) => ({
-        url: `/users/hotels/reviews/${id}`, // Corrected template literal
+        url: `/users/hotels/reviews/${id}`,
         method: "GET",
       }),
     }),
 
-    // Mutation to delete a hotel
+//Delete
+    //hotel
     deleteHotel: builder.mutation({
       query: (id) => ({
         url: `/hotel/${id}`,
@@ -69,89 +68,76 @@ export const postsApi = createApi({
       }),
       onQueryStarted: async (arg, { dispatch, queryFulfilled }) => {
         try {
-          // Wait for the mutation to complete
           await queryFulfilled;
-
-          // Invalidate the 'getHotels' query to refetch the list of hotels
-          dispatch(postsApi.util.invalidateTags([{ type: "Hotel" }])); //this should be like
-          console.log("done");
+          dispatch(postsApi.util.invalidateTags([{ type: "Hotel" }]));
         } catch (error) {
           console.error("Failed to delete hotel:", error);
         }
       },
     }),
     deleteCoverImage: builder.mutation({
-      query: ({id,body}) => ({
+      query: ({ id, body }) => ({
         url: `/hotel/${id}/delete-cover-image`,
         method: "DELETE",
-        data:body
+        data: body,
       }),
       onQueryStarted: async ({ id }, { dispatch, queryFulfilled }) => {
         try {
           await queryFulfilled;
           dispatch(postsApi.util.invalidateTags([{ type: "SpecificHotel", id }]));
-          console.log("cover image deleted successfully.");
         } catch (error) {
-          console.error( error);
-        
+          console.error(error);
         }
       },
     }),
 
-  // Mutation to Add a hotel
-  addCoverImages: builder.mutation({
-    query: ({ id, body }) => ({
-      url: `/hotel/${id}/add-cover-image`,
-      method: "PATCH",
-      data: body,
-    
-    } ),
-    onQueryStarted: async ({ id }, { dispatch, queryFulfilled }) => {
-      try {
-        await queryFulfilled;
-        dispatch(postsApi.util.invalidateTags([{ type: "SpecificHotel", id }]));
-        console.log("Primary images updated successfully.");
-      } catch (error) {
-        console.error( error);
-      
-      }
-    },
-  }),
-  addFacilitie: builder.mutation({
-    query: ({ id, body }) => ({
-      url: `/hotel/${id}/add-facility`,
-      method: "PATCH",
-      data: body,
-    } ),
-    onQueryStarted: async ({ id }, { dispatch, queryFulfilled }) => {
-      try {
-        await queryFulfilled;
-        dispatch(postsApi.util.invalidateTags([{ type: "SpecificHotel", id }]));
-        console.log("Facility added successfully.");
-      } catch (error) {
-        console.error( error);
-      
-      }
-    },
-  }),
+//Add
+    //hotel
+    addCoverImages: builder.mutation({
+      query: ({ id, body }) => ({
+        url: `/hotel/${id}/add-cover-image`,
+        method: "PATCH",
+        data: body,
+      }),
+      onQueryStarted: async ({ id }, { dispatch, queryFulfilled }) => {
+        try {
+          await queryFulfilled;
+          dispatch(postsApi.util.invalidateTags([{ type: "SpecificHotel", id }]));
+        } catch (error) {
+          console.error(error);
+        }
+      },
+    }),
+    addFacilitie: builder.mutation({
+      query: ({ id, body }) => ({
+        url: `/hotel/${id}/add-facility`,
+        method: "PATCH",
+        data: body,
+      }),
+      onQueryStarted: async ({ id }, { dispatch, queryFulfilled }) => {
+        try {
+          await queryFulfilled;
+          dispatch(postsApi.util.invalidateTags([{ type: "SpecificHotel", id }]));
+        } catch (error) {
+          console.error(error);
+        }
+      },
+    }),
 
-
-  // Mutation to Update a hotel
+//Update
+    //hotel
     updatePrimaryImages: builder.mutation({
       query: ({ id, body }) => ({
         url: `/hotel/${id}/update-primary-image`,
         method: "PATCH",
         data: body,
-      
-      } ),
+      }),
       onQueryStarted: async ({ id }, { dispatch, queryFulfilled }) => {
         try {
           await queryFulfilled;
           dispatch(postsApi.util.invalidateTags([{ type: "SpecificHotel", id }]));
-          console.log("Primary images updated successfully.");
         } catch (error) {
-          console.error( error);
-        
+          console.error(error);
         }
       },
     }),
@@ -159,15 +145,14 @@ export const postsApi = createApi({
       query: ({ id, body }) => ({
         url: `/hotel/${id}/update-cover-image`,
         method: "PATCH",
-        data:body,
+        data: body,
       }),
       onQueryStarted: async ({ id }, { dispatch, queryFulfilled }) => {
         try {
           await queryFulfilled;
           dispatch(postsApi.util.invalidateTags([{ type: "SpecificHotel", id }]));
-          console.log("Primary images updated successfully.");
-        } catch (error) {
-          console.error( error);
+        } catch (err) {
+          console.error(err);
         }
       },
     }),
@@ -175,45 +160,54 @@ export const postsApi = createApi({
       query: ({ id, data }) => ({
         url: `/hotel/${id}/update-properties`,
         method: "PATCH",
-        data
+        data,
       }),
       onQueryStarted: async ({ id }, { dispatch, queryFulfilled }) => {
         try {
           await queryFulfilled;
           dispatch(postsApi.util.invalidateTags([{ type: "SpecificHotel", id }]));
-          console.log("Primary images updated successfully.");
-        } catch (error) {
-          console.error( error);
+        } catch (err) {
+          console.error(err);
         }
       },
     }),
-    
     updatePolicies: builder.mutation({
       query: ({ id, body }) => ({
         url: `/hotel/${id}/update-policies`,
         method: "PATCH",
-        data:body,
+        data: body,
       }),
       onQueryStarted: async ({ id }, { dispatch, queryFulfilled }) => {
         try {
           await queryFulfilled;
           dispatch(postsApi.util.invalidateTags([{ type: "SpecificHotel", id }]));
-          console.log("Primary images updated successfully.");
         } catch (error) {
-          console.error( error);
-         
-          
+          console.error(error);
         }
       },
     }),
-
+    //Room
+    updateRoomProperties: builder.mutation({
+      query: ({ id, body }) => ({
+        url: `/rooms/${id}/update-properties`,
+        method: "PATCH",
+        data: body,
+      }),
+      onQueryStarted: async ({ id }, { dispatch, queryFulfilled }) => {
+        try {
+          await queryFulfilled;
+          dispatch(postsApi.util.invalidateTags([{ type: "SpecificRoom", id }]));
+        } catch (error) {
+          console.error(error);
+        }
+      },
+    }),
   }),
 });
 
-// Export hooks for queries and mutations
 export const {
   useGetRoomsQuery,
-  useGetHotelsQuery,  
+  useGetHotelsQuery,
   useGetProfileQuery,
   useGetSpecificHotelQuery,
   useGetHotelRoomQuery,
@@ -225,9 +219,10 @@ export const {
 
   useAddCoverImagesMutation,
   useAddFacilitieMutation,
-  
+
   useUpdatePrimaryImagesMutation,
   useUpdateCoverImagesMutation,
   useUpdatePropertiesMutation,
-  useUpdatePoliciesMutation
+  useUpdatePoliciesMutation,
+  useUpdateRoomPropertiesMutation
 } = postsApi;

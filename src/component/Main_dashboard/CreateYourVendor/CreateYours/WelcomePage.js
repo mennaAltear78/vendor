@@ -11,7 +11,32 @@ import CoulmnCharts from "../../Statistics/Charts/CoulmnChart";
 import PieChart from "../../Statistics/Charts/PieChart";
 import RatingOverView from "../../Statistics/RatingOverView";
 import RecentReview from "../../Statistics/RecentReview";
-
+const cards = [
+  {
+    bgImageCss: 'bg-[#f59dac]',
+    precent: 'bg-[#ffa6003f] text-[orange]',
+    IconCss: 'text-[#f1294b]',
+    iconName: 'calendar_add_on',
+  },
+  {
+    bgImageCss: 'bg-[#ffa6005e]',
+    precent: 'bg-[#f59dac] text-[#f1294b]',
+    IconCss: 'text-[orange]',
+    iconName: 'moving',
+  },
+  {
+    bgImageCss: 'bg-[#0000ff79]',
+    precent: 'bg-[#ffa6003f] text-[orange]',
+    IconCss: 'text-[blue]',
+    iconName: 'moving',
+  },
+  {
+    bgImageCss: 'bg-[#0080007c]',
+    precent: 'bg-[#f59dac] text-[#f1294b]',
+    IconCss: 'text-[green]',
+    iconName: 'finance_mode',
+  },
+];
 function WelcomePage() {
   const [isPop_up, SetPop_up] = useState(false);
   const navigate = useNavigate();
@@ -35,16 +60,15 @@ function WelcomePage() {
 
           <Title Title="Quick Insights " />
           <div className="flex w-full">
-            <div className="">
+            <div >
               <div className="flex gap-[10px] ">
-                {Array.from({ length: 4 }).map(() => (
-                  <TotalCard />
-                ))}
+    {cards.map((props, idx) => (
+      <TotalCard key={idx} {...props} />
+    ))}
               </div>
 
               <div>
                 <AreaCharts  />
-
                 <div className="flex mt-[10px] ">
                   <CoulmnCharts  />
                   <PieChart />

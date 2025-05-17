@@ -9,6 +9,7 @@ import TimePaker from "./TimePaker";
 import appData from "../../../../config/appData";
 import Menu from "../../CreateYourVendor/common/Menue";
 
+
 const PoliciesEdit = ({ data }) => {
   const [fee, setFee] = useState(data.policies.cancellation_allowed);
   const [PoliciesToEdit, setPoliciesToEdit] = useState({});
@@ -16,6 +17,7 @@ const PoliciesEdit = ({ data }) => {
 
   const [selectedPetOption, setSelectedPetOption] = useState("");
   const [selectedSmokingOption, setSelectedSmokingOption] = useState("");
+
   // Initialize PoliciesToEdit with data when the component mounts or data changes
   useEffect(() => {
     if (data.policies) {
@@ -142,6 +144,7 @@ const PoliciesEdit = ({ data }) => {
     value: item.value,
     label: item.policy,
   }));
+
   return (
     <div className="mb-[30px]">
       <b className="text-[20px]">Property check in/out</b>
@@ -271,9 +274,11 @@ const PoliciesEdit = ({ data }) => {
           {fee ? (
             <FeeCalculation
               disabledd={false}
-
               feeObjectHandeler={(fee) => {
-                setPoliciesToEdit({...PoliciesToEdit,cancellation_fee_rule:{...fee}})
+                setPoliciesToEdit({
+                  ...PoliciesToEdit,
+                  cancellation_fee_rule: { ...fee },
+                });
               }}
               editt={true}
               dataFee={data.policies.cancellation_fee_rule}

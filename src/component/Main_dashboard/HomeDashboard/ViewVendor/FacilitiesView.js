@@ -1,32 +1,27 @@
 import React, { useMemo } from "react";
 
-const Facilities = ({ facilities }) => {
-  const facilityLabels = {
-    local_parking: "Parking",
-    pool: "Swimming Pool",
-    wifi: "WiFi (Public Area)",
-    fitness_center: "Gym",
-    bathtub: "Bathroom",
-    restaurant: "Restaurant",
-    bed: "Bedroom",
-    local_activity: "Activities",
-  };
-
+const Facilities = ({ facilities,room,RoomFacilityName,iconName }) => {
 
   return (
     <div className="sm:w-[700px] font-usedFont w-[360px] mt-[-13px]">
-      <h2>Facilities</h2>
-      <div className="flex gap-3 mt-[-10px]  flex-wrap items-center ">
+      <div className="flex items-center mb-0">
+              <h2>{RoomFacilityName?<p>
+        <span class="material-symbols-outlined text-[orange] text-[16px]">
+{iconName}
+</span>{RoomFacilityName}</p>:"Facilities"}</h2>
+      </div>
+
+      <div className="flex gap-3 mt-[-34px]  flex-wrap items-center ">
         {facilities.map((facility, index) => (
           <div className="flex gap-1 ">
             <span
               key={index} // Add a unique key for each element
-              className="material-symbols-outlined text-[15px]"
+              className={`material-symbols-outlined text-[15px] ${room?"text-[orange]":""}`}
             >
-              {facilityLabels[facility] || "festival"}
+             {room?"check_small":"festival"} 
               {/* Check if the facility exists */}
             </span>
-            <span className="text-[black]  flex text-[16px]">{facility.facility}</span>
+            <span className="text-[black]  flex text-[14px] ">{room?facility:facility.facility}</span>
           </div>
         ))}
       </div>

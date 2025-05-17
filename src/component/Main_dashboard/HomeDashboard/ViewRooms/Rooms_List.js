@@ -1,22 +1,15 @@
-import React, { useMemo, useState } from "react";
+import {useState}  from "react";
 import Header from "../Tabel_Header";
 import MainDashBoardWrapper from "../../../Authentication/regular_components/MainDashBoardWrapper";
-import RoomCardInList from "./RoomCard";
-import { RightDrawer } from "../comman/Drawer";
 import PaginationFooter from "../PaginationFooter";
-import RoomView from "./RoomView";
 import { useNavigate, useParams } from "react-router-dom";
-import {
-  useGetHotelRoomQuery,
-} from "../../../../services/PostApi";
+import { useGetHotelRoomQuery } from "../../../../services/PostApi";
+import RoomsContainer from "./RoomsContainer";
 
 const Rooms_List = () => {
-  const [open, setOpen] = useState(false);
   const [searchKeywords, setSearchKeywords] = useState("");
   const navigate = useNavigate();
   const { id: paramId } = useParams();
-
-  console.log(paramId);
 
   const { data, error, isLoading } = useGetHotelRoomQuery({
     id: paramId,
@@ -24,7 +17,8 @@ const Rooms_List = () => {
     limit: 10,
     keyword: searchKeywords,
   });
-  console.log(data);
+
+
   const AddRoomHandeler = () => {
     navigate("/RoomDetail");
   };
@@ -41,19 +35,9 @@ const Rooms_List = () => {
             addName={"Add Room"}
             addFunction={AddRoomHandeler}
           />
-
-          {data?.data.rooms.map((items, index) => (
-            <div key={index}>
-              <RoomCardInList setOpen={setOpen} data={items} />
-              <RightDrawer
-                Component={RoomView}
-                open={open}
-                setOpen={setOpen}
-              />
-            </div>
-          ))}
+          <RoomsContainer isLoading={isLoading} error={error} data={data?.data.rooms||[]}/>
         </div>
-     
+
         {data?.data.rooms.length < 10 ? null : <PaginationFooter />}
       </div>
     </MainDashBoardWrapper>

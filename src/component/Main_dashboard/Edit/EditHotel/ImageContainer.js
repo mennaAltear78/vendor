@@ -30,7 +30,7 @@ const ImageViewSection = ({
       const initializedImages = ImagesData.map((image, index) => ({
         id: uuidv4(), // Generate unique ID
         image,
-        originalIndex: index // Store original index
+        originalIndex: index, // Store original index
       }));
       SetImages(initializedImages);
     }
@@ -52,7 +52,7 @@ const ImageViewSection = ({
     AddedImages.forEach((file) => {
       formData.append("cover_images", file);
     });
-    
+
     AddCoverImage({ id: idHotel, body: formData })
       .unwrap()
       .then((response) => {
@@ -62,11 +62,9 @@ const ImageViewSection = ({
       .catch((err) => console.error("AddCoverImage error:", err));
   };
 
-
   const removeImageHandler = (id) => {
     SetImages((prevImages) => {
       const filteredImages = prevImages.filter((img) => img.id !== id);
-  
       return filteredImages;
     });
   };
@@ -111,51 +109,48 @@ const ImageViewSection = ({
 
       {NumberOfImgToAdd > 0 && edit && !primary ? (
         <div className="flex justify-between mb-[20px]">
-        <div className="border border-dashed border-[gray] w-[70px] flex rounded-lg justify-center">
-          <input
-            type="file"
-            ref={fileInputRef}
-            accept="image/*"
-            style={{ display: "none" }}
-            onChange={handleImageChange}
-          />
-          <img
-            src={download}
-            onClick={() => fileInputRef.current.click()}
-            className="cursor-pointer h-[50px] w-[50px]"
-            alt="Folder Icon"
-          />
-        </div>
-        
-        {error && (
-        <div className="text-red-500 text-sm">
-          {error?.data?.message || "Failed to update property"}
-        </div>
-      )}
-      <div className="flex justify-end mb-[10px]  ">
-        {isLoading ? (
-          <SpinnerLoading dimentians="h-[30px] ml-[100px] text-[blue]"/>
-        ) : primary === false || AddedImages.length === 0 ? null : (
-          <Button
-            className="border-none rounded-[8px] h-[30px] w-[60px] bg-[blue] cursor-pointer text-white "
-            type="button"
-            name={
-              <div className="flex gap-1 items-center">
-                <span className="material-symbols-outlined text-[15px] mt-[-9px]">
-                  add
-                </span>
-                <p className="text-[15px] mt-[4px]">Add</p>
-              </div>
-            }
-            onClickAction={AddImagesHanadeler}
-          />
-        )}
-      </div>
-        
-        </div>
+          <div className="border border-dashed border-[gray] w-[70px] flex rounded-lg justify-center">
+            <input
+              type="file"
+              ref={fileInputRef}
+              accept="image/*"
+              style={{ display: "none" }}
+              onChange={handleImageChange}
+            />
+            <img
+              src={download}
+              onClick={() => fileInputRef.current.click()}
+              className="cursor-pointer h-[50px] w-[50px]"
+              alt="Folder Icon"
+            />
+          </div>
 
+          {error && (
+            <div className="text-red-500 text-sm">
+              {error?.data?.message || "Failed to update property"}
+            </div>
+          )}
+          <div className="flex justify-end mb-[10px]  ">
+            {isLoading ? (
+              <SpinnerLoading dimentians="h-[30px] ml-[100px] text-[blue]" />
+            ) : primary === false || AddedImages.length === 0 ? null : (
+              <Button
+                className="border-none rounded-[8px] h-[30px] w-[60px] bg-[blue] cursor-pointer text-white "
+                type="button"
+                name={
+                  <div className="flex gap-1 items-center">
+                    <span className="material-symbols-outlined text-[15px] mt-[-9px]">
+                      add
+                    </span>
+                    <p className="text-[15px] mt-[4px]">Add</p>
+                  </div>
+                }
+                onClickAction={AddImagesHanadeler}
+              />
+            )}
+          </div>
+        </div>
       ) : null}
-
     </div>
   );
 };

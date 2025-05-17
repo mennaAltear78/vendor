@@ -6,9 +6,8 @@ import image from "../../../../Assets/Image.svg";
 import AuthContext from "../../../Authentication/Context/auth-context";
 
 const RoomCardInList = ({ data = {},setOpen}) => {
- const ctx=useContext(AuthContext)
-console.log(data._id,"id");
 
+const ctx=useContext(AuthContext)
 const data2 = {
     primary_images: data.images,
   };
