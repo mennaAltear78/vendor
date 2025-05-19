@@ -23,8 +23,8 @@ const InputField = ({
           <span
             className="material-symbols-outlined text-[15px] w-4 h-4 p-1 rounded-lg mb-[-10px] bg-[#0000ff2a] mt-[-9px] text-[blue] cursor-pointer"
             onClick={() => {
-    setEdit((prev) => !prev);
-  }}
+              setEdit((prev) => !prev);
+            }}
           >
             edit
           </span>
@@ -39,9 +39,8 @@ const InputField = ({
           onChange={onChange}
           name={name}
           disabled={!edit} // Enable editing when `edit` is true
-          className={`h-[50px] rounded-[5px] font-usedFont px-2 mt-[0px] border border-solid focus:border-[blue] ${
-            !edit ? "bg-[#4947470c]" : ""
-          } ${className}`}
+          className={`h-[50px] rounded-[5px] font-usedFont px-2 mt-[0px] border border-solid focus:border-[blue] ${!edit ? "bg-[#4947470c]" : ""
+            } ${className}`}
         />
       ) : (
         <input
@@ -51,12 +50,11 @@ const InputField = ({
           onChange={onChange}
           name={name}
           disabled={!edit} // Enable editing when `edit` is true
-          className={`h-[30px] rounded-[5px] font-usedFont px-2 border  border-solid focus:border-[blue] ${
-            !edit ? "bg-[#4947470c]" : ""
-          } ${className}`}
+          className={`h-[34px] rounded-[5px] font-usedFont px-2 border  border-solid focus:border-[blue] ${!edit ? "bg-[#4947470c]" : ""
+            } ${className}`}
         />
       )}
-      
+
     </div>
   );
 };

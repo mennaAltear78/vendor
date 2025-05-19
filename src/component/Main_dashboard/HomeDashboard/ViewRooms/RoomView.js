@@ -1,139 +1,115 @@
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import AuthContext from "../../../Authentication/Context/auth-context";
+import { useGetSpecificRoomQuery } from "../../../../services/PostApi";
+
+// Components
 import Header from "../ViewVendor/Header";
 import RoomEdit from "../../Edit/EditRoom/RoomEdit";
-import { useNavigate, useParams } from "react-router-dom";
-import AuthContext from "../../../Authentication/Context/auth-context";
-import image from "../../../../Assets/Image.svg";
 import PrimaryImage_View from "../comman/PrimaryImage_View";
-import { useGetSpecificRoomQuery } from "../../../../services/PostApi";
 import FacilitiesView from "../../../Main_dashboard/HomeDashboard/ViewVendor/FacilitiesView";
 import HotelDetailsSkeleton from "../ViewVendor/HotelDetailsSkeleton";
+import BedTypeView from "../comman/BedTypeView";
+import Active from "../comman/Active";
+
+// Assets
+import defaultImage from "../../../../Assets/Image.svg";
+
+// Config
+const roomFacilitiesConfig = [
+  { name: "Room Bathroom Facilities", icon: "bathtub", dataKey: "available_in_your_own_bathroom" },
+  { name: "Room Facilities", icon: "room_preferences", dataKey: "facilities" },
+  { name: "Room view Facilities", icon: "visibility", dataKey: "view" },
+  { name: "Room Main Facilities", icon: "room_preferences", dataKey: "main_facilities" },
+];
+
 const RoomView = () => {
+  const [editMode, setEditMode] = useState(false);
   const navigate = useNavigate();
-  const paramId = useParams();
-  const [Edit, setEdit] = useState(false);
+  const ctx = useContext(AuthContext);
 
   useEffect(() => {
-    localStorage.setItem("Edit", JSON.stringify(Edit));
-  }, [Edit]);
-
-  // const { id: paramId } = useParams();
-  const ctx = useContext(AuthContext);
-  const id = useMemo(() => ctx?.IdSpesificRoom || paramId, [ctx, paramId]);
+    localStorage.setItem("Edit", JSON.stringify(editMode));
+  }, [editMode]);
 
   const { data, error, isLoading } = useGetSpecificRoomQuery({
     id: ctx?.IdSpesificRoom,
   });
 
-
-  if (isLoading) return <HotelDetailsSkeleton />;
-  if (error) return <p>No Hotels Found</p>;
-
-  const openPageHandeler = () => {
+  const handleBackToRoomList = () => {
     navigate(`/RoomsList/RoomView/${ctx?.IdSpesificRoom}`);
   };
-  
-  const fakeData = {
-    primary_images: data.data.room.images||[image, image, image, image],
-  };
+
+  if (isLoading) return <HotelDetailsSkeleton />;
+  if (error || !data?.data?.room) return <p>No Hotels Found</p>;
+
+  const room = data.data.room;
+
+  const images = room.images?.length > 0 ? room.images : [defaultImage, defaultImage, defaultImage, defaultImage];
+
   return (
-    <div className={`w-full font-usedFont px-2 bg-[#80808015]`}>
-      <div className="grid justify-center  pb-[100px] ">
-        <Header
-          data={data?.data?.room?.name}
-          setEdit={setEdit}
-          openPageHandeler={openPageHandeler}
-          Room
-        />
-        {Edit ? (
+    <div className="w-full font-usedFont px-2 bg-[#80808015]">
+      <div className="grid justify-center pb-[100px]">
+        <Header data={room.name} setEdit={setEditMode} openPageHandeler={handleBackToRoomList} Room />
+        
+        {editMode ? (
           <RoomEdit data={data} />
         ) : (
-          <div className="bg-white pb-10 sm:w-[99%] mt-[10px] p-2 pr-0  rounded-lg">
+          <div className="bg-white pb-10 sm:w-[99%] mt-[10px] p-2 pr-0 rounded-lg">
             <div className="sm:flex">
               <PrimaryImage_View
-                data={fakeData}
+                data={{ primary_images: images }}
                 DimensionsS="w-[90px] h-[90px]"
-                DimentionsB=" sm:h-[250px] h-[200px]"
+                DimentionsB="sm:h-[250px] h-[200px]"
                 wd="370px"
-                ViewAll={true}
+                ViewAll
               />
-              <div className="sm:w-[320px] w-[370px] ">
+
+              <div className="sm:w-[320px] w-[370px]">
                 <div className="flex justify-between items-center">
-                  <b>{data?.data?.room?.name}</b>
+                  <b className="text-[24px]">{room.name}</b>
                   <div>
-                    {" "}
-                    <p className="mb-0 bg-[#0080005b] rounded-[6px] p-1 text-[#188b18] text-[10px]">
-                      {data?.data?.room?.status}
-                    </p>
-                    <p className="text-[10px] mt-[3px] ml-3 ">
-                      Size:{" "}
-                      <span className="text-[orange]">
-                        {data.data.room.size.value} {data.data.room.size.unit}
-                      </span>
+                    <Active complete={room.status === "Available"?true:false} ActiveName="Available" NotActiveName="Not Available" />
+                    <p className="text-[10px] mt-[3px] ml-3">
+                      Size:
+                      <span className="text-[orange]"> {room.size.value} {room.size.unit}</span>
                     </p>
                   </div>
                 </div>
 
-                <p className="flex flex-nowrap text-[gray]">
-                  {data.data.room.description}
+                <p className="text-[gray]">{room.description}</p>
+
+                <BedTypeView beds={room.bed} />
+
+                <p className="text-[10px] flex items-center gap-1">
+                  <span className="material-symbols-outlined text-[14px]">escalator_warning</span>
+                  Capacity: {room.capacity.adults} adults, {room.capacity.children} children, {room.capacity.maxGuests} max guests
                 </p>
-                <div className="flex mt-[5px] ">
-                  <div className="flex flex-wrap gap-2 mt-[-14px]">
-                    {data?.data?.room?.bed.map((bed) => (
-                      <div className="bg-[#ffa60065] text-[orange] px-[3px] text-[13px] rounded-[3px]">
-                        {bed.count} {bed.type}
-                      </div>
-                    ))}
-                  </div>
-                </div>
 
-               <p className="text-[10px]">
-  capacity: {data.data.room.capacity.adults} adults, {data.data.room.capacity.children} children, {data.data.room.capacity.maxGuests} maxmum Guest 
-</p> 
-
-                <div className="flex justify-between text-[13px] items-end ">
+                <div className="flex justify-between text-[14px] items-end mt-2">
                   <p>
-                    Avalible Room:
-                    <span className="text-[orange]">
-                      {" "}
-                      {data.data.room.available_rooms}
-                    </span>
+                    Available Room:
+                    <span className="text-[orange]"> {room.available_rooms}</span>
                   </p>
                   <p>
-                    Price per night:{" "}
-                    <span className="text-[orange]">
-                      {data.data.room.price_per_night} {data.data.room.currency}
-                    </span>
+                    Price per night:
+                    <span className="text-[orange]"> {room.price_per_night} {room.currency}</span>
                   </p>
                 </div>
               </div>
             </div>
-<div className="grid gap-3">
 
-            <FacilitiesView
-              RoomFacilityName={"Room Bathroom Facilities"}
-              iconName={"bathtub"}
-              room
-              facilities={data.data.room.available_in_your_own_bathroom}
-            />
-            <FacilitiesView
-              RoomFacilityName={"Room Facilities"}
-              iconName={"room_preferences"}
-              room
-              facilities={data.data.room.facilities}
-            />
-            <FacilitiesView
-              RoomFacilityName={"Room view Facilities"}
-              iconName={"visibility"}
-              room
-              facilities={data.data.room.view}
-            />
-            <FacilitiesView
-              RoomFacilityName={"Room Main Facilities"}
-              iconName={"room_preferences"}
-              room
-              facilities={data.data.room.main_facilities}
-            /></div>
+            <div className="grid gap-3 mt-4">
+              {roomFacilitiesConfig.map(({ name, icon, dataKey }) => (
+                <FacilitiesView
+                  key={dataKey}
+                  RoomFacilityName={name}
+                  iconName={icon}
+                  room
+                  facilities={room[dataKey]}
+                />
+              ))}
+            </div>
           </div>
         )}
       </div>

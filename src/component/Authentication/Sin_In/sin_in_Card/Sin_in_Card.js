@@ -93,7 +93,7 @@ let forbedend
       } catch (error) {
         //falied
        
-        console.log("error",error.response.data.message || "An unknown error occurred!");
+        console.log("error",error.response.message || "An unknown error occurred!");
         const retryAt = localStorage.getItem("retryAt");
         errorMessage=error.response.data.message || "An unknown error occurred!"
         setError(errorMessage);

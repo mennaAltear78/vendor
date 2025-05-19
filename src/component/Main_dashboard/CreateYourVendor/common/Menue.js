@@ -25,6 +25,7 @@ function Menu({ value, onChange, placeholder, isSearchable, label, options }) {
           placeholder={placeholder}
           isSearchable={isSearchable}
           isDisabled={edit}  
+        
         />
       </div>
     </div>

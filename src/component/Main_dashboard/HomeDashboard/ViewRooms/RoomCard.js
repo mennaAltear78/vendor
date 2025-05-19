@@ -2,14 +2,16 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import PrimaryImage_View from "../comman/PrimaryImage_View";
 import DotMenu from "../DotMenu";
-import image from "../../../../Assets/Image.svg";
+import defaultImage from "../../../../Assets/Image.svg";
 import AuthContext from "../../../Authentication/Context/auth-context";
+import Active from "../comman/Active";
+import BedTypeView from "../comman/BedTypeView";
 
 const RoomCardInList = ({ data = {},setOpen}) => {
 
 const ctx=useContext(AuthContext)
 const data2 = {
-    primary_images: data.images,
+    primary_images: data.images?.length > 0 ? data.images : [defaultImage, defaultImage, defaultImage, defaultImage],
   };
 
 const handelRoomId=()=>{
@@ -36,12 +38,8 @@ const handelRoomId=()=>{
           </p>
 
           <div className="flex mt-[5px] ">
-            <div className="flex flex-wrap gap-2 mt-[-14px]">
-              {data.bed.map((bed) => (
-                <div className="bg-[#ffa60065] text-[orange] px-[3px] text-[13px] rounded-[3px]">
-                  {bed.type}
-                </div>
-              ))}
+            <div className="flex flex-wrap gap-2">
+   <BedTypeView beds={data.bed}/>
             </div>
           </div>
           <div className="flex items-end h-[80px] ">
@@ -58,22 +56,7 @@ const handelRoomId=()=>{
         <div className="w-full flex justify-end items-center gap-2">
           <DotMenu id={data?.id} />
         </div>
-        <div className="w-full flex justify-end">
-          <div
-            className={`${
-              data.is_completed
-                ? "bg-[#23e62334] text-[green]"
-                : "bg-[#535353b7]"
-            } rounded-md w-[65px]   h-[15px] text-[10px] flex justify-center items-center`}
-          >
-            <div
-              className={`${
-                data.is_completed ? "bg-[green] " : "bg-[#535353b7]"
-              } rounded-full h-2 w-2  mr-[3px] `}
-            />
-            {data.is_completed ? "Active" : "not Active"}
-          </div>
-        </div>
+      <Active complete={data.is_completed} ActiveName={"Active"} NotActiveName={"Not Active"}/>
 
         <div className="flex items-end h-[150px]">
           <div className="mt-[10px] ">

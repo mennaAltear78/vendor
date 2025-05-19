@@ -50,7 +50,8 @@ export const postsApi = createApi({
         url: `/rooms/${id}`,
         method: "GET",
       }),
-      providesTags: () => [{ type: "SpecificRoom" }],
+      providesTags: (result, error, { id }) => [{ type: "SpecificRoom", id }],
+
     }),
     getReviewRoom: builder.query({
       query: ({ id }) => ({
@@ -90,6 +91,82 @@ export const postsApi = createApi({
         }
       },
     }),
+    deleteFacility: builder.mutation({
+      query: ({ id, body }) => ({
+        url: `/hotel/${id}/remove-facility`,
+        method: "DELETE",
+        data: body,
+      }),
+      onQueryStarted: async ({ id }, { dispatch, queryFulfilled }) => {
+        try {
+          await queryFulfilled;
+          dispatch(postsApi.util.invalidateTags([{ type: "SpecificHotel", id }]));
+        } catch (error) {
+          console.error(error);
+        }
+      },
+    }),
+   //Room
+    deleteRoomImage: builder.mutation({
+      query: ({ id, body }) => ({
+        url: `/rooms/${id}/remove-images`,
+        method: "DELETE",
+        data: body,
+      }),
+      onQueryStarted: async ({ id }, { dispatch, queryFulfilled }) => {
+        try {
+          await queryFulfilled;
+          dispatch(postsApi.util.invalidateTags([{ type: "SpecificRoom", id }]));
+        } catch (error) {
+          console.error(error);
+        }
+      },
+    }),
+    deleteViewFacilities: builder.mutation({
+      query: ({ id, body }) => ({
+        url: `/rooms/${id}/remove-views`,
+        method: "DELETE",
+        data: body,
+      }),
+      onQueryStarted: async ({ id }, { dispatch, queryFulfilled }) => {
+        try {
+          await queryFulfilled;
+          dispatch(postsApi.util.invalidateTags([{ type: "SpecificRoom", id }]));
+        } catch (error) {
+          console.error(error);
+        }
+      },
+    }),
+    deleteRoomFacilities: builder.mutation({
+      query: ({ id, body }) => ({
+        url: `/rooms/${id}/remove-facilities`,
+        method: "DELETE",
+        data: body,
+      }),
+      onQueryStarted: async ({ id }, { dispatch, queryFulfilled }) => {
+        try {
+          await queryFulfilled;
+          dispatch(postsApi.util.invalidateTags([{ type: "SpecificRoom", id }]));
+        } catch (error) {
+          console.error(error);
+        }
+      },
+    }),
+    deleteBathRoomFacilities: builder.mutation({
+      query: ({ id, body }) => ({
+        url: `/rooms/${id}/remove-bathroomFacilities`,
+        method: "DELETE",
+        data: body,
+      }),
+      onQueryStarted: async ({ id }, { dispatch, queryFulfilled }) => {
+        try {
+          await queryFulfilled;
+          dispatch(postsApi.util.invalidateTags([{ type: "SpecificRoom", id }]));
+        } catch (error) {
+          console.error(error);
+        }
+      },
+    }),
 
 //Add
     //hotel
@@ -123,7 +200,68 @@ export const postsApi = createApi({
         }
       },
     }),
-
+   //Room
+   addRoomImages: builder.mutation({
+    query: ({ id, body }) => ({
+      url: `/rooms/${id}/upload-images`,
+      method: "POST",
+      data: body,
+    }),
+    onQueryStarted: async ({ id }, { dispatch, queryFulfilled }) => {
+      try {
+        await queryFulfilled;
+        dispatch(postsApi.util.invalidateTags([{ type: "SpecificRoom", id }]));
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  }),
+  
+  addRoomViewFacilities: builder.mutation({
+    query: ({ id, body }) => ({
+      url: `/rooms/${id}/add-views`,
+      method: "PATCH",
+      data: body,
+    }),
+    onQueryStarted: async ({ id }, { dispatch, queryFulfilled }) => {
+      try {
+        await queryFulfilled;
+        dispatch(postsApi.util.invalidateTags([{ type: "SpecificRoom", id }]));
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  }),
+  addRoomFacilities: builder.mutation({
+    query: ({ id, body }) => ({
+      url: `/rooms/${id}/add-facilities`,
+      method: "PATCH",
+      data: body,
+    }),
+    onQueryStarted: async ({ id }, { dispatch, queryFulfilled }) => {
+      try {
+        await queryFulfilled;
+        dispatch(postsApi.util.invalidateTags([{ type: "SpecificRoom", id }]));
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  }),
+  addBathRoomFacilities: builder.mutation({
+    query: ({ id, body }) => ({
+      url: `/rooms/${id}/add-bathroomFacilities`,
+      method: "PATCH",
+      data: body,
+    }),
+    onQueryStarted: async ({ id }, { dispatch, queryFulfilled }) => {
+      try {
+        await queryFulfilled;
+        dispatch(postsApi.util.invalidateTags([{ type: "SpecificRoom", id }]));
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  }),
 //Update
     //hotel
     updatePrimaryImages: builder.mutation({
@@ -187,6 +325,7 @@ export const postsApi = createApi({
       },
     }),
     //Room
+
     updateRoomProperties: builder.mutation({
       query: ({ id, body }) => ({
         url: `/rooms/${id}/update-properties`,
@@ -199,6 +338,21 @@ export const postsApi = createApi({
           dispatch(postsApi.util.invalidateTags([{ type: "SpecificRoom", id }]));
         } catch (error) {
           console.error(error);
+        }
+      },
+    }),
+    updateRoomImages: builder.mutation({
+      query: ({ id, body }) => ({
+        url: `/rooms/${id}/update-images`,
+        method: "PATCH",
+        data: body,
+      }),
+      onQueryStarted: async ({ id }, { dispatch, queryFulfilled }) => {
+        try {
+          await queryFulfilled;
+          dispatch(postsApi.util.invalidateTags([{ type: "SpecificRoom", id }]));
+        } catch (err) {
+          console.error(err);
         }
       },
     }),
@@ -216,13 +370,23 @@ export const {
 
   useDeleteHotelMutation,
   useDeleteCoverImageMutation,
+  useDeleteRoomImageMutation,
+  useDeleteFacilityMutation,
+  useDeleteViewFacilitiesMutation,
+  useDeleteBathRoomFacilitiesMutation,
+  useDeleteRoomFacilitiesMutation,
 
   useAddCoverImagesMutation,
   useAddFacilitieMutation,
+  useAddRoomImagesMutation,
+  useAddRoomViewFacilitiesMutation,
+  useAddRoomFacilitiesMutation,
+  useAddBathRoomFacilitiesMutation,
 
   useUpdatePrimaryImagesMutation,
   useUpdateCoverImagesMutation,
   useUpdatePropertiesMutation,
   useUpdatePoliciesMutation,
-  useUpdateRoomPropertiesMutation
+  useUpdateRoomPropertiesMutation,
+  useUpdateRoomImagesMutation
 } = postsApi;

@@ -3,7 +3,6 @@ import Scroller from "../../HomeDashboard/comman/Scroller";
 import download from "../../../../Assets/solar_upload-bold.png";
 import ImageCard from "./ImageCard";
 import Button from "../../../Authentication/regular_components/Button";
-import { useAddCoverImagesMutation } from "../../../../services/PostApi";
 import SpinnerLoading from "../../../Authentication/regular_components/SpinnerLoading";
 import { v4 as uuidv4 } from "uuid";
 
@@ -13,16 +12,23 @@ const ImageViewSection = ({
   Note,
   primary,
   spaceBetween,
-  idHotel,
+  id,
   NumberOfImgToAdd,
+  isLoading,
+  error,
+  UpdateFunction, cover,
+  DeleteFunction,
+  DeleteLoading,
+  errDelete,
+  AddFunction,
+  AddIsLoading,
+  AddError,
 }) => {
   const fileInputRef = useRef(null);
 
   const [edit, SetEdit] = useState(false);
   const [Images, SetImages] = useState([]);
   const [AddedImages, SetAddImages] = useState([]);
-
-  const [AddCoverImage, { isLoading, error }] = useAddCoverImagesMutation();
 
   // Initialize images when ImagesData changes
   useEffect(() => {
@@ -49,11 +55,16 @@ const ImageViewSection = ({
 
   const AddImagesHanadeler = () => {
     const formData = new FormData();
-    AddedImages.forEach((file) => {
-      formData.append("cover_images", file);
-    });
-
-    AddCoverImage({ id: idHotel, body: formData })
+    if (primary || cover) {
+      AddedImages.forEach((file) => {
+        formData.append("cover_images", file);
+      });
+    } else {
+      AddedImages.forEach((file) => {
+        formData.append("images", file);
+      });
+    }
+    AddFunction({ id, body: formData })
       .unwrap()
       .then((response) => {
         console.log("AddCoverImage response:", response);
@@ -61,10 +72,9 @@ const ImageViewSection = ({
       })
       .catch((err) => console.error("AddCoverImage error:", err));
   };
-
-  const removeImageHandler = (id) => {
+  const removeImageHandler = (idImg) => {
     SetImages((prevImages) => {
-      const filteredImages = prevImages.filter((img) => img.id !== id);
+      const filteredImages = prevImages.filter((img) => img.id !== idImg);
       return filteredImages;
     });
   };
@@ -94,14 +104,21 @@ const ImageViewSection = ({
         spaceBetween={spaceBetween}
         numberCardShown={4}
         items={Images.map((img) => ({
-          idHotel: idHotel,
+          id,
           index: img.originalIndex, // Use the original index for API operations
           img: img.image,
-          id: img.id, // Use the unique ID from Images state
+          idImg: img.id, // Use the unique ID from Images state
           RemoveHandler: removeImageHandler, // Pass the remove handler
           edit: edit,
           primary: primary,
           NumberOfImgToAdd: NumberOfImgToAdd,
+          isLoading,
+          error,
+          UpdateFunction,
+          cover,
+          DeleteFunction,
+          DeleteLoading,
+          errDelete
         }))}
         Component={ImageCard}
         hightdiv="h-[150px]"
@@ -125,13 +142,13 @@ const ImageViewSection = ({
             />
           </div>
 
-          {error && (
+          {AddError && (
             <div className="text-red-500 text-sm">
               {error?.data?.message || "Failed to update property"}
             </div>
           )}
           <div className="flex justify-end mb-[10px]  ">
-            {isLoading ? (
+            {AddIsLoading ? (
               <SpinnerLoading dimentians="h-[30px] ml-[100px] text-[blue]" />
             ) : primary === false || AddedImages.length === 0 ? null : (
               <Button

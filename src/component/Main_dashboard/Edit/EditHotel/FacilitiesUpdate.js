@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import appData from "../../../../config/appData";
 import Button from "../../../Authentication/regular_components/Button";
-import { useAddFacilitieMutation } from "../../../../services/PostApi";
+import { useAddFacilitieMutation, useDeleteFacilityMutation } from "../../../../services/PostApi";
 import SpinnerLoading from "../../../Authentication/regular_components/SpinnerLoading";
 
 const FacilitiesUpdate = ({
@@ -10,55 +10,164 @@ const FacilitiesUpdate = ({
   title,
   labelKey = "label",
   valueKey = "value",
+  Room,
+  id,
+  AddFunction,
+  DeleteFunction,
+  isLoading = false,
+  error = false,
+  bathroom_facilities,
+  view,
+  facilitie
 }) => {
+console.log(id ,"data");
+
   const [selected, setSelected] = useState([]);
-  const [oldDataSelected,setoldDataSelected]=useState([])
+  const [oldDataSelected, setoldDataSelected] = useState([])
   const [newSelection, setNewSlection] = useState([]);
-  const [AddFacilitie, { isLoading, error }] = useAddFacilitieMutation();
+
   // Synchronize `selected` state with `data.facilities` whenever `data` changes
   useEffect(() => {
-    if (data?.facilities) {
-      setSelected(data?.facilities.map((item) => item.facility));
-      setoldDataSelected(data?.facilities.map((item) => item.facility))
+    if (data) {
+      setSelected(Room ? data : data.map((item) => item.facility));
+      setoldDataSelected(Room ? data : data.map((item) => item.facility))
     }
   }, [data]);
+console.log(selected,'selected');
 
-  const id = data._id;
+
   const handleSelection = (item) => {
 
-     let  newSelected = oldDataSelected.includes(item)
+    let newSelected = oldDataSelected.includes(item)
       ? newSelection.filter((itemm) => itemm !== item)
-      : ( [...newSelection,item]);
+      : ([...newSelection, item]);
 
-     let Selected = selected.includes(item)
+    //remove duplicate items
+    let Selected = selected.includes(item)
       ? selected.filter((itemm) => itemm !== item)
       : ([...selected, item]);
 
-  
+    console.log(selected, "selected");
+    console.log(oldDataSelected, "new");
+
     setSelected(Selected);
     setNewSlection(newSelected)
-   
-  
+
+
   };
   // console.log("selected" ,selected);
   const handelingFacilities = () => {
+
+    console.log("data before Add All Element Selected", selected);
+
     const facilities = [];
     selected.forEach((item) => {
-      facilities.push({
+     Room ? facilities.push(item) : facilities.push({
         facility: { en: item },
         additional_cost: false,
       });
     });
-    // console.log({ ...facilities });
-    const newSelectionn = [...new Set(newSelection)]; //remove duplicate values
-    // console.log("new selected",newSelectionn);
-    AddFacilitie({
-      id: id,
-      body: { facility: { en: "24-Hour Front Desk" }, additional_cost: false },
+  
+
+    //remove duplicate values
+    const newSelectionn = [...new Set(newSelection)]; 
+
+
+    console.log("new selected", newSelectionn);
+    let newAddFacilities = []
+
+    //new selection on formate
+    newSelectionn.forEach((item) => {
+      !Room ? newAddFacilities.push({
+        facility: { en: item },
+        additional_cost: false,
+      }) : newAddFacilities.push(item)
     });
+
+    //remove
+    const removed = oldDataSelected.filter(item => !selected.includes(item));
+
+    //remove selected formate
+    let deletedFacility = []
+    removed.forEach((item) => {
+      !Room ? deletedFacility.push({
+        facility: { en: item },
+      }) : deletedFacility.push(item)
+    });
+
+    console.log({ ...{ ...deletedFacility[0] } }, "deleted");
+    //send to backend
+    // Hotel
+    //remove
+    if(!Room){
+         if (removed.length != 0) {
+      DeleteFunction({ id: id, body: { ...deletedFacility[0] } })
+      deletedFacility = []
+    }
+    console.log({ ...deletedFacility[0] });
+    console.log("data after Add", newAddFacilities);
+    //Add 
+    if (newSelection.length != 0) {
+      AddFunction({
+        id: id,
+        body: { facilities: newAddFacilities },
+      });
+      newAddFacilities = []
+      setNewSlection([])
+      
+    } 
+   return }else if(Room){
+   //Room
+  //remove
+  let finalDeleteFacilities={}
+  let finalAddFacilities={}
+  // console.log({facilities:{en:deletedFacility}},"room");
+  // console.log({view:{en:deletedFacility}},"room");
+  // console.log({bathroom_facilities:{en:deletedFacility}},"room");
+
+  if (facilitie) {
+    finalAddFacilities = { facilities: { en: deletedFacility } };
+    finalDeleteFacilities = { facilities: { en: deletedFacility } };
+  } else if (view) {
+    finalAddFacilities = { view: { en: deletedFacility } };
+    finalDeleteFacilities = { view: { en: deletedFacility } };
+  } else if (bathroom_facilities) {
+    finalAddFacilities = { bathroom_facilities: { en: deletedFacility } };
+    finalDeleteFacilities = { bathroom_facilities: { en: deletedFacility } };
+  }
+  
+ console.log("final",finalDeleteFacilities,finalAddFacilities);
+ 
+  if (removed.length != 0) {
+    DeleteFunction({ id: id, body:finalDeleteFacilities})
+    deletedFacility = []
+  }
+  //Add
+ 
+  console.log({ view:{en:newAddFacilities } } ,"room");
+  console.log({facilities:{en:newAddFacilities}} ,"room");
+  console.log({bathroom_facilities:{en:newAddFacilities}} ,"room");
+
+  
+  if (newSelection.length != 0) {
+    AddFunction({
+      id: id,
+      body:finalAddFacilities,
+    });
+    newAddFacilities = []
+    setNewSlection([])
+    
+  } 
+    }
+
+   
+
+
+    // console.log({ ...deletedFacility[0] });
+    // console.log("data after Add", newAddFacilities);
   };
   // console.log(selected);
-  
+
   return (
     <div className="mt-[10px]">
       <b className="text-[20px]">{title}</b>
@@ -71,7 +180,8 @@ const FacilitiesUpdate = ({
                 name={item[labelKey]}
                 value={item[labelKey]}
                 checked={selected.includes(item[labelKey])}
-                onChange={() => {handleSelection(item[labelKey])
+                onChange={() => {
+                  handleSelection(item[labelKey])
 
 
                 }}

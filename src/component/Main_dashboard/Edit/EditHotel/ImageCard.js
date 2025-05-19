@@ -1,9 +1,4 @@
 import { useState, useEffect } from "react";
-import {
-  useDeleteCoverImageMutation,
-  useUpdateCoverImagesMutation,
-  useUpdatePrimaryImagesMutation,
-} from "../../../../services/PostApi";
 import SpinnerLoading from "../../../Authentication/regular_components/SpinnerLoading";
 
 const ImageCard = ({
@@ -12,58 +7,46 @@ const ImageCard = ({
   id,
   edit,
   primary,
+  cover,
   index,
-  idHotel,
+  idImg,
   NumberOfImgToAdd,
+  Room,
+  isloading,
+  error,
+  UpdateFunction,
+  DeleteFunction,
+  DeleteLoading,
+  errDelete
 }) => {
   const [file, setFile] = useState(null);
   const [image, setImage] = useState(img);
   const [isDeleting, setIsDeleting] = useState(false);
 
-  const [updatePrimaryImage, { isLoading: primaryLoading, error }] =
-    useUpdatePrimaryImagesMutation();
-  const [updateCoverImage, { isLoading: CoverLoading, error: CoverError }] =
-    useUpdateCoverImagesMutation();
-  const [
-    DeleteCoverImage,
-    { isLoading: DeleteCoverLoading, error: DeleteCoverError },
-  ] = useDeleteCoverImageMutation();
-
-  // updatePrimary
-  const updatePrimaryImageHandler = () => {
+  const updateImagesHandler = () => {
     if (!file) return;
+
     const formData = new FormData();
     formData.append("imageIndex", Number(index));
-    formData.append("primary_image", file);
-    updatePrimaryImage({ id: idHotel, body: formData });
+
+    if (primary) {
+      formData.append("primary_image", file);
+    } else if (cover) {
+      formData.append("cover_images", file);
+    } else {
+      formData.append("images", file);
+    }
+
+    UpdateFunction({ id, body: formData });
     setFile(null);
   };
-  
-  // updateCoverImages
-  const updateCoverImageHandler = () => {
-    if (!file) return;
-    const formData = new FormData();
-    formData.append("imageIndex", index);
-    formData.append("cover_images", file);
-    updateCoverImage({ id: idHotel, body: formData });
-    setFile(null);
-  };
-  
-  // FIXED: Changed to call the UI update and API
-  const DeleteCoverImageHandler = () => {
+
+  const DeleteImageHandler = () => {
     if (isDeleting) return; // Prevent multiple clicks
     setIsDeleting(true);
-    
-    console.log(`Deleting image with id=${id}, index=${index}`);
-    
-    // Prepare the API payload
     const DeletedImages = { imagesIndexes: [index] };
-    
-    // First call the local state update (UI)
-    RemoveHandler(id);
-    
-    // Then call the API
-    DeleteCoverImage({ id: idHotel, body: DeletedImages })
+    RemoveHandler(idImg);
+    DeleteFunction({ id, body: DeletedImages })
       .unwrap()
       .then((response) => {
         console.log("DeleteCoverImage API success:", response);
@@ -102,13 +85,13 @@ const ImageCard = ({
         {edit && (
           <div className="flex h-[150px]">
             {!primary &&
-              (DeleteCoverLoading || isDeleting ? (
+              (DeleteLoading || isDeleting ? (
                 <SpinnerLoading dimentians="h-4 w-4 text-[red]" />
               ) : NumberOfImgToAdd >= 195 ? null : (
                 <div
-                  onClick={DeleteCoverImageHandler}
+                  onClick={DeleteImageHandler}
                   className="cursor-pointer"
-                  data-id={id}
+                  data-id={idImg}
                   data-index={index}
                 >
                   <svg
@@ -123,7 +106,7 @@ const ImageCard = ({
               ))}
 
             <div className="flex gap-1 items-end p-1 ">
-              <label htmlFor={`file-input-${id}`} className="cursor-pointer">
+              <label htmlFor={`file-input-${idImg}`} className="cursor-pointer">
                 <span className="material-symbols-outlined text-[20px] w-4 flex items-center justify-center h-4 p-1 rounded-lg bg-[#0000ff2a] text-[blue]">
                   upload
                 </span>
@@ -132,18 +115,18 @@ const ImageCard = ({
                 type="file"
                 onChange={handleFileChange}
                 className="hidden"
-                id={`file-input-${id}`}
+                id={`file-input-${idImg}`}
               />
               {file ? (
-                primaryLoading || CoverLoading ? (
-                  <SpinnerLoading dimentians="h-4 w-4 text-blue-600" />
+                isloading ? (
+                  // <SpinnerLoading dimentians="h-4 w-4 text-blue-600" />
+                  ''
                 ) : (
                   <span
                     className="material-symbols-outlined text-[10px] w-4 flex items-center justify-center h-4 p-1 rounded-lg bg-[#0000ff2a] text-[blue] cursor-pointer"
-                    onClick={
-                      primary
-                        ? updatePrimaryImageHandler
-                        : updateCoverImageHandler
+                    onClick={() =>
+
+                      updateImagesHandler()
                     }
                   >
                     <span className="material-symbols-outlined">sync</span>
