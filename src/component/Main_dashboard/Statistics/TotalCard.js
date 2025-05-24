@@ -4,9 +4,9 @@ function TotalCard({bgImageCss,IconCss,iconName,precent}) {
   return (
     <div className="w-[229px] h-[80px] mb-[10px] p-2 pt-0 bg-white rounded-lg font-usedFont ">
       <div className="flex items-center ">
-        <div className={` ${bgImageCss} mb-[-10px] rounded-full w-[40px] h-[40px] flex items-center justify-center `}> 
+        <div className={`${bgImageCss} mb-[-10px] rounded-full w-[40px] h-[40px] flex items-center justify-center `}> 
             <span class={`material-symbols-outlined ${IconCss} `}>{iconName}</span></div>
-        <div>
+        <div className="ml-2"> 
           <p className="text-[gray] mb-0 ">Total Booking</p>
           <b>802</b>
         </div>

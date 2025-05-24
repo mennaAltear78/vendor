@@ -1,15 +1,14 @@
 import React from "react";
 import closeImge from "../../../../Assets/icons/Frame 1707481067.png";
 import Button from "../../../Authentication/regular_components/Button";
-import { Navigate, useNavigate } from "react-router-dom";
-const Header = ({ data, setEdit, Edit, expand, setExpand, id,Room }) => {
+import { useNavigate } from "react-router-dom";
+const Header = ({ data, setEdit, Edit, setExpand, id,Room  }) => {
   const navigate = useNavigate();
   return (
     <div className="bg-white rounded-b-lg p-4 sm:h-[60px] font-usedFont place-content-center sm:w-[700px] w-[360px]  flex shadow-md ">
       <div className="w-full  ">
         <h1 className="font-bold mt-[4px]">{data}</h1>
       </div>
-
       <div className="flex w-full justify-end pr-3 ml-[-60px] gap-3">
         {!Edit ? (
           <Button

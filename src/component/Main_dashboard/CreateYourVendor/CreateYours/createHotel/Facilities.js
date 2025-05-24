@@ -129,7 +129,7 @@ function Facilities() {
         onSubmit={onSumbitHandeler}
         className="w-[100vw] h-screen ml-[100px] sm:ml-[150px] mb-[700px]"
       >
-        <div style={{ width: "100vw" }}>
+        <div  className="w-[100vw]">
           <CreateHotelWrapper clickHandeler={clickPrivHandeler}>
             <div className={classes.mainContaint}>
               <ProgressSteps pageNumber={4} count={7} circle={true} />
@@ -139,7 +139,7 @@ function Facilities() {
               />
             </div>
             <div className="font-[Poppins] p-[20px] w-[430px] ml-[10px] border-2 border-solid border-gray-200 rounded-[15px] mt-[14px] sm:w-[450px]">
-              <b style={{ fontSize: "20px" }}>Add Facilities </b>
+              <b className="text-[20px]">Add Facilities </b>
 
               <div>
                 <SquareRadio

@@ -32,9 +32,9 @@ const Scroller = ({ items=[], Component ,hightdiv ,numberCardShown,spaceBetween=
         }} className="py-4">
    
         {items.map((item, index) => (
-          <SwiperSlide key={items.length}>
+          <SwiperSlide key={`${items.length+index}`}>
             <div className={`min-w-[350px] ${hightdiv} bg-gradient-to-tr shadow-md  bg-[white] text-[black] rounded-xl flex text-lg font-semibold transition-transform hover:scale-105`}>
-              <Component {...item} />
+              <Component  {...item} />
             </div>
           </SwiperSlide>
         ))}

@@ -87,9 +87,9 @@ function SquareRadio({
   return (
     <div>
       <div className={style.square}>
-        {options.map((option) => (
+        {options.map((option, index) => (
           <>
-            <div className="flex mb-[-20px]">
+            <div className="flex mb-[-20px]" key={`${option.value}-${index}`}>
               <label
                 key={option.value}
                 className={

@@ -9,10 +9,9 @@ import TimePaker from "./TimePaker";
 import appData from "../../../../config/appData";
 import Menu from "../../CreateYourVendor/common/Menue";
 
-
 const PoliciesEdit = ({ data }) => {
-  console.log(data);
-  
+  // console.log(data);
+
   const [fee, setFee] = useState(data.policies.cancellation_allowed);
   const [PoliciesToEdit, setPoliciesToEdit] = useState({});
   const [updatePolicies, { isLoading, error }] = useUpdatePoliciesMutation();
@@ -127,7 +126,7 @@ const PoliciesEdit = ({ data }) => {
         ),
       };
 
-      console.log(payload);
+      // console.log(payload);
 
       await updatePolicies({
         id: id,

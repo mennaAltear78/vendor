@@ -5,22 +5,29 @@ import PaginationFooter from "../PaginationFooter";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetHotelRoomQuery } from "../../../../services/PostApi";
 import RoomsContainer from "./RoomsContainer";
+import { VendorData } from "../comman/Data";
 
 const Rooms_List = () => {
   const [searchKeywords, setSearchKeywords] = useState("");
+  const [sortValue,SetsortValue]=useState({value:''})
+  const [FilterValue,SetFilterValue]=useState({value:''})
+  const [currentPage, setCurrentPage] = useState(1);
+
   const navigate = useNavigate();
   const { id: paramId } = useParams();
 
   const { data, error, isLoading } = useGetHotelRoomQuery({
     id: paramId,
-    // page: currentPage,
+    page: currentPage,
     limit: 10,
     keyword: searchKeywords,
+    sort: sortValue.value,
+    typeEn:FilterValue.value?FilterValue.value:null
   });
 
 
   const AddRoomHandeler = () => {
-    navigate("/RoomDetail");
+    navigate("/CreateRoom");
   };
   return (
     <MainDashBoardWrapper>
@@ -34,11 +41,24 @@ const Rooms_List = () => {
             PageName="Rooms"
             addName={"Add Room"}
             addFunction={AddRoomHandeler}
+            optionFilter={VendorData.optionFilterRoom} 
+            optionSort={VendorData.optionSort}
+            sortValueHandeler={(e)=>{console.log(e,":)")
+              SetsortValue(e)
+            }}
+            filterValueHandeler={(e)=>{console.log(e,":)")
+              SetFilterValue(e)
+            }}
           />
           <RoomsContainer isLoading={isLoading} error={error} data={data?.data.rooms||[]}/>
         </div>
 
-        {data?.data.rooms.length < 10 ? null : <PaginationFooter />}
+           <PaginationFooter
+            data={data}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            numberOfPages={data?.pagination?.numberOfPages || 1}
+          />
       </div>
     </MainDashBoardWrapper>
   );

@@ -17,12 +17,15 @@ function MainDashBoardWrapper(props) {
       onHoverHandeler={onHoverHandeler}
       onHoverNoHandeler={onHoverNoHandeler}
     />
-    <div style={{display:"flex"}}>
+    <div >
+      <div    className='sm:flex hidden '>
+
         <SideBar
+  
       hover={hover}
       onHoverHandeler={onHoverHandeler}
       onHoverNoHandeler={onHoverNoHandeler}
-    />
+    /></div>
     {props.children}
     </div>   
   </div>

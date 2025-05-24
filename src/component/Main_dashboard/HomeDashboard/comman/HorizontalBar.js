@@ -30,7 +30,7 @@ export default function HorizontalBar({ barLabel, StatPage }) {
           />
         </div>
         {StatPage ? (
-          <span className="text-[13px] ml-[2px] ">{rating}</span>
+          <span className="text-[13px] ml-[6px] ">{rating}</span>
         ) : null}
       </div>
     </div>

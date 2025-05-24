@@ -7,7 +7,7 @@ function RecentReview() {
     <div className="flex justify-between items-center cursor-pointer">
          <p>Recent Reviews</p>  
          <div className="flex ">
-          <b className="text-[blue] mr-[3px]">show All</b>
+          <b className="text-[blue] mr-[3px]">show all</b>
           <div className="w-5 h-5 bg-[#8080801e] rounded-full flex items-center">
             <span class="material-symbols-outlined text-[blue] text-[15px] ml-[3px]">
               chevron_right

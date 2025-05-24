@@ -14,7 +14,15 @@ const RoomView = ({ id }) => {
   }
 
   if (error) {
-    return <p>No Room Found</p>;
+    return(
+    <div>
+    <h2>Rooms </h2>
+      <div  className="flex flex-col items-center justify-center">  
+    <button onClick={()=>navigate("/CreateRoom")} className="bg-[#2F32DE] mt-5 mb-5 w-[210px] place-content-center pt-[7px] cursor-pointer flex h-[37px] text-sm items-center pb-[7px]  text-white font-bold rounded-[10px] gap-3 outline-none border-none">
+        
+        <div className="mt-[2px]"><span class="material-symbols-outlined" >add</span></div>  
+        Create New Room
+        </button></div> </div>)
   }
   return (
     <div className="mt-3  rounded-lg font-usedFont  sm:w-[730px] w-[360px]  ">

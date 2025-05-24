@@ -79,7 +79,7 @@ const handleImageUpload = async (e) => {
       );
       console.log(response.data);
       
-      ctx.setHotelImageDone((prevSteps) => [...prevSteps, 3]);
+      ctx.setHotelImageDone((prevSteps) => [...prevSteps, 2]);
       SetPop_up(true);
     } catch (error) {
       console.log("Upload error:", error.response?.data?.message || "An error occurred.");
@@ -98,14 +98,14 @@ const handleImageUpload = async (e) => {
         ImagesFormData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
-      console.log("roomid",ctx?.RoomId);
+      // console.log("roomid",ctx?.RoomId);
       
-      console.log('data',response?.data);
+      // console.log('data',response?.data);
    
-      ctx.setHotelImageDone((prevSteps) => [...prevSteps, 5]);
+      ctx.setHotelImageDone((prevSteps) => [...prevSteps, 4]);
       SetPop_up(true);
     } catch (error) {
-      console.log("Upload error:", error.response?.data?.message || "An error occurred.");
+     // console.log("Upload error:", error.response?.data?.message || "An error occurred.");
       setError(`Failed to upload images. Please try again. ${error.response?.data?.message }`);
     }
   }

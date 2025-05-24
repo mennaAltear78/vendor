@@ -11,19 +11,19 @@ const ImageCard = ({
   index,
   idImg,
   NumberOfImgToAdd,
-  Room,
-  isloading,
-  error,
   UpdateFunction,
   DeleteFunction,
   DeleteLoading,
-  errDelete
+  DeleteError,
+  UpdateLoading,
+  UpdateError,
 }) => {
+  const anyError = DeleteError || UpdateError;
   const [file, setFile] = useState(null);
   const [image, setImage] = useState(img);
   const [isDeleting, setIsDeleting] = useState(false);
 
-  const updateImagesHandler = () => {
+  const updateImagesHandler = async () => {
     if (!file) return;
 
     const formData = new FormData();
@@ -37,8 +37,8 @@ const ImageCard = ({
       formData.append("images", file);
     }
 
-    UpdateFunction({ id, body: formData });
-    setFile(null);
+    await UpdateFunction({ id, body: formData });
+    await setFile(null);
   };
 
   const DeleteImageHandler = () => {
@@ -55,10 +55,12 @@ const ImageCard = ({
         console.error("DeleteCoverImage API error:", err);
       })
       .finally(() => {
-        setIsDeleting(false);
+        setTimeout(() => {
+          setIsDeleting(false);
+        }, 1000);
       });
   };
-  
+
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     if (selectedFile instanceof File) {
@@ -73,7 +75,7 @@ const ImageCard = ({
 
   useEffect(() => {
     return () => {
-      if (image && typeof image === 'string' && image.startsWith("blob:")) {
+      if (image && typeof image === "string" && image.startsWith("blob:")) {
         URL.revokeObjectURL(image);
       }
     };
@@ -85,7 +87,7 @@ const ImageCard = ({
         {edit && (
           <div className="flex h-[150px]">
             {!primary &&
-              (DeleteLoading || isDeleting ? (
+              (isDeleting ? (
                 <SpinnerLoading dimentians="h-4 w-4 text-[red]" />
               ) : NumberOfImgToAdd >= 195 ? null : (
                 <div
@@ -117,17 +119,14 @@ const ImageCard = ({
                 className="hidden"
                 id={`file-input-${idImg}`}
               />
+
               {file ? (
-                isloading ? (
-                  // <SpinnerLoading dimentians="h-4 w-4 text-blue-600" />
-                  ''
+                UpdateLoading ? (
+                  <SpinnerLoading dimentians="h-4 w-4 text-blue-600" />
                 ) : (
                   <span
                     className="material-symbols-outlined text-[10px] w-4 flex items-center justify-center h-4 p-1 rounded-lg bg-[#0000ff2a] text-[blue] cursor-pointer"
-                    onClick={() =>
-
-                      updateImagesHandler()
-                    }
+                    onClick={updateImagesHandler}
                   >
                     <span className="material-symbols-outlined">sync</span>
                   </span>
@@ -138,7 +137,22 @@ const ImageCard = ({
         )}
 
         <div className="overflow-hidden rounded-lg">
+          {file ? (
+            DeleteLoading || UpdateLoading ? (
+              <SpinnerLoading dimentians="h-4 w-4 text-blue-600" />
+            ) : (
+              <img
+                id={`file-input-${idImg}`}
+                src={image}
+                width="150px"
+                height="150px"
+                className="h-full object-cover"
+                alt="Image"
+              />
+            )
+          ) : null}
           <img
+            id={`file-input-${idImg}`}
             src={image}
             width="150px"
             height="150px"
@@ -147,11 +161,11 @@ const ImageCard = ({
           />
         </div>
       </div>
-      {error && (
+      {anyError ? (
         <div className="text-red-500 text-sm">
-          Error: {error?.data?.message || "Failed to update image"}
+          Error: {anyError?.data?.message || "Failed to update image"}
         </div>
-      )}
+      ) : null}
     </div>
   );
 };

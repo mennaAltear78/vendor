@@ -14,16 +14,19 @@ const ImageViewSection = ({
   spaceBetween,
   id,
   NumberOfImgToAdd,
-  isLoading,
   error,
-  UpdateFunction, cover,
+  UpdateFunction,
+  cover,
   DeleteFunction,
-  DeleteLoading,
-  errDelete,
   AddFunction,
-  AddIsLoading,
+  DeleteLoading,
+  DeleteError,
+  AddLoading,
   AddError,
+  UpdateLoading,
+  UpdateError,
 }) => {
+  {console.log(UpdateLoading,AddLoading,DeleteLoading,"updateeeeeeeeeeeeee")}
   const fileInputRef = useRef(null);
 
   const [edit, SetEdit] = useState(false);
@@ -34,7 +37,7 @@ const ImageViewSection = ({
   useEffect(() => {
     if (ImagesData) {
       const initializedImages = ImagesData.map((image, index) => ({
-        id: uuidv4(), // Generate unique ID
+        idImg: uuidv4(), // Generate unique ID
         image,
         originalIndex: index, // Store original index
       }));
@@ -53,7 +56,7 @@ const ImageViewSection = ({
     }
   };
 
-  const AddImagesHanadeler = () => {
+  const AddImagesHanadeler =() => {
     const formData = new FormData();
     if (primary || cover) {
       AddedImages.forEach((file) => {
@@ -64,17 +67,21 @@ const ImageViewSection = ({
         formData.append("images", file);
       });
     }
-    AddFunction({ id, body: formData })
+    console.log("Images After send back end");
+    
+ AddFunction({ id, body: formData })
+
       .unwrap()
       .then((response) => {
         console.log("AddCoverImage response:", response);
         SetAddImages([]); // Clear AddedImages after successful upload
+         SetImages([])
       })
       .catch((err) => console.error("AddCoverImage error:", err));
   };
   const removeImageHandler = (idImg) => {
     SetImages((prevImages) => {
-      const filteredImages = prevImages.filter((img) => img.id !== idImg);
+      const filteredImages = prevImages.filter((img) => img.idImg !== idImg);
       return filteredImages;
     });
   };
@@ -107,18 +114,18 @@ const ImageViewSection = ({
           id,
           index: img.originalIndex, // Use the original index for API operations
           img: img.image,
-          idImg: img.id, // Use the unique ID from Images state
+          idImg: img.idImg, // Use the unique ID from Images state
           RemoveHandler: removeImageHandler, // Pass the remove handler
           edit: edit,
           primary: primary,
           NumberOfImgToAdd: NumberOfImgToAdd,
-          isLoading,
-          error,
           UpdateFunction,
           cover,
           DeleteFunction,
           DeleteLoading,
-          errDelete
+          DeleteError,
+          UpdateLoading,
+          UpdateError,
         }))}
         Component={ImageCard}
         hightdiv="h-[150px]"
@@ -148,7 +155,7 @@ const ImageViewSection = ({
             </div>
           )}
           <div className="flex justify-end mb-[10px]  ">
-            {AddIsLoading ? (
+            {AddLoading ? (
               <SpinnerLoading dimentians="h-[30px] ml-[100px] text-[blue]" />
             ) : primary === false || AddedImages.length === 0 ? null : (
               <Button

@@ -18,6 +18,7 @@
     "framer-motion": "^12.9.2",
     "google-libphonenumber": "^3.2.40",
     "leaflet": "^1.9.4",
+    "lucide-react": "^0.511.0",
     "react": "^18.2.0",
     "react-apexcharts": "^1.7.0",
     "react-chartjs-2": "^5.3.0",

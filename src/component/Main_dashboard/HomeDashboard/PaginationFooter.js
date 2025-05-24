@@ -1,61 +1,77 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
-function PaginationFooter({ data, currentPage, setCurrentPage }) {
-  const [indexUpdate, setIndexUPdate] = useState(0);
+function PaginationFooter({ numberOfPages, currentPage, setCurrentPage }) {
+  const [windowStart, setWindowStart] = useState(0);
+  useEffect(() => {
+    if (currentPage > windowStart + 10) {
+      setWindowStart(Math.floor((currentPage - 1) / 10) * 10);
+    } else if (currentPage <= windowStart) {
+      setWindowStart(Math.floor((currentPage - 1) / 10) * 10);
+    }
+  }, [currentPage, windowStart]);
 
-  const dataHotelPages = data?.pagination?.currentPage;
-  const numberOfPages = data?.pagination?.numberOfPages;
+  const pageButtons = Array.from(
+    { length: Math.min(10, numberOfPages - windowStart) },
+    (_, index) => index + 1 + windowStart
+  );
+console.log(pageButtons,"pageButtons");
 
-  const nextPage = () => {
-    console.log(currentPage);
-    if (dataHotelPages >= currentPage) {
-      setIndexUPdate((prev) => prev + 10);
+  const handleNextPage = () => {
+    if (currentPage < numberOfPages) {
+      setCurrentPage(currentPage + 1);
     }
   };
 
-  const prevPage = () => {
-    if (indexUpdate >= 10) {
-      setIndexUPdate((prev) => prev - 10);
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
     }
-  };
-
-  // Function to handle click on a specific page number
-  const goToPage = (pageNumber) => {
-    setCurrentPage(pageNumber);
   };
 
   return (
-    <div className="display flex justify-between p-10 py-3 items-center ml-[120px] mr-[50px]">
+    <div className="flex justify-between  w-full items-center py-3 sm:px-10 sm:ml-[120px] mr-[10px]  rounded-lg ">
       <button
-        onClick={prevPage}
-        disabled={currentPage === 10}
-        className="bg-[#0000ffc4] border-none text-white rounded-lg hover:bg-[#80808085] h-[40px] cursor-pointer disabled:bg-gray disabled:cursor-not-allowed"
+        onClick={handlePrevPage}
+        disabled={currentPage === 1}
+        className="flex items-center ml-10 sm:ml-0  border-solid p-0 border-[#80808049] px-4 py-2 sm:text-sm font-medium text-white bg-[#0000ffc4] rounded-lg
+                  hover:bg-[#0000ffb0] transition-colors duration-200 ease-in-out
+                  disabled:bg-gray-400 disabled:cursor-not-allowed"
       >
+        <ChevronLeft className="w-4 h-4 mr-2" />
         Previous
       </button>
 
-      <div>
-        {Array.from({ length: 10 }, (_, index) => (
+      <div className="hidden sm:flex space-x-1">
+        {pageButtons.map((page) => (
           <button
-            key={index + 1}
-            onClick={() => goToPage(indexUpdate + index)}
-            className={`${
-              currentPage === indexUpdate + index
-                ? "bg-[blue]"
-                : "bg-[#80808062]"
-            } text-white  border-[1px] border-none m-1 rounded-[5px]  `}
+            key={page}
+            onClick={() => setCurrentPage(page)}
+            className={`min-w-[40px] h-[40px] px-3 py-2 text-sm border-solid border-[#80808049] font-medium rounded-lg transition-colors duration-200
+                      ${
+                        currentPage === page
+                          ? "bg-[#0000ffc4] text-white"
+                          : "bg-[#d1c8c817] text-[#5a5959] hover:bg-[#8080808a]"
+                      }`}
           >
-            {index + indexUpdate + 1}
+            {page}
           </button>
         ))}
       </div>
 
+      <span className="sm:hidden sm:text-sm text-gray-700">
+        Page {currentPage} of {numberOfPages}
+      </span>
+
       <button
-        onClick={nextPage}
+        onClick={handleNextPage}
         disabled={currentPage >= numberOfPages}
-        className="bg-[#0000ffc4] border-none text-white rounded-lg hover:bg-[#80808085] h-[40px] cursor-pointer disabled:bg-gray disabled:cursor-not-allowed"
+        className="flex items-center px-4 mr-10 sm:mr-0 py-2 sm:text-sm  font-medium text-white bg-[#0000ffc4] rounded-lg
+                  hover:bg-[#0000ffb0] transition-colors duration-200 ease-in-out border-solid border-[#80808049]
+                  disabled:bg-gray-400 disabled:cursor-not-allowed"
       >
         Next
+        <ChevronRight className="w-4 h-4 ml-1" />
       </button>
     </div>
   );

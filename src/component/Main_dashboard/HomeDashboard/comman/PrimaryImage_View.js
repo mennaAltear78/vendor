@@ -15,13 +15,13 @@ const PrimaryImage_View = ({
         <img
           src={data?.primary_images[0] || image}
           alt="hotel"
-          width={`${wd}`}
-          className=" h-full object-cover rounded-lg"
+          // width={`${wd}`}
+          className={` h-full object-cover rounded-lg w-[100px] sm:w-[${wd}px] `}
         />
       </div>
 
       <div className="flex gap-1 overflow-hidden">
-        {data.primary_images.slice(0, 3).map((imgSrc, index) => (
+        {data?.primary_images.slice(0, 3).map((imgSrc, index) => (
           <div
             key={index}
             className={`overflow-hidden  ${DimensionsS}  rounded-md`}

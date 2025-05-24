@@ -7,8 +7,7 @@ export const postsApi = createApi({
   tagTypes: ["Hotel", "SpecificHotel"], // تأكد من تعريف الـ tag هنا
   endpoints: (builder) => ({
 //Get
-   
-  
+
     getProfile: builder.query({
       query: () => ({
         url: "/vendor/profile",
@@ -17,10 +16,10 @@ export const postsApi = createApi({
     }), 
     //hotel
     getHotels: builder.query({
-      query: ({ page, limit, keyword, sort }) => ({
+      query: ({ page, limit, keyword, sort,typeEn  }) => ({
         url: "/hotel",
         method: "GET",
-        params: { page, limit, keyword, sort },
+        params: { page, limit, keyword, sort,'type[en]': typeEn },
       }),
       providesTags: ["Hotel"],
     }),
@@ -33,10 +32,10 @@ export const postsApi = createApi({
     }),
     //room
     getHotelRoom: builder.query({
-      query: ({ id, page, limit, keyword, sort }) => ({
+      query: ({ id, page, limit, keyword, sort, typeEn }) => ({
         url: `/rooms/hotel/${id}`,
         method: "GET",
-        params: { page, limit, keyword, sort },
+        params: { page, limit, keyword, sort,'type[en]': typeEn },
       }),
     }),
     getRooms: builder.query({

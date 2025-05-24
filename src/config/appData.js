@@ -144,33 +144,32 @@ const appData = {
     { value: "Junior Suite Room", label: "Junior Suite Room" },
     { value: "Executive Suite Room", label: "Executive Suite Room" }
   ],
-  stepsData: [
+  stepsHotel: [
+ 
     {
       stepNumber: 1,
-      title: "Complete Your Profile",
-      description:
-        "The basics. Add your property name, address, facilities and more.",
-    },
-    {
-      stepNumber: 2,
       title: "Hotel Details",
       description:
         "The basics. Add your property name, address, facilities and more.",
     },
     {
-      stepNumber: 3,
+      stepNumber: 2,
       title: "Hotel Images",
       description:
         "The basics. Add your property name, address, facilities and more.",
     },
+
+  ],
+    stepsRoom: [
+
     {
-      stepNumber: 4,
+      stepNumber: 3,
       title: "Room Details",
       description:
         "The basics. Add your property name, address, facilities and more.",
     },
     {
-      stepNumber: 5,
+      stepNumber: 4,
       title: "Room Images",
       description:
         "The basics. Add your property name, address, facilities and more.",

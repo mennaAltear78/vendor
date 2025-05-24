@@ -9,8 +9,8 @@ function FeeCalculation({ feeObjectHandeler, editt, dataFee }) {
   // const [fee, setFee] = useState(dataFee || {});
   const [disabled, setDisabled] = useState(true);
   useEffect(() => {
-    console.log("dataFee:", dataFee);
-    console.log("AddFee:", AddFee);
+    // console.log("dataFee:", dataFee);
+    // console.log("AddFee:", AddFee);
 
     // Map over dataFee entries and create new fee objects
     if(dataFee){
@@ -92,7 +92,7 @@ function FeeCalculation({ feeObjectHandeler, editt, dataFee }) {
         )}
         <div className={styles.Note}>you should ....</div>
       </div>
-      {console.log("addfee", AddFee)}
+      {/* {console.log("addfee", AddFee)} */}
 
       <div className="flex flex-col gap-[10px] mt-[10px]">
         {AddFee.map((item, index) => (
