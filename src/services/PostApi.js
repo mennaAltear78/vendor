@@ -166,7 +166,21 @@ export const postsApi = createApi({
         }
       },
     }),
-
+    deleteRoom: builder.mutation({
+      query: ({ id}) => ({
+        url: `/rooms/${id}/remove-room`,
+        method: "DELETE",
+       
+      }),
+      onQueryStarted: async ({ id }, { dispatch, queryFulfilled }) => {
+        try {
+          await queryFulfilled;
+          dispatch(postsApi.util.invalidateTags([{ type: "SpecificRoom", id }]));
+        } catch (error) {
+          console.error(error);
+        }
+      },
+    }),
 //Add
     //hotel
     addCoverImages: builder.mutation({
@@ -374,6 +388,7 @@ export const {
   useDeleteViewFacilitiesMutation,
   useDeleteBathRoomFacilitiesMutation,
   useDeleteRoomFacilitiesMutation,
+  useDeleteRoomMutation,
 
   useAddCoverImagesMutation,
   useAddFacilitieMutation,

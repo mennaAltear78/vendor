@@ -35,14 +35,18 @@ function RoomFacilities() {
   };
   return (
     <MainDashBoardWrapper>
-      <form onSubmit={onClickHandler} className="w-[100vw] h-screen ml-[100px] sm:ml-[150px] mb-[400px]">
+      <form onSubmit={onClickHandler} 
+      className="w-[88vw] h-screen  mb-[700px]">
         <CreateHotelWrapper clickHandeler={clickPrivHandeler}>
-          <ProgressSteps pageNumber={4} count={5} />
+        <div className="ml-[10px] sm:ml-[150px]">
+          <ProgressSteps pageNumber={4} count={5} /></div>
          
           <div >
+          <div className="grid justify-center sm:w-full h-screen   sm:ml-[150px]  items-center">
+          <div className=" bg-[#80808010]  rounded-[20px] p-2">
              <Title Title="What can guests use in this room?" />
-          </div>
-          <div className={classes.rating} style={{marginTop:'-5px'}}>
+        
+             <div className="font-usedFont p-[20px] sm:w-[430px] ml-[10px] border-2 border-solid border-gray-200 rounded-[15px] mt-[14px]">
             <b>Room Facilities</b>
             <hr />
             <div>
@@ -62,7 +66,7 @@ function RoomFacilities() {
               />
             </div>
           </div>
-          <div className={classes.rating} style={{marginTop:'10px'}}>
+          <div className="font-usedFont mb-[700px] p-[20px] sm:w-[430px] ml-[10px] border-2 border-solid border-gray-200 rounded-[15px] mt-[14px]">
             <b>Room Main Facilities</b>
 
             <div>
@@ -89,7 +93,7 @@ function RoomFacilities() {
                 round="rounded-[20%]"
               />
             </div>
-          </div>
+          </div>  </div> </div> </div>
           {error && <p className="error">{error}</p>}
         </CreateHotelWrapper>
       </form>

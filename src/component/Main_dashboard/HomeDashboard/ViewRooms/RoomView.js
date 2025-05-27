@@ -61,13 +61,14 @@ const RoomView = () => {
                 data={{ primary_images: images }}
                 DimensionsS="w-[90px] h-[90px]"
                 DimentionsB="sm:h-[250px] h-[200px]"
-                wd="370px"
+               
+                Drawer='w-[367px]'
                 ViewAll
               />
 
               <div className="sm:w-[320px] w-[370px]">
                 <div className="flex justify-between items-center">
-                  <b className="text-[24px]">{room.name}</b>
+                  <b className="text-[24px] sm:mt-0 mt-10">{room.name}</b>
                   <div>
                     <Active complete={room.status === "Available"?true:false} ActiveName="Available" NotActiveName="Not Available" />
                     <p className="text-[10px] mt-[3px] ml-3">

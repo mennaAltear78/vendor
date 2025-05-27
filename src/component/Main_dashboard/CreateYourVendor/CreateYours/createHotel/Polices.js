@@ -3,14 +3,14 @@ import MainDashBoardWrapper from "../../../../Authentication/regular_components/
 import CreateHotelWrapper from "../../common/CreateHotelWrapper";
 import ProgressSteps from "../../../../Authentication/Sin_up/Create_your_partner/Create_account_items/ProgressSteps";
 import { useNavigate } from "react-router-dom";
-import classes from "../../CreateYours/CreateHotel.module.css";
 import Title from "../../common/Title";
-import TextField from "../../../../Authentication/regular_components/TextField";
 import SquareRadio from "../../common/SquareRadio";
 import appData from "../../../../../config/appData";
 import Menue from "../../../../Authentication/regular_components/Menue";
 import FeeCalculation from "../../common/FeeCalculation";
 import AuthContext from "../../../../Authentication/Context/auth-context";
+import InputField from "../../common/InputField";
+
 function Polices() {
   const [SelectedPolices, setSelectedPolices] = useState({});
   const [error, setError] = useState(null);
@@ -117,23 +117,29 @@ function Polices() {
   }
   return (
     <MainDashBoardWrapper>
-      <form onSubmit={onSumbitHandeler} className="w-[100vw]  h-screen ml-[100px] sm:ml-[150px] mb-[700px]">
-        <div>
+      <form onSubmit={onSumbitHandeler}        
+      className="w-[90vw] h-screen  mb-[700px]">
+        <div  className="w-[88vw]">
           <CreateHotelWrapper clickHandeler={clickPrivHandeler}>
-            <div className={classes.mainContaint}>
-              <ProgressSteps pageNumber={5} count={7} circle={true} />
+            <div>
+           <div className="ml-[10px] sm:ml-[150px]">
+                      <ProgressSteps pageNumber={5} count={7} circle={true} />
+            </div>
+
+            <div className="grid justify-center sm:w-full sm:ml-[150px]  items-center">
+            <div className=" bg-[#80808010] sm:min-w-[450px] grid justify-center  rounded-[20px] p-2">
               <Title
                 Title="Add your Terms, Polices "
                 description="Here you can add what you need and define your terms as you want "
               />
-            </div>
-            <div className="font-usedFont p-5 w-[420px] pr-[50px] border-solid  border-2 border-gray-400/40 rounded-[15px] mt-5">
+         
+         <div className="font-usedFont p-[20px] sm:w-[430px] ml-[10px] border-2 border-solid border-gray-200 rounded-[15px] mt-[14px]">
               <b className="font-bold font-usedFont text-[22px]">
                 What are your check-in and check-out times?
               </b>
               <hr />
               <p>Check In</p>
-              <div className="flex gap-10 mt-[-10px] mb-[10px]">
+              <div className="sm:flex gap-10 mt-[-10px] mb-[10px]">
 
                 <Menue
 
@@ -142,6 +148,7 @@ function Polices() {
                   options={appData.times}
                   timeHandeler={timeFromHandelercheckIn}
                 />
+
                 <Menue
                   textfild="textBoxSmall"
                   label="until"
@@ -149,7 +156,7 @@ function Polices() {
                   timeHandeler={timeUntilHandelercheckIn}
                 />
               </div>
-              <TextField
+              {/* <TextField
                 label="Description(Optional)"
                 textfild="bigTextBox"
                 name="Description"
@@ -160,10 +167,24 @@ function Polices() {
                     description_1: { en: e.target.value }
                   }));
                 }}
-              />
+              /> */}
+                            <InputField
+                    editt={false}
+                    label="Description(Optional)"
+                    name="Description"
+                    className="w-[96%]"
+                    textarea
+                    onChange={(e) => {
+                      setDescriptions((prev) => ({
+                        ...prev,
+                        description_1: { en: e.target.value }
+                      }));
+                    }}
 
-              <p className="mt-[-10px] font-usedFont  ">Check out</p>
-              <div className="flex gap-10 mt-[-10px] mb-[10px]">
+                  />
+
+              <p className=" font-usedFont  ">Check out</p>
+              <div className="sm:flex gap-10 mt-[-10px] mb-[10px]">
                 <Menue
                   textfild="textBoxSmall"
                   label="from"
@@ -177,7 +198,7 @@ function Polices() {
                   timeHandeler={timeUntilHandelercheckOut}
                 />
               </div>
-              <TextField
+              {/* <TextField
                 label="Description(Optional)"
                 textfild="bigTextBox"
                 Intext="Description"
@@ -189,7 +210,23 @@ function Polices() {
                   }));
                 }}
 
-              />
+              /> */}
+
+                  <InputField
+                    editt={false}
+                    label="Description(Optional)"
+                    name="Description"
+                    className="w-[96%]"
+                    textarea
+                    onChange={(e) => {
+                      setDescriptions((prev) => ({
+                        ...prev,
+                        description_2: { en: e.target.value }
+                      }));
+                    }}
+
+                  />
+
               <div className="mb-[20px]"> <SquareRadio
                 name="customRadio"
                 options={[
@@ -204,7 +241,7 @@ function Polices() {
               /></div>
 
 
-              <TextField
+              {/* <TextField
                 Intext="Description"
                 textfild="textBox2"
                 name="Description"
@@ -215,15 +252,28 @@ function Polices() {
                     cancelation_policy: { en: e.target.value }
                   }));
                 }}
-              />
+              /> */}
+                      <InputField
+                    editt={false}
+                    label="Description(Optional)"
+                    name="Description"
+                    className="w-[96%]"
+                    textarea
+                    onChange={(e) => {
+                      setDescriptions((prev) => ({
+                        ...prev,
+                        cancelation_policy: { en: e.target.value }
+                      }));
+                    }}
+                  />
               {CancelActive ? <FeeCalculation CancelActive={CancelActive} feeObjectHandeler={(feevalue) => {
                 setfee(feevalue); console.log(feevalue);
               }
               } /> : null}
-              <p className="font-usedFont text-[19px] mt-[-15px] mb-[10px]">
+              <p className="font-usedFont text-[19px]  mb-[10px]">
                 Children and Familes
               </p>
-              <TextField
+              {/* <TextField
                 OnchangeHnadeler={(e) => {
                   setDescriptions((prev) => ({
                     ...prev,
@@ -234,8 +284,20 @@ function Polices() {
                 textfild="textBox2"
                 name="Description"
                 textarea={true}
-              />
-
+              /> */}
+                     <InputField
+                    editt={false}
+                    label="Description(Optional)"
+                    name="Description"
+                    className="w-[96%]"
+                    textarea
+                    onChange={(e) => {
+                      setDescriptions((prev) => ({
+                        ...prev,
+                        children_and_families: { en: e.target.value }
+                      }));
+                    }}
+                  />
               <div>
                 <p className="mb-[-10px]">Pets Policy</p>
                 <SquareRadio
@@ -266,6 +328,7 @@ function Polices() {
                   onevalue={true}
                 />
               </div>
+            </div>   </div> </div>
             </div>
             {error && <p className="error">{error}</p>}
           </CreateHotelWrapper>

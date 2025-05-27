@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import style from "./Title_here.module.css";
 import { useState } from "react";
-import imgSlider from "../../Assets/ADD YOUR DESIGN HERE.svg";
 import bluecheckCircle from "../../Assets/Ellipse 407.svg";
 import checkCircle from "../../Assets/Ellipse 409.svg";
 import scrollleft from "../../Assets/cancel (1).svg";

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const InputField = ({
   label,
@@ -10,16 +10,21 @@ const InputField = ({
   textarea = false,
   onChange,
   name,
-
+  editt = true
 }) => {
   const [edit, setEdit] = useState(false);
+  useEffect(() => {
+    if (!editt) {
+      setEdit(true);
+    }
 
+  }, [edit])
 
   return (
-    <div className="w-full flex flex-col items-start">
+    <div className="w-full flex flex-col items-start ">
       <div className="w-full flex items-center">
         <p className={`mb-1 text-sm ${margin} w-full`}>{label}</p>
-        <div className="w-full flex justify-end ">
+        {editt ? <div className="w-full flex justify-end ">
           <span
             className="material-symbols-outlined text-[15px] w-4 h-4 p-1 rounded-lg mb-[-10px] bg-[#0000ff2a] mt-[-9px] text-[blue] cursor-pointer"
             onClick={() => {
@@ -28,7 +33,7 @@ const InputField = ({
           >
             edit
           </span>
-        </div>
+        </div> : null}
       </div>
 
       {textarea ? (
@@ -50,7 +55,7 @@ const InputField = ({
           onChange={onChange}
           name={name}
           disabled={!edit} // Enable editing when `edit` is true
-          className={`h-[34px] rounded-[5px] font-usedFont px-2 border  border-solid focus:border-[blue] ${!edit ? "bg-[#4947470c]" : ""
+          className={`h-[34px] rounded-[5px] border-[#80808063] font-usedFont px-2 border  border-solid focus:border-[blue] ${!edit ? "bg-[#4947470c]" : ""
             } ${className}`}
         />
       )}

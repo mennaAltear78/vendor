@@ -37,35 +37,41 @@ function Speak() {
     <MainDashBoardWrapper>
       <form
         onSubmit={onClickHandler}
-        className="w-[100vw] h-screen ml-[100px] sm:ml-[150px]"
+        className="w-[90vw] h-screen "
       >
-        <div style={{ width: "100vw" }}>
+        <div className="w-[88vw]">
           <CreateHotelWrapper clickHandeler={handlePrevClick}>
             <div>
-              <ProgressSteps pageNumber={3} count={7} circle={true} />
-              <Title
-                Title="What languages do you or your staff speak?"
-                description="Select Language as you need"
-              />
-            </div>
-            <div className="font-[Poppins] p-5 w-[450px] border-solid  border-2 border-gray-400/40 rounded-[15px] mt-5">
-              <b className="text-[24px]">Select Language </b>
-              <hr />
-              <div>
-                <SquareRadio
-                  round="rounded-[20%]"
-                  name="customRadio"
-                  options={appData.languages.map((lang) => ({
-                    value: lang.value,
-                    label: lang.lang,
-                  }))}
-                  onChange={handleRadioChange}
-                  radio={true}
-                />
+              <div className="ml-[10px] sm:ml-[150px]">
+                <ProgressSteps pageNumber={3} count={7} circle={true} />
               </div>
-              <p className="mt-7">Add additional languages</p>
-              <div></div>
-            </div>
+              <div className="grid justify-center sm:w-full   sm:ml-[150px]  items-center">
+                <div className=" bg-[#80808010]  rounded-[20px] p-2">
+                  <Title
+                    Title="What languages do you or your staff speak?"
+                    description="Select Language as you need"
+                  />
+
+                  <div className="font-usedFont p-[20px] sm:w-[430px] ml-[10px] border-2 border-solid border-gray-200 rounded-[15px] mt-[14px]">
+                    <b className="text-[24px]">Select Language </b>
+                    <hr />
+                    <div>
+                      <SquareRadio
+                        round="rounded-[20%]"
+                        name="customRadio"
+                        options={appData.languages.map((lang) => ({
+                          value: lang.value,
+                          label: lang.lang,
+                        }))}
+                        onChange={handleRadioChange}
+                        radio={true}
+                      />
+                    </div>
+                    <p className="mt-7">Add additional languages</p>
+                    <div></div>
+                  </div>
+                </div>
+              </div> </div>
             {error && (
               <p className="text-red-500  mt-3 ml-3">{error}</p>
             )}

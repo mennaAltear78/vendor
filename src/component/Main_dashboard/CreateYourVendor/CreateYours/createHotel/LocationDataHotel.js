@@ -107,20 +107,22 @@ function LocationDataHotel() {
     <MainDashBoardWrapper>
       <form
         onSubmit={onSumbitHandeler}
-        className="w-[100vw] h-screen ml-[120px] sm:ml-[150px] mb-[400px]"
-      >
-        <div style={{ width: "100vw" }}>
+        className="w-[90vw] h-screen  mb-[700px]">
+        <div  className="w-[88vw]">
           <CreateHotelWrapper
             clickHandeler={handleBackClick}
             isLoading={isLoading}
           >
-            <div className={classes.mainContaint}>
-              <ProgressSteps pageNumber={7} count={7} circle={true} />
-              <Title
+            <div className="">
+            <div className="ml-[10px] sm:ml-[150px]"><ProgressSteps pageNumber={7} count={7} circle={true} /></div>
+              
+              <div className="grid justify-center sm:w-full   sm:ml-[150px]  items-center">
+              <div className=" bg-[#80808010] min-w-[290px]  rounded-[20px] p-3">
+                   <Title
                 Title="What is your Loaction?"
                 description="To Start Choose your Location from the map "
               />
-              <div className="gap-10 sm:flex ">
+              <div className="gap-2 sm:flex ">
                 <TextField
                   label="Country"
                   Intext="Name"
@@ -138,9 +140,11 @@ function LocationDataHotel() {
                   disabled={true}
                   OnchangeHnadeler={() => {}}
                 />
-              </div>
-            </div>
-            <div>
+              </div> 
+             
+          
+           
+            <div className="">
               <TextField
                 label="Address Details"
                 Intext="Grab it from Map"
@@ -151,13 +155,13 @@ function LocationDataHotel() {
               />
               <LocationGoogltMap
                 styling={{
-                  width: "60%",
+                  width: "100%",
                   height: "300px",
                   borderRadius: "10px",
                 }}
                 setlocation={setlocationHandeler}
               />
-            </div>
+            </div> </div> </div></div>
             {error ? <p className="text-red-700">{error}</p> : null}
           </CreateHotelWrapper>
         </div>

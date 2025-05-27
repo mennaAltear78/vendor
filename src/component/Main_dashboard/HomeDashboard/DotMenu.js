@@ -1,15 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
-import {
-  useDeleteHotelMutation,
-  usedeleteHotelMutation,
-} from "../../../services/PostApi";
 import deleteIcon from"../../../Assets/trash.png"
 import PopupMessage from "../../Authentication/Sin_up/Create_your_partner/Create_account_items/PopupMessage";
 
-const DotMenu = ({ id }) => {
+const DotMenu = ({ id ,Loading,error,deleteFunction }) => {
   const [open, setOpen] = useState(false);
-  const [deleteHotel, { isLoading: Loading, isError, isSuccess }] =
-    useDeleteHotelMutation();
+
+
   const [isPop_up, SetPop_up] = useState(false);
   const menuRef = useRef();
 
@@ -24,19 +20,27 @@ const DotMenu = ({ id }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const confirmDeletionHandeler = () => {
+  const confirmDeletionHandeler = (e) => {
+    e.preventDefault()
+    e.stopPropagation();
     console.log("success");
     SetPop_up(true);
    
   };
-  const CancelDeleteHandeler = () => {
-      SetPop_up(false);
+  const CancelDeleteHandeler = (e) => {
+    e.preventDefault()
+    e.stopPropagation();
 
+      SetPop_up(false);
+     
   };
 
-  const deleteHotelHandeler = () => {
-    deleteHotel(id);
+  const deleteFunctionHandeler = (e) => {
+    e.preventDefault()
+
+    deleteFunction({id});
     SetPop_up(false);
+    e.stopPropagation();
   };
   return (
     <div className="relative inline-block text-left" ref={menuRef}>
@@ -84,7 +88,7 @@ const DotMenu = ({ id }) => {
           cancelHandeler={CancelDeleteHandeler}
           close={true}
           messageImg={deleteIcon}
-          handlebackNavigation={deleteHotelHandeler}
+          handlebackNavigation={deleteFunctionHandeler}
           handleTogglePopup={CancelDeleteHandeler}
         />
       )}

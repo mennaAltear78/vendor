@@ -7,7 +7,7 @@ function StepList({ steps, HotelImageDone, onBtnAction }) {
    
     
   return (
-    <div className="ml-[150px] mt-[50px]">
+    <div className="sm:ml-[150px] ml-4 mt-[100px]  sm:mt-[50px]">
       {steps.map((step, index) => (
         <StepCard
           key={index}

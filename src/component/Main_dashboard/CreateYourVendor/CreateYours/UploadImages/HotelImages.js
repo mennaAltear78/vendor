@@ -126,10 +126,15 @@ const handleImageUpload = async (e) => {
     <MainDashBoardWrapper>
       <form
         onSubmit={handleImageUpload}
-        className="w-[100vw] h-screen ml-[100px] sm:ml-[150px] mb-[400px]"
+        className="w-[88vw] h-screen  sm:ml-[150px] mb-[700px]"
       >
+        <div className="sm:w-[60vw]">
         <CreateHotelWrapper clickHandeler={clickPrivHandeler} isLoading={isLoading}>
-          <div className="font-[Poppins] p-5 w-[450px] border border-solid border-[rgba(128,128,128,0.404)] rounded-[15px] mt-[50px]">
+        <div className="grid justify-center sm:w-full  sm:ml-[150px]  items-center">
+        <div className=" bg-[#80808010] min-w-[350px]   rounded-[20px] p-3">
+          <div className="font-[Poppins] p-5 sm:w-[460px] border border-solid border-[rgba(128,128,128,0.404)] rounded-[15px] mt-[50px]">
+           
+           
             <b className="text-[22px]">
               {/* Primary Images */}
               {props.title}
@@ -139,7 +144,7 @@ const handleImageUpload = async (e) => {
             </b>
             <hr className="border border-[rgba(128,128,128,0.404)]" />
             <p>Upload it</p>
-            <div className="w-[450px] h-[120px] border-2 border-dashed border-gray-500 rounded-[5px] mb-[10px] flex items-center justify-center flex-col"
+            <div className="sm:w-[460px] min-w-[310px] h-[120px] border-2 border-dashed border-gray-500 rounded-[5px] mb-[10px] flex items-center justify-center flex-col"
             >
               <img
                 src={download}
@@ -150,7 +155,7 @@ const handleImageUpload = async (e) => {
                 Upload From Max 10 MG Per File
               </p>
             </div>
-            <div className=" cursor-pointer flex gap-1 mt-5 flex-wrap mr-[-100px]">
+            <div className=" cursor-pointer  gap-1 mt-5 flex flex-wrap sm:mr-[-100px]">
               {images.map((image) => (
                 <div key={image.id} className="relative">
                   {image.id <= 200 ? (
@@ -201,7 +206,7 @@ const handleImageUpload = async (e) => {
                     (must upload at least 5 images up to 200)
                   </span>
                 </b>
-                <div className="flex gap-1 mt-5 flex-wrap mr-[-100px]">
+                <div className=" gap-1 mt-5 flex flex-wrap sm:mr-[-100px]">
                   <img
                     onClick={onAddImageHandeler}
                     className="hover:animate-bounce cursor-pointer ml-[29px] mr-[20px] mt-[20px]"
@@ -223,7 +228,7 @@ const handleImageUpload = async (e) => {
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="hover:animate-bounce absolute top-[-10px] w-6 h-6 text-red-500"
+                              className="hover:animate-bounce  absolute top-[-10px] w-6 h-6 text-red-500"
                               viewBox="0 0 24 24"
                               fill="currentColor"
                             >
@@ -249,9 +254,9 @@ const handleImageUpload = async (e) => {
                 </div>
               </>
             )}
-          </div>
+          </div></div></div>
           {error && <p className="error">{error}</p>}
-        </CreateHotelWrapper>
+        </CreateHotelWrapper></div>
       </form>
       {isPop_up && (
         <PopupMessage

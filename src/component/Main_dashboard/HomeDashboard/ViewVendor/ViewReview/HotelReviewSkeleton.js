@@ -1,6 +1,6 @@
 export default function HotelReviewLoadingSkeleton() {
   return (
-    <div className="sm:w-[730px] w-[360px]  mx-auto p-4 space-y-6 animate-pulse">
+    <div className="sm:w-[730px]    mx-auto p-4 space-y-6 animate-pulse">
       {/* Header Skeleton */}
       <div className="flex items-center justify-between">
         <div className="h-6 bg-gray-300 rounded w-40"></div>

@@ -19,8 +19,12 @@ function Counter(props) {
         <p>
            { props.label}
         </p>
-    <div className={props.frame?classes.Counter2:classes.Counter} style={{height:props.big?'38px':'27px',width:props.big? '150px':'110px'}}>
-     <div > <button className={props.frame&&classes.counetrGray}  type='button'onClick={decHandeler}>
+        <div
+  className={`
+    ${props.frame ? classes.Counter2 : classes.Counter}
+    ${props.big ? 'h-[38px] sm:w-[150px]' : 'h-[27px] sm:w-[110px]'}
+  `}
+> <div > <button className={props.frame&&classes.counetrGray}  type='button'onClick={decHandeler}>
         -
        </button>  </div>  
       <p> {number}</p>

@@ -3,7 +3,7 @@ import ReviewCard from "./ReviewCard";
 
 function RecentReview() {
   return (
-    <div className="w-[300px] p-4 pt-[1px] font-usedFont overflow-y-scroll custom-scroll h-screen rounded-lg bg-white mb-[10px]">
+    <div className="sm:w-[300px]  mr-3   p-4 pt-[1px] font-usedFont overflow-y-scroll custom-scroll h-screen rounded-lg bg-white mb-[80px]">
     <div className="flex justify-between items-center cursor-pointer">
          <p>Recent Reviews</p>  
          <div className="flex ">

@@ -2,7 +2,9 @@ import React from "react";
 import HorizontalBar from "../../comman/HorizontalBar";
 import star from "../../../../../Assets/Star 98.svg";
 import Menue from "../../../../Authentication/regular_components/Menue";
-const RatingCard = () => {
+const RatingCard = ({data}) => {
+  console.log(data,"rating");
+  
   const label1 = ["Cleanliness", "Service", "Amenities", "Location"]; // Define the labels for each HorizontalBar
 
   const label2 = ["Staff", "Facilities", "Value for money rating"];
@@ -27,7 +29,7 @@ const RatingCard = () => {
   ];
 
   return (
-    <div className="bg-white rounded-lg shadow-md font-usedFont ">
+    <div className="bg-white sm:w-full w-[95%] m-auto rounded-lg shadow-md font-usedFont ">
       <div className="flex    mt-[10px] p-4">
         <div className="mr-[50px] grid">
           <b className="bg-gradient-to-r mb-[-40px] w-full flex items-center justify-center from-orange-500 to-yellow-500 text-transparent bg-clip-text font-bold text-lg ">
@@ -47,7 +49,7 @@ const RatingCard = () => {
         <div className="sm:flex gap-6">
           <div>
             {label1.map((label, index) => (
-              <HorizontalBar key={index} barLabel={label} />
+              <HorizontalBar key={index} barLabel={label}  />
             ))}
           </div>
           <div>

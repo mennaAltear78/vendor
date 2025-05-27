@@ -31,8 +31,8 @@ const Rooms_List = () => {
   };
   return (
     <MainDashBoardWrapper>
-      <div className="w-full pb-[100px]  m-auto bg-gray-200 ">
-        <div className=" p-4 ml-[143px] sm:w-[86%]  m-auto mt-[30px] rounded-[20px] bg-white pr-[30px] ">
+      <div className="w-full pb-[100px] pt-5 m-auto bg-gray-200 ">
+        <div className=" p-4 sm:ml-[143px] ml-1  sm:w-[86%] w-[86%]  m-auto mt-[30px] rounded-[20px] bg-white pr-[30px] ">
           <Header
             Room={true}
             keyword={searchKeywords}

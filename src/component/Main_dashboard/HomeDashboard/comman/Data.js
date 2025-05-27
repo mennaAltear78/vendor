@@ -1,7 +1,18 @@
-
+import home from "../../../../Assets/icons/home.png";
+import graph from "../../../../Assets/icons/graph.svg";
 
 export const VendorData = {
-
+  icons : [
+    { ActiveLine: true, img: graph, label: "Home" ,path:'/MianDahboard' },
+    { ActiveLine: false, img: home, label: "Reservations" ,path:'/'},
+    { ActiveLine: false, img: graph, label: "Hotel Creating" ,path:'/CompleteProfie' },
+    { ActiveLine: false, img: home, label: "Guest Reviews",path:'/' },
+    { ActiveLine: false, img: graph, label: "Property",path:'/PropertyList' },
+    { ActiveLine: false, img: home, label: "Analytics",path:'/' },
+    { ActiveLine: false, img: graph, label: "Inbox" ,path:'/'},
+    { ActiveLine: false, img: home, label: "Rates & Aviablity",path:'/' },
+    
+  ],
 optionSort:[
   { value: '-price_per_night', label: 'Price per night (descending)' },
   { value: 'price_per_night', label: 'Price per night (ascending)' },

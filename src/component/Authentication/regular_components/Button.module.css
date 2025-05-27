@@ -3,7 +3,7 @@
     border-radius: 8px;
     border: var(--Outlines-xFine, 0.5px) solid var(--Border-br-Thirty, #B3B3B3);
     height: 40px;
-    width: 310px;
+    width: 300px;
     color: white;
     margin-bottom: 10px;
     margin-top: 15px;
@@ -47,7 +47,7 @@
     border-radius: 8px;
     border: var(--Outlines-xFine, 0.5px) solid var(--Border-br-Thirty, #B3B3B3);
     height: 40px;
-    width: 210px;
+    width: 200px;
     color: #2F32DE;
     border-color: #2F32DE;
     margin-bottom: 15px;
@@ -88,7 +88,7 @@
     border-radius: 8px;
     border: var(--Outlines-xFine, 0.5px) solid var(--Border-br-Thirty, #B3B3B3);
     height: 40px;
-    width: 210px;
+    width: 200px;
     color: white;
     margin-bottom: 15px;
     cursor: pointer;

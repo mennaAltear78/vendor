@@ -1,14 +1,14 @@
 import React, { Fragment, useContext, useState } from "react";
 import style from "./Side_bar.module.css";
 import IconDiv from "./IconDiv";
-import home from "../../../Assets/icons/home.png";
-import graph from "../../../Assets/icons/graph.svg";
+
 import logo from "../../../Assets/icons/Screenshot 2025-02-10 023419.png";
 import logo2 from "../../../Assets/icons/log.png";
 import AuthContext1 from "../../Authentication/Context/Mian-Page-Context";
 import logout from "../../../Assets/logout_24dp_BB271A_FILL0_wght400_GRAD0_opsz24.svg";
 import PopupMessage from "../../Authentication/Sin_up/Create_your_partner/Create_account_items/PopupMessage";
 import SpinnerLoading from "../../Authentication/regular_components/SpinnerLoading";
+import { VendorData } from "../HomeDashboard/comman/Data";
 
 function SideBar(props) {
   const ctx = useContext(AuthContext1); // Use correct context name
@@ -26,17 +26,7 @@ function SideBar(props) {
   const handlebackNavigation = () => {
     isPopMessage(false);
   };
-  const icons = [
-    { ActiveLine: true, img: graph, label: "Home" },
-    { ActiveLine: false, img: home, label: "Reservations" },
-    { ActiveLine: false, img: graph, label: "Finance" },
-    { ActiveLine: false, img: home, label: "Guest Reviews" },
-    { ActiveLine: false, img: graph, label: "Property",path:'/PropertyList' },
-    { ActiveLine: false, img: home, label: "Analytics" },
-    { ActiveLine: false, img: graph, label: "Inbox" },
-    { ActiveLine: false, img: home, label: "Rates & Aviablity" },
-    
-  ];
+
   return (
     <div >
       <div
@@ -56,7 +46,7 @@ function SideBar(props) {
           </div>
           <div className={style["iconsDivs"]}>
          
-            {icons.map((icon, index) => (
+            {VendorData.icons.map((icon, index) => (
               <IconDiv
                 key={index}
                 path={icon.path?icon.path:`/MianDahboard`}
@@ -66,7 +56,7 @@ function SideBar(props) {
                 isHovered={props.hover}
               />
             ))}
-            <div style={{ marginTop: "70px" }} onClick={LogoutHandler}>
+            <div  className="mt-[70px]" onClick={LogoutHandler}>
               <IconDiv
                 ActiveLine={false}
                 img={logout}

@@ -58,7 +58,7 @@ const VendorView = () => {
             <ImageGallery data={data} />
             <Facilities facilities={data.data.hotel.facilities} />
             <RoomView id={id} />
-            <ReviewCards data={data} id={id} review={reviewData} />
+            <ReviewCards data={reviewData} id={id} review={reviewData} />
             <Booking_Policies data={data} />
           </>
         )}

@@ -1,6 +1,7 @@
 import React, { act, useEffect, useState } from "react";
 import style from "./SquareRadio.module.css";
 import TextField from "../../../Authentication/regular_components/TextField";
+import InputField from "./InputField";
 
 function SquareRadio({
   options,
@@ -86,10 +87,10 @@ function SquareRadio({
 
   return (
     <div>
-      <div className={style.square}>
+      <div  >
         {options.map((option, index) => (
           <>
-            <div className="flex mb-[-20px]" key={`${option.value}-${index}`}>
+            <div className="flex mb-[-20px] w-full items-center " key={`${option.value}-${index}`}>
               <label
                 key={option.value}
                 className={
@@ -118,7 +119,7 @@ function SquareRadio({
               </label>
 
               {cost && (
-                <div className={style.slider}>
+                <div className="w-full flex justify-end">
                   <div className={style.addCost}>
                     <p>{description}</p>
                     <div className={style.scroll}>
@@ -150,11 +151,21 @@ function SquareRadio({
                 <p>
                   Description<span style={{ color: "gray" }}>(Optional)</span>
                 </p>
-                <TextField
+                {/* <TextField
                   textfild="bigTextBox"
                   name="descriptionValue"
                   OnchangeHnadeler={(e) => onChangeDescHandeler(option, e)}
-                />
+                /> */}
+               
+               <InputField
+                    editt={false}
+                    // label="Property Name"
+                    // value={property}
+                    name="descriptionValue"
+                    className="w-[96%] mt-[-20px]"
+                    onChange={(e) => onChangeDescHandeler(option, e)}
+
+                  />
               </div>
             )}
           </>

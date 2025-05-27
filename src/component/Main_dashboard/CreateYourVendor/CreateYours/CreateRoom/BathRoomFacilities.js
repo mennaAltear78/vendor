@@ -70,15 +70,20 @@ useEffect(()=>{
   return (
     
     <MainDashBoardWrapper>
-      <form onSubmit={onClickHandler} className="w-[100vw] h-screen ml-[100px] sm:ml-[150px] mb-[700px]">
+      <form onSubmit={onClickHandler} 
+              className="w-[88vw] h-screen  ">
+        
         <CreateHotelWrapper clickHandeler={clickPrivHandeler} Loading={Loading}>
-          <ProgressSteps pageNumber={5} count={5} />
+        <div className="ml-[10px] sm:ml-[150px]">
+          <ProgressSteps pageNumber={5} count={5} /></div>
           
           <div >
+          <div>
+            <div className="grid mb-[900px] justify-center sm:w-full h-screen   sm:ml-[150px]  items-center">
+              <div className=" bg-[#80808010]   rounded-[20px] p-2">
             <Title Title="Room views"/>
-          </div>
-          <div className= "font-[Poppins] p-5 w-[450px] border-solid  border-2 border-gray-400/40 rounded-[15px] mt-5 ">
-       
+         
+          <div className="font-usedFont p-[20px] sm:w-[430px] ml-[10px] border-2 border-solid border-gray-200 rounded-[15px] mt-[14px]">
             <div>
               <SquareRadio
               round="rounded-[20%]"
@@ -99,7 +104,7 @@ useEffect(()=>{
           <div >
             <Title Title="Bathroom Facilities"/>
           </div>
-          <div className= "font-[Poppins] p-5 w-[450px] border-solid  border-2 border-gray-400/40 rounded-[15px] mt-5 " >
+          <div className="font-usedFont p-[20px] mb-[900px] sm:w-[430px] ml-[10px] border-2 border-solid border-gray-200 rounded-[15px] mt-[14px]">
             <p className="mb-[-8px]">Which bathroom items are available in this room?
             </p>
 
@@ -119,7 +124,7 @@ useEffect(()=>{
                 radio={true}
               />
             </div>
-          </div>
+          </div></div></div> </div> </div>
           {error && <p className="error">{error}</p>}
         </CreateHotelWrapper>
       </form>

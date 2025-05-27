@@ -27,9 +27,6 @@ function Facilities() {
       .filter(([key, value]) => value === true)
       .map(([key]) => key);
 
-    // console.log("true keyyy", trueKeys);
-    //  console.log(selectedFacilities);
-    // console.log(descriptions);
 
     selectedFacilities.forEach(
       (facility) => {
@@ -127,18 +124,25 @@ function Facilities() {
     <MainDashBoardWrapper>
       <form
         onSubmit={onSumbitHandeler}
-        className="w-[100vw] h-screen ml-[100px] sm:ml-[150px] mb-[700px]"
-      >
-        <div  className="w-[100vw]">
+        className="w-[90vw] h-screen  mb-[700px]">
+        <div  className="w-[88vw]">
           <CreateHotelWrapper clickHandeler={clickPrivHandeler}>
-            <div className={classes.mainContaint}>
+            <div >
+            <div className="ml-[10px] sm:ml-[150px]">
               <ProgressSteps pageNumber={4} count={7} circle={true} />
+             </div>
+             
+             
+             
+             <div className="grid justify-center sm:w-full   sm:ml-[150px]  items-center">
+              <div className=" bg-[#80808010]  rounded-[20px] p-2">
+               
               <Title
                 Title="What can guests use at your hotel?"
                 descriptions="To Start Choose type of Property You need to do"
               />
-            </div>
-            <div className="font-[Poppins] p-[20px] w-[430px] ml-[10px] border-2 border-solid border-gray-200 rounded-[15px] mt-[14px] sm:w-[450px]">
+           
+            <div className="font-usedFont p-[20px] sm:w-[430px] ml-[10px] border-2 border-solid border-gray-200 rounded-[15px] mt-[14px]">
               <b className="text-[20px]">Add Facilities </b>
 
               <div>
@@ -156,7 +160,8 @@ function Facilities() {
                   AllowanceHandling={() => {}}
                 />
               </div>
-            </div>
+            </div></div>
+            </div> </div>
             {error && <p className="error">{error}</p>}
           </CreateHotelWrapper>
         </div>

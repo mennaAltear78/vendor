@@ -9,12 +9,13 @@ function CreateHotelWrapper(props) {
       {props.children}
       <footer>
         <div className={classes.lineFooter} />
-        <div className="flex justify-end h-[70px] ml-[10px] items-center w-[87%] sm:gap-[10px] " >
+        <div className="flex justify-end h-[70px] sm:ml-[10px] ml-[35px] items-center w-[87%] sm:gap-[10px] " >
           <Button
             btnCss="whiteCssS"
             name="previous"
             onClickAction={props.clickHandeler}
             type="button"
+            
           />
          {props.isLoading? <SpinnerLoading/>:<Button btnCss="blueCssS" name="continue" />}
         </div>

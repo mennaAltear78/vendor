@@ -62,7 +62,7 @@ function CoulmnCharts() {
     <div>
       <div
         id="chart"
-        className="w-[595px]  font-usedFont bg-white p-4 rounded-lg"
+        className="sm:w-[595px]  mr-3    mb-5 font-usedFont bg-white p-4 rounded-lg"
       >
         <div id="html-dist" className="flex justify-between items-center mb-[10px]">
           <b>Reservation</b>

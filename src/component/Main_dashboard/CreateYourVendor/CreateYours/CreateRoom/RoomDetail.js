@@ -14,6 +14,7 @@ import Adult from "../../.././../../Assets/el_adult.png";
 import Childrens from "../../.././../../Assets//fa6-solid_children.png";
 
 import AuthContext from "../../../../Authentication/Context/auth-context";
+import InputField from "../../common/InputField";
 function RoomDetail() {
   const navigate = useNavigate();
   const [error,setError]=useState()
@@ -81,19 +82,19 @@ function RoomDetail() {
     <MainDashBoardWrapper>
       <form
         onSubmit={onClickHandler}
-        className="w-[100vw] h-screen ml-[100px] sm:ml-[150px] mb-[400px]"
-      >
+        className="w-[90vw] h-screen  mb-[700px]">
         <CreateHotelWrapper clickHandeler={clickPrivHandeler}>
+        <div className="ml-[10px] sm:ml-[150px]">
           <ProgressSteps pageNumber={2} count={4} />
-          <div className="mt-[-20px]">
-            <Title Title="Room Details" />
           </div>
+          <div>
+          <div className="grid justify-center sm:w-full   sm:ml-[150px]  items-center">
+          <div className=" bg-[#80808010]  rounded-[20px] p-2">
+            <Title Title="Room Details" />
+         
 
-          <div
-            className="font-usedFont  p-5 w-[420px] pr-[50px] border-solid  border-2 border-gray-400/40 rounded-[15px] mt-5"
-            style={{ marginBottom: "-40px" }}
-          >
-            <TextField
+            <div className="font-usedFont p-[20px] sm:w-[430px] ml-[10px] border-2 border-solid border-gray-200 rounded-[15px] mt-[14px]">
+            {/* <TextField
               label="Room Name"
               textfild="bigTextBox"
               name="Room Name"
@@ -104,7 +105,21 @@ function RoomDetail() {
                   name:  e.target.value ,
                 }))
               }
-            />
+            /> */}
+                              <InputField
+                    editt={false}
+                    label="Room Name"
+                    // value={property}
+                    name="Room Name"
+                    className="w-[96%]"
+                    onChange={(e) =>
+                      setData((prev) => ({
+                        ...prev,
+                        name:  e.target.value ,
+                      }))
+                    }
+
+                  />
             <div className="my-[10px]">
               <Menue
                 textfild="textBoxSmall"
@@ -117,7 +132,7 @@ function RoomDetail() {
               />
             </div>
 
-            <TextField
+            {/* <TextField
               label="Description"
               textfild="textBox2"
               name="Description"
@@ -129,8 +144,21 @@ function RoomDetail() {
                   description: { en: e.target.value },
                 }))
               }
-            />
-
+            /> */}
+                          <InputField
+                    editt={false}
+                    label="Description"
+                    // value={property}
+                    textarea={true}
+                    name="Room Name"
+                    className="w-[96%]"
+                    onChange={(e) =>
+                      setData((prev) => ({
+                        ...prev,
+                        description: { en: e.target.value },
+                      }))
+                    }
+                  />
             <Counter label="How many rooms of this type do you have?"    
                 CounterNmberHandeler={(num) => {
                   setData((prev) => ({
@@ -140,7 +168,7 @@ function RoomDetail() {
                 }}/>
           </div>
 
-          <div className={classes.rating} style={{ marginBottom: "-40px" }}>
+          <div className="font-usedFont p-[20px] sm:w-[430px] ml-[10px] border-2 border-solid border-gray-200 rounded-[15px] mt-[14px]">
             <Counter label="Price per night (USD)" 
              CounterNmberHandeler={(num) => {
                     setData((prev) => ({
@@ -204,7 +232,7 @@ function RoomDetail() {
               </div>
             </div>
           </div>
-          <div className={`mb-[100px] pb-[40px] ${classes.rating}`}>
+          <div className="font-usedFont p-[20px] sm:w-[430px] ml-[10px] border-2 border-solid border-gray-200 rounded-[15px] mt-[14px]">
             <p className="font-usedFont mb-[-10px]">
               Is smoking allowed in this room?
             </p>
@@ -222,9 +250,12 @@ function RoomDetail() {
               radio={true}
               onevalue={true}
             />
-          </div>
+          </div>  
+          </div></div> </div>
+     
         </CreateHotelWrapper> 
         {error?<p className="text-red-500 mt-[-90px]">{error}</p>:null}
+      
       </form>
      
     </MainDashBoardWrapper>

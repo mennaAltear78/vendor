@@ -32,7 +32,7 @@
 
 body {
   margin: 0;
- 
+  padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
@@ -47,7 +47,7 @@ code {
 :root {
   --Typography-English-H-1-Font-Family: "Poppins", sans-serif;
   
-    --Typography-English-H-1-Font-Family: 'Arial', sans-serif; /* Example */
+   /* Example */
   
   
 }

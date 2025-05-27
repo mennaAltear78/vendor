@@ -45,11 +45,11 @@ function ChooseHotel() {
     <MainDashBoardWrapper>
       <form
         onSubmit={onClickHandler}
-        className="w-[100vw] h-screen ml-[100px] sm:ml-[150px] "
+        className="w-[100vw] h-screen ml-[10px] sm:ml-[150px] "
       >
-        <div className="w-[90vw] ">
+        <div className="w-[90vw]">
           <CreateHotelWrapper clickHandeler={clickPrivHandeler}>
-            <div className={classes.mainContaint}>
+            <div >
               <ProgressSteps pageNumber={1} count={7} circle={true} />
               <Title
                 Title="Choose Your Property Type"

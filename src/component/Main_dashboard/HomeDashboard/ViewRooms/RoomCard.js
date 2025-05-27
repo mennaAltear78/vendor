@@ -6,6 +6,7 @@ import defaultImage from "../../../../Assets/Image.svg";
 import AuthContext from "../../../Authentication/Context/auth-context";
 import Active from "../comman/Active";
 import BedTypeView from "../comman/BedTypeView";
+import { useDeleteRoomMutation } from "../../../../services/PostApi";
 
 const RoomCardInList = ({ data = {},setOpen}) => {
 
@@ -13,27 +14,33 @@ const ctx=useContext(AuthContext)
 const data2 = {
     primary_images: data.images?.length > 0 ? data.images : [defaultImage, defaultImage, defaultImage, defaultImage],
   };
-
+  const [deleteRoom, { isLoading: Loading, isError, isSuccess }] =
+  useDeleteRoomMutation();
 const handelRoomId=()=>{
   setOpen(true)
   ctx.setIdSpesificRoom(data?._id)
 }
+console.log(data._id,":data in room card");
+
   return (
     <Link
-      style={{ textDecoration: "none" }}
-      className="border-solid h-[170px] text-[black] flex cursor-pointer justify-between p-1 mt-[30px] rounded-[10px] hover:border-[#0000ff79] border-[#8080805a] border-[1px] font-usedFont hover:bg-blue-50 hover:shadow-md transition duration-300 w-full"
-      onClick={handelRoomId}
+    style={{ textDecoration: "none" }}
+    className="border-solid text-[black] flex cursor-pointer sm:justify-between p-1 mt-[30px] rounded-[10px] hover:border-[#0000ff79]  border-[#8080805a] border-[1px] font-usedFont hover:bg-blue-50 hover:shadow-md
+    transition duration-300 sm:w-full w-[380px]"
+    onClick={handelRoomId}
     >
       <div className="flex">
         <PrimaryImage_View
           data={data2}
-          DimensionsS="w-[50px] h-[50px]"
-          DimentionsB="h-[110px]"
-          wd="158px"
+          DimensionsS="sm:w-[50px] sm:h-[50px] w-[30px] h-[30px]"
+          DimentionsB="sm:h-[110px] h-[100px]"
+             // wd="914"
+Drawer="w-[157px]"
+          
         />
-        <div>
-          <h1 className="text-[20px]">{data?.name || "Room Name"}</h1>
-          <p className="text-[#8080809a] text-sm">
+        <div className="">
+          <h1 className="sm:text-[20px] text-[15px] break-words sm:w-full w-[100px]">{data?.name || "Room Name"}</h1>
+          <p className="text-[#8080809a] sm:text-sm text-[12px] sm:w-full w-[100px] break-words">
             {data?.description || "No description available."}
           </p>
 
@@ -44,7 +51,7 @@ const handelRoomId=()=>{
           </div>
           <div className="flex items-end h-[80px] ">
             <div className="mt-[10px] ">
-              <div className="flex justify-end items-center gap-1">
+              <div className="flex  justify-end items-center gap-1">
                 <p>Available Rooms </p>{" "}
                 <span className="text-[gray] "> {data.available_rooms}</span>
               </div>
@@ -54,7 +61,7 @@ const handelRoomId=()=>{
       </div>
       <div>
         <div className="w-full flex justify-end items-center gap-2">
-          <DotMenu id={data?.id} />
+          <DotMenu id={ctx.IdSpesificRoom}   Loading={Loading} error={isError} deleteFunction={deleteRoom}  />
         </div>
       <Active complete={data.is_completed} ActiveName={"Active"} NotActiveName={"Not Active"}/>
 

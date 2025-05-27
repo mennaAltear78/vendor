@@ -91,10 +91,10 @@ function ProfileView() {
 
   return (
     <MainDashBoardWrapper>
-      <div className="font-usedFont block sm:flex bg-[#80808019] w-full mb-[100px]">
+      <div className="font-usedFont block  pb-10 sm:flex bg-[#80808019] sm:w-full mb-[100px]">
         {/* Sidebar */}
-        <div className="ml-[120px] p-3">
-          <div className="bg-white p-3 w-[310px] rounded-md mb-4">
+        <div className="sm:ml-[120px] p-3">
+          <div className="bg-white p-3 sm:w-[310px] rounded-md mb-4">
             <b>User Profile</b>
             <div className="grid place-content-center">
               <img
@@ -123,7 +123,7 @@ function ProfileView() {
         </div>
 
         {/* Main Content */}
-        <div className="w-[340px] p-3 place-content-center sm:w-[600px] ml-[130px] sm:ml-[50px] mb-[100px] mr-[20px] bg-white rounded-md mt-4">
+        <div className=" p-3 sm:m-3 m-[8px]  place-content-center sm:w-[600px] sm:ml-[130px]  mb-[100px] sm:mr-[20px] bg-white rounded-md mt-4">
           {/* Company Information */}
           <Section title="Company information" icon={icon1}>
             <div className="grid place-content-center gap-4 sm:flex">

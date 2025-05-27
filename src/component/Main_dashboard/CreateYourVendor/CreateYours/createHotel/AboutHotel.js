@@ -10,6 +10,7 @@ import icon from "../../../../../Assets/Frame 1707481174.svg";
 import { useNavigate } from "react-router-dom";
 import "../../../../../index.css";
 import AuthContext from "../../../../Authentication/Context/auth-context";
+import InputField from "../../common/InputField";
 function AboutHotel() {
   const [error, setError] = useState(null);
   const [property, setProperty] = useState("");
@@ -27,7 +28,7 @@ function AboutHotel() {
       setError("description should be more than 26 character");
       return false;
     }
-    setError(null); 
+    setError(null);
     return true;
   };
 
@@ -60,74 +61,88 @@ function AboutHotel() {
     <MainDashBoardWrapper>
       <form
         onSubmit={onClickHandler}
-        className="w-[100vw] h-screen ml-[60px] sm:ml-[150px]
+        className="w-[90vw] h-screen mb-[100px]
 "
       >
-        <div>
+        <div >
+
           <CreateHotelWrapper clickHandeler={handlePrevClick}>
-            <div className={classes.mainContaint}>
+            <div className="ml-[10px]  sm:ml-[150px]">
               <ProgressSteps pageNumber={2} count={7} circle={true} />
-              <Title
-                Title="Tell us about your hotel"
-                description="To Start Choose type of Property You need to do"
-              />
+
             </div>
-            <div className={classes.rating}>
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <p>What's the name of your hotel?</p>
-                <img className="w-[30px] h-[30px] mt-[10px]" src={icon} />
-              </div>
 
-              <TextField
-                label="Property Name"
-                textfild="bigTextBox"
-                name="Property Name"
-                Intext="Property Name"
-                OnchangeHnadeler={propertyNameHandeler}
-                value={property}
-              />
 
-              <TextField
-                label="Description"
-                textfild="bigTextBox"
-                name="Description"
-                Intext="Description"
-                OnchangeHnadeler={propertyDescHandeler}
-                value={description}
-              />
-              <hr />
-              <p>What is the star rating of your hotel?</p>
-              <div>
-                <div>
-                  {[1, 2, 3, 4, 5, 6, 7].map((star) => (
-                    <div key={star} style={{ display: "flex" }}>
-                      <label key={star} className="block cursor-pointer">
-                        <input
-                          type="radio"
-                          name="starRating"
-                          value={star}
-                          checked={selectedStar === star}
-                          onChange={() => setSelectedStar(star)}
-                          className="mr-2"
-                        />
-                        {star} Star{star > 1 ? "s" : " "}
-                      </label>
-                      <div className="pl-4">
-                        {[...Array(star)].map((_, i) => (
-                          <img
-                            key={i}
-                            src={stars}
-                            alt="star"
-                            width="20"
-                            height="20"
-                          />
-                        ))}
-                      </div>
+            <div className="grid justify-center sm:w-full   sm:ml-[130px]  items-center">
+              <div className=" bg-[#80808010] min-w-[350px]  rounded-[20px] p-3">
+                <Title
+                  Title="Tell us about your hotel"
+                  description="To Start Choose type of Property You need to do"
+                />
+                <div className="font-usedFont border-solid    p-5 sm:w-[450px]  border-2 border-gray-400/40 rounded-[15px] mt-[50px]">
+                  <div className="flex justify-between">
+                    <p className="font-medium">What's the name of your hotel?</p>
+                    <img className="w-[30px] h-[30px] mt-[10px]" src={icon} />
+                  </div>
+
+
+                  <InputField
+                    editt={false}
+                    label="Property Name"
+                    value={property}
+                    name="name"
+                    className="w-[96%]"
+                    onChange={propertyNameHandeler}
+
+                  />
+                  <InputField
+                    editt={false}
+                    label="Description"
+                    value={description}
+                    name="name"
+                    className="w-[96%]"
+                    onChange={propertyDescHandeler}
+                    textarea={true}
+
+                  />
+                  <hr className="border border-gray-400/40" />
+                  <p className="font-medium">What is the star rating of your hotel?</p>
+                  <div>
+                    <div>
+                      {[1, 2, 3, 4, 5, 6, 7].map((star) => (
+                        <div key={star} style={{ display: "flex" }}>
+                          <label key={star} className="block cursor-pointer">
+                            <input
+                              type="radio"
+                              name="starRating"
+                              value={star}
+                              checked={selectedStar === star}
+                              onChange={() => setSelectedStar(star)}
+                              className="mr-2"
+                            />
+                            {star} Star{star > 1 ? "s" : " "}
+                          </label>
+                          <div className="pl-4">
+                            {[...Array(star)].map((_, i) => (
+                              <img
+                                key={i}
+                                src={stars}
+                                alt="star"
+                                width="20"
+                                height="20"
+                              />
+                            ))}
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                  ))}
+                  </div>
                 </div>
               </div>
             </div>
+
+
+
             {error && <p className="error">{error}</p>}
           </CreateHotelWrapper>
         </div>

@@ -50,8 +50,8 @@ function WelcomePage() {
   };
   return (
     <MainDashBoardWrapper>
-      <div className="w-[100vw]   bg-[#80808028]">
-        <div className="ml-[120px]">
+      <div className="w-[100vw]  pt-2 pb-10 bg-[#80808028]">
+        <div className="sm:ml-[120px] ml-3">
           {/*         
       <Title
         Title="Start by List Your🏨 Property and Create Hotels👋"
@@ -59,25 +59,25 @@ function WelcomePage() {
       /> */}
 
           <Title Title="Quick Insights " />
-          <div className="flex w-full">
+          <div className="sm:flex w-full">
             <div >
-              <div className="flex gap-[10px] ">
-    {cards.map((props, idx) => (
-      <TotalCard key={idx} {...props} />
-    ))}
+              <div className="flex flex-wrap  gap-[10px] ">
+                {cards.map((props, idx) => (
+                  <TotalCard key={idx} {...props} />
+                ))}
               </div>
 
               <div>
-                <AreaCharts  />
-                <div className="flex mt-[10px] ">
-                  <CoulmnCharts  />
+                <AreaCharts />
+                <div className="sm:flex mt-[10px] ">
+                  <CoulmnCharts />
                   <PieChart />
                 </div>
               </div>
             </div>
-            <div className="ml-[10px]">
+            <div className="sm:ml-[10px] ">
               <RatingOverView />
-              <RecentReview/>
+              <RecentReview />
             </div>
           </div>
 

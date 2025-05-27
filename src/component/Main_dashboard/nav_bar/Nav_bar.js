@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import style from "./Nav_bar.module.css";
 import icon2 from "../../../Assets/Ellipse 411.png";
 import icon3 from "../../../Assets/icon.svg";
 import search from '../../../Assets/search_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg'
 import notification from '../../../Assets/notifications_active_24dp_EFEFEF_FILL0_wght400_GRAD0_opsz24.svg'
 import { useNavigate } from "react-router-dom";
+import MobileMenu from "../Side_bar/SideBarMobile";
 function Nav_bar(props) {
   const navigate=useNavigate()
  const profileViewHandeler=()=>{
@@ -13,15 +14,19 @@ navigate('/profileView')
  }
 
   return (
-    <div
-      className={`bg-[#1C1EB0]  font-usedFont text-white flex justify-between py-1 transition-all duration-500 ${
+<div>
+  <div className="mb-[60px] sm:hidden flex">
+  <MobileMenu profileViewHandeler={profileViewHandeler}/>
+  </div>
+   <div
+      className={`bg-[#1C1EB0] sm:flex hidden   font-usedFont text-white  justify-between py-1 transition-all duration-500 ${
         !props.hover
           ? "sm:ml-[90px] pr-[20px] " // عندما يكون الـ hover مفعّل
           : "ml-[34px] pr-[40px] pl-[10px] sm:ml-[200px] transition-all duration-300 ease-in-out" // عندما يكون الـ hover غير مفعّل
       }`}>
       <div className={style["headerSection1"]}>
         <div className="mr-[20px]" >
-      
+        
         </div>
         <div>
           <img src={icon2} className="cursor-pointer" onClick={profileViewHandeler} />
@@ -58,6 +63,8 @@ navigate('/profileView')
         </div>
       </div>
     </div>
+</div>
+   
   );
 }
 

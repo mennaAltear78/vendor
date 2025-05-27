@@ -2,7 +2,7 @@ import React from "react";
 import classes from "../CreateYours/CreateHotel.module.css";
 function Title(props) {
   return (
-    <div className="ml-2 font-[Poppins]">
+    <div className="ml-2 font-usedFont">
       <p>
        <b style={{ fontSize: "22px" }}>{props.Title}</b>
         <br />

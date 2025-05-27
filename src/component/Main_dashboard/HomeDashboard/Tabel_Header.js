@@ -27,10 +27,11 @@ const customStyles = {
     <div >
       <div className="w-full m-auto grid sm:justify-between  items-center sm:flex font-usedFont">
       <div className="display   sm:flex gap-4 items-center sm:mb-0 mb-10  ">
-        <b className="text-xl	">{PageName}</b>
-        <div className="bg-[#3538e69a] text-[#2F32DE] sm:mb-0 mb-2 w-[120px] sm:w-full rounded-[6px] h-[27px] px-2 items-center display flex">
+       <div className=" flex items-center">
+        <b className="text-xl mr-4	">{PageName}</b>
+        <div className="bg-[#3538e69a] text-[#2F32DE] sm:text-[17px] text-[14px] sm:mb-0 mb-2 w-[120px] sm:w-full rounded-[6px] h-[27px] px-2 items-center display flex">
         {totaldata} {Room?"Room":"properties"}
-        </div>
+        </div></div>
         <div className="display flex  gap-2">
       
         <Select
@@ -95,7 +96,7 @@ const customStyles = {
             onChange={(e) => setKeyword(e.target.value)}
             // onKeyDown={handleSearch}
             placeholder="What are you looking for?"
-            className="w-full sm:text-[17px] text-[10px] border-none outline-none text-black bg-transparent placeholder-gray-300 placeholder:text-gray-500 p-0"
+            className="w-full sm:placeholder:text-[17px]  placeholder:text-[10px] border-none outline-none text-black bg-transparent placeholder-gray-300 placeholder:text-gray-500 "
           />
         </div>
         <button onClick={addFunction} className="bg-[#2F32DE] pr-2  sm:w-[210px]  place-content-center pt-[7px] cursor-pointer flex h-[37px] text-sm items-center pb-[7px]  text-white font-bold rounded-[10px] gap-3 outline-none border-none">

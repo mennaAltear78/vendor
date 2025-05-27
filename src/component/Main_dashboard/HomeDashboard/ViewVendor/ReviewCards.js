@@ -4,7 +4,7 @@ import ReviewCard from "./ReviewCard";
 import { Link } from "react-router-dom";
 import AuthContext from "../../../Authentication/Context/auth-context";
 
-const ReviewCards = ({ data, id,review }) => {
+const ReviewCards = ({ review }) => {
   const ctx = useContext(AuthContext);
   const d = ctx.IdSpesificHotel;
   const items =review?.data?.reviews || []; // Use reviews from the data prop or fallback to an empty array

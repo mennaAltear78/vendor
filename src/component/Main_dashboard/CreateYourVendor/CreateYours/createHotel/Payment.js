@@ -8,6 +8,7 @@ import CreateHotelWrapper from "../../common/CreateHotelWrapper";
 import classes from "../../CreateYours/CreateHotel.module.css";
 import TextField from "../../../../Authentication/regular_components/TextField";
 import appData from "../../../../../config/appData";
+import InputField from "../../common/InputField";
 
 function Payment() {
  
@@ -48,15 +49,21 @@ function Payment() {
   return (
     <div>
       <MainDashBoardWrapper>
-        <form onSubmit={onClickHandler} className="w-[100vw] h-screen ml-[100px] sm:ml-[150px] ">
+        <form onSubmit={onClickHandler} className="w-[90vw] h-screen  mb-[700px]">
         
-            <CreateHotelWrapper clickHandeler={clickPrivHandeler}>
-              <div className={classes.mainContaint}>
-                <ProgressSteps pageNumber={6} count={7} circle={true}/>
-           
-              </div>
+        <div  className="w-[88vw]">
+          <CreateHotelWrapper clickHandeler={clickPrivHandeler}>
+            <div >
+            <div className="ml-[10px] sm:ml-[150px]">
+              <ProgressSteps pageNumber={4} count={7} circle={true} />
+             </div>
+             <div className="grid justify-center sm:w-full sm:ml-[150px]  items-center">
+             <div className=" bg-[#80808010] min-w-[300px]   rounded-[20px] p-2">
+              <div className="grid justify-center sm:w-full      items-center">
+     
 
-              <div className="font-usedFont p-5 w-[420px] pr-[50px] border-solid  border-2 border-gray-400/40 rounded-[15px] mt-5" style={{ marginBottom: "-35px" }}>
+
+              <div className="font-usedFont p-[20px] min-w-[290px] sm:w-[430px]  border-2 border-solid border-gray-200 rounded-[15px] mt-[14px]">
                 <b style={{ fontSize: "20px" }}>
                     <b >payment methods</b>     
                   <hr />
@@ -69,23 +76,33 @@ function Payment() {
                 />
               </div>
 
-              <div className="font-[Poppins] p-5 w-[420px] pr-[50px] border-solid  border-2 border-gray-400/40 rounded-[15px] mt-10">
-                <b style={{ fontSize: "20px" }}>
+              <div className="font-usedFont p-[20px]  min-w-[290px] sm:w-[430px]  border-2 border-solid border-gray-200 rounded-[15px] mt-[14px]">
+                <b  className="text-[20px]">
                   Detailed Terms
                   <hr />
                 </b>
-                <TextField               
+                {/* <TextField               
                   textfild="textBox2"
                   name="Description"
-                  textarea={true}
+                 
                   Intext="Detailed Terms"
 
 
-                />
-              </div>
+                /> */}
+                     <InputField
+                    editt={false} 
+                    textarea={true}
+                    label="Detailed Terms"
+                    // value={property}
+                    name="Description"
+                    className="w-[94%]"
+                    // onChange={propertyNameHandeler}
+
+                  />
+              </div></div> </div> </div></div>
               {error && <p className="error">{error}</p>}
             </CreateHotelWrapper>
-        
+        </div>
         </form>
  
       </MainDashBoardWrapper>

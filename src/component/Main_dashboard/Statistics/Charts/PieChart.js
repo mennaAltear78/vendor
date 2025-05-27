@@ -33,7 +33,8 @@ import ReactApexChart from 'react-apexcharts';
           breakpoint: 480,
           options: {
             chart: {
-              width: 200, // 👈 العرض في الشاشات الصغيرة
+              width: 250, // 👈 العرض في الشاشات الصغيرة
+              height: 250, // 👈 الارتفاع في الشاشات الصغيرة
             },
             legend: {
               position: 'bottom',
@@ -47,8 +48,8 @@ import ReactApexChart from 'react-apexcharts';
     
 
     return (
-      <div>
-        <div id="chart" className='ml-[10px] w-[350px]  font-usedFont bg-white p-[10px] rounded-lg pb-[30px]'>
+     
+        <div id="chart" className='sm:ml-[10px] mb-4  mr-3  sm:w-[350px]  flex sm:grid  font-usedFont bg-white p-[10px] rounded-lg sm:pb-[30px]'>
        <div className='text-[16px] mb-[48px] mt-[15px]'><b>
          Most Reserved Rooms
          </b>
@@ -57,7 +58,7 @@ import ReactApexChart from 'react-apexcharts';
   height={370}  options={state.options} series={state.series} type="donut" />
           </div>
    
-      </div>
+     
     );
 }
     
