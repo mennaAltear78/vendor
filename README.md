@@ -1,70 +1,125 @@
-# Getting Started with Create React App
+# Vendor Hotel and Tours Management System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A web-based dashboard built with **React** and **JavaScript** to manage vendors, hotels, rooms, and tour packages with full CRUD operations, secure authentication, and a responsive interface.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 📋 Table of Contents
 
-### `npm start`
+1. [Authentication](#authentication)
+2. [Vendor Dashboard & Statistics](#vendor-dashboard--statistics)
+3. [Hotel Management](#hotel-management)
+4. [Hotel Listing Features](#hotel-listing-features)
+5. [Room Listing Features](#room-listing-features)
+6. [Tour Management Features](#tour-management-features)
+7. [Technologies Used](#technologies-used)
+8. [Setup & Installation](#setup--installation)
+9. [Conclusion](#conclusion)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🔐 Authentication
 
-### `npm test`
+- Implements secure authentication using **Access Token** and **Refresh Token**.
+- Utilizes **Axios interceptors** to handle token expiration and automatic refresh.
+- Includes user account creation and password update functionality.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 📊 Vendor Dashboard & Statistics
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- After login, users land on a **dashboard with vendor statistics**.
+- Interactive charts visualize key metrics such as:
+  - Number of hotels managed
+  - Number of available rooms
+  - Reviewing status
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🏨 Hotel Management
 
-### `npm run eject`
+- Users can:
+  - Create new hotels
+  - Upload hotel images after creation
+  - Add multiple rooms per hotel
+- If no rooms are added, an **'Add Room' icon** is shown on the hotel card.
+- Supports editing/updating hotel information.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 📋 Hotel Listing Features
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Lists all hotels with:
+  - Pagination
+  - Sorting (by name, date, price)
+  - Filtering (by city, facilities, rating)
+  - Search (by name or location)
+  - Add New Hotel
+- Clicking on a hotel opens a **Drawer** with detailed hotel info.
+- Allows editing of hotel details, including facilities and images.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## 🛏️ Room Listing Features
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Accessible via the **'Rooms' button** on each hotel card.
+- Displays rooms with:
+  - Pagination
+  - Sorting & Filtering (by price, type, availability)
+  - Search functionality
+  - Add New Room
+- Room detail **Drawer** includes:
+  - View/edit room information
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## 🧭 Tour Management Features
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Vendors can manage **tours linked to hotels or standalone**.
+- Key features:
+  - Create/edit tour packages with name, duration, itinerary, price, and images
+  - Filter and search tours by location, duration, or price
+- Tours support:
+  - Booking settings
+  - Availability status
+  - Multilingual descriptions (if enabled)
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🧰 Technologies Used
 
-### Making a Progressive Web App
+### Frontend
+- React (Create React App)
+- JavaScript
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### State Management
+- `useContext` – local state
+- `Redux Toolkit` – global state (CRUD)
 
-### Advanced Configuration
+### Form Validation
+- `Zod` – schema-based validation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Routing
+- `React Router DOM`
 
-### Deployment
+### HTTP Requests
+- `Axios` – with interceptors for authentication
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Styling & UI
+- `TailwindCSS` – responsive, utility-first design
 
-### `npm run build` fails to minify
+### Charts & Visualization
+- `ReactApexChart` – for interactive data visualization
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+## ⚙️ Setup & Installation
+
+To run the project locally:
+
+```bash
+git clone https://github.com/mennaAltear78/vendor.git
+cd vendor
+npm install
+npm start
+
