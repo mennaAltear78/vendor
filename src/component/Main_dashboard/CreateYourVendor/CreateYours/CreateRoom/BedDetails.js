@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-
+import { useContext, useState } from "react";
 import MainDashBoardWrapper from "../../../../Authentication/regular_components/MainDashBoardWrapper";
 import appData from "../../../../../config/appData";
 import Counter from "../../common/Counter";
@@ -8,55 +7,46 @@ import ProgressSteps from "../../../../Authentication/Sin_up/Create_your_partner
 import { useNavigate } from "react-router-dom";
 import ImgContainer from "../../common/ImgContainer";
 import Title from "../../common/Title";
-
-import AuthContext from "../../../../Authentication/Context/auth-context";
-
+import CreateCardContainer from "../../common/CreateCardContainer";
+import Error from "../../common/Error";
+import { AuthContext } from "../../../../Authentication/Context/auth-context";
 function BedDetails() {
   const navigate = useNavigate();
   const [bed, setBed] = useState([]);
-  const [Error, setError] = useState();
+  const [error, setError] = useState();
   const ctx = useContext(AuthContext);
-  const clickPrivHandeler = () => {
-    navigate("/RoomDetail");
-  };
+
   const onClickHandler = (e) => {
     e.preventDefault();
     const newBed = bed.filter((item) => item.count > 0);
-
-
-    console.log("bed", bed);
     if (newBed.length === 0) {
       setError("Required you should choose");
       return;
     }
-    console.log("newBed", newBed);
-
-    ctx.setRoominfo({ ...{ ...ctx.RoomInfo.data }, bed: newBed });
+    ctx.setRoominfo({ ...{ ...ctx.RoomInfo }, bed: newBed });
     navigate("/RoomFacilities");
   };
 
   return (
     <MainDashBoardWrapper>
-      <form
-        onSubmit={onClickHandler}
-        className="w-[88vw] h-screen  mb-[900px]">
-        <CreateHotelWrapper clickHandeler={clickPrivHandeler}>
-        <div className="ml-[10px] sm:ml-[150px]">
-      <ProgressSteps pageNumber={3} count={4} />
-
-        </div>
-    
-          <div>
-            <div className="grid justify-center sm:w-full   sm:ml-[150px]  items-center">
-              <div className=" bg-[#80808010]  rounded-[20px] p-2">
+      <form onSubmit={onClickHandler} className="w-[88vw] h-screen  mb-[900px]">
+        <div className="sm:w-[88vw] w-[100vw]">
+          <CreateHotelWrapper clickHandeler={() => navigate("/RoomDetail")}>
+            <div className="ml-[10px] sm:ml-[150px]">
+              <ProgressSteps pageNumber={3} count={4} />
+            </div>
+            <div>
+              <CreateCardContainer>
                 <Title Title="Bed details" />
-
                 <div className="font-usedFont p-[20px] sm:w-[430px] ml-[10px] border-2 border-solid border-gray-200 rounded-[15px] mt-[14px]">
                   <p className="font-usedFont text-[16px]">
                     Which beds are available in this room?
                   </p>
                   {appData.bedsData.map((bedItem, index) => (
-                    <div key={index} className="flex justify-between gap-7 mb-5">
+                    <div
+                      key={index}
+                      className="flex justify-between gap-7 mb-5"
+                    >
                       <div style={{ display: "flex" }}>
                         <ImgContainer img={bedItem.img} />
                         <div className="ml-[10px]">
@@ -99,12 +89,11 @@ function BedDetails() {
                     </div>
                   ))}
                 </div>
-              </div>
+              </CreateCardContainer>
             </div>
-          </div>
-
-        </CreateHotelWrapper>
-        {Error ? <p className="text-red-500 ">{Error}</p> : null}
+            <Error error={error} />
+          </CreateHotelWrapper>
+        </div>
       </form>
     </MainDashBoardWrapper>
   );

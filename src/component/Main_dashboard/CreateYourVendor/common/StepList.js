@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { StepCard } from "../common/StepCard";
-import AuthContext from "../../../Authentication/Context/auth-context";
+import { AuthContext } from "../../../Authentication/Context/auth-context";
 
-function StepList({ steps, HotelImageDone, onBtnAction }) {
+function StepList({ steps,  onBtnAction }) {
      const ctx = useContext(AuthContext);
    
     

@@ -7,10 +7,8 @@ import "swiper/css/navigation";
 const Scroller = ({ items=[], Component ,hightdiv ,numberCardShown,spaceBetween=10}) => {
   const prevRef = useRef(null); // Reference for the previous button
   const nextRef = useRef(null); // Reference for the next button
-  console.log(items,"kk");
- 
   return (
-    <div className="relative w-full ml-[17px] sm:ml-0 ">
+    <div className="relative  ml-[8px] sm:ml-0  ">
       <Swiper
         modules={[Navigation]}
         spaceBetween={spaceBetween}
@@ -45,19 +43,3 @@ const Scroller = ({ items=[], Component ,hightdiv ,numberCardShown,spaceBetween=
 };
 
 export default Scroller;
-
-      {/* Navigation Buttons */}
-      {/* <button
-        ref={prevRef}
-        className="swiper-button-prev absolute border-none left-0 top-1/2 -translate-y-1/2 z-10 bg-transparent text-blue-500 p-2 rounded-full"
-        aria-label="Scroll left"
-      >
-        ‹
-      </button>
-      <button
-        ref={nextRef}
-        className="swiper-button-next border-none absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-transparent text-blue-500 p-2 rounded-full"
-        aria-label="Scroll right"
-      >
-        ›
-      </button> */}

@@ -1,13 +1,14 @@
 // components/Navbar.jsx
 import React, { useContext, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Bell, Menu, X } from "lucide-react";
 import { VendorData } from "../HomeDashboard/comman/Data";
 import { AnimatePresence, motion } from "framer-motion";
 import icon2 from "../../../Assets/Ellipse 411.png";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import AuthContext1 from "../../Authentication/Context/Mian-Page-Context";
 
 const MobileMenu = ({profileViewHandeler}) => {
+  const navigate =useNavigate()
   const [isOpen, setIsOpen] = useState(false);
   const ctx = useContext(AuthContext1); // Use correct context name
 
@@ -26,9 +27,17 @@ const MobileMenu = ({profileViewHandeler}) => {
           <div className="text-[white] font-bold text-lg">sphinx</div>
         
           </div>
-        
+              
           {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center gap-4">   
+            <div className="relative">
+                    <Bell size={30} className="black" onClick={()=>navigate('/MainDashboaed/nNotifications')} />
+                    {4 > 0 && (
+                      <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1.5 py-0.5 min-w-[20px] text-center">
+                        {4 > 99 ? '99+' : 4}
+                      </span>
+                    )}
+                  </div>
             <button
               onClick={toggleMenu}
               className="text-[#090960] focus:outline-none p-2 rounded-md border-none bg-[#ffffff65]"

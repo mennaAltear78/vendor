@@ -2,7 +2,7 @@
     display: flex;
     margin-bottom: 30px;
     margin-left: 10px;
-    
+    width:90%
   }
   .progressStepsNoCircle{
     display: flex;

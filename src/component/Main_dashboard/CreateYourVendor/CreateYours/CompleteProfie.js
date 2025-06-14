@@ -1,13 +1,13 @@
 import  { useState, useContext, useEffect } from "react";
 import MainDashBoardWrapper from "../../../Authentication/regular_components/MainDashBoardWrapper";
-
-
 import appData from "../../../../config/appData";
 import { useNavigate } from "react-router-dom";
-import AuthContext from "../../../Authentication/Context/auth-context";
+
 import PopupMessage from "../../../Authentication/Sin_up/Create_your_partner/Create_account_items/PopupMessage";
 import gif from "../../../../Assets/413dc7adf0ec89fd9448f62d17a3b029.gif";
-import StepList from "./StepList";
+import StepList from "../common/StepList";
+import { AuthContext } from "../../../Authentication/Context/auth-context";
+
 
 function CompleteProfie({Hotel}) {
   const [isPop_up, SetPop_up] = useState(false);
@@ -50,7 +50,7 @@ useEffect(() => {
 
   useEffect(()=>{
     document.title="complete your profile"
-   ctx.setHotelImageDone([3,4]);
+    // ctx.setHotelImageDone([3,4]);
   //  ctx.setHotelImageDone([]);
   },[ctx.IdSpesificHotel])
 const steps = Hotel ? appData.stepsHotel : appData.stepsRoom;
@@ -59,7 +59,6 @@ const steps = Hotel ? appData.stepsHotel : appData.stepsRoom;
       <MainDashBoardWrapper>
       <StepList
         steps={steps}
-      
         onBtnAction={handlingBtnAction}
          />
         {isPop_up && (

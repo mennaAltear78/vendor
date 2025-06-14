@@ -21,6 +21,7 @@ const Sin_in_main = () => {
   const handleTogglePopup = () => {
     setError(null);
   };
+
   return (
     <AuthenticationWrapper>
       <div className="text-center w-[500px] flex flex-col justify-center"

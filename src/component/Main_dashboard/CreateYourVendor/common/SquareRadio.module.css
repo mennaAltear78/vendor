@@ -1,106 +1,99 @@
 .radio-container {
-display: flex;
-         margin-bottom: -20px;
-  }
-  
-  .radio-label {
-       display: flex;
-        align-items: center;
-        cursor: pointer;
-        gap: 5px;
-        justify-content: space-between;
-        width: 100%;
-        margin-top: 20px;
-    
-  }
+  display: flex;
+  margin-bottom: -20px;
+}
 
+.radio-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 5px;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 20px;
+}
 
-  .hidden-radio {
-    display: none; /* Hide default radio button */
-  }
-  
-  .square-radio {
-    width: 10px;
-    height: 10px;
-    border: 2px solid #44444471;
-    display: inline-block;
-    /* border-radius: 4px; */
-    margin-bottom: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    line-height: 20px;
-    font-weight: bold;
-    color: white;
-    padding: 3px;
-    
-    display: flex
-    ;
-        /* place-content: center; */
-        align-items: center;
+.hidden-radio {
+  display: none; /* Hide default radio button */
+}
 
-  }
-  .addCost{
-    display: flex;
-     margin-top: 7px;
-     /* width: 200px;
+.square-radio {
+  width: 10px;
+  height: 10px;
+  border: 2px solid #44444471;
+  display: inline-block;
+  /* border-radius: 4px; */
+  margin-bottom: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: bold;
+  color: white;
+  padding: 3px;
+
+  display: flex;
+  /* place-content: center; */
+  align-items: center;
+}
+.addCost {
+  display: flex;
+  margin-top: 7px;
+  /* width: 200px;
        margin-right: -70px; */
-   
-  }
-  .scroll{
-    display: flex
-    ;
-        /* justify-content: center; */
-        align-items: center;
-  }
+}
+.scroll {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+}
 
-  .hidden-radio:checked + .square-radio {
-    background-color: #006eff;
-  }
-  .sliderL {
-    width: 40px;
-    height: 19.5px;
-    background-color: blue;
-    border-radius: 30px;
-    display: flex;
-    align-items: center;
-    padding: 2px;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    margin-left: 10px;
-  }
-  
-  .sliderR {
-    width: 40px;
-    height: 19.5px;
-    background-color: rgb(67, 67, 68);
-    border-radius: 30px;
-    display: flex;
-    align-items: center;
-    padding: 2px;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    margin-left: 10px;
-  }
-  
-  .CircleR {
-    width: 20px;
-    height: 20.5px;
-    background: white;
-    border-radius: 50%;
-    transition: all 0.4s ease;
-    transform: translateX(0%);
-    
-  }
-  
-  .CircleL {
-    width: 20px;
-    height: 20px;
-    background: white;
-    border-radius: 50%;
-    transition: all 0.4s ease;
-    transform: translateX(20px);
-  }
-  .addCost p{
-    color:orange;
-    font-size: 10px;
-  }
+.hidden-radio:checked + .square-radio {
+  background-color: #006eff;
+}
+.sliderL {
+  width: 40px;
+  height: 19.5px;
+  background-color: blue;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  margin-left: 10px;
+}
+
+.sliderR {
+  width: 40px;
+  height: 19.5px;
+  background-color: rgb(67, 67, 68);
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  margin-left: 10px;
+}
+
+.CircleR {
+  width: 20px;
+  height: 20.5px;
+  background: white;
+  border-radius: 50%;
+  transition: all 0.4s ease;
+  transform: translateX(0%);
+}
+
+.CircleL {
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  transition: all 0.4s ease;
+  transform: translateX(20px);
+}
+.addCost p {
+  color: orange;
+  font-size: 10px;
+}

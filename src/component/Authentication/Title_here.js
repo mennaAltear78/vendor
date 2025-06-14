@@ -5,11 +5,12 @@ import bluecheckCircle from "../../Assets/Ellipse 407.svg";
 import checkCircle from "../../Assets/Ellipse 409.svg";
 import scrollleft from "../../Assets/cancel (1).svg";
 import scrollright from "../../Assets/cancelRight.svg";
-import AuthContext from "./Context/auth-context";
+
 import frame19 from "../../Assets/Frame 1707481219.png";
 import frame20 from "../../Assets/Frame 1707481220.png";
 import stars from "../../Assets/Group 1261153538.png";
 import dashboardpic from '../../Assets/Dark.svg'
+import { AuthContext } from "./Context/auth-context";
 function Title_here() {
   const ctx = useContext(AuthContext);
 

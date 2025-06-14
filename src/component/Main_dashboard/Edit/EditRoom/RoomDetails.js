@@ -3,8 +3,9 @@ import InputField from "../../CreateYourVendor/common/InputField";
 import Menu from "../../CreateYourVendor/common/Menue";
 import appData from "../../../../config/appData";
 import Button from "../../../Authentication/regular_components/Button";
-import { useUpdateRoomPropertiesMutation } from "../../../../services/PostApi";
+
 import SpinnerLoading from "../../../Authentication/regular_components/SpinnerLoading";
+import { useUpdateRoomPropertiesMutation } from "../../../../services/RoomApi";
 
 const RoomDetails = ({ data }) => {
   console.log(data._id);
@@ -77,12 +78,12 @@ const RoomDetails = ({ data }) => {
 
   return (
     <div>
-      <div className="sm:flex gap-4">
+      <div className="sm:flex items-center gap-4">
         <InputField
           label="Room Name"
           value={roomDetails.name}
           name="name"
-          className="w-[90%]"
+          className="w-[95%]"
           onChange={(e) => handleChange("name", e.target.value)}
         />
 
@@ -107,14 +108,13 @@ const RoomDetails = ({ data }) => {
         />
       </div>
 
-      <div className="sm:flex gap-4 mt-[10px]">
+      <div className="sm:flex gap-4  items-center">
         <InputField
           label="Available Rooms"
           value={roomDetails.available_rooms}
-
           name="available_rooms"
           type="number"
-          className="w-[90%]"
+          className="w-[94%]"
           onChange={(e) => handleChange("available_rooms", e.target.value)}
         />
 
@@ -123,7 +123,7 @@ const RoomDetails = ({ data }) => {
           value={roomDetails.price_per_night}
           name="price_per_night"
           type="number"
-          className="w-[90%]"
+          className="w-[94%] "
           onChange={(e) => handleChange("price_per_night", e.target.value)}
         />
 
@@ -132,7 +132,7 @@ const RoomDetails = ({ data }) => {
           value={roomDetails.size.value}
           name="size"
           type="number"
-          className="w-[90%]"
+          className="w-[94%]"
           onChange={(e) => handleChange("size", { value: e.target.value })}
         />
       </div>

@@ -1,11 +1,7 @@
-import React from 'react'
-import classes from './SpinnerLoading.module.css'
 function SpinnerLoading({dimentians='h-12 w-12 text-blue-600'}) {
-  console.log("hello");
+
   
   return (
-    // <div className={props.spinner?classes["overlay"]:classes["spinner-container"]}>
-    // <div className={props.spinner?classes["spinnerbig"]:classes["spinner"]}></div>
     <div className="flex justify-center items-center w-[150px] mt-[-10px]">
       <svg
         className={`animate-spin ${dimentians} `}
@@ -24,7 +20,6 @@ function SpinnerLoading({dimentians='h-12 w-12 text-blue-600'}) {
       </svg>
     </div>
 
-  // </div>
   )
 }
 

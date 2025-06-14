@@ -17,7 +17,7 @@ const PrimaryImage_View = ({
           src={data?.primary_images[0] || image}
           alt="hotel"
           // width={`${wd}`}
-          className={` h-full object-cover rounded-lg  ${Drawer?Drawer:'w-[100px]'} sm:w-[${wd}px] `}
+          className={` h-full object-cover rounded-lg  ${Drawer?Drawer:'w-[100px]'}  `}
         />
       </div>
 

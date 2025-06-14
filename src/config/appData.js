@@ -1,12 +1,32 @@
-import { ReactComponent as Hotel } from "../../src/Assets/icons/buildings.svg";
-import { ReactComponent as Apartement } from "../../src/Assets/icons/house.svg";
-import { ReactComponent as Villa } from "../../src/Assets/icons/building-3.svg";
-import { ReactComponent as Hostel } from "../../src/Assets/icons/house-2.svg";
-import { ReactComponent as Resident } from "../../src/Assets/icons/buildings-2.svg";
-
 import bed from "../Assets/Frame 1707481215.png";
 
 const appData = {
+cards : [
+    {
+      bgImageCss: "bg-[#f59dac]",
+      precent: "bg-[#ffa6003f] text-[orange]",
+      IconCss: "text-[#f1294b]",
+      iconName: "calendar_add_on",
+    },
+    {
+      bgImageCss: "bg-[#ffa6005e]",
+      precent: "bg-[#f59dac] text-[#f1294b]",
+      IconCss: "text-[orange]",
+      iconName: "moving",
+    },
+    {
+      bgImageCss: "bg-[#0000ff79]",
+      precent: "bg-[#ffa6003f] text-[orange]",
+      IconCss: "text-[blue]",
+      iconName: "moving",
+    },
+    {
+      bgImageCss: "bg-[#0080007c]",
+      precent: "bg-[#f59dac] text-[#f1294b]",
+      IconCss: "text-[green]",
+      iconName: "finance_mode",
+    },
+  ],
   PaymentMethod: [
     { label: "Paymob", value: "Paymob" },
     { label: "PayPal", value: "PayPal" },
@@ -241,27 +261,27 @@ const appData = {
   ChoiseHotel: [
     {
       title: "Hotel",
-      img: Hotel,
+      img: "apartment",
       desc: "Accommodation for travellers often offering restaurants, meeting rooms and other guest services",
     },
     {
-      title: "Apartment",
-      img: Apartement,
+      title: "Apartement",
+      img: "house",
       desc: "Make Tour, sit planning to attraction and more..",
     },
     {
       title: "Villa",
-      img: Villa,
+      img: "Villa",
       desc: "Make Tour, sit planning to attraction and more..",
     },
     {
       title: "Hostel",
-      img: Hostel,
+      img: "night_shelter",
       desc: "Make Tour, sit planning to attraction and more..",
     },
     {
       title: "Resident",
-      img: Resident,
+      img: "other_houses",
       desc: "Make Tour, sit planning to attraction and more..",
     },
   ],

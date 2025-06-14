@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Menue.module.css";
 import arrow from "../../../Assets/arrow-down.png";
 function Menue({
@@ -8,7 +8,7 @@ function Menue({
   timeHandeler,
   table = false,
   labelMenue,
-  chart
+  chart,
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("options");
@@ -24,43 +24,54 @@ function Menue({
     }
     setIsOpen(!isOpen);
   };
+
   const handleSelect = (option, Time) => {
     setSelectedOption(option);
     if (selectedOption === null) setTimeOption("AM");
   };
+
   const HandleTimeOption = (option) => {
     setTimeOption(option);
   };
 
   return (
-    <div className={`relative items-center font-usedFont ${table?'display flex':''}`} >
+    <div
+      className={`relative items-center font-usedFont ${
+        table ? "display flex" : ""
+      }`}
+    >
       <label className="text-[16px] text-[#333] mb-1.5 font-[Poppins]">
-       {label} 
+        {label}
       </label>
       <div
-        className={`${chart?'bg-[#da3853] text-[#ffffffde]':'bg-white text-gray-500'}   border border-solid border-[#56595c44] rounded-lg px-[6px] py-0 cursor-pointer flex justify-between items-center text-[16px]  transition-[width] duration-300 ease-in-out ${
-          table ? "w-[120px] h-[30px]" : "w-[190px] h-[30px]"
+        className={`${
+          chart ? "bg-[#da3853] text-[#ffffffde]" : "bg-white text-gray-500"
+        }   border border-solid border-[#56595c44] rounded-lg px-[6px] py-0 cursor-pointer flex justify-between items-center text-[16px]  transition-[width] duration-300 ease-in-out ${
+          table ? "w-[120px] h-[30px]" : "w-[180px] h-[30px]"
         }`}
       >
         <div className="display  flex items-center " onClick={toggleDropdown}>
-          <div className={table ? "w-[100px]" : "w-[174px]"}>
+          <div className={table ? "w-[100px]" : "w-[144px]"}>
             {table ? (
-              <p >{labelMenue} </p>
+              <p>{labelMenue} </p>
             ) : selectedOption ? (
               `${selectedOption} `
             ) : null}
             {!NObtn && TimeOption}
           </div>
-      {chart?null:    <div className="flex items-end ">
-            <img className="w-[20px] h-[20px]" src={arrow} />
-          </div>}
+          {chart ? null : (
+            <div className="flex items-end ">
+              <img className="w-[20px] h-[20px]" src={arrow} />
+            </div>
+          )}
         </div>
         <div className={`${styles.options} ${isOpen ? styles.show : ""}`}>
           {options.map((option, index) => (
             <div
               key={index}
               className={`${styles.optionsStyle} ${
-                selectedOption === option.value ? styles.checked : ""}`}
+                selectedOption === option.value ? styles.checked : ""
+              }`}
               onClick={() => handleSelect(option.value, TimeOption)}
             >
               {option.label}

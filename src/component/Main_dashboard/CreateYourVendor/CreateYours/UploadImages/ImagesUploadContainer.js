@@ -3,10 +3,8 @@ import ImageDownload from './ImageDownload'; // Ensure this is the correct impor
 
 const ImagesUploadContainer = ({  imagesHotal, removeImageHandler, setHotalImages }) => {
 
-    
   return (
     <div>
-
       <div className="flex flex-wrap gap-4">
         {imagesHotal.map((image) => (
           <div key={image.id} className="relative">

@@ -12,7 +12,7 @@ function RatingOverView() {
     "Value for money rating",
   ];
   return (
-    <div className="lg:w-[300px]  mr-3   p-4 pt-[1px] h-[360px] rounded-lg font-usedFont bg-white mb-[10px]">
+    <div className="lg:w-[300px] md:w-full mr-3   p-4 pt-[1px]  rounded-lg font-usedFont bg-white mb-[10px]">
       <p>Property Rating overview</p>
       <div className="flex justify-between cursor-pointer">
         <div className="flex">

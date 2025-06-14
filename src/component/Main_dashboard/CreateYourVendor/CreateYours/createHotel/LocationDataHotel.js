@@ -1,8 +1,5 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import{ useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-import AuthContext from "../../../../Authentication/Context/auth-context";
-
 import LocationGoogltMap from "../../../../Authentication/Sin_up/Create_your_partner/Create_account_items/LocationGoogltMap";
 import MainDashBoardWrapper from "../../../../Authentication/regular_components/MainDashBoardWrapper";
 import CreateHotelWrapper from "../../common/CreateHotelWrapper";
@@ -10,11 +7,10 @@ import ProgressSteps from "../../../../Authentication/Sin_up/Create_your_partner
 import Title from "../../common/Title";
 import TextField from "../../../../Authentication/regular_components/TextField";
 import PopupMessage from "../../../../Authentication/Sin_up/Create_your_partner/Create_account_items/PopupMessage";
-
-import classes from "../../CreateYours/CreateHotel.module.css";
 import gif from "../../../../../Assets/413dc7adf0ec89fd9448f62d17a3b029.gif";
-
-import api from'../../../../../services/axiosInstance'
+import api from "../../../../../services/axiosInstance";
+import CreateCardContainer from "../../common/CreateCardContainer";
+import { AuthContext } from "../../../../Authentication/Context/auth-context";
 
 const SUCCESS_MESSAGE =
   "Hotel has been created successfully! Now, proceed to the second step to upload images.";
@@ -57,9 +53,7 @@ function LocationDataHotel() {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      console.log("id is",response?.data?.data?.hotel?._id);
-      
-      ctx.SetHotelId(response?.data?.data?.hotel?._id);
+      ctx.setspecificHotelId(response?.data?.data?.hotel?._id);
     } catch (error) {
       ErrorMessage = true;
       SetPop_upMessage(
@@ -68,15 +62,9 @@ function LocationDataHotel() {
           : error?.response?.data?.message
       );
     }
-
     setIsLoading(false);
     SetPop_up(true);
   };
-
-  const handleBackClick = () => {
-    navigate(-1);
-  };
-
   const setlocationHandeler = (location, city, countryy, log, lat) => {
     mapRef.current.value = location;
     country.current.value = countryy;
@@ -87,13 +75,10 @@ function LocationDataHotel() {
   };
 
   const CancelHandeler = () => {
-    console.log("pop up message", pop_upMessage);
-
     if (pop_upMessage === SUCCESS_MESSAGE) {
       navigate("/CompleteProfie");
       ctx.setHotelImageDone((prevSteps) => [...prevSteps, 2]);
     } else {
-      // ctx.setHotelImageDone((prevSteps) => {[prevSteps.filter((item)=>item!==2)]});
       navigate("/CompleteProfie");
       SetPop_up(false);
     }
@@ -103,80 +88,79 @@ function LocationDataHotel() {
     navigate("/HotelImages");
     ctx.setHotelImageDone((prevSteps) => [...prevSteps, 2]);
   };
+    useEffect(() => {
+      document.title = "Location Data Hotel";
+    }, []);
   return (
     <MainDashBoardWrapper>
       <form
         onSubmit={onSumbitHandeler}
-        className="w-[90vw] h-screen  mb-[700px]">
-        <div  className="w-[88vw]">
+        className="w-[100vw] h-screen  mb-[700px]"
+      >
+        <div className="sm:w-[88vw] w-[100vw]">
           <CreateHotelWrapper
-            clickHandeler={handleBackClick}
+            clickHandeler={()=> navigate(-1)}
             isLoading={isLoading}
           >
             <div className="">
-            <div className="ml-[10px] sm:ml-[150px]"><ProgressSteps pageNumber={7} count={7} circle={true} /></div>
-              
-              <div className="grid justify-center sm:w-full   sm:ml-[150px]  items-center">
-              <div className=" bg-[#80808010] min-w-[290px]  rounded-[20px] p-3">
-                   <Title
-                Title="What is your Loaction?"
-                description="To Start Choose your Location from the map "
-              />
-              <div className="gap-2 sm:flex ">
-                <TextField
-                  label="Country"
-                  Intext="Name"
-                  textfild="textBoxSmall"
-                  ref={country}
-                  disabled={true}
-                  OnchangeHnadeler={() => {}}
+              <div className="ml-[10px] sm:ml-[150px]">
+                <ProgressSteps pageNumber={7} count={7} circle={true} />
+              </div>
+              <CreateCardContainer>
+                <Title
+                  Title="What is your Loaction?"
+                  description="To Start Choose your Location from the map "
                 />
-
-                <TextField
-                  label="City"
-                  Intext="choose Form"
-                  textfild="textBoxSmall"
-                  ref={cityRef}
-                  disabled={true}
-                  OnchangeHnadeler={() => {}}
-                />
-              </div> 
-             
-          
-           
-            <div className="">
-              <TextField
-                label="Address Details"
-                Intext="Grab it from Map"
-                ref={mapRef}
-                textfild="textBox"
-                disabled={true}
-                OnchangeHnadeler={() => {}}
-              />
-              <LocationGoogltMap
-                styling={{
-                  width: "100%",
-                  height: "300px",
-                  borderRadius: "10px",
-                }}
-                setlocation={setlocationHandeler}
-              />
-            </div> </div> </div></div>
+                <div className="pl-5 border-solid m-1 rounded-[10px] pr-5 pt-4 pb-4 border-[#8080801c] border-[2px] ml-3">
+                 
+                <div className="gap-2 sm:flex  ">
+                  <TextField
+                    label="Country"
+                    Intext="Name"
+                    textfild="textBoxSmall"
+                    ref={country}
+                    disabled={true}
+                  />
+                  <TextField
+                    label="City"
+                    Intext="choose Form"
+                    textfild="textBoxSmall"
+                    ref={cityRef}
+                    disabled={true}
+                  />
+                </div>
+                <div>
+                  <TextField
+                    label="Address Details"
+                    Intext="Grab it from Map"
+                    ref={mapRef}
+                    textfild="textBox"
+                    disabled={true}
+                  />
+                  <LocationGoogltMap
+                    styling={{
+                      width: "100%",
+                      height: "300px",
+                      borderRadius: "10px",
+                    }}
+                    setlocation={setlocationHandeler}
+                  />
+                </div> </div>
+              </CreateCardContainer>
+            </div>
             {error ? <p className="text-red-700">{error}</p> : null}
           </CreateHotelWrapper>
         </div>
       </form>
       {isPop_up && (
         <PopupMessage
-        
           error={true}
           popMessageCss="popupMain"
-          // details={pop_upMessage}
           CancelbtnCss="blueCssS"
           highlighted={pop_upMessage}
-          color={pop_upMessage ===SUCCESS_MESSAGE ?true:false}
+          color={pop_upMessage === SUCCESS_MESSAGE ? true : false}
           messageImg={gif}
-          cancel={pop_upMessage ===SUCCESS_MESSAGE ?true:false}
+          cancel={pop_upMessage === SUCCESS_MESSAGE ? true : false}
           btnCss="whiteCssS"
           btnMessage2="Go to"
           btnMessage1="Avoid"

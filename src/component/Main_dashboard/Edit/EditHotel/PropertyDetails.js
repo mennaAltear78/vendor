@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import InputField from "../../CreateYourVendor/common/InputField";
 import Button from "../../../Authentication/regular_components/Button";
-import { useUpdatePropertiesMutation } from "../../../../services/PostApi";
+
 import SpinnerLoading from "../../../Authentication/regular_components/SpinnerLoading";
+import { useUpdatePropertiesMutation } from "../../../../services/HotelApi";
 
 const PropertyDetails = ({ data, edit }) => {
   const id = data._id;

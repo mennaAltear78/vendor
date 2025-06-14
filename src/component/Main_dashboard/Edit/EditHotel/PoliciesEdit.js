@@ -3,11 +3,12 @@ import InputField from "../../CreateYourVendor/common/InputField";
 import SquareRadio from "../../CreateYourVendor/common/SquareRadio";
 import FeeCalculation from "../../CreateYourVendor/common/FeeCalculation";
 import Button from "../../../Authentication/regular_components/Button";
-import { useUpdatePoliciesMutation } from "../../../../services/PostApi";
+
 import SpinnerLoading from "../../../Authentication/regular_components/SpinnerLoading";
 import TimePaker from "./TimePaker";
 import appData from "../../../../config/appData";
 import Menu from "../../CreateYourVendor/common/Menue";
+import { useUpdatePoliciesMutation } from "../../../../services/HotelApi";
 
 const PoliciesEdit = ({ data }) => {
   // console.log(data);

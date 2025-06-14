@@ -3,6 +3,7 @@ import { RightDrawer } from "../comman/Drawer";
 import RoomCardInList from "./RoomCard";
 import RoomView from "./RoomView";
 import SkeletonCardView from "../../../Skeletons/SkeletonCardView";
+import NoListCointainer from "../comman/NoListCointainer";
 
 function RoomsContainer({ isLoading, data, error }) {
   const [open, setOpen] = useState(false);
@@ -10,11 +11,8 @@ function RoomsContainer({ isLoading, data, error }) {
   if (isLoading) {
     return <SkeletonCardView />;
   } else if (error) {
-    return (
-      <div className="h-screen font-usedFont text-[30px] flex justify-center items-center w-full m-auto">
-        NOT FOUND....{" "}
-      </div>
-    );
+  return <NoListCointainer name="room" link={"/CreateRoom"} />;
+  
   }
 
   return (

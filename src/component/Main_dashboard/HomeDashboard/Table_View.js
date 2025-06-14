@@ -3,13 +3,11 @@ import { useTable, useSortBy } from "react-table";
 import image from "../../../Assets/Image.svg";
 import arrowDown from "../../../Assets/ArrowDown.svg";
 import arrowUp from "../../../Assets/ArrowUP.svg";
-import DotMenu from "./DotMenu";
+
 import SkeletonTableView from "../../Skeletons/SkeletonTableView";
+import DotMenu from "./comman/DotMenu";
 
 const Table_View = ({ data: data1, isLoading, error }) => {
-  // Log data for debugging
-  console.log(data1, "data");
-
   // Define data using useMemo with fallback
   const data = useMemo(
     () =>

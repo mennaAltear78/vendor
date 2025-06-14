@@ -1,7 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import AuthContext from "../../../Authentication/Context/auth-context";
-import { useGetSpecificRoomQuery } from "../../../../services/PostApi";
 
 // Components
 import Header from "../ViewVendor/Header";
@@ -14,13 +12,23 @@ import Active from "../comman/Active";
 
 // Assets
 import defaultImage from "../../../../Assets/Image.svg";
+import { AuthContext } from "../../../Authentication/Context/auth-context";
+import { useGetSpecificRoomQuery } from "../../../../services/RoomApi";
 
 // Config
 const roomFacilitiesConfig = [
-  { name: "Room Bathroom Facilities", icon: "bathtub", dataKey: "available_in_your_own_bathroom" },
+  {
+    name: "Room Bathroom Facilities",
+    icon: "bathtub",
+    dataKey: "available_in_your_own_bathroom",
+  },
   { name: "Room Facilities", icon: "room_preferences", dataKey: "facilities" },
   { name: "Room view Facilities", icon: "visibility", dataKey: "view" },
-  { name: "Room Main Facilities", icon: "room_preferences", dataKey: "main_facilities" },
+  {
+    name: "Room Main Facilities",
+    icon: "room_preferences",
+    dataKey: "main_facilities",
+  },
 ];
 
 const RoomView = () => {
@@ -33,11 +41,11 @@ const RoomView = () => {
   }, [editMode]);
 
   const { data, error, isLoading } = useGetSpecificRoomQuery({
-    id: ctx?.IdSpesificRoom,
+    id: ctx?.specificRoomId,
   });
 
   const handleBackToRoomList = () => {
-    navigate(`/RoomsList/RoomView/${ctx?.IdSpesificRoom}`);
+    navigate(`/RoomsList/RoomView/${ctx?.specificRoomId}`);
   };
 
   if (isLoading) return <HotelDetailsSkeleton />;
@@ -45,13 +53,23 @@ const RoomView = () => {
 
   const room = data.data.room;
 
-  const images = room.images?.length > 0 ? room.images : [defaultImage, defaultImage, defaultImage, defaultImage];
+  const images =
+    room.images?.length > 0
+      ? room.images
+      : [defaultImage, defaultImage, defaultImage, defaultImage];
 
   return (
     <div className="w-full font-usedFont px-2 bg-[#80808015]">
       <div className="grid justify-center pb-[100px]">
-        <Header data={room.name} setEdit={setEditMode} openPageHandeler={handleBackToRoomList} Room />
-        
+        <Header
+          id={ctx?.specificHotelId}
+          data={room.name}
+          setEdit={setEditMode}
+          Edit={editMode}
+          openPageHandeler={handleBackToRoomList}
+          Room
+        />
+
         {editMode ? (
           <RoomEdit data={data} />
         ) : (
@@ -61,8 +79,7 @@ const RoomView = () => {
                 data={{ primary_images: images }}
                 DimensionsS="w-[90px] h-[90px]"
                 DimentionsB="sm:h-[250px] h-[200px]"
-               
-                Drawer='w-[367px]'
+                Drawer="w-[367px]"
                 ViewAll
               />
 
@@ -70,36 +87,50 @@ const RoomView = () => {
                 <div className="flex justify-between items-center">
                   <b className="text-[24px] sm:mt-0 mt-10">{room.name}</b>
                   <div>
-                    <Active complete={room.status === "Available"?true:false} ActiveName="Available" NotActiveName="Not Available" />
+                    <Active
+                      complete={room.status === "Available" ? true : false}
+                      ActiveName="Available"
+                      NotActiveName="Not Available"
+                    />
                     <p className="text-[10px] mt-[3px] ml-3">
                       Size:
-                      <span className="text-[orange]"> {room.size.value} {room.size.unit}</span>
+                      <span className="text-[orange]">
+                        {" "}
+                        {room.size.value} {room.size.unit}
+                      </span>
                     </p>
                   </div>
                 </div>
 
-                <p className="text-[gray]">{room.description}</p>
-
+                <p className="text-[gray] break-words overflow-hidden">{room.description}</p>
                 <BedTypeView beds={room.bed} />
-
                 <p className="text-[10px] flex items-center gap-1">
-                  <span className="material-symbols-outlined text-[14px]">escalator_warning</span>
-                  Capacity: {room.capacity.adults} adults, {room.capacity.children} children, {room.capacity.maxGuests} max guests
+                  <span className="material-symbols-outlined text-[14px]">
+                    escalator_warning
+                  </span>
+                  Capacity: {room.capacity.adults} adults,{" "}
+                  {room.capacity.children} children, {room.capacity.maxGuests}{" "}
+                  max guests
                 </p>
 
                 <div className="flex justify-between text-[14px] items-end mt-2">
                   <p>
                     Available Room:
-                    <span className="text-[orange]"> {room.available_rooms}</span>
+                    <span className="text-[orange]">
+                      {" "}
+                      {room.available_rooms}
+                    </span>
                   </p>
                   <p>
                     Price per night:
-                    <span className="text-[orange]"> {room.price_per_night} {room.currency}</span>
+                    <span className="text-[orange]">
+                      {" "}
+                      {room.price_per_night} {room.currency}
+                    </span>
                   </p>
                 </div>
               </div>
             </div>
-
             <div className="grid gap-3 mt-4">
               {roomFacilitiesConfig.map(({ name, icon, dataKey }) => (
                 <FacilitiesView

@@ -1,5 +1,6 @@
 import React from "react";
-import DotMenu from "../DotMenu";
+import DotMenu from "../comman/DotMenu";
+
 
 const RoomCard = ({ bed, name, images, description,price_per_night,currency,available_rooms}) => {
   return (

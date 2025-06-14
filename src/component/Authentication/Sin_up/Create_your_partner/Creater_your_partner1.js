@@ -9,13 +9,14 @@ import AuthenticationFooter from "../../AuthenticationFooter/AuthenFooter";
 import style from "./Creater_your_partner1.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import icon from "../../../../Assets/buildings-2.svg";
-import AuthContext from "../../Context/auth-context";
+
 import AuthenticationWrapper from "../../regular_components/AuthenticationWrapper";
 import AuthContext1 from "../../Context/Mian-Page-Context";
 import { PhoneNumberUtil, PhoneNumberFormat } from "google-libphonenumber";
 import "react-phone-input-2/lib/style.css";
 import PhoneInput from "react-phone-input-2";
 import CustomHook from "./Create_account_items/CustomHook"
+import { AuthContext } from "../../Context/auth-context";
 function Creater_your_partner1() {
   //FocusHandling
   const {

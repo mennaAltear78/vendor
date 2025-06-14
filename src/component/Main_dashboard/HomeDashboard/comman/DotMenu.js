@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
-import deleteIcon from"../../../Assets/trash.png"
-import PopupMessage from "../../Authentication/Sin_up/Create_your_partner/Create_account_items/PopupMessage";
+import deleteIcon from"../../../../Assets/trash.png"
+import PopupMessage from "../../../Authentication/Sin_up/Create_your_partner/Create_account_items/PopupMessage";
+
 
 const DotMenu = ({ id ,Loading,error,deleteFunction }) => {
   const [open, setOpen] = useState(false);
@@ -23,7 +24,7 @@ const DotMenu = ({ id ,Loading,error,deleteFunction }) => {
   const confirmDeletionHandeler = (e) => {
     e.preventDefault()
     e.stopPropagation();
-    console.log("success");
+    // console.log("success");
     SetPop_up(true);
    
   };
@@ -49,7 +50,7 @@ const DotMenu = ({ id ,Loading,error,deleteFunction }) => {
           e.preventDefault()
           e.stopPropagation();
         }}
-        className="p-2 border-none h-[20px] rounded-sm  flex items-center justify-center bg-white hover:bg-[#6666db06]  transition"
+        className="p-2 border-none h-[20px] rounded-sm  flex items-center justify-center bg-transparent hover:bg-[#6666db06]  transition"
       >
         <p className="text-[20px] mt-[2px] ">...</p>
       </button>

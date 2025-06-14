@@ -15,7 +15,6 @@ function PaginationFooter({ numberOfPages, currentPage, setCurrentPage }) {
     { length: Math.min(10, numberOfPages - windowStart) },
     (_, index) => index + 1 + windowStart
   );
-console.log(pageButtons,"pageButtons");
 
   const handleNextPage = () => {
     if (currentPage < numberOfPages) {
@@ -30,11 +29,11 @@ console.log(pageButtons,"pageButtons");
   };
 
   return (
-    <div className="flex justify-between  w-full items-center py-3 sm:px-10 sm:ml-[120px] mr-[10px]  rounded-lg ">
+    <div className="flex justify-between md:w-[50%]  lg:w-[87%] items-center py-3 sm:px-10 sm:ml-[100px] mr-[10px]  rounded-lg ">
       <button
         onClick={handlePrevPage}
         disabled={currentPage === 1}
-        className="flex items-center ml-10 sm:ml-0  border-solid p-0 border-[#80808049] px-4 py-2 sm:text-sm font-medium text-white bg-[#0000ffc4] rounded-lg
+        className="flex items-center ml-10 lg:ml-2 md:ml-2 border-solid p-0 border-[#80808049] px-4 py-2 sm:text-sm font-medium text-white bg-[#0000ffc4] rounded-lg
                   hover:bg-[#0000ffb0] transition-colors duration-200 ease-in-out
                   disabled:bg-gray-400 disabled:cursor-not-allowed"
       >
@@ -58,7 +57,6 @@ console.log(pageButtons,"pageButtons");
           </button>
         ))}
       </div>
-
       <span className="sm:hidden sm:text-sm text-gray-700">
         Page {currentPage} of {numberOfPages}
       </span>

@@ -49,7 +49,7 @@ function AreaCharts() {
   });
 
   return (
-    <div className="sm:w-[1009px] mr-3  ">
+    <div className="lg:w-[1009px] md:w-[96%]  mr-3  ">
       <div id="chart" className="font-usedFont bg-white p-4 rounded-lg">
         <div id="html-dist" className="flex justify-between items-center mb-[10px]" >
    

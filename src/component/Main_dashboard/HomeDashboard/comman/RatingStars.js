@@ -15,7 +15,7 @@ const RatingStars = ({ rating = 0 }) => {
         return (
           <span
             key={i}
-            className="material-symbols-outlined text-[13px] text-[#ffa600d8] "
+            className="material-symbols-outlined sm:text-[13px] text-[8px] text-[#ffa600d8] "
           >
             star_half
           </span>
@@ -25,7 +25,7 @@ const RatingStars = ({ rating = 0 }) => {
         return (
           <span
             key={i}
-            className="material-symbols-outlined text-[13px] text-[#ffa600cc]"
+            className="material-symbols-outlined sm:text-[13px] text-[10px] text-[#ffa600cc]"
           >
             star_outline
           </span>

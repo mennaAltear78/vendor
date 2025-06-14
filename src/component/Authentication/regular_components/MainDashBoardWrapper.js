@@ -11,7 +11,7 @@ function MainDashBoardWrapper(props) {
       setIsHovered(false);
     };
   return (
-    <div>
+    <div className=''>
     <Nav_bar
       hover={hover}
       onHoverHandeler={onHoverHandeler}

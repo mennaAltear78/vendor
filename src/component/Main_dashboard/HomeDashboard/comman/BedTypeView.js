@@ -1,4 +1,4 @@
-import React from 'react'
+
 
 function BedTypeView({ beds }) {
     return (
@@ -6,7 +6,7 @@ function BedTypeView({ beds }) {
             <div className="flex mt-[5px] ">
                 <div className="flex flex-wrap sm:text-sm text-[10px] gap-2 mt-[-14px]">
                     {beds.map((bed) => (
-                        <div className="bg-[#ffa60065] text-[orange] px-[3px] text-[13px] rounded-[3px]">
+                        <div className="bg-[#ffa60065] text-[orange] px-[3px] sm:text-[14px] text-[10px] rounded-[3px]">
                             {bed.count} {bed.type}
                         </div>
                     ))}

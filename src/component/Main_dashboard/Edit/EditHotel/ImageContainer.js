@@ -26,7 +26,14 @@ const ImageViewSection = ({
   UpdateLoading,
   UpdateError,
 }) => {
-  {console.log(UpdateLoading,AddLoading,DeleteLoading,"updateeeeeeeeeeeeee")}
+  {
+    console.log(
+      UpdateLoading,
+      AddLoading,
+      DeleteLoading,
+      "updateeeeeeeeeeeeee"
+    );
+  }
   const fileInputRef = useRef(null);
 
   const [edit, SetEdit] = useState(false);
@@ -56,7 +63,7 @@ const ImageViewSection = ({
     }
   };
 
-  const AddImagesHanadeler =() => {
+  const AddImagesHanadeler = () => {
     const formData = new FormData();
     if (primary || cover) {
       AddedImages.forEach((file) => {
@@ -68,14 +75,13 @@ const ImageViewSection = ({
       });
     }
     console.log("Images After send back end");
-    
- AddFunction({ id, body: formData })
 
+    AddFunction({ id, body: formData })
       .unwrap()
       .then((response) => {
         console.log("AddCoverImage response:", response);
         SetAddImages([]); // Clear AddedImages after successful upload
-         SetImages([])
+        SetImages([]);
       })
       .catch((err) => console.error("AddCoverImage error:", err));
   };

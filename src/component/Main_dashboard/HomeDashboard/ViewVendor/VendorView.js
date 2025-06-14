@@ -1,8 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import {
-  useGetReviewRoomQuery,
-  useGetSpecificHotelQuery,
-} from "../../../../services/PostApi";
+
 import Header from "./Header";
 import ImageGallery from "./ImageGallery";
 import Facilities from "./FacilitiesView";
@@ -10,10 +7,12 @@ import RoomView from "./RoomView";
 import ReviewCards from "./ReviewCards";
 import Booking_Policies from "./Booking_Policies";
 import HotelDetailsSkeleton from "./HotelDetailsSkeleton";
-import AuthContext from "../../../Authentication/Context/auth-context";
 import { useContext, useEffect, useMemo, useState } from "react";
 import HotelEdit from "../../Edit/EditHotel/HotelEdit";
 import EditHotelSkeleton from "../../Edit/EditHotel/EditHotelSkeleton";
+import { AuthContext } from "../../../Authentication/Context/auth-context";
+import { useGetSpecificHotelQuery } from "../../../../services/HotelApi";
+import { useGetReviewRoomQuery } from "../../../../services/RoomApi";
 
 const VendorView = () => {
   const [Edit, setEdit] = useState(false);
@@ -21,9 +20,9 @@ const VendorView = () => {
 
   const { id: paramId } = useParams();
   const ctx = useContext(AuthContext);
-  const id = useMemo(() => ctx?.IdSpesificHotel || paramId, [ctx, paramId]);
+  const id = useMemo(() => ctx?.specificHotelId || paramId, [ctx, paramId]);
   useEffect(() => {
-    ctx.setIdSpesificHotel(id);
+    ctx.setspecificHotelId(id);
   }, [id]);
   const { data, error, isLoading } = useGetSpecificHotelQuery(
     { id },
@@ -56,7 +55,7 @@ const VendorView = () => {
         ) : (
           <>
             <ImageGallery data={data} />
-            <Facilities facilities={data.data.hotel.facilities} />
+            <Facilities facilities={data?.data?.hotel?.facilities} />
             <RoomView id={id} />
             <ReviewCards data={reviewData} id={id} review={reviewData} />
             <Booking_Policies data={data} />

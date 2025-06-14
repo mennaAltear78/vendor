@@ -6,11 +6,9 @@ import { v4 as uuidv4 } from "uuid";
 
 function FeeCalculation({ feeObjectHandeler, editt, dataFee }) {
   const [AddFee, SetAddFee] = useState([{ id: 0, key: 0, value: 0 }]);
-  // const [fee, setFee] = useState(dataFee || {});
   const [disabled, setDisabled] = useState(true);
   useEffect(() => {
-    // console.log("dataFee:", dataFee);
-    // console.log("AddFee:", AddFee);
+
 
     // Map over dataFee entries and create new fee objects
     if(dataFee){
@@ -86,13 +84,26 @@ function FeeCalculation({ feeObjectHandeler, editt, dataFee }) {
             </span>
           </div>
         ) : (
-          <div className={styles.imgNote}>
-            <img className="mr-[-100px]" src={icon} width={"24px"} />
-          </div>
+              <div className="w-full flex justify-end mt-[14px] mr-[25px]">
+          <div className="relative inline-block group ">
+            <div className="mr-[-100px]">
+              <img src={icon} width="24px" />
+            </div>
+
+            <div
+              className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 
+                  bg-black/40 text-white text-sm px-2 py-1 rounded 
+                  whitespace-nowrap opacity-0 invisible 
+                  transition-opacity duration-300 ease-in-out 
+                  group-hover:opacity-100 group-hover:visible"
+            >
+              you should ...
+            </div>
+          </div></div>
         )}
-        <div className={styles.Note}>you should ....</div>
+  
       </div>
-      {/* {console.log("addfee", AddFee)} */}
+   
 
       <div className="flex flex-col gap-[10px] mt-[10px]">
         {AddFee.map((item, index) => (

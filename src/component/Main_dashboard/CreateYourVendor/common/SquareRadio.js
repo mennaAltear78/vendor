@@ -1,6 +1,5 @@
-import React, { act, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import style from "./SquareRadio.module.css";
-import TextField from "../../../Authentication/regular_components/TextField";
 import InputField from "./InputField";
 
 function SquareRadio({
@@ -13,7 +12,7 @@ function SquareRadio({
   AllowanceHandling,
   onevalue,
   round,
-  outoFeeInUpdate
+  outoFeeInUpdate,
 }) {
   const [selected, setSelected] = useState([]);
   const [descriptionValue, setDescription] = useState([]);
@@ -25,7 +24,6 @@ function SquareRadio({
       onChange(selected, descriptionValue, activeStates);
     }
     console.log(selected);
-    
   }, [selected, descriptionValue, activeStates]);
 
   const handleSelection = (value) => {
@@ -40,7 +38,6 @@ function SquareRadio({
     }
 
     setSelected(newSelected);
-    // console.log("valueee",descriptionValue);
 
     if (activeStates[value.label]) {
       setActiveStates((prevStates) => ({
@@ -64,8 +61,6 @@ function SquareRadio({
   };
 
   const onChangeDescHandeler = (option, e) => {
-    // console.log("meena",option.label,descriptionValue ,activeStates[option.label]);
-
     setDescription((prev) => {
       const keyToUpdate = option.label;
       //some in js see if there is item in the array applay spasific condtion
@@ -87,10 +82,13 @@ function SquareRadio({
 
   return (
     <div>
-      <div  >
+      <div>
         {options.map((option, index) => (
           <>
-            <div className="flex mb-[-20px] w-full items-center " key={`${option.value}-${index}`}>
+            <div
+              className="flex mb-[-20px] w-full items-center "
+              key={`${option.value}-${index}`}
+            >
               <label
                 key={option.value}
                 className={
@@ -108,7 +106,7 @@ function SquareRadio({
                       className="peer hidden"
                     />
                     <div
-                      className={`border-solid border-2 peer-checked:bg-blue-500 ${round} ${style["square-radio"]}`}
+                      className={`border-solid border-2 peer-checked:bg-blue-500  ${round} ${style["square-radio"]}`}
                     >
                       {selected.includes(option.label) && "✔"}
                     </div>
@@ -125,7 +123,7 @@ function SquareRadio({
                     <div className={style.scroll}>
                       <div
                         className={
-                         ( outoFeeInUpdate || activeStates[option.label] )
+                          outoFeeInUpdate || activeStates[option.label]
                             ? style.sliderL
                             : style.sliderR
                         }
@@ -133,7 +131,7 @@ function SquareRadio({
                       >
                         <div
                           className={
-                            ( outoFeeInUpdate || activeStates[option.label] )
+                            outoFeeInUpdate || activeStates[option.label]
                               ? style.CircleL
                               : style.CircleR
                           }
@@ -147,25 +145,15 @@ function SquareRadio({
 
             {radio && activeStates[option.label] && (
               <div>
-              
                 <p>
                   Description<span style={{ color: "gray" }}>(Optional)</span>
                 </p>
-                {/* <TextField
-                  textfild="bigTextBox"
+                <InputField
+                  editt={false}
                   name="descriptionValue"
-                  OnchangeHnadeler={(e) => onChangeDescHandeler(option, e)}
-                /> */}
-               
-               <InputField
-                    editt={false}
-                    // label="Property Name"
-                    // value={property}
-                    name="descriptionValue"
-                    className="w-[96%] mt-[-20px]"
-                    onChange={(e) => onChangeDescHandeler(option, e)}
-
-                  />
+                  className="w-[96%] mt-[-20px]"
+                  onChange={(e) => onChangeDescHandeler(option, e)}
+                />
               </div>
             )}
           </>

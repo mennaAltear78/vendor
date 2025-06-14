@@ -1,8 +1,7 @@
-import React, { useMemo } from "react";
 
 const Facilities = ({ facilities, room, RoomFacilityName, iconName }) => {
   return (
-    <div className="sm:w-[700px] font-usedFont w-[360px] mt-[-10px]">
+    <div className="sm:w-[700px] sm:ml-0 ml-3 font-usedFont w-[360px] mt-[-10px]">
       <div className="flex items-center mb-0">
         <h2>
           {RoomFacilityName ? (
@@ -19,12 +18,12 @@ const Facilities = ({ facilities, room, RoomFacilityName, iconName }) => {
       </div>
 
       <div className="flex gap-3 mt-[-17px]  flex-wrap items-center ">
-        {facilities.map((facility, index) => (
-          <div className="flex gap-1 ">
+        {facilities?.map((facility, index) => (
+          <div className="flex items-center gap-1 ">
             <span
               key={index} // Add a unique key for each element
-              className={`material-symbols-outlined text-[15px] ${
-                room ? "text-[orange]" : ""
+              className={`material-symbols-outlined text-[13px] ${
+                room ? "text-[orange]" : "text-[orange]"
               }`}
             >
               {room ? "check_small" : "festival"}

@@ -22,6 +22,7 @@ const ImageCard = ({
   const [file, setFile] = useState(null);
   const [image, setImage] = useState(img);
   const [isDeleting, setIsDeleting] = useState(false);
+console.log(img,"???????????");
 
   const updateImagesHandler = async () => {
     if (!file) return;
@@ -86,7 +87,7 @@ const ImageCard = ({
       <div className="flex gap-3 rounded-lg h-[150px] w-full mb-4">
         {edit && (
           <div className="flex h-[150px]">
-            {!primary &&
+            {!primary  &&
               (isDeleting ? (
                 <SpinnerLoading dimentians="h-4 w-4 text-[red]" />
               ) : NumberOfImgToAdd >= 195 ? null : (

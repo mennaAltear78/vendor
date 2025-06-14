@@ -29,9 +29,9 @@ import LocattionDataHotel from "./component/Main_dashboard/CreateYourVendor/Crea
 import Property_List from "./component/Main_dashboard/HomeDashboard/Property_List";
 import ChooseHotel from "./component/Main_dashboard/CreateYourVendor/CreateYours/createHotel/ChosienType";
 import AboutHotel from "./component/Main_dashboard/CreateYourVendor/CreateYours/createHotel/AboutHotel";
-import Speak from "./component/Main_dashboard/CreateYourVendor/CreateYours/createHotel/Speak";
+import Languages from "./component/Main_dashboard/CreateYourVendor/CreateYours/createHotel/Languages";
 
-import Profile_View from "./component/Profile_View/Profile_View";
+
 import VendorView from "./component/Main_dashboard/HomeDashboard/ViewVendor/VendorView";
 import ReviewView from "./component/Main_dashboard/HomeDashboard/ViewVendor/ViewReview/ReviewView";
 import ScrollToTop from "./helpers/ScrollToTop";
@@ -39,6 +39,8 @@ import Rooms_List from "./component/Main_dashboard/HomeDashboard/ViewRooms/Rooms
 import HotelEdit from "./component/Main_dashboard/Edit/EditHotel/HotelEdit";
 import RoomView from "./component/Main_dashboard/HomeDashboard/ViewRooms/RoomView";
 import RoomEdit from "./component/Main_dashboard/Edit/EditRoom/RoomEdit";
+import Profile_View from "./pages/Profile_View";
+import NotificationPage from "./component/Main_dashboard/Notification/NotificationPage";
 
 const routes = [
   { path: "/", element: <Sin_in_main /> },
@@ -57,7 +59,7 @@ function App() {
       <div>
         <ScrollToTop />
         <Routes>
-          {/* Public Routes */}
+          {/* Public Routes  */}
           {routes.map((route, index) => (
             <Route key={index} path={route.path} element={route.element} />
           ))}
@@ -67,7 +69,7 @@ function App() {
             <Route path="/MianDahboard" element={<WelcomePage />} />
             <Route path="/MianDahboard/CreateHotel" element={<ChooseHotel />} />
             <Route path="/AboutHotel" element={<AboutHotel />} />
-            <Route path="/speak" element={<Speak />} />
+            <Route path="/Languages" element={<Languages />} />
             <Route path="/facilities" element={<Facilities />} />
             <Route path="/polices" element={<Polices />} />
             <Route path="/payment" element={<Payment />} />
@@ -79,6 +81,7 @@ function App() {
             <Route path="/BathRoomFacilities" element={<BathRoomFacilities />} />
             <Route path="/HotelImages"element={<HotelImages title="Primary Images"  limits="(Must upload 3 images)" HotelImages={true} />}/>
            
+           <Route path="/MainDashboaed/nNotifications" element={<NotificationPage/>}/>
            
             <Route path="/RoomImage" element={<HotelImages title="Room Images"limits="(Must upload 5 images atleast)"/>}/>
             <Route path="/LocattionDataHotel"element={<LocattionDataHotel />}/>

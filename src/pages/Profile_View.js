@@ -1,12 +1,16 @@
-import React from "react";
-import MainDashBoardWrapper from "../Authentication/regular_components/MainDashBoardWrapper";
-import img from "../../Assets/Ellipse 411.png";
-import TitleCars from "../Authentication/Sin_up/Create_your_partner/Create_account_items/TitleCars";
-import icon1 from "../../Assets/buildings-2.svg";
-import icon2 from "../../Assets/location.svg";
-import icon3 from "../../Assets/message-sent-P4zHrKyEAE.svg";
-import Button from "../Authentication/regular_components/Button";
-import { useGetProfileQuery } from "../../services/PostApi";
+
+import img from "../Assets/Ellipse 411.png";
+
+import icon1 from "../Assets/buildings-2.svg";
+import icon2 from "../Assets/location.svg";
+import icon3 from "../Assets/message-sent-P4zHrKyEAE.svg";
+
+
+import Button from "../component/Authentication/regular_components/Button";
+import MainDashBoardWrapper from "../component/Authentication/regular_components/MainDashBoardWrapper";
+import TitleCars from "../component/Authentication/Sin_up/Create_your_partner/Create_account_items/TitleCars";
+import { useGetProfileQuery } from "../services/commanApi";
+
 
 // Reusable Menu Item Component
 const MenuItem = ({ label, isDanger, isActive, onclick }) => (

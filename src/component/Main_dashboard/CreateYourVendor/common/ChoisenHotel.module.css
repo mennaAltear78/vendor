@@ -98,26 +98,9 @@
  background-color: blue;
  
 }
-.imgNote{
-  position: relative;
-  display: inline-block;
-}
 
-.Note {
-  position: absolute;
-  bottom: 100%; /* يظهر فوق الصورة */
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: rgba(0, 0, 0, 0.377);
-  color: white;
-  padding: 8px;
-  border-radius: 5px;
-  font-size: 14px;
-  white-space: nowrap;
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-}
+
+
 
 .imgNote:hover .Note {
   visibility: visible;

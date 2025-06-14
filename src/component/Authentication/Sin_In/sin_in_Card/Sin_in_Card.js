@@ -1,16 +1,18 @@
-import React, { useState, useEffect, useContext, useRef, use } from "react";
+import { useState, useEffect, useContext, useRef, use } from "react";
 import Button from "../../regular_components/Button";
 import TextField from "../../regular_components/TextField";
 import AuthenFooter from "../../AuthenticationFooter/AuthenFooter";
 import { Link, useNavigate } from "react-router-dom";
-import AuthContext from "../../Context/auth-context";
 import SpinnerLoading from "../../regular_components/SpinnerLoading";
 import AuthContext1 from "../../Context/Mian-Page-Context";
 import api from "../../../../services/axiosInstance";
-import CookiesServices from "../../../../services/CookiesServices";
+import { AuthContext } from "../../Context/auth-context";
+import Notification from "../../regular_components/Notification";
+
 
 
 function Sin_in_Card(props) {
+  const [notificationss, setNotifications] = useState([]);
   const {setRequest } = useContext(AuthContext);
   const ctx = useContext(AuthContext1);
 
@@ -39,7 +41,7 @@ function Sin_in_Card(props) {
     e.preventDefault();
 
     SetIsloading(true);
-let forbedend
+    let forbedend
     // console.log(EmailRef.current.value, PassowrdRef.current.value);
     let errorMessage;
     let enteredEmail = null;
@@ -76,7 +78,7 @@ let forbedend
       enteredEmail = EmailRef.current.value;
       errorForEmail = false;
     }
-    console.log(errorMessage);
+
 
     if (!errorMessage && !errorForEmail) {
       try {
@@ -87,9 +89,11 @@ let forbedend
         });
         SetIsloading(false);
         setError(null);
-        console.log(response.data);
+        localStorage.setItem("loggedIn",true)
+        notifyLoginSuccess()
+        console.log(response.data,"pass",enteredPassword);
         ctx.login(response.data.access_token, enteredEmail);
-        navigate("/MianDahboard");
+     
       } catch (error) {
         //falied
        
@@ -113,14 +117,8 @@ let forbedend
           }
         }
       }
-    
       setError(errorMessage);
-      console.log('error',errorMessage);
-      console.log(forbedend);
-      
       SetIsloading(false);
-      console.log(errorMessage);
-      
       props.ErrorPopMessageHandeler(errorMessage,forbedend);
     }
   };
@@ -128,6 +126,22 @@ let forbedend
   useEffect(() => {
     EmailRef.current.focus();
   }, [EmailRef]);
+function notifyLoginSuccess() {
+  
+    const id = Date.now();
+    const type = "success";
+    const message = "Logged in successfully";
+    
+    setNotifications((prev) => [...prev, { id, type, message }]);
+    
+    setTimeout(() => {
+      setNotifications((prev) =>
+        prev.filter((notification) => notification.id !== id)
+         
+      );  navigate("/MianDahboard")
+    }, 2000);
+  
+}
 
   return (
     <div >
@@ -175,8 +189,17 @@ let forbedend
           title1="FAQ"
           title3="or reach out to us at"
           title4="hotelsupport@sphinx.com"
-        />
+        />     {<div className="fixed bottom-[100px]   z-50 space-y-2">
+                    {notificationss.map((notification) => (
+                      <Notification
+                        key={notification.id}
+                        type={notification.type}
+                        message={notification.message}
+                      />
+                    ))}
+                  </div>}
       </form>
+  
     </div>
   );
 }
