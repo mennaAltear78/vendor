@@ -1,4 +1,4 @@
-import { createApi } from "@reduxjs/toolkit/query/react"; 
+import { createApi } from "@reduxjs/toolkit/query/react";
 import { axiosBaseQuery } from "./axiosBaseQuery";
 
 export const commonApi = createApi({
@@ -13,9 +13,18 @@ export const commonApi = createApi({
       }),
       providesTags: ["Profile"],
     }),
-  }),
+    resetPassword: builder.mutation({
+      query: ({ body }) => ({
+        url: "/vendor/reset-password",
+        method: "POST",
+        data: body,
+      }),
+  
+    }),
+  })
 });
 
 export const {
-  useGetProfileQuery,
+  useGetProfileQuery ,
+  useResetPasswordMutation
 } = commonApi;

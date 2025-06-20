@@ -11,6 +11,7 @@ export const axiosBaseQuery =
         params,
       });
       console.log(result.data,"data" );
+      console.log(data,"data");
       
       return { data: result.data };
     } catch (axiosError) {

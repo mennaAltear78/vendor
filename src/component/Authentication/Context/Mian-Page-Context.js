@@ -93,14 +93,16 @@ export const AuthContext1Provider = (props) => {
   const [token, setToken] = useState(intialToken);
   const [email, setEmail] = useState(localStorage.getItem("email") || "");
   const [formData, setFormData] = usePersistedState("SinInForm", {});
-
+  const[service_type,SetService_Type]=usePersistedState("service_type","")
   const userIsLoggedIn = !!token;
 
-  const loginHandler = (token, email) => {
+  const loginHandler = (token, email,serviceType) => {
     setToken(token);
     setEmail(email);
+    SetService_Type(serviceType)
     localStorage.setItem("token", token);
     localStorage.setItem("email", email);
+    localStorage.setItem("service_type", serviceType);
   };
 
   const logoutHandler = async () => {
@@ -137,12 +139,14 @@ export const AuthContext1Provider = (props) => {
     token,
     email,
     isLoggedIn: userIsLoggedIn,
-    formData,
+    formData, 
     login: loginHandler,
     logout: logoutHandler,
     sinUpFormData: sinUpFormDataHandler,
-    setToken: setHandlerToken
-    
+    setToken: setHandlerToken,
+    service_type,
+    SetService_Type,
+  
   };
 
   if (process.env.NODE_ENV === "development") {

@@ -14,53 +14,55 @@ import AuthContext1 from "../../Context/Mian-Page-Context";
 import axios from "axios";
 import appData from "../../../../config/appData";
 import messageImg from "../../../../Assets/message-sent-P4zHrKyEAE.svg";
-import api from "../../../../services/axiosInstance";
 
 function Creater_your_partner3() {
   const ctx = useContext(AuthContext1);
+  const navigate = useNavigate();
 
   const setTimingOut = {
     enter: 400,
     exit: 1000,
   };
   const popupRef = useRef(null);
-  // const [AddNewFilee, setAddNewFile] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const [fileObject, setFileObject] = useState({});
   const [error, setError] = useState(null);
-  // const [finalData, setFinalData] = useState();
+  const [formDataToSubmit, setFormDataToSubmit] = useState(null);
 
   useEffect(() => {
-    const formDataa = new FormData();
-    const requiredKeys = [
-      "business_registration_certificate",
+    const requiredFormFields = [
+      "company_name",
+      "service_type",
+      "contact_email",
+      "bussiness_breif",
+      "contact_phone",
+      "latitude",
+      "longitude",
+    ];
+    const hasAllFormFields = requiredFormFields.every((key) => ctx.formData[key]);
+    const requiredFileKeys = [
+      "bussiness_registration_certificate",
       "hotel_license",
       "tax_registration_certificate_TIN",
     ];
-    const hasAllKeys = requiredKeys.every((key) =>
-      fileObject.hasOwnProperty(key)
-    );
-    if (!hasAllKeys) {
-      console.log("you should upload all");
-      setError(true);
-    } else {
-      console.log("succed");
-      setError(false);
-      ctx.sinUpFormData(fileObject);
-      // console.log("final",ctx.formData);
+    const hasAllFileKeys = requiredFileKeys.every((key) => fileObject[key]);
 
+    if (!hasAllFormFields || !hasAllFileKeys) {
+      console.log("Missing required fields or files");
+      setError("Please upload all required files and fill all fields");
+    } else {
+      const formDataa = new FormData();
       formDataa.append("company_name", ctx.formData.company_name);
-      formDataa.append("service_type", ctx.formData.service_type);
+      formDataa.append("service_type", JSON.stringify(ctx.formData.service_type));
       formDataa.append("contact_email", ctx.formData.contact_email);
-      formDataa.append("bussiness_breif", ctx.formData.bussiness_breif);
+      formDataa.append("bussiness_breif", JSON.stringify(ctx.formData.bussiness_breif));
       formDataa.append("contact_phone", ctx.formData.contact_phone);
       formDataa.append("latitude", ctx.formData.latitude);
       formDataa.append("longitude", ctx.formData.longitude);
 
-      // إضافة الملفات
       formDataa.append(
         "bussiness_registration_certificate",
-        fileObject.business_registration_certificate
+        fileObject.bussiness_registration_certificate
       );
       formDataa.append("hotel_license", fileObject.hotel_license);
       formDataa.append(
@@ -68,67 +70,62 @@ function Creater_your_partner3() {
         fileObject.tax_registration_certificate_TIN
       );
 
-      //   const numberOfEntries = [...formDataa.entries()].length;
-
-      //  if (numberOfEntries >= 10) {
-      //       setShowPopup(true);
-      //     }
+      setFormDataToSubmit(formDataa);
+      setError(false);
+      console.log("FormData prepared successfully");
     }
-    // setFinalData(ctx.formData);
-  }, [fileObject]);
+  }, [fileObject, ctx.formData]);
 
   const handleClosePopup = () => {
     setShowPopup(false);
-    // navigate('/')
+    if (!error) {
+      navigate("/"); // Navigate to home on success
+    }
   };
+
   const onsumbitHandeler = async (e) => {
     e.preventDefault();
-    if (!error) {
+    console.log("Submitting form:", formDataToSubmit);
+    if (!error && formDataToSubmit) {
       try {
-        const response = await api.post("auth/signup", ctx.formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            "Accept-Language": "en",
-          },
-        });
-
-        console.log("Response:", response.message);
+        const response = await axios.post(
+          "https://sphinx-go.vercel.app/api/v1/vendor/join-with-us",
+          formDataToSubmit,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              "Accept-Language": "ar", 
+            },
+          }
+        );
+        console.log("Response:", response.data);
+        setShowPopup(true); // Show success popup
       } catch (error) {
-        if (error.response) {
-          // Problem with the response from the server
-          console.error("Response error:", error.response.data);
-          console.error("Status:", error.response.status);
-        } else if (error.request) {
-          // Problem with the request
-          console.error("Request error:", error.request);
-        } else {
-          // Issue with setting up the request
-          console.error("Error:", error.message);
-        }
-
-        setError(error.response.data.message);
+        console.error("Error:", error.response?.data || error.message);
+        setError(error.response?.data?.message || "Submission failed");
+        setShowPopup(true); // Show error popup
       }
+    } else {
+      setError("Please upload all required files and fill all fields");
+      setShowPopup(true);
     }
-
-    console.log("formmmmm", ctx.formData);
   };
 
   const handleFileSelect = (fileName, file) => {
     let name;
     if (fileName === "Business Registration Certificate") {
-      name = "business_registration_certificate";
+      name = "bussiness_registration_certificate";
     } else if (fileName === "Hotel License") {
       name = "hotel_license";
     } else if (fileName === "Tax Registration Certificate (TIN)") {
       name = "tax_registration_certificate_TIN";
     }
-    ctx.sinUpFormData(fileObject);
 
     setFileObject((prevFiles) => ({
       ...prevFiles,
       [name]: file,
     }));
-    console.log("form", ctx.formData);
+    console.log("Selected file for", name, file); // Debug file selection
   };
 
   return (
@@ -154,7 +151,6 @@ function Creater_your_partner3() {
 
             <div className={style["btnsInfo"]}>
               <div className="flex">
-                {" "}
                 <Link to="/CreateAccount2">
                   <Button btnCss="whiteCssS" name="previous" />
                 </Link>
@@ -171,7 +167,7 @@ function Creater_your_partner3() {
             />
           </Card>
 
-          {showPopup ? (
+          {showPopup && (
             <Transition
               in={showPopup}
               timeout={setTimingOut}
@@ -189,18 +185,14 @@ function Creater_your_partner3() {
                   title={!error ? "Thanks For Fill Our Form" : error}
                   details={
                     !error
-                      ? " What next, Now our team will review your request and will contact you by email soon"
+                      ? "What next, Now our team will review your request and will contact you by email soon"
                       : ""
                   }
                   btnCss={error ? "whiteCssS" : "whiteCssG"}
                 />
               )}
             </Transition>
-          ) : null}
-          {/* {showPopup &&<PopupMessage  handleTogglePopup={handleTogglePopup}/> } */}
-          {/* {showPopup && (
-        <PopupMessage shown={showPopup} handleTogglePopup={handleTogglePopup} />
-      )} */}
+          )}
         </div>
       </form>
     </AuthenticationWrapper>

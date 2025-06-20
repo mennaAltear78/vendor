@@ -30,12 +30,12 @@ const containerStyle = props.styling;
     
     try {
         const response = await axios.get(url);
-        console.log("Response Data:", response.data);
+       // console.log("Response Data:", response.data);
         setAddress(response.data.items[0].address.label)
-        console.log("address",address ,location.lng,location.lat);
+        //console.log("address",address ,location.lng,location.lat);
         props.setlocation(response.data.items[0].address.label,response.data.items[0].address.city,response.data.items[0].address.countryName,location.lng,location.lat
         )
-        console.log("here",response.data.items[0].address.city,response.data.items[0].address.countryName);
+        //console.log("here",response.data.items[0].address.city,response.data.items[0].address.countryName);
         
     } catch (error) {
         console.error("Error fetching location data:", error.response?.data || error.message);
@@ -56,7 +56,7 @@ const containerStyle = props.styling;
       >
         <Marker position={location} />
       </GoogleMap>
-      <img className="w-[300px] h-[70px] mt-[-70px] z-30" src={map} />
+    { !props.nobg? <img className="w-[300px] h-[70px] mt-[-70px] z-30" src={map} />:null}
       <div>
         {/* <p><strong>Coordinates:</strong> {location.lat}, {location.lng}</p> */}
         

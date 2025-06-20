@@ -9,7 +9,9 @@ import Creater_your_partner2 from "./component/Authentication/Sin_up/Create_your
 import Creater_your_partner3 from "./component/Authentication/Sin_up/Create_your_partner/Creater_your_partner3";
 import NotFound from "./helpers/NotFound";
 import SendingCode from "./component/Authentication/Sin_In/FacingProblem/SendingCode";
-import { AuthContext1Provider } from "./component/Authentication/Context/Mian-Page-Context";
+import AuthContext1, {
+  AuthContext1Provider,
+} from "./component/Authentication/Context/Mian-Page-Context";
 import AuthenRequire from "./Layout/AuthenRequire";
 
 import WelcomePage from "./component/Main_dashboard/CreateYourVendor/CreateYours/WelcomePage";
@@ -31,7 +33,6 @@ import ChooseHotel from "./component/Main_dashboard/CreateYourVendor/CreateYours
 import AboutHotel from "./component/Main_dashboard/CreateYourVendor/CreateYours/createHotel/AboutHotel";
 import Languages from "./component/Main_dashboard/CreateYourVendor/CreateYours/createHotel/Languages";
 
-
 import VendorView from "./component/Main_dashboard/HomeDashboard/ViewVendor/VendorView";
 import ReviewView from "./component/Main_dashboard/HomeDashboard/ViewVendor/ViewReview/ReviewView";
 import ScrollToTop from "./helpers/ScrollToTop";
@@ -41,6 +42,11 @@ import RoomView from "./component/Main_dashboard/HomeDashboard/ViewRooms/RoomVie
 import RoomEdit from "./component/Main_dashboard/Edit/EditRoom/RoomEdit";
 import Profile_View from "./pages/Profile_View";
 import NotificationPage from "./component/Main_dashboard/Notification/NotificationPage";
+import { useContext } from "react";
+//tour
+import { CreateTour } from "./component/Tours/ToursPages/CreateTour";
+import { TourList } from "./component/Tours/ViewTours/TourList";
+import { TourDashboard } from "./component/Tours/TourDashboard/TourDahboard";
 
 const routes = [
   { path: "/", element: <Sin_in_main /> },
@@ -54,6 +60,17 @@ const routes = [
 ];
 
 function App() {
+ 
+const serviceType = localStorage.getItem("service_type")?.trim();
+const ctx = useContext(AuthContext1);
+const serviceType1 = ctx?.email?.trim();
+
+if (!serviceType) {
+  console.warn("service_type not set yet");
+} else {
+  console.log(serviceType1, serviceType1 === "Tours");
+}
+
   return (
     <AuthContext1Provider>
       <div>
@@ -66,29 +83,68 @@ function App() {
 
           {/* Protected Routes (Require Authentication) */}
           <Route element={<AuthenRequire />}>
-            <Route path="/MianDahboard" element={<WelcomePage />} />
-            <Route path="/MianDahboard/CreateHotel" element={<ChooseHotel />} />
-            <Route path="/AboutHotel" element={<AboutHotel />} />
-            <Route path="/Languages" element={<Languages />} />
-            <Route path="/facilities" element={<Facilities />} />
-            <Route path="/polices" element={<Polices />} />
-            <Route path="/payment" element={<Payment />} />
-            <Route path="/CompleteProfie" element={<CompleteProfie Hotel />} />
-            <Route path="/CreateRoom" element={<CompleteProfie  />} />
-            <Route path="/RoomDetail" element={<RoomDetail />} />
-            <Route path="/BedDetails" element={<BedDetails />} />
-            <Route path="/RoomFacilities" element={<RoomFacilities />} />
-            <Route path="/BathRoomFacilities" element={<BathRoomFacilities />} />
-            <Route path="/HotelImages"element={<HotelImages title="Primary Images"  limits="(Must upload 3 images)" HotelImages={true} />}/>
-           
-           <Route path="/MainDashboaed/nNotifications" element={<NotificationPage/>}/>
-           
-            <Route path="/RoomImage" element={<HotelImages title="Room Images"limits="(Must upload 5 images atleast)"/>}/>
-            <Route path="/LocattionDataHotel"element={<LocattionDataHotel />}/>
-
+        
+              <>
+                <Route path="/MianDahboard" element={<WelcomePage />} />
+                <Route
+                  path="/MianDahboard/CreateHotel"
+                  element={<ChooseHotel />}
+                />
+                <Route path="/AboutHotel" element={<AboutHotel />} />
+                <Route path="/Languages" element={<Languages />} />
+                <Route path="/facilities" element={<Facilities />} />
+                <Route path="/polices" element={<Polices />} />
+                <Route path="/payment" element={<Payment />} />
+                <Route
+                  path="/CompleteProfie"
+                  element={<CompleteProfie Hotel />}
+                />
+                <Route path="/CreateRoom" element={<CompleteProfie />} />
+                <Route path="/RoomDetail" element={<RoomDetail />} />
+                <Route path="/BedDetails" element={<BedDetails />} />
+                <Route path="/RoomFacilities" element={<RoomFacilities />} />
+                <Route
+                  path="/BathRoomFacilities"
+                  element={<BathRoomFacilities />}
+                />
+                <Route
+                  path="/HotelImages"
+                  element={
+                    <HotelImages
+                      title="Primary Images"
+                      limits="(Must upload 3 images)"
+                      HotelImages={true}
+                    />
+                  }
+                />
+                <Route
+                  path="/MainDashboaed/nNotifications"
+                  element={<NotificationPage />}
+                />
+                <Route
+                  path="/RoomImage"
+                  element={
+                    <HotelImages
+                      title="Room Images"
+                      limits="(Must upload 5 images atleast)"
+                    />
+                  }
+                />
+                <Route
+                  path="/LocattionDataHotel"
+                  element={<LocattionDataHotel />}
+                />
+              </>
+         
+              <>
+                <Route path="/CreatTour" element={<CreateTour />} />
+                <Route path="/TourList" element={<TourList />} />
+                <Route path="/TourDashboard" element={<TourDashboard />} />
+              </>
+         
           </Route>
           <Route path="/PropertyList" element={<Property_List />} />
-          <Route path="/PropertyList/:id" element={<VendorView />} /> 
+          <Route path="/PropertyList/:id" element={<VendorView />} />
           <Route path="/PropertyList/EditHotel" element={<HotelEdit />} />
           <Route path="/profileView/:id/Reviews" element={<ReviewView />} />
 

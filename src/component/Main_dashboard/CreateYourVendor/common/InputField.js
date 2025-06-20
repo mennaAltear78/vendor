@@ -10,6 +10,8 @@ const InputField = ({
   onChange,
   name,
   editt = true,
+  ref,
+ 
 }) => {
   const [edit, setEdit] = useState(false);
   useEffect(() => {
@@ -19,7 +21,7 @@ const InputField = ({
   }, [edit]);
 
   return (
-    <div className="w-full flex flex-col items-start ">
+    <div className="w-full flex flex-col items-start font-usedFont ">
       <div className="w-full flex items-center">
         <p className={`mb-1 text-sm ${margin} w-full `}>{label}</p>
         {editt ? (
@@ -38,6 +40,8 @@ const InputField = ({
 
       {textarea ? (
         <textarea
+      
+         ref={ref}
           type={type}
           value={value}
           placeholder={placeholder || label}
@@ -50,6 +54,7 @@ const InputField = ({
         />
       ) : (
         <input
+        ref={ref}
           type={type}
           value={value}
           placeholder={placeholder || label}

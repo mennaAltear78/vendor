@@ -9,7 +9,7 @@ import AuthenticationWrapper from "../../regular_components/AuthenticationWrappe
 function ContactSupport() {
   return (
     <AuthenticationWrapper>
-   <div className="text-center w-[500px] flex flex-col justify-center ml-[10px]  ms:ml-0">
+   <div className="text-center flex flex-col justify-center ml-[10px]  ms:ml-0">
       {/* <div className={style['titlee']} > <b style={{paddingRight:'80px'}}>Contact Support
       </b>
         <p style={{ color: 'gray', fontSize: '15px', width: '80%' }}>Confirm your username and we'll send you a link to reset your password.</p></div> */}

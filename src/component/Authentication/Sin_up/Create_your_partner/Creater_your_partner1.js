@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import Tiltle from "../../Tiltle";
 import ProgressSteps from "./Create_account_items/ProgressSteps";
 import Card from "../../regular_components/Card";
@@ -15,8 +15,9 @@ import AuthContext1 from "../../Context/Mian-Page-Context";
 import { PhoneNumberUtil, PhoneNumberFormat } from "google-libphonenumber";
 import "react-phone-input-2/lib/style.css";
 import PhoneInput from "react-phone-input-2";
-import CustomHook from "./Create_account_items/CustomHook"
+import CustomHook from "./Create_account_items/CustomHook";
 import { AuthContext } from "../../Context/auth-context";
+import InputField from "../../../Main_dashboard/CreateYourVendor/common/InputField";
 function Creater_your_partner1() {
   //FocusHandling
   const {
@@ -24,7 +25,7 @@ function Creater_your_partner1() {
     // value: enteredName,
     blurHander: onbluerNameHnadeler, //i will play with those
     inputChange: NameChangeHandeler,
-  }=CustomHook()
+  } = CustomHook();
 
   const { isRequest, setRequest } = useContext(AuthContext);
 
@@ -34,10 +35,8 @@ function Creater_your_partner1() {
   //navigate for redirecting to other page
   const navigate = useNavigate();
 
-
   //useRef For Handling  form
   const formRef = useRef();
-
 
   //UseState SetErrors
   const [errors, setErrors] = useState({
@@ -72,15 +71,15 @@ function Creater_your_partner1() {
     const formData = new FormData(formRef.current);
     const dataObject = Object.fromEntries(formData);
     console.log(dataObject);
-   
+
     //intialize object will contain all valied data
     let newErrors = {};
     let validData = {};
 
     //1) check companyName
     const companyName = dataObject.company_name?.trim();
-    console.log("company",dataObject.company_name,companyName);
-    
+    console.log("company", dataObject.company_name, companyName);
+
     if (
       !companyName ||
       /^\d+$/.test(companyName) ||
@@ -113,24 +112,26 @@ function Creater_your_partner1() {
     //business Brief
     const bussiness_breif_check = dataObject.bussiness_breif?.trim();
     let bussiness_breif = {};
-      console.log(bussiness_breif_check );
-      
+    console.log(bussiness_breif_check);
 
-      if(!bussiness_breif_check || bussiness_breif_check.length  < 26 || bussiness_breif_check .length > 500){
-          newErrors.businessBrief ="Business brief must be between 26 and 500 characters.";
-      }else{
-       if (arabicPattern.test(bussiness_breif_check)) {
+    if (
+      !bussiness_breif_check ||
+      bussiness_breif_check.length < 26 ||
+      bussiness_breif_check.length > 500
+    ) {
+      newErrors.businessBrief =
+        "Business brief must be between 26 and 500 characters.";
+    } else {
+      if (arabicPattern.test(bussiness_breif_check)) {
         bussiness_breif = { ar: bussiness_breif_check };
       } else if (englishPattern.test(bussiness_breif_check)) {
         bussiness_breif = { en: bussiness_breif_check };
       } else {
         bussiness_breif = { lang: "Unknown Language" };
       }
-        // newErrors.businessBrief = null;
-        validData.bussiness_breif = bussiness_breif;
-      }
-     
-    
+      // newErrors.businessBrief = null;
+      validData.bussiness_breif = bussiness_breif;
+    }
 
     //contact_phone
     const phoneNumber = validatePhoneNumber(dataObject.contact_phone?.trim());
@@ -140,7 +141,7 @@ function Creater_your_partner1() {
       validData.contact_phone = phoneNumber;
     }
     //email
-    
+
     const email = dataObject.contact_email?.trim(); // Ensure it's a string and remove spaces
 
     const emailRegex =
@@ -148,55 +149,52 @@ function Creater_your_partner1() {
 
     if (!email) {
       console.log("Email is required.");
-      newErrors.email = "Email is required."
+      newErrors.email = "Email is required.";
     } else if (email.length < 8) {
-       newErrors.email = "Email must be at least 8 characters long."
+      newErrors.email = "Email must be at least 8 characters long.";
     } else if (email.length > 40) {
-       newErrors.email = "Email must not exceed 40 characters."
+      newErrors.email = "Email must not exceed 40 characters.";
     } else if (!emailRegex.test(email)) {
-       newErrors.email = "Invalid email format."
+      newErrors.email = "Invalid email format.";
     } else {
       validData.contact_email = email;
     }
     setErrors(newErrors);
     console.log(newErrors);
-    console.log("data",validData);
-    
+    console.log("data", validData);
+
     if (Object.keys(newErrors).length === 0) {
       ctx.sinUpFormData(validData);
       navigate("/CreateAccount2");
-
     }
-
   };
   const requestHandler = () => {
     console.log("helol");
-    
-   setRequest(false);
-    localStorage.setItem('request', JSON.stringify(false));
 
+    setRequest(false);
+    localStorage.setItem("request", JSON.stringify(false));
   };
 
   return (
     <AuthenticationWrapper>
-      <form ref={formRef} onSubmit={firstFormSumbitHandeler} className=" ml-[10px]  ms:ml-0 ">
-        <div className="sm:mt-[120px] " >
-          <div style={{marginLeft:"60px"}}>
+      <form
+        ref={formRef}
+        onSubmit={firstFormSumbitHandeler}
+        className="sm:w-[540px] w-[350px] ml-[10px]  ms:ml-0 "
+      >
+        <div className="sm:mt-[120px] ">
+          <div className="sm:ml-[60px]">
             <Tiltle
               title="Request to Join With Us"
               title_discription="Fill Our Form to let us know more about your business and approve your account"
             />
           </div>
-          <ProgressSteps
-            pageNumber={1}
-            count={3}
-            circle={true}
-          />
+          <ProgressSteps pageNumber={1} count={3} circle={true} />
           <Card cssCard="sin_in_Bigcard">
             <TitleCars name="Company information" icon={icon} />
-            <div className={style["information"]}>
+            <div className="sm:flex gap-5">
               <div>
-                <TextField
+                {/* <TextField
                   IsError={IsErrorName}
                   label="Company Name"
                   Intext="Name"
@@ -204,40 +202,50 @@ function Creater_your_partner1() {
                   name="company_name"
                   onblurHandeler={onbluerNameHnadeler}
                   OnchangeHnadeler={NameChangeHandeler}
+                /> */}
+                <InputField
+                  editt={false}
+                  label="Company Name"
+                  name="company_name"
+                  placeholder="Name"
+                  className="w-full"
                 />
                 {errors.companyName && (
                   <p className={style.errorMessage}>{errors.companyName}</p>
                 )}
-                <TextField
-                  label="Company Email"
-                  Intext="ex.gmail.com"
-                  textfild="textBoxSmall"
-                  name="contact_email"
 
+                <InputField
+                  editt={false}
+                  label="Company Email"
+                  name="contact_email"
+                  placeholder="ex.gmail.com"
+                  className="w-full"
                 />
                 {errors.email && (
                   <p className={style.errorMessage}>{errors.email}</p>
                 )}
               </div>
               <div>
-                <TextField
+                <InputField
+                  editt={false}
                   label="Choose Service"
-                  Intext="choose Form"
-                  textfild="textBoxSmall"
                   name="service_type"
+                  placeholder="choose Form"
+                  className="sm:w-[80%] w-full"
                 />
                 {errors.serviceType && (
                   <p className={style.errorMessage}>{errors.serviceType}</p>
                 )}
 
-                <div style={{ marginTop: "-5px" }}>
-                  <label style={{ fontSize: "17px" }}>Contact Phone</label>
+                <div className="sm:mt-[10px] ">
+                  <label className="text-[17px]">Contact Phone</label>
                   <PhoneInput
                     inputProps={{
                       placeholder: "Company official phone",
                       name: "contact_phone",
                       id: "contact_phone",
-                      className: style.inputPhone,
+                      className:
+                        "sm:w-[90%] w-[108%]  border border-[gray]  rounded text-base pl-12 h-9",
                     }}
                     country={"us"}
                     value={phone}
@@ -258,22 +266,39 @@ function Creater_your_partner1() {
                 </div>
               </div>
             </div>
-            <TextField
+            {/* <TextField
               label="Bussiness Brief"
               Intext="what your Bussiness Do"
               textfild="textBox2"
               name="bussiness_breif"
               textarea={true}
+            /> */}
+            <InputField
+              editt={false}
+              label="Bussiness Brief"
+              name="bussiness_breif"
+              placeholder="what your Bussiness Do"
+              className="w-[90%]"
+              textarea
             />
             {errors.businessBrief && (
               <p className={style.errorMessage}>{errors.businessBrief}</p>
             )}
             <hr />
-            <div className={style.btnsInfo}>
+
+            <div className=" sm:flex">
               <Link to="/">
-                <Button btnCss="whiteInfoCss" name="previous" onClickAction={requestHandler}/>
+                <Button
+                  btnCss="whiteInfoCss"
+                  name="previous"
+                  onClickAction={requestHandler}
+                />
               </Link>
-              <Button btnCss="blueInfoCss" name="continue"  />
+              <Button
+                btnCss="blueInfoCss"
+                name="continue"
+                className={"w-[10px]"}
+              />
             </div>
             <AuthenticationFooter
               title="Have a account"

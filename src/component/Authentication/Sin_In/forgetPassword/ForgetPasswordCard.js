@@ -9,14 +9,16 @@ import AuthenFooter from "../../AuthenticationFooter/AuthenFooter";
 import Tiltle from "../../Tiltle";
 import AuthenticationWrapper from "../../regular_components/AuthenticationWrapper";
 function ForgetPasswordCard() {
+
+  
   return (
     <AuthenticationWrapper>
-      <div className="text-center w-[500px] ml-[20px] flex flex-col justify-center   ms:ml-0">
+      <div className="text-center ml-[20px] flex flex-col justify-center   ms:ml-0">
         <Tiltle
           title="Facing problem Sign in"
           title_discription="Were here to help. Below are some options to help you get back on track."
         />
-        <div className={style["ForgetpasswordCard"]}>
+        <div className={`${style["ForgetpasswordCard"]} sm:ml-4 sm:w-[75%] w-[95%]`}>
           <Link style={{ textDecoration: "none" }} to="/ForgetPasswordCard">
             <div className={style["support"]}>
               <div className={style["supportHandle"]}>
@@ -26,8 +28,7 @@ function ForgetPasswordCard() {
               <img width="20px" src={go} />
             </div>
           </Link>
-          <Link style={{ textDecoration: "none" }} to="/ContactSupport">
-          
+          <Link style={{ textDecoration: "none" }} to="/ContactSupport"> 
             <div className={style["support"]}>
               <div className={style["supportHandle"]}>
                 <img className="w-[20px] h-[20px]" src={key} />
@@ -38,7 +39,6 @@ function ForgetPasswordCard() {
             </div>
           </Link>
           <Link to="/">
-          
             <Button name="Back To Home" btnCss={"whiteCss"} />
           </Link>
           <AuthenFooter

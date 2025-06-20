@@ -1,15 +1,17 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import Tiltle from "../../Tiltle";
 import Card from "../../regular_components/Card";
 import TextField from "../../regular_components/TextField";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AuthenFooter from "../../AuthenticationFooter/AuthenFooter";
 import AuthenticationWrapper from "../../regular_components/AuthenticationWrapper";
 import Button from "../../regular_components/Button";
 import AuthContext1 from "../../Context/Mian-Page-Context";
 import SpinnerLoading from "../../regular_components/SpinnerLoading";
 import PopupMessage from "../../Sin_up/Create_your_partner/Create_account_items/PopupMessage";
-import axiosInstance from "../../../../services/axiosInstance";
+import api from "../../../../services/axiosInstance";
+import { Mail } from "lucide-react";
+
 
 const COUNTDOWN_TIME = 30;
 
@@ -20,14 +22,12 @@ function SendingCode() {
 
   const codeRef = useRef();
   const resetRef = useRef();
-
+ const [type ,setType]=useState('code')
   const [timeLeft, setTimeLeft] = useState(storedTime);
   const [isloading, setIsloading] = useState(false);
   const [isRestPass, SetRestPass] = useState(false);
   const [isResendOtp, setIsResendOtp] = useState(false);
   const [Error, setError] = useState(null);
-
-  const api = axiosInstance(ctx.token, ctx.refreshToken);
 
   const navigate = useNavigate();
 
@@ -36,45 +36,61 @@ function SendingCode() {
   }, [isRestPass, codeRef, resetRef]);
 
   useEffect(() => {
+    
     if (timeLeft <= 0) {
       localStorage.removeItem("time");
       setIsResendOtp(true);
       return;
     }
-
     localStorage.setItem("time", timeLeft);
-
     const timer = setInterval(() => {
       setTimeLeft((prev) => prev - 1);
     }, 1000);
     return () => clearInterval(timer);
   }, [timeLeft]);
-
+  const validatePassword = (password) => {
+    if (password < 8) {
+      setError("Must be at least 8 characters.");
+      return false;
+    }
+    if (!/[A-Z]/.test(password)) {
+      setError("Must include at least one uppercase letter.");
+       return false;
+    }
+    if (!/[a-z]/.test(password)) {
+      setError("Must include at least one lowercase letter.");
+      return false;
+    }
+    if (!/[0-9]/.test(password)) {
+      setError("Must include at least one number.");
+      return false;
+    }
+    if (!/[!@#$%^&*]/.test(password)) {
+      setError("Must include at least one special character (!@#$%^&*).");
+      return false;
+    }
+    return true
+  };
   const codesumbithandeler = async (e) => {
     e.preventDefault();
     setIsloading(true);
+    console.log(codeRef);
+    
     const eneredCode = codeRef.current.value.trim();
     if (eneredCode === "") {
       setError("cannot be empty!");
       return;
     }
-    console.log({
-      otp: eneredCode,
-      email: ctx.email,
-    });
-
     try {
       //successful
-      const response = await api.post("/verify-otp", {
+      const response = await api.post("/vendor/verify-otp", {
         otp: eneredCode,
         email: ctx.email,
       });
       SetRestPass(true);
-      codeRef.current.value = "";
-      console.log(response);
       setError(null);
+      codeRef.current.value = '';
     } catch (error) {
-      //falied
       setError("otp is wrong");
     }
     setIsloading(false);
@@ -83,76 +99,65 @@ function SendingCode() {
     e.preventDefault();
     setIsloading(true);
     const enterRestPassword = resetRef.current.value.trim();
-    if (enterRestPassword === "") {
-      setError("cannot be empty!");
-      return;
-    }
-    console.log({
-      email: ctx.email,
-      password: enterRestPassword,
-    });
-
+    validatePassword(enterRestPassword);
+    if (!validatePassword(enterRestPassword)) return;
+    console.log({email: ctx.email, password: enterRestPassword} );
+    
     try {
       //successful
-      const response = await api.post("/reset-password", {
-        email: ctx.email,
+      const response = await api.post("/vendor/reset-password", {
         password: enterRestPassword,
-      });
-      navigate("/");
+        email: ctx.email,
+      }); 
       setError(null);
-      console.log(response);
+      setType('code')    
+      navigate('/') 
+      
     } catch (error) {
       //falied
-      setError("something went wrong");
+      setError();
+      console.log(error.message);
+      
     }
     setIsloading(false);
   };
   const ResetOtpsumbithandeler = async (e) => {
     e.preventDefault();
     setIsloading(true);
-    const eneredCode = codeRef.current.value.trim();
-    if (eneredCode === "") {
-      setError("cannot be empty!");
-      return;
-    }
-    console.log({
-      email: ctx.email,
-    });
-
+    setType("resetotp")
     try {
       //successful
-      const response = await api.post("/resend-otp", {
+      const response = await api.post("/vendor/resend-otp", {
         email: ctx.email,
       });
-      console.log(response, "rest otp");
-      //here we need to set the counter back
       localStorage.setItem("time", COUNTDOWN_TIME);
       const storedData = localStorage.getItem("time");
       setError(null);
       setTimeLeft(storedData);
+      codeRef.current = "";
+      setIsResendOtp(false);
+      setType("password")
     } catch (error) {
       //falied
-      setError(error.response.data.message || "reset otp is wrong");
+      setError(error.response.data.message );
     }
     setIsloading(false);
   };
 
   const handleTogglePopup = () => {
+    if (Error) {
+      type!='code'?null:navigate("/ForgetPasswordCard")
+    
+    }
     setError(null);
     setIsloading(false);
   };
 
   return (
     <AuthenticationWrapper>
-      <div className="text-center w-[500px] flex flex-col justify-center ml-[20px]  ms:ml-0">
-        <form
-          onSubmit={
-            !isRestPass
-              ? !isResendOtp
-                ? codesumbithandeler
-                : ResetOtpsumbithandeler
-              : Resetpasssumbithandeler
-          }
+      <div className="text-center  flex flex-col justify-center ml-[20px]  ms:ml-0">
+        <form 
+        onSubmit={type==='code'?codesumbithandeler:type==='password'?Resetpasssumbithandeler:ResetOtpsumbithandeler}
         >
           <Tiltle
             title={
@@ -161,6 +166,10 @@ function SendingCode() {
             title_discription="Were here to help. Below are some options to help you get back on track."
           />
           <Card cssCard={"sin_in_card"}>
+            <div className="flex items-center justify-center space-x-2 text-gray-600">
+              <Mail className="w-4 h-4" />
+              <span className="text-sm">{ctx.email}</span>
+            </div>
             <TextField
               ref={!isRestPass ? codeRef : resetRef}
               label={!isRestPass ? "Code" : "new password"}
@@ -174,10 +183,15 @@ function SendingCode() {
               <Button
                 name={!isRestPass ? "reset code" : "Set new password"}
                 btnCss="timerBlue"
+                onClickAction={isRestPass?()=>setType('password'):ResetOtpsumbithandeler}
               />
             ) : (
               <>
-                <Button name="verification code" btnCss="timerBlue" />
+                <Button
+                  name="verification code"
+                  btnCss="timerBlue"
+                 onClickAction={()=>setType('code')}
+                />
                 <p>
                   the remaning is{" "}
                   <span style={{ color: "red" }}> {timeLeft} sec...</span>
@@ -198,7 +212,7 @@ function SendingCode() {
               popMessageCss="ErrorPopupMessage"
               btnCss="whiteCssS"
               handleTogglePopup={handleTogglePopup}
-              details={Error}
+              title={Error}
             />
           )}
         </form>

@@ -88,18 +88,19 @@ function Sin_in_Card(props) {
           password: enteredPassword,
         });
         SetIsloading(false);
-        setError(null);
+        setError(null);   
+       
         localStorage.setItem("loggedIn",true)
-        notifyLoginSuccess()
-        console.log(response.data,"pass",enteredPassword);
-        ctx.login(response.data.access_token, enteredEmail);
-     
+        notifyLoginSuccess(response?.data.data.user.service_type)
+        console.log(response.data,"pass",enteredPassword,response?.data.data.user.service_type);
+        ctx.login(response.data.access_token, enteredEmail,response?.data.data.user.service_type);
+     //  SetServiceType(response.data.user.service_type)
       } catch (error) {
         //falied
        
-        console.log("error",error.response.message || "An unknown error occurred!");
+        console.log("error",error);
         const retryAt = localStorage.getItem("retryAt");
-        errorMessage=error.response.data.message || "An unknown error occurred!"
+        errorMessage=error?.response?.data?.message || "An unknown error occurred!"
         setError(errorMessage);
         if (retryAt) {
           const retryTime = new Date(retryAt);
@@ -126,7 +127,7 @@ function Sin_in_Card(props) {
   useEffect(() => {
     EmailRef.current.focus();
   }, [EmailRef]);
-function notifyLoginSuccess() {
+function notifyLoginSuccess(servicetype) {
   
     const id = Date.now();
     const type = "success";
@@ -138,14 +139,17 @@ function notifyLoginSuccess() {
       setNotifications((prev) =>
         prev.filter((notification) => notification.id !== id)
          
-      );  navigate("/MianDahboard")
+      );  
+      
+      servicetype==="Hotels"?navigate("/MianDahboard"):navigate("/TourDashboard")
+ 
     }, 2000);
   
 }
 
   return (
     <div >
-      <form onSubmit={Sin_inSumbitHandeler} className="w-[75%] border border-solid border-gray-400/25 rounded-[10px] p-[20px] pt-[30px] flex flex-col justify-center  items-center mt-[20px] font-[Poppins] ml-[10px]  ms:ml-0"
+      <form onSubmit={Sin_inSumbitHandeler} className="sm:w-[75%] w-[70%] border border-solid border-gray-400/25 rounded-[10px] p-[20px] pt-[30px] flex flex-col justify-center  items-center mt-[20px] font-[Poppins] ml-[10px]  ms:ml-0"
       >
         <TextField
           ref={EmailRef}

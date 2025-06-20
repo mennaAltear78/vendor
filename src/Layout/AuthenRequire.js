@@ -4,7 +4,7 @@ import { Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom'
 
 function AuthenRequire() {
     const ctx = useContext(AuthContext1);
-    // const location = useLocation();
+
     const navigate = useNavigate();
   //forbedin user from go back to account after logging out 
     useEffect(() => {
@@ -13,7 +13,7 @@ function AuthenRequire() {
       }
     }, [ctx.token, navigate]);
   
-    return ctx.token ? <Outlet /> : <Navigate to="/" replace />;
+    return ctx.token  ? <Outlet /> : <Navigate to="/" replace />;
   }
 
 export default AuthenRequire

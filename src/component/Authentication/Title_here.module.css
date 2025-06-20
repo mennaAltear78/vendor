@@ -8,7 +8,6 @@
     color: white;
     flex-direction: column;
     padding: 20px;
-    width: 500px;
     padding-left: 30px;
     height: 700px;
     position: relative;
@@ -26,10 +25,9 @@
    animation: scaleUp 0.5s ease-in-out forwards;
 }
 .frame20{
-    position: absolute;
-    left: 0px;
-   top:  90px;
-
+  position: absolute;
+  left: 0px;
+  top:  90px;
   transform: translateX(-20%);
   transform: translateY(180%);
   animation: scaleUp 0.5s ease-in-out forwards;

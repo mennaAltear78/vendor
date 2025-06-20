@@ -39,7 +39,7 @@ function Title_here() {
   return (
     <div>
       <div
-        className={style["imgSlider"]}
+        className={`${style["imgSlider"]} sm:w-[500px] w-[350px] `}
         style={{
           opacity: visible ? 1 : 0.3, // يظهر تدريجيًا
           transform: visible ? "translateX(0px)" : "translateX(40px)",

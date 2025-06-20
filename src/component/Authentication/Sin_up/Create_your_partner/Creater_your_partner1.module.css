@@ -1,7 +1,6 @@
 .information{
     display: flex;
-
-   
+    flex-wrap: nowrap;
 }
 .information div{
 margin-right: 10px;
@@ -19,11 +18,4 @@ margin-right: 10px;
     margin-top: -10px;
 }
   
-.inputPhone{
-    width: 83%;
-    border: 1px solid rgba(126, 131, 136, 0.92);
-    border-radius: 5px;
-    font-size: 16px;
-    padding-left: 50px;
-    height: 32px
-}
+

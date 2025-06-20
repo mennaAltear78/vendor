@@ -67,8 +67,11 @@ export const AuthProvider = ({ children }) => {
   const [specificHotelId, setspecificHotelId] = usePersistedState('specificHotelId', '');
   const [specificRoomId, setspecificRoomId] = usePersistedState('specificRoomId', '');
   const [notificationNumber, setnotificationNumber] = usePersistedState('notificationNumber', 0);
+  const [serviceType,SetServiceType]=usePersistedState("seviceType","")
 
   const contextValue = {
+    serviceType,
+    SetServiceType,
     specificRoomId,
     setspecificRoomId,
     specificHotelId,

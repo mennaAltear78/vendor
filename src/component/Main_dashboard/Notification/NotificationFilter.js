@@ -5,8 +5,8 @@ const NotificationFilters = ({ activeFilter, onFilterChange, unreadCount }) => {
   const filters = [
     { id: 'all', label: 'All', count: null },
     { id: 'unread', label: 'Unread', count: unreadCount },
-    { id: 'message', label: 'Messages', count: null },
-    { id: 'like', label: 'Likes', count: null },
+    // { id: 'message', label: 'Messages', count: null },
+    // { id: 'like', label: 'Likes', count: null },
     // { id: 'follow', label: 'Follows', count: null },
   ];
 

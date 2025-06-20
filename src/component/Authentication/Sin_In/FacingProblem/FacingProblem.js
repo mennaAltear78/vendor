@@ -4,7 +4,6 @@ import React, {
   useRef,
   useState,
 } from "react";
-
 import Button from "../../regular_components/Button";
 import TextField from "../../regular_components/TextField";
 import { useNavigate } from "react-router-dom";
@@ -28,7 +27,6 @@ function FacingProblem() {
   const navigate = useNavigate();
   //useRef
   const EmailRef = useRef();
-
   useEffect(() => {
     EmailRef.current.focus();
   }, [EmailRef]);
@@ -48,7 +46,7 @@ function FacingProblem() {
 
     try {
       //successful
-      const response = await api.post("/auth/forgotPassword", {
+      const response = await api.post("/vendor/forgot-password", {
         email: enteredEmail,
       });
       ctx.login(ctx.token, enteredEmail);
@@ -70,7 +68,7 @@ function FacingProblem() {
 
   return (
     <AuthenticationWrapper>
-      <div className="text-center w-[500px] flex flex-col justify-center ml-[10px]  ms:ml-0">
+      <div className="text-center flex flex-col justify-center ml-[10px]  ms:ml-0">
         <form onSubmit={Forgetpasswordsumbithandeler}>
           <Tiltle
             title={"Forgot Your Password?"}

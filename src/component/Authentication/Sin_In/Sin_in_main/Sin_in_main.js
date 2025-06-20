@@ -32,7 +32,7 @@ const Sin_in_main = () => {
           </div>
 
           <div className={Style["sin_in_text"]}>
-            <b>Sign in to manage your property</b>
+            <b className="sm:text-[30px] text-[20px] sm:ml-0 ml-[-40px]">Sign in to manage your property</b>
           </div>
         </div>
         <Sin_in_Card ErrorPopMessageHandeler={ErrorPopMessageHandeler} />

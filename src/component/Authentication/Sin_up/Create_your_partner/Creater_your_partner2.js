@@ -10,7 +10,7 @@ import style from "./Creater_your_partner2.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import AuthenticationWrapper from "../../regular_components/AuthenticationWrapper";
 import AuthContext1 from "../../Context/Mian-Page-Context";
-import location from "../../../../Assets/location.svg"
+import location from "../../../../Assets/location.svg";
 import PopMap from "./Create_account_items/PopMap";
 
 import LocationGoogltMap from "./Create_account_items/LocationGoogltMap";
@@ -23,13 +23,17 @@ function Creater_your_partner2() {
   const [latitude, setLatitude] = useState(""); // Stores the latitude
   // const [locationn, setLocation] = useState({ lat: 37.7749, lng: -122.4194 });
 
-  const [placeName, setPlaceName] = useState({country:'',city:'',place:''});
+  const [placeName, setPlaceName] = useState({
+    country: "",
+    city: "",
+    place: "",
+  });
   const [popMessage, setpopMessage] = useState(false);
   const [error, seterror] = useState(null);
 
   const mapRef = useRef();
-  const cityRef=useRef()
-  const country=useRef()
+  const cityRef = useRef();
+  const country = useRef();
   const ctx = useContext(AuthContext1);
 
   console.log(ctx.formData, "??????????????");
@@ -47,7 +51,6 @@ function Creater_your_partner2() {
       seterror("you have to add your location");
     }
     // console.log("dataaaa",ctx.formData);
-    
   };
   const displayNameHandeler = (place, longitude, latitude) => {
     mapRef.current.value = place;
@@ -62,34 +65,32 @@ function Creater_your_partner2() {
     setLatitude(latitude);
     setPlaceName(place);
     mapRef.current.value = place;
-
-    
   };
   const openMapHandeler = () => {
     setpopMessage(true);
   };
-  const setlocationHandeler=(location,city,countryy,log,lat)=>{
+  const setlocationHandeler = (location, city, countryy, log, lat) => {
     mapRef.current.value = location;
-    country.current.value=countryy
-    cityRef.current.value=city
+    country.current.value = countryy;
+    cityRef.current.value = city;
     // setPlaceName(location)
-    setLongitude(log)
-    setLatitude(lat)
-  }
+    setLongitude(log);
+    setLatitude(lat);
+  };
   return (
     <AuthenticationWrapper>
-      <form onSubmit={SubmitHandere} >
+      <form onSubmit={SubmitHandere} className="sm:w-[540px] w-[350px]">
         <div className={style["mainInfo"]}>
-          <div style={{ marginLeft: "60px" }}>
+          <div className="sm:ml-[60px]">
             <Tiltle
               title="Request to Join With Us"
               title_discription="Fill Our Form to let us know more about your business and approve your account"
             />
           </div>
-          <ProgressSteps pageNumber={2} count={3} circle={true}/>
+          <ProgressSteps pageNumber={2} count={3} circle={true} />
           <Card cssCard="sin_in_Bigcard">
             <TitleCars name="Location Details" icon={location} />
-            <div className={style["information"]}>
+            <div className="sm:flex gap-3">
               <div>
                 <TextField
                   label="Country"
@@ -98,6 +99,7 @@ function Creater_your_partner2() {
                   ref={country}
                   disabled={true}
                 />
+                
               </div>
               <div>
                 <TextField
@@ -109,13 +111,13 @@ function Creater_your_partner2() {
                 />
               </div>
             </div>
-            <div style={{ display: "flex" }}>
+            <div  className="flex">
               <TextField
                 label="Address Details"
                 Intext="Grab it from Map"
                 ref={mapRef}
                 textfild="textBox"
-                disabled ={true}
+                disabled={true}
               />
               <Link>
                 <Button
@@ -126,17 +128,20 @@ function Creater_your_partner2() {
               </Link>
             </div>
             {error && (
-              <p style={{ color: "red" }}>you should enter your location</p>
+              <p  className="text-[red]">you should enter your location</p>
             )}
-     
-            <LocationGoogltMap styling={{
-  width: "85%",
-  height: "70px",
-  borderRadius:'10px'
-}} setlocation={setlocationHandeler}/>
-           
+
+            <LocationGoogltMap
+              styling={{
+                width: "85%",
+                height: "70px",
+                borderRadius: "10px",
+              }}
+              setlocation={setlocationHandeler}
+            />
+
             <hr />
-            <div className={style["btnsInfo"]}>
+            <div className='sm:flex'>
               <Link to="/CreateAccount">
                 <Button btnCss="whiteCssS" name="previous" />
               </Link>

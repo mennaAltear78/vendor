@@ -142,6 +142,8 @@ export const roomInfoSchema = z.object({
 
 // Updated AuthContext schema to include the new hotel and room schemas
 export const authContextSchema = z.object({
+  SetServiceType:z.function(),
+  seviceType:z.string(),
   isRequest: z.boolean(),
   HotelInfo: hotelInfoSchema.optional().or(z.object({})),
   RoomInfo: roomInfoSchema.optional().or(z.object({})),

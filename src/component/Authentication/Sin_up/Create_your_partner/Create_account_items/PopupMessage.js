@@ -22,8 +22,8 @@ function PopupMessage(props) {
  
   return (
     <div>
-      <div ref={props.ref} className={classes2.join(" ")}>
-        <div className={classes1.join(" ")}>
+      <div ref={props.ref} className={`${classes2.join(" ")}  `}>
+        <div className={`${classes1.join(" ")} w-[70%]  sm:w-[500px]`}>
           {props.close && (
             <div className={style.close}>
         
@@ -42,8 +42,6 @@ function PopupMessage(props) {
           <p className="font-usedFont text-gray-350 text-[15px]">{props.details}</p>  
           </div>
           <div className="flex justify-center items-center">
-   
-        
             <Button
               btnCss={props.btnCss}
               name={props.btnMessage1 || "okay"}
