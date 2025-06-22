@@ -7,8 +7,8 @@ function AreaCharts() {
   const [state, setState] = React.useState({
     series: [
       {
-        name: "series1",
-        data: [31, 40, 28, 51, 42, 109, 100],
+        name: "Total Revenue",
+        data: [1234, 420, 218, 521, 412, 109, 1200],
       },
       // {
       //   name: "series2",

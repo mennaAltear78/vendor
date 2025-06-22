@@ -9,8 +9,7 @@ export const VendorData = {
     { ActiveLine: false, img: home, label: "Guest Reviews",path:'/' },
     { ActiveLine: false, img: graph, label: "Property",path:'/PropertyList' },
     { ActiveLine: false, img: home, label: "Analytics",path:'/' },
-    { ActiveLine: false, img: graph, label: "Inbox" ,path:'/'},
-    { ActiveLine: false, img: home, label: "Rates & Aviablity",path:'/' },
+
     
   ],
 optionSort:[

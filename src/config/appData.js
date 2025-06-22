@@ -7,24 +7,33 @@ cards : [
       precent: "bg-[#ffa6003f] text-[orange]",
       IconCss: "text-[#f1294b]",
       iconName: "calendar_add_on",
+      number:120,
+      name: "Total Booking"
+
     },
     {
       bgImageCss: "bg-[#ffa6005e]",
       precent: "bg-[#f59dac] text-[#f1294b]",
       IconCss: "text-[orange]",
       iconName: "moving",
+      number:100,
+      name: "occupancy rate"
     },
     {
       bgImageCss: "bg-[#0000ff79]",
       precent: "bg-[#ffa6003f] text-[orange]",
       IconCss: "text-[blue]",
       iconName: "moving",
+      number:13,
+      name: "average daily rate"
     },
     {
       bgImageCss: "bg-[#0080007c]",
       precent: "bg-[#f59dac] text-[#f1294b]",
       IconCss: "text-[green]",
       iconName: "finance_mode",
+      number:20,
+      name: "Total revenue"
     },
   ],
   PaymentMethod: [

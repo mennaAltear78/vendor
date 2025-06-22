@@ -14,6 +14,7 @@ import AuthContext1 from "../../Context/Mian-Page-Context";
 import axios from "axios";
 import appData from "../../../../config/appData";
 import messageImg from "../../../../Assets/message-sent-P4zHrKyEAE.svg";
+import SpinnerLoading from "../../regular_components/SpinnerLoading";
 
 function Creater_your_partner3() {
   const ctx = useContext(AuthContext1);
@@ -28,7 +29,7 @@ function Creater_your_partner3() {
   const [fileObject, setFileObject] = useState({});
   const [error, setError] = useState(null);
   const [formDataToSubmit, setFormDataToSubmit] = useState(null);
-
+  const [loading,setLoading]=useState(false)
   useEffect(() => {
     const requiredFormFields = [
       "company_name",
@@ -77,6 +78,7 @@ function Creater_your_partner3() {
   }, [fileObject, ctx.formData]);
 
   const handleClosePopup = () => {
+    setLoading(false)
     setShowPopup(false);
     if (!error) {
       navigate("/"); // Navigate to home on success
@@ -86,6 +88,7 @@ function Creater_your_partner3() {
   const onsumbitHandeler = async (e) => {
     e.preventDefault();
     console.log("Submitting form:", formDataToSubmit);
+    setLoading(true)
     if (!error && formDataToSubmit) {
       try {
         const response = await axios.post(
@@ -97,7 +100,8 @@ function Creater_your_partner3() {
               "Accept-Language": "ar", 
             },
           }
-        );
+        ); 
+        setLoading(false)
         console.log("Response:", response.data);
         setShowPopup(true); // Show success popup
       } catch (error) {
@@ -110,7 +114,7 @@ function Creater_your_partner3() {
       setShowPopup(true);
     }
   };
-
+  
   const handleFileSelect = (fileName, file) => {
     let name;
     if (fileName === "Business Registration Certificate") {
@@ -154,7 +158,7 @@ function Creater_your_partner3() {
                 <Link to="/CreateAccount2">
                   <Button btnCss="whiteCssS" name="previous" />
                 </Link>
-                <Button btnCss="blueCssS" name="continue" />
+              {!loading?  <Button btnCss="blueCssS" name="continue" />:<SpinnerLoading/>}
               </div>
             </div>
             <AuthenticationFooter

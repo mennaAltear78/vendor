@@ -20,7 +20,7 @@ const Rooms_List = () => {
   const { data, error, isLoading } = useGetHotelRoomQuery({
     id: paramId,
     page: currentPage,
-    limit: 10,
+    limit: 5,
     keyword: searchKeywords,
     sort: sortValue.value,
     typeEn: FilterValue.value ? FilterValue.value : null,

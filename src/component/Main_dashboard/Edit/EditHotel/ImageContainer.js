@@ -21,7 +21,7 @@ const ImageViewSection = ({
   AddFunction,
   DeleteLoading,
   DeleteError,
-  AddLoading,
+  AddIsLoading,
   AddError,
   UpdateLoading,
   UpdateError,
@@ -29,7 +29,7 @@ const ImageViewSection = ({
   {
     console.log(
       UpdateLoading,
-      AddLoading,
+      AddIsLoading,
       DeleteLoading,
       "updateeeeeeeeeeeeee"
     );
@@ -97,7 +97,7 @@ const ImageViewSection = ({
       <div className="flex">
         <div className="flex w-full items-center">
           <b className="text-[20px] w-full ">{Name}</b>
-          <span className="text-[red] text-[10px] w-full sm:ml-[-50px]">
+          <span className="text-[red] text-[10px] w-full sm:ml-[0px]">
             {Note}
           </span>
         </div>
@@ -161,10 +161,10 @@ const ImageViewSection = ({
             </div>
           )}
           <div className="flex justify-end mb-[10px]  ">
-            {AddLoading ? (
+            {AddIsLoading ? (
               <SpinnerLoading dimentians="h-[30px] ml-[100px] text-[blue]" />
             ) : primary === false || AddedImages.length === 0 ? null : (
-              <Button
+           <Button
                 className="border-none rounded-[8px] h-[30px] w-[60px] bg-[blue] cursor-pointer text-white "
                 type="button"
                 name={

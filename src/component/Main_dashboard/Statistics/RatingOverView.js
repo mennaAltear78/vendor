@@ -11,6 +11,10 @@ function RatingOverView() {
     "Facilities",
     "Value for money rating",
   ];
+  const rating =[
+    4.2, 3.8, 2.3, 4.5, 4.1, 3.9, 4.3
+  ]
+  
   return (
     <div className="lg:w-[300px] md:w-full mr-3   p-4 pt-[1px]  rounded-lg font-usedFont bg-white mb-[10px]">
       <p>Property Rating overview</p>
@@ -35,7 +39,7 @@ function RatingOverView() {
       <div className="sm:flex gap-6">
         <div>
           {label1.map((label, index) => (
-            <HorizontalBar key={index} barLabel={label} StatPage />
+            <HorizontalBar key={index} barLabel={label} StatPage ratingg={rating[index]} />
           ))}
         </div>
       </div>

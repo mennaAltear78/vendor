@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 
-export default function HorizontalBar({ barLabel, StatPage }) {
-  const rating = 3.2;
+export default function HorizontalBar({ barLabel, StatPage, ratingg }) {
+  const rating =ratingg||3;
   const maxRating = 5;
   const percentage = (rating / maxRating) * 100;
 

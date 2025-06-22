@@ -81,13 +81,14 @@ function Creater_your_partner2() {
     <AuthenticationWrapper>
       <form onSubmit={SubmitHandere} className="sm:w-[540px] w-[350px]">
         <div className={style["mainInfo"]}>
-          <div className="sm:ml-[60px]">
+          <div className="sm:ml-[40px]">
             <Tiltle
               title="Request to Join With Us"
               title_discription="Fill Our Form to let us know more about your business and approve your account"
             />
           </div>
           <ProgressSteps pageNumber={2} count={3} circle={true} />
+
           <Card cssCard="sin_in_Bigcard">
             <TitleCars name="Location Details" icon={location} />
             <div className="sm:flex gap-3">
@@ -128,7 +129,7 @@ function Creater_your_partner2() {
               </Link>
             </div>
             {error && (
-              <p  className="text-[red]">you should enter your location</p>
+              <p  className="text-[red] text-[13px] mt-[-10px]">you should enter your location</p>
             )}
 
             <LocationGoogltMap

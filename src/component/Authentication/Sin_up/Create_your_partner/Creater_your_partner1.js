@@ -183,7 +183,7 @@ function Creater_your_partner1() {
         className="sm:w-[540px] w-[350px] ml-[10px]  ms:ml-0 "
       >
         <div className="sm:mt-[120px] ">
-          <div className="sm:ml-[60px]">
+          <div className="sm:ml-[40px]">
             <Tiltle
               title="Request to Join With Us"
               title_discription="Fill Our Form to let us know more about your business and approve your account"
@@ -192,7 +192,7 @@ function Creater_your_partner1() {
           <ProgressSteps pageNumber={1} count={3} circle={true} />
           <Card cssCard="sin_in_Bigcard">
             <TitleCars name="Company information" icon={icon} />
-            <div className="sm:flex gap-5">
+            <div className="sm:flex gap-5 ">
               <div>
                 {/* <TextField
                   IsError={IsErrorName}
@@ -211,7 +211,7 @@ function Creater_your_partner1() {
                   className="w-full"
                 />
                 {errors.companyName && (
-                  <p className={style.errorMessage}>{errors.companyName}</p>
+                  <p className={'text-[red] text-[16px] mt-2 mb-[-11px]'}>{errors.companyName}</p>
                 )}
 
                 <InputField
@@ -222,7 +222,7 @@ function Creater_your_partner1() {
                   className="w-full"
                 />
                 {errors.email && (
-                  <p className={style.errorMessage}>{errors.email}</p>
+                  <p className={'text-[red] text-[16px] mt-2 mb-[-11px]'}>{errors.email}</p>
                 )}
               </div>
               <div>
@@ -234,7 +234,7 @@ function Creater_your_partner1() {
                   className="sm:w-[80%] w-full"
                 />
                 {errors.serviceType && (
-                  <p className={style.errorMessage}>{errors.serviceType}</p>
+                  <p className={'text-[red] text-[16px] mt-2 mb-[-11px]'}>{errors.serviceType}</p>
                 )}
 
                 <div className="sm:mt-[10px] ">
@@ -254,11 +254,7 @@ function Creater_your_partner1() {
 
                   {errors.phone && (
                     <p
-                      style={{
-                        color: "red",
-                        fontSize: "15px",
-                        marginTop: "10px",
-                      }}
+                   className='text-[red] text-[16px] mt-2 mb-[-11px]'
                     >
                       {errors.phone}
                     </p>
@@ -282,7 +278,7 @@ function Creater_your_partner1() {
               textarea
             />
             {errors.businessBrief && (
-              <p className={style.errorMessage}>{errors.businessBrief}</p>
+              <p className={'text-[red] text-[16px] mt-2 mb-[-11px]'}>{errors.businessBrief}</p>
             )}
             <hr />
 

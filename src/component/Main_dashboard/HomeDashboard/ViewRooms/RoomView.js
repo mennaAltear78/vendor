@@ -47,7 +47,7 @@ const RoomView = () => {
   const handleBackToRoomList = () => {
     navigate(`/RoomsList/RoomView/${ctx?.specificRoomId}`);
   };
-
+ ctx.SetRoomId(ctx?.specificRoomId);
   if (isLoading) return <HotelDetailsSkeleton />;
   if (error || !data?.data?.room) return <p>No Hotels Found</p>;
 

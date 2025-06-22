@@ -59,7 +59,7 @@ function ImageContianer({title,limits,HotelImages,onAddImageHandeler,images,setI
                   ))}
                 </div>
 
-                {HotelImages && (
+                {!HotelImages && (
                   <>
                     <hr/>
                     <b className="text-[22px]">

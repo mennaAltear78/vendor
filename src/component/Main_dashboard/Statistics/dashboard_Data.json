@@ -1,0 +1,147 @@
+{
+  "dashboard": {
+    "timestamp": "2025-06-21T23:45:18Z",
+    "hotel": {
+      "name": "Hotel Management Dashboard",
+      "metrics": {
+        "totalBookings": {
+          "value": 120,
+          "changeFromLastMonth": "+20%",
+          "trend": "up"
+        },
+        "occupancyRate": {
+          "value": 100,
+          "unit": "%",
+          "changeFromLastMonth": "+20%",
+          "trend": "up"
+        },
+        "averageDailyRate": {
+          "value": 13,
+          "unit": "currency",
+          "changeFromLastMonth": "+25%",
+          "trend": "up"
+        },
+        "totalRevenue": {
+          "value": 20,
+          "unit": "currency",
+          "changeFromLastMonth": "+20%",
+          "trend": "up"
+        }
+      },
+      "propertyRating": {
+        "overallRating": 3.5,
+        "ratingLabel": "Good",
+        "totalReviews": 22,
+        "categories": {
+          "cleanliness": 3.2,
+          "service": 3.2,
+          "amenities": 3.2,
+          "location": 3.2,
+          "staff": 3.2,
+          "facilities": 3.2,
+          "valueForMoney": 3.2
+        }
+      },
+      "revenueChart": {
+        "timeRange": "Last Days",
+        "dataPoints": [
+          { "time": "00:00", "revenue": 32 },
+          { "time": "01:00", "revenue": 38 },
+          { "time": "02:00", "revenue": 42 },
+          { "time": "03:00", "revenue": 28 },
+          { "time": "04:00", "revenue": 45 },
+          { "time": "05:00", "revenue": 105 },
+          { "time": "06:00", "revenue": 100 }
+        ]
+      },
+      "reservations": {
+        "timeRange": "Last Days",
+        "data": [
+          { "day": 1, "booked": 45, "canceled": 12 },
+          { "day": 2, "booked": 58, "canceled": 18 },
+          { "day": 3, "booked": 42, "canceled": 18 },
+          { "day": 4, "booked": 52, "canceled": 15 },
+          { "day": 5, "booked": 28, "canceled": 8 },
+          { "day": 6, "booked": 45, "canceled": 22 }
+        ]
+      },
+      "mostReservedRooms": {
+        "rooms": [
+          {
+            "name": "Deluxe Room",
+            "color": "#2563eb",
+            "percentage": 35
+          },
+          {
+            "name": "King Room",
+            "color": "#3b82f6",
+            "percentage": 25
+          },
+          {
+            "name": "Mega Room",
+            "color": "#60a5fa",
+            "percentage": 20
+          },
+          {
+            "name": "Sefa Room",
+            "color": "#93c5fd",
+            "percentage": 12
+          },
+          {
+            "name": "Moly Room",
+            "color": "#bfdbfe",
+            "percentage": 8
+          }
+        ]
+      },
+      "recentReviews": [
+        {
+          "reviewer": "Mostafa Flutters",
+          "timeAgo": "2 Minutes ago",
+          "rating": "receptionist",
+          "comment": "this hotel is really good and I...",
+          "avatar": "user-avatar-1"
+        },
+        {
+          "reviewer": "Mostafa Flutters",
+          "timeAgo": "2 Minutes ago",
+          "rating": "receptionist",
+          "comment": "this hotel is really good and I...",
+          "avatar": "user-avatar-2"
+        },
+        {
+          "reviewer": "Mostafa Flutters",
+          "timeAgo": "2 Minutes ago",
+          "rating": "receptionist",
+          "comment": "this hotel is really good and I...",
+          "avatar": "user-avatar-3"
+        },
+        {
+          "reviewer": "Mostafa Flutters",
+          "timeAgo": "2 Minutes ago",
+          "rating": "receptionist",
+          "comment": "this hotel is really good and I...",
+          "avatar": "user-avatar-4"
+        }
+      ]
+    },
+    "ui": {
+      "theme": {
+        "primaryColor": "#e91e63",
+        "secondaryColor": "#2563eb",
+        "backgroundColor": "#f8fafc",
+        "cardBackground": "#ffffff"
+      },
+      "chartColors": {
+        "revenue": "#e91e63",
+        "booked": "#f59e0b",
+        "canceled": "#fbbf24"
+      }
+    },
+    "metadata": {
+      "lastUpdated": "2025-06-21T23:45:18Z",
+      "dataSource": "hotel-management-system",
+      "version": "1.0.0"
+    }
+  }
+}

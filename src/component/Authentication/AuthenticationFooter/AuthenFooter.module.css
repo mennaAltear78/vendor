@@ -7,6 +7,7 @@
         .sin_in_info {
             display: flex
             ;
+            margin-right: 40px;
                 flex-direction: column;
                 text-align: center;
                 font-size: 12px;

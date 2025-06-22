@@ -140,7 +140,7 @@ export const CreateTour = ({ initialData }) => {
                         {/* Images */}
 
                      
-                         <ImageContianer title="d" limits="" imagesHotal={[]} HotelImages={()=>{}} onAddImageHandeler={()=>{}} images={[]} setImages={()=>{}} setHotalImage={()=>{}}/>
+                         {/* <ImageContianer title="d" limits="" imagesHotal={[]} HotelImages={()=>{}} onAddImageHandeler={()=>{}} images={[]} setImages={()=>{}} setHotalImage={()=>{}}/> */}
                         {/* <div className="space-y-6">
                             <h3 className="text-lg font-semibold text-gray-900 flex items-center">
                                 <div className="w-6 h-6 bg-indigo-100 rounded-full flex items-center justify-center mr-2">

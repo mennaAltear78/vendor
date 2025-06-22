@@ -2,7 +2,7 @@ import React from "react";
 import style from "./ProgressSteps.module.css";
 function ProgressSteps({ circle, count, pageNumber }) {
   return (
-    <div className={!circle ? "flex -mt-5 mb-5 -ml-1.5" : "flex mb-[30px] ml-2.5 w-[90%]"}>
+    <div className={!circle ? "flex -mt-5 mb-5 -ml-1.5" : "flex mb-[30px] ml-2.5 w-[84%]"}>
       {Array.from({ length: count }).map((_, index) => (
         <React.Fragment key={index}>
           {pageNumber > index + 1 ? (

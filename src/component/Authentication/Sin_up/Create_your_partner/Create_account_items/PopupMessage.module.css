@@ -1,6 +1,6 @@
 .PopupMessage {
  
-  height: 200px;
+  padding-bottom: 10px;
   background-color: black;
   transition: all 0.3s ease-in-out;
   font-family: var(--Typography-English-H-1-Font-Family, Poppins);
@@ -8,7 +8,7 @@
 }
 .ErrorPopupMessage{
   width: 400px;
-  height: 200px;
+  
   background-color: white;
  
   padding: 30px;
@@ -35,7 +35,7 @@
 .popup {
   font-family: var(--Typography-English-H-1-Font-Family, Poppins);
   width: 700px;
-  height: 400px;
+
   background-color: white;
   padding: 20px;
   border-radius: 8px;

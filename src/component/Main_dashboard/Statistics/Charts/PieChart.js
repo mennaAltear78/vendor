@@ -5,6 +5,9 @@ const PieChart = () => {
   const [state, setState] = React.useState({
     series: [44, 55, 41, 17, 15],
     options: {
+     
+    labels: ["Deluxe Room","King Room","Merga Room","seta Room","Moly Room"], // 👈 أسماء القطع
+  
       dataLabels: {
         enabled: false,
       },

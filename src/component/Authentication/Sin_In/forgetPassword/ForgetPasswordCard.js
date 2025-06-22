@@ -18,7 +18,7 @@ function ForgetPasswordCard() {
           title="Facing problem Sign in"
           title_discription="Were here to help. Below are some options to help you get back on track."
         />
-        <div className={`${style["ForgetpasswordCard"]} sm:ml-4 sm:w-[75%] w-[95%]`}>
+        <div className={`${style["ForgetpasswordCard"]} sm:w-[75%] w-[95%]`}>
           <Link style={{ textDecoration: "none" }} to="/ForgetPasswordCard">
             <div className={style["support"]}>
               <div className={style["supportHandle"]}>

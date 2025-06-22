@@ -55,13 +55,7 @@ function AddNewFile(props) {
               <button
                 onClick={handleClick}
                 type="button"
-                style={{
-                  padding: "10px",
-                  backgroundColor: "blue",
-                  color: "white",
-                  borderRadius: "5px",
-                  
-                }}
+                className="p-[10px] bg-[blue] text-[white] border-none cursor-pointer rounded-[5px]"
               >
                 Upload File
               </button>

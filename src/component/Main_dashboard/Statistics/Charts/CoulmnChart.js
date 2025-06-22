@@ -7,11 +7,11 @@ function CoulmnCharts() {
   const [state, setState] = React.useState({
     series: [
       {
-        name: "PRODUCT A",
+        name: "Booked",
         data: [44, 55, 41, 67, 22, 43],
       },
       {
-        name: "PRODUCT B",
+        name: "Canceled",
         data: [13, 23, 20, 8, 13, 27],
       },
     ],

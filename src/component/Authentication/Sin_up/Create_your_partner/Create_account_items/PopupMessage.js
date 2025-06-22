@@ -31,15 +31,15 @@ function PopupMessage(props) {
             </div>
           )}
           {props.messageImg && (
-            <img width={props.remove?'100px':'300px' } src={props.messageImg} />
+            <img className="mb-[-70px]" width={props.remove?'100px':'300px' } src={props.messageImg} />
           )}
 
-          <h3>{props.title}</h3>
-          <div className={style.desc} style={{width:'58%'}}>
+          <h3 >{props.title}</h3>
+          <div className="" >
             {props.highlighted && (
               <span style={{ color: props.color?"green":"red"}}>{props.highlighted}</span>
             ) }
-          <p className="font-usedFont text-gray-350 text-[15px]">{props.details}</p>  
+          <p className="font-usedFont  text-gray-350 mt-20 text-[green]  text-[15px]">{props.details}</p>  
           </div>
           <div className="flex justify-center items-center">
             <Button

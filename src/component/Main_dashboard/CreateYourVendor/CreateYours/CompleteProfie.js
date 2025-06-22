@@ -15,22 +15,22 @@ function CompleteProfie({Hotel}) {
   const navigate = useNavigate();
 
 
-useEffect(() => {
-  if (Hotel) {
-    if ([1, 2].every((num) => ctx.isHotelImageDone.includes(num))) {
-      SetPop_up(true);
-      return
-    }
-  } else {
-    if ([3, 4].every((num) => ctx.isHotelImageDone.includes(num))) {
-      SetPop_up(true);
-      return
-    }else{
-      SetPop_up(false);
-      return
-    }
-  }
-}, [ctx.isHotelImageDone, Hotel]);
+// useEffect(() => {
+//   if (Hotel) {
+//     if ([1, 2].every((num) => ctx.isHotelImageDone.includes(num))) {
+//       SetPop_up(true);
+//       return
+//     }
+//   } else {
+//     if ([3, 4].every((num) => ctx.isHotelImageDone.includes(num))) {
+//       SetPop_up(true);
+//       return
+//     }else{
+//       SetPop_up(false);
+//       return
+//     }
+//   }
+// }, [ctx.isHotelImageDone, Hotel]);
 
   const handlingBtnAction = (step) => {
     if (step.stepNumber === 1) {
@@ -45,13 +45,13 @@ useEffect(() => {
   };
   const CancelHandeler = () => {
     SetPop_up(false);
-    ctx.setHotelImageDone([]);
+   
   };
 
   useEffect(()=>{
     document.title="complete your profile"
-    // ctx.setHotelImageDone([3,4]);
-  //  ctx.setHotelImageDone([]);
+     // ctx.setHotelImageDone([3,4]);
+     ctx.setHotelImageDone([]);
   },[ctx.IdSpesificHotel])
 const steps = Hotel ? appData.stepsHotel : appData.stepsRoom;
   return (

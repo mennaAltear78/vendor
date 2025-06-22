@@ -22,7 +22,7 @@ function Property_List() {
 
   const { data, isLoading, error } = useGetHotelsQuery({
     page: currentPage,
-    limit: 10,
+    limit: 5,
     keyword: searchKeywords,
     sort: sortValue.value,
     typeEn: FilterValue.value ? FilterValue.value : null,

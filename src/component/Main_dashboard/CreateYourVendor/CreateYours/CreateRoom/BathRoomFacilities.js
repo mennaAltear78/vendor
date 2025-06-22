@@ -21,12 +21,13 @@ function BathRoomFacilities() {
   const [error, setError] = useState(null);
   const [isPop_up, SetPop_up] = useState(false);
   const ctx = useContext(AuthContext);
+console.log(ctx.specificHotelId,"ctx.specificHotelId");
 
   const navigate = useNavigate();
 useEffect(() => {
   const newData = {
     ...ctx.RoomInfo,
-    hotel: ctx.IdSpesificHotel,
+    hotel:ctx.specificHotelId,
     ...selectedRoom,
   };
 
@@ -45,6 +46,8 @@ useEffect(() => {
       return;
     }
     setIsLoading(true);
+    console.log({...ctx.RoomInfo});
+    
     try {
       const response = await api.post(
         "rooms",
@@ -65,11 +68,11 @@ useEffect(() => {
 
   const CancellHandeler = () => {
     ctx.setHotelImageDone((prevSteps) => [...prevSteps, 4]);
-    navigate("/CompleteProfie");
+    navigate(`/RoomsList/${ctx.specificHotelId}`);
   };
   const GoToHandeler = () => {
     ctx.setHotelImageDone((prevSteps) => [...prevSteps, 4]);
-    navigate("/RoomFacilities");
+    navigate("/RoomImage");
   };
   return (
     <MainDashBoardWrapper>
@@ -122,9 +125,9 @@ useEffect(() => {
       {isPop_up && (
         <PopupMessage
           popMessageCss="popupMain"
-          details="Now, proceed to upload images for the room. 😊📸"
+          details="The room has been created successfully! Now, proceed to upload images for the room. 😊📸"
           CancelbtnCss="blueCssS"
-          highlighted="The room has been created successfully!"
+          // highlighted="The room has been created successfully!"
           messageImg={gif}
           cancel={true}
           btnCss="whiteCssS"
