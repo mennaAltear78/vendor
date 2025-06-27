@@ -1,70 +1,114 @@
-# Getting Started with Create React App
+# 🏨 Vendor Hotel Management System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-featured hotel and tour management dashboard built with **React**, offering secure authentication, dynamic CRUD operations, responsive design, and insightful vendor statistics.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🔐 Authentication
 
-### `npm start`
+- Implements secure authentication using **Access Token** and **Refresh Token**.
+- Utilizes **Axios interceptors** to manage token expiration and automate refresh logic.
+- Supports user account creation and password update functionalities.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📊 Vendor Dashboard & Statistics
 
-### `npm test`
+- Users land on a dashboard displaying key vendor statistics post-login.
+- Interactive charts display:
+  - Number of hotels managed
+  - Number of rooms available
+  - Reviewing status
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 🏨 Hotel Management
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Users can:
+  - Create new hotels
+  - Upload hotel images after creation
+  - Add multiple rooms per hotel
+- If no rooms exist, the hotel card displays an 'Add Room' icon.
+- Edit and update hotel information is fully supported.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 📋 Hotel Listing Features
 
-### `npm run eject`
+- View and manage all hotels with:
+  - **Pagination**
+  - **Sorting** (by name, date added, price range)
+  - **Filtering** (by city, facilities, star rating)
+  - **Search** (by name or location)
+- Create new hotels directly from the listing.
+- Clicking a hotel opens a **Drawer** with detailed information and editing options.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🛏 Room Listing Features
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Accessed via the 'Rooms' button on hotel cards.
+- Displays all rooms within a hotel, with:
+  - **Pagination**
+  - **Sorting & Filtering** (by price, type, availability)
+  - **Search** capability
+  - Room creation and detailed room **Drawer** for viewing/editing
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## 🧭 Tour Management Features
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Vendors can manage tour packages:
+  - Linked to specific hotels or standalone
+- Capabilities include:
+  - Creating tour packages with details (name, duration, itinerary, price, images)
+  - Editing and updating tours
+  - Filtering/searching by location, duration, price
+  - Managing booking settings, availability, and multilingual descriptions (if enabled)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## 🛠 Technologies Used
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Frontend
+- **React (CRA)**
+- **JavaScript**
 
-### Analyzing the Bundle Size
+### State Management
+- `useContext` – local scoped state
+- `Redux Toolkit` – global state (CRUD operations)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Form Validation
+- **Zod** – schema-based validation for forms
 
-### Making a Progressive Web App
+### Routing
+- **React Router DOM**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### HTTP & Authentication
+- **Axios** – API communication with auth interceptors
 
-### Advanced Configuration
+### Styling & UI
+- **TailwindCSS** – utility-first styling
+- Fully responsive layout (desktop & mobile)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Charts
+- **ReactApexChart** – interactive statistics and vendor data visualization
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## ⚙️ Setup & Installation
 
-### `npm run build` fails to minify
+To run the project locally:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+# 1. Clone the repository
+git clone https://github.com/mennaAltear78/vendor.git
+
+# 2. Navigate to the project directory
+cd vendor
+
+# 3. Install dependencies
+npm install
+
+# 4. Start the application
+npm start
