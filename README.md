@@ -2,8 +2,6 @@
 
 A full-featured hotel and tour management dashboard built with **React**, offering secure authentication, dynamic CRUD operations, responsive design, and insightful vendor statistics.
 
-link project video https://drive.google.com/file/d/1A2SsRunSS-17-6r12PaRnzmhzVaVIufp/view?usp=sharing
-linkeIn post https://www.linkedin.com/posts/menna-altear-b308b6347_graduationproject-react-javascript-activity-7351606749348405249-i1-w?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFbO-dQBpaRtXzGSZyzp0qJJE4JrVnPmeYM
 ---
 
 ## 🔐 Authentication
@@ -114,3 +112,8 @@ npm install
 
 # 4. Start the application
 npm start
+
+
+
+link project video https://drive.google.com/file/d/1A2SsRunSS-17-6r12PaRnzmhzVaVIufp/view?usp=sharing .
+linkeIn post https://www.linkedin.com/posts/menna-altear-b308b6347_graduationproject-react-javascript-activity-7351606749348405249-i1-w?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFbO-dQBpaRtXzGSZyzp0qJJE4JrVnPmeYM .
