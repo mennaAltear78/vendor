@@ -1,4 +1,5 @@
 # 🏨 Vendor Hotel Management System
+<img width="1879" height="930" alt="image" src="https://github.com/user-attachments/assets/1b13c9b7-71ec-44a2-ab79-69ed7d6b4f75" />
 
 A full-featured hotel and tour management dashboard built with **React**, offering secure authentication, dynamic CRUD operations, responsive design, and insightful vendor statistics.
 
@@ -13,6 +14,7 @@ A full-featured hotel and tour management dashboard built with **React**, offeri
 ---
 
 ## 📊 Vendor Dashboard & Statistics
+<img width="1886" height="947" alt="image" src="https://github.com/user-attachments/assets/81fa5c92-5942-4ef4-bd3b-a5f0933db602" />
 
 - Users land on a dashboard displaying key vendor statistics post-login.
 - Interactive charts display:
@@ -23,6 +25,7 @@ A full-featured hotel and tour management dashboard built with **React**, offeri
 ---
 
 ## 🏨 Hotel Management
+<img width="1891" height="946" alt="image" src="https://github.com/user-attachments/assets/e9b770a2-27da-416b-9c6b-2c0bbc1d6b1f" />
 
 - Users can:
   - Create new hotels
@@ -34,6 +37,8 @@ A full-featured hotel and tour management dashboard built with **React**, offeri
 ---
 
 ## 📋 Hotel Listing Features
+<img width="1890" height="943" alt="image" src="https://github.com/user-attachments/assets/60812b7a-d0d8-470a-8e9c-481b75171151" />
+
 
 - View and manage all hotels with:
   - **Pagination**
@@ -46,6 +51,7 @@ A full-featured hotel and tour management dashboard built with **React**, offeri
 ---
 
 ## 🛏 Room Listing Features
+<img width="1853" height="928" alt="image" src="https://github.com/user-attachments/assets/ebd34cb8-aa4e-4c5b-a34a-c4c2a99a1375" />
 
 - Accessed via the 'Rooms' button on hotel cards.
 - Displays all rooms within a hotel, with:
