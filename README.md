@@ -2,7 +2,7 @@
 
 A full-featured hotel and tour management dashboard built with **React**, offering secure authentication, dynamic CRUD operations, responsive design, and insightful vendor statistics.
 
-link drive to see the project video https://drive.google.com/file/d/1ETGbwAud8fwhiberYH9c30cIHh7KqO4E/view?usp=sharing
+link project video https://drive.google.com/file/d/1A2SsRunSS-17-6r12PaRnzmhzVaVIufp/view?usp=sharing
 ---
 
 ## 🔐 Authentication
